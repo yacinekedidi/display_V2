@@ -10,7 +10,7 @@ const SearchInput = ({
   //   console.log(showSearchModal);
   // const styles = ``;
   return (
-    <div className="w-100 relative m-4 p-2">
+    <div className="w-100 relative m-4 flex justify-center p-2">
       <input
         style={{ backgroundImage: `url(${faSearch})` }}
         className={`placeholder:font-mono peer my-2 mx-0 box-border rounded-xl border-2 border-solid border-gray-600 bg-transparent 
@@ -27,7 +27,7 @@ const SearchInput = ({
         onClick={showSearchDraw}
         autoFocus={focus}
       />
-      <button className="absolute top-3 right-2 p-2 opacity-50 transition-all peer-focus:opacity-100">
+      <button className=" p-2 opacity-50 transition-all peer-focus:opacity-100">
         <FontAwesomeIcon
           icon={faSearch}
           className={`text-sm text-orange-200`}

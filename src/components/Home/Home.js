@@ -6,7 +6,7 @@ import HomeProductSections from "./HomeProductSections";
 const Home = () => {
   return (
     <>
-      <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-screen-lg">
+      <div className="m-auto flex w-full flex-col items-center justify-center overflow-x-hidden lg:max-w-screen-lg">
         <Header sticky={true} />
         {/* HomeBrandSection */}
         <HomeProductSections />
