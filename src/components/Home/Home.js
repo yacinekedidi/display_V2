@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
       <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-screen-lg">
-        <Header />
+        <Header sticky={true} />
         {/* HomeBrandSection */}
         <HomeProductSections />
       </div>

@@ -33,7 +33,7 @@ const ScrollToTop = () => {
   return (
     <FontAwesomeIcon
       icon={faArrowAltCircleUp}
-      className={`fixed bottom-8 right-8 z-50 h-10 w-10 cursor-pointer text-white hover:opacity-80 md:text-orange-200 ${
+      className={`fixed bottom-8  right-8 z-10 h-10 w-10 cursor-pointer text-white hover:opacity-80 md:text-orange-200 ${
         isVisible ? "block" : "hidden"
       }`}
       onClick={scrollToTop}

@@ -5,6 +5,7 @@ module.exports = {
     fontFamily: {
       sans: ["Rubik", "sans-serif"],
       serif: ["Cardo", "serif"],
+      cairo: ["Cairo", "san-setif"],
     },
     extend: {
       borderWidth: {

@@ -7,6 +7,8 @@ import reportWebVitals from "./reportWebVitals";
 import ProductProfile from "./components/Products/ProductProfile";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
+import Favorites from "./components/Profile/Favorites";
+import Requests from "./components/Profile/Requests";
 import ProductsList from "./components/Products/ProductsList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -17,6 +19,8 @@ root.render(
         <Route path="/" element={<App />} />
         <Route index element={<Home />} />
         <Route path=":username" element={<Profile />} />
+        <Route path=":username/favorites" element={<Favorites />} />
+        <Route path=":username/requests" element={<Requests />} />
         <Route path="products" element={<ProductsList />} />
         <Route path="products/:productId" element={<ProductProfile />} />
       </Routes>

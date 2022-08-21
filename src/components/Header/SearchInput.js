@@ -13,9 +13,13 @@ const SearchInput = ({
     <div className="w-100 relative m-4 p-2">
       <input
         style={{ backgroundImage: `url(${faSearch})` }}
-        className="placeholder:font-mono peer my-2 mx-0 box-border rounded-xl border-2 border-solid border-gray-600 bg-transparent 
-        py-1 px-8 text-white outline-none duration-500 placeholder:text-lg placeholder:opacity-50 focus:border-orange-200 
-        focus:placeholder:opacity-100 md:px-16 lg:px-72"
+        className={`placeholder:font-mono peer my-2 mx-0 box-border rounded-xl border-2 border-solid border-gray-600 bg-transparent 
+        py-1 text-white outline-none duration-500  placeholder:text-lg placeholder:opacity-50 
+        focus:border-orange-200 focus:placeholder:opacity-100 sm:px-16 ${
+          !showSearchModal
+            ? "placeholder:invisible sm:placeholder:visible"
+            : "px-10"
+        } lg:px-56`}
         type="text"
         placeholder="Search a product or a seller..."
         autoComplete="off"

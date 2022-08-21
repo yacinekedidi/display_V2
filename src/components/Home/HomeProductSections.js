@@ -15,14 +15,14 @@ import ModalOverlay from "../Utils/ModalOverlay";
 // we can save it as state (like current products)
 
 const HomeProductSections = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   return (
     <div className="p-0 md:p-16">
       {Object.keys(MockImages).map((key) => (
         <HomeProductSection
           title={key}
-          images={MockImages[key]}
+          products={MockImages[key]}
           key={uuidv4()}
         />
       ))}

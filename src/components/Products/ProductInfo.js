@@ -6,11 +6,14 @@ import {
   faDollarSign,
   faCalculator,
   faHeart,
+  faClose,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ModalOverlay from "../Utils/ModalOverlay";
+import ZoomImage from "../Utils/ZoomImage";
+import { countries } from "../../mockdata/productImages";
 
 const ProductInfo = ({ product }) => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -25,11 +28,22 @@ const ProductInfo = ({ product }) => {
   };
 
   return (
-    <div className="mb-10 flex flex-col gap-10 bg-orange-400 py-16 px-24 font-sans shadow-sm shadow-gray-400 md:flex-row ">
-      <div className="flex flex-1 flex-col justify-center gap-4 ">
+    <div
+      className={`mb-10 flex flex-col-reverse gap-10 bg-orange-400 py-16 px-24 font-sans shadow-sm shadow-gray-400 md:flex-row`}
+    >
+      <div className="flex flex-1 flex-col justify-center gap-4">
         <div>
+          {modalIsOpen ? (
+            <FontAwesomeIcon
+              className="fixed top-0 right-0 z-30 cursor-pointer px-4  text-4xl text-white"
+              icon={faClose}
+              onClick={handleModal}
+            />
+          ) : (
+            ""
+          )}
           <img
-            className="cursor-pointer"
+            className="cursor-zoom-in"
             src={product?.images_url[selectedImage]}
             alt=""
             onClick={handleModal}
@@ -58,7 +72,7 @@ const ProductInfo = ({ product }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-4">
+      <div className="flex flex-1 flex-col gap-8">
         <div className="text-3xl md:w-full">
           <h2 className="font-bold">{product.name}</h2>
           <p className="font-thin">DANZA</p>
@@ -77,12 +91,26 @@ const ProductInfo = ({ product }) => {
             <h2 className="text-2xl font-bold tracking-wider">
               {product.seller}
             </h2>
-            <span>
+            <span className="relative flex items-center gap-2">
               <FontAwesomeIcon
                 className="text-orange-200"
                 icon={faLocationDot}
+                size="lg"
               />{" "}
-              {product.seller_country}
+              <span
+                className={`fi fi-${
+                  product.seller_country.toLowerCase() in countries
+                    ? countries[product.seller_country.toLowerCase()]
+                    : countries["unknown"]
+                } peer cursor-help`}
+              ></span>{" "}
+              <span
+                className="text-md absolute top-1/2 left-12 hidden rounded-full rounded-tl-none bg-neutral-900 px-2  
+              text-white opacity-80 peer-hover:inline-block"
+              >
+                {" "}
+                {product.seller_country}
+              </span>
             </span>
           </div>
         </div>
@@ -111,7 +139,7 @@ const ProductInfo = ({ product }) => {
               <FontAwesomeIcon icon={faDollarSign} />{" "}
               <span>Request price options</span>
             </button>
-            <button className="space-x-1 border-2 bg-transparent p-2 font-sans font-bold tracking-wide text-orange-200 hover:bg-neutral-900">
+            <button className="space-x-1 whitespace-nowrap border-2 bg-transparent p-2 font-sans font-bold tracking-wide text-orange-200 hover:bg-neutral-900">
               <FontAwesomeIcon icon={faCalculator} />{" "}
               <span>Request a personalized quote</span>
             </button>
@@ -120,15 +148,15 @@ const ProductInfo = ({ product }) => {
       </div>
 
       {modalIsOpen ? (
-        <ModalOverlay
-          IsOpen={modalIsOpen}
-          setIsOpen={handleModal}
-          opacity="100"
-        >
-          <img
+        <ModalOverlay IsOpen={modalIsOpen} setIsOpen={handleModal}>
+          {/* <img
             className="block h-auto max-h-full w-auto max-w-full opacity-100"
             src={product["images_url"][selectedImage]}
             alt=""
+          /> */}
+          <ZoomImage
+            image={product?.images_url[selectedImage]}
+            className="block h-auto max-h-full w-auto max-w-full opacity-100"
           />
         </ModalOverlay>
       ) : (

@@ -16,13 +16,19 @@ const ModalOverlay = ({ children, IsOpen = true, setIsOpen = () => {} }) => {
   );
 
   useEffect(() => {
+    // probably not the best way to do this
+    window.document.documentElement.style.overflowY = "hidden";
+
     document.addEventListener("keydown", pressEscape);
-    return () => document.removeEventListener("keydown", pressEscape);
+    return () => {
+      document.removeEventListener("keydown", pressEscape);
+      window.document.documentElement.style.overflowY = "visible";
+    };
   }, [pressEscape]);
 
   return (
     <div
-      className={`fixed top-1/2 left-1/2 z-20 flex min-h-screen w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-black opacity-80`}
+      className={`fixed top-1/2 left-1/2 z-20 flex h-full max-h-screen min-h-screen w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden bg-transparent backdrop-blur-lg`}
       ref={elContainer}
       onClick={closeModal}
     >

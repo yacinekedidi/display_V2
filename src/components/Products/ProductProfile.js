@@ -30,7 +30,7 @@ const ProductProfile = () => {
          */}
         <HomeProductSection
           title="Recently Viewed Products"
-          images={MockImages["Recently Viewed Products"]}
+          products={MockImages["Recently Viewed Products"]}
         />
         {/* <RelatedSearches />  */}
         <ScrollToTop />
