@@ -29,7 +29,7 @@ const ProductInfo = ({ product }) => {
 
   return (
     <div
-      className={`mb-10 flex flex-col-reverse gap-10 bg-orange-400 py-16 px-24 font-sans shadow-sm shadow-gray-400 md:flex-row`}
+      className={`mb-10 flex flex-col-reverse gap-10 bg-orange-300 py-16 px-24 font-sans shadow-sm shadow-gray-400 md:flex-row`}
     >
       <div className="flex flex-1 flex-col justify-center gap-4">
         <div>
@@ -79,9 +79,14 @@ const ProductInfo = ({ product }) => {
         </div>
         <div className="flex gap-2">
           {[...product.motif, ...product.appearance].map((tag) => (
-            <div className="flex items-center gap-1" key={uuidv4()}>
-              <FontAwesomeIcon className="text-orange-200" icon={faTag} />
-              <p>{tag}</p>
+            <div
+              className="flex items-center gap-1 rounded-full border-x-4 px-2 py-1"
+              key={uuidv4()}
+            >
+              <FontAwesomeIcon className="text-white" icon={faTag} />
+              <p className=" whitespace-nowrap font-cairo text-sm font-extralight italic opacity-80">
+                {tag}
+              </p>
             </div>
           ))}
         </div>
@@ -93,7 +98,7 @@ const ProductInfo = ({ product }) => {
             </h2>
             <span className="relative flex items-center gap-2">
               <FontAwesomeIcon
-                className="text-orange-200"
+                className="text-white"
                 icon={faLocationDot}
                 size="lg"
               />{" "}
@@ -119,7 +124,7 @@ const ProductInfo = ({ product }) => {
             {/* incomplete for other ratings half stars etc... */}
             {new Array(product.review_rating).fill(0).map((x) => (
               <FontAwesomeIcon
-                className="text-lg text-yellow-400"
+                className="text-lg text-orange-400"
                 icon={faStar}
                 key={uuidv4()}
               />
@@ -135,11 +140,11 @@ const ProductInfo = ({ product }) => {
         </div>
         <div className="self-center">
           <div className="flex flex-col gap-2 text-lg">
-            <button className="space-x-1 border-2 bg-transparent p-2 font-sans font-bold tracking-wide text-orange-200 hover:bg-neutral-900">
+            <button className="space-x-1 border-2 bg-transparent p-2 font-sans font-bold tracking-wide text-neutral-900 hover:bg-neutral-900 hover:text-white">
               <FontAwesomeIcon icon={faDollarSign} />{" "}
               <span>Request price options</span>
             </button>
-            <button className="space-x-1 whitespace-nowrap border-2 bg-transparent p-2 font-sans font-bold tracking-wide text-orange-200 hover:bg-neutral-900">
+            <button className="space-x-1 whitespace-nowrap border-2 p-2 font-sans font-bold tracking-wide  text-neutral-900 hover:bg-neutral-900 hover:text-white">
               <FontAwesomeIcon icon={faCalculator} />{" "}
               <span>Request a personalized quote</span>
             </button>

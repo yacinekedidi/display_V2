@@ -1,10 +1,10 @@
-import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useRef } from "react";
-import "./HomeExplore.css";
-import ProductCard from "../Products/ProductCard";
-import { Link } from "react-router-dom";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useRef } from 'react';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import ProductCard from '../Products/ProductCard';
+import './HomeExplore.css';
 
 // import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 // import { LeftArrow, RightArrow } from "../Utils/Arrows";
@@ -33,31 +33,30 @@ const HomeProductSection = ({ title, products }) => {
   const elContainer = useRef();
 
   const titles = {
-    "Latest Products": "New",
-    "Most Popular Products": "Popular",
-    "Recently Viewed Products": "Visited",
+    'Latest Products': 'View all the latest products',
+    'Most Popular Products': 'View all the trending products',
+    'Recently Viewed Products': 'View all your recently visited products',
   };
 
   const HandleScrollLeft = () => {
-    if (elContainer.current.scrollLeft) elContainer.current.scrollLeft -= 500;
+    if (elContainer.current.scrollLeft) elContainer.current.scrollLeft -= 290;
   };
 
   const HandleScrollRight = () => {
-    elContainer.current.scrollLeft += 500;
+    elContainer.current.scrollLeft += 290;
   };
 
   return (
     <div
       className="container mb-10 w-screen rounded-b-lg bg-orange-400  p-2 px-0  shadow-sm shadow-orange-200 md:w-[960px]"
-      style={{ backgroundColor: "rgb(26,21,21)" }}
+      style={{ backgroundColor: 'rgb(26,21,21)' }}
     >
       <div
-        className="mt-4 flex items-center  border-b-2 border-solid  border-b-orange-200 
-      font-serif tracking-widest shadow-sm"
-        style={{ backgroundColor: "rgb(26,21,21)" }}
+        className="mt-4 flex flex-col font-serif tracking-widest shadow-sm after:mx-auto after:block after:w-11/12
+      after:border-b-2 after:border-b-orange-300 after:pt-1"
       >
-        <div className="peer flex items-center whitespace-nowrap">
-          <Link to={{ pathname: "/products", title: title }}>
+        <div className="peer flex items-center whitespace-nowrap p-2">
+          <Link to={{ pathname: '/products', title: title }}>
             <button
               className="cursor-pointer  border-none bg-transparent px-4 py-2 text-base
              font-bold"
@@ -68,16 +67,16 @@ const HomeProductSection = ({ title, products }) => {
               />
             </button>
           </Link>
-        </div>
-        <div className="">
-          <h2
-            className="bg-gradient-to-br from-orange-700 to-white bg-clip-text font-cairo text-xl font-black text-orange-200 transition-all 
+          <div>
+            <h2
+              className="bg-gradient-to-br from-orange-700 to-white bg-clip-text font-cairo text-xl font-black text-orange-200 transition-all 
              duration-75 hover:text-transparent"
-          >
-            <Link to={{ pathname: "/products", title: title }}>
-              {titles[title]}
-            </Link>
-          </h2>
+            >
+              <Link to={{ pathname: '/products', title: title }}>
+                {titles[title]}
+              </Link>
+            </h2>
+          </div>
         </div>
         {/* <FontAwesomeIcon
           className="text-rose-600"
@@ -99,7 +98,7 @@ const HomeProductSection = ({ title, products }) => {
           // onMouseLeave={enableScroll}
         > */}
         <div
-          className="flex h-full w-full overflow-x-scroll scroll-smooth  py-12 font-sans scrollbar-hide"
+          className="flex h-full w-full overflow-x-scroll scroll-smooth  py-12 font-sans transition-all scrollbar-hide"
           ref={elContainer}
 
           // onMouseEnter={disableScroll}

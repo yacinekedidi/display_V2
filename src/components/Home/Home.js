@@ -1,7 +1,7 @@
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
-import ScrollToTop from "../Utils/ScrollToTop";
-import HomeProductSections from "./HomeProductSections";
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+import ScrollToTop from '../Utils/ScrollToTop';
+import HomeProductSections from './HomeProductSections';
 
 const Home = () => {
   return (

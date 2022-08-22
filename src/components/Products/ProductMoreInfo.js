@@ -5,7 +5,7 @@ import { MockProduct } from "../../mockdata/productImages";
 const ProductMoreInfo = () => {
   return (
     <div className="mx-auto mb-10 flex flex-col justify-center gap-10 font-sans md:flex-row">
-      <div className="flex w-full flex-col flex-wrap bg-orange-400 font-sans shadow-sm shadow-gray-400 md:w-1/2">
+      <div className="flex w-full flex-col flex-wrap bg-orange-300 font-sans shadow-sm shadow-gray-400 md:w-1/2">
         <div className="p-2">
           <div className="flex justify-around">
             <h1 className="mb-4 p-2 text-2xl">Characteristics</h1>
@@ -44,7 +44,7 @@ const ProductMoreInfo = () => {
           </div>
         </div>
       </div>
-      <div className="flex w-full flex-col bg-orange-400 font-sans shadow-sm shadow-gray-400 md:w-1/2 ">
+      <div className="flex w-full flex-col bg-orange-300 font-sans shadow-sm shadow-gray-400 md:w-1/2 ">
         <div className="p-2">
           <div className="flex flex-col justify-around">
             <h1 className="mb-4 p-2 text-center text-2xl">Description</h1>

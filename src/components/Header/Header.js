@@ -1,23 +1,18 @@
-import React from "react";
-import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import {
-  faHeart,
-  faUser,
-  // faCaretDown,
-  // faCaretUp,
-} from "@fortawesome/free-solid-svg-icons";
-import logo from "../../assets/logo.svg";
-import "./Header.css";
-import SearchInput from "./SearchInput";
-import ModalOverlay from "../Utils/ModalOverlay";
-import ProfileDraw from "./ProfileDraw";
+import { faBell, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.svg';
+import ModalOverlay from '../Utils/ModalOverlay';
+import Filters from './Filters';
+import './Header.css';
+import ProfileDraw from './ProfileDraw';
+import SearchInput from './SearchInput';
 
-const Header = ({ sticky }) => {
+const Header = ({ sticky = false }) => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
-  const [userIsLoggedIn] = useState(false);
+  const [userIsLoggedIn] = useState(true);
 
   const showProfileDraw = (e) => {
     setProfileIsOpen(!profileIsOpen);
@@ -31,9 +26,9 @@ const Header = ({ sticky }) => {
   return (
     <div
       className={`z-20 mb-16 flex justify-between border-b-2 border-b-orange-200 p-1 ${
-        sticky ? "lg:sticky lg:top-0" : ""
+        sticky ? 'lg:sticky lg:top-0' : ''
       }`}
-      style={{ backgroundColor: "rgb(26,21,21)" }}
+      style={{ backgroundColor: 'rgb(26,21,21)' }}
     >
       <div className="flex flex-col items-center">
         <Link className="hover:rotate-180 hover:animate-spin" to="/">
@@ -47,72 +42,59 @@ const Header = ({ sticky }) => {
         </span>
       </div>
 
-      {!userIsLoggedIn ? (
-        profileIsOpen ? (
-          <ModalOverlay IsOpen={profileIsOpen} setIsOpen={setProfileIsOpen}>
-            <ProfileDraw
-              profileIsOpen={profileIsOpen}
-              showProfileDraw={showProfileDraw}
-              userIsLoggedIn={userIsLoggedIn}
-            />
-          </ModalOverlay>
-        ) : (
-          ""
-        )
-      ) : (
-        ""
+      {!userIsLoggedIn && profileIsOpen && (
+        <ModalOverlay IsOpen={profileIsOpen} setIsOpen={setProfileIsOpen}>
+          <ProfileDraw
+            profileIsOpen={profileIsOpen}
+            showProfileDraw={showProfileDraw}
+            userIsLoggedIn={userIsLoggedIn}
+          />
+        </ModalOverlay>
       )}
 
       {showSearchModal ? (
         <ModalOverlay IsOpen={showSearchDraw} setIsOpen={setShowSearchModal}>
           <div className="bg-neutral-900">
             <SearchInput showSearchModal={showSearchModal} focus={true} />
-            <div className="text-white">filters</div>
+            {/* filters */}
+            <div className="text-white">
+              <Filters />
+            </div>
           </div>
         </ModalOverlay>
       ) : (
         <SearchInput showSearchDraw={showSearchDraw} />
       )}
-      <div className="flex flex-col-reverse gap-4 sm:flex-row">
-        <div className="flex flex-col items-center">
-          <button>
-            <FontAwesomeIcon
-              className="text-orange-400"
-              icon={faHeart}
-              size="sm"
-            />
-          </button>
-          <span
-            className="fill-transparent stroke-white stroke-2 font-sans text-xs  tracking-tighter text-orange-200 
-        shadow-amber-300 drop-shadow-md sm:text-sm"
-          >
-            Saved
-          </span>
-        </div>
+      <div className="flex flex-col  sm:flex-row-reverse sm:gap-2">
         <div className=" relative flex flex-col items-center">
           <button className="" onClick={showProfileDraw}>
             <FontAwesomeIcon
-              className="text-orange-400"
+              className="text-orange-300"
               icon={faUser}
               size="sm"
             />
-            {userIsLoggedIn && profileIsOpen ? (
+            {userIsLoggedIn && profileIsOpen && (
               <ProfileDraw
                 profileIsOpen={profileIsOpen}
                 showProfileDraw={showProfileDraw}
                 userIsLoggedIn={userIsLoggedIn}
               />
-            ) : (
-              ""
             )}
           </button>
-          <span
-            className="whitespace-nowrap fill-transparent stroke-white stroke-2 font-sans  text-xs tracking-tighter 
-        text-orange-200 shadow-amber-300 drop-shadow-md sm:text-sm"
-          >
-            Sign In
-          </span>
         </div>
+        {userIsLoggedIn && (
+          <div className="flex flex-col items-center">
+            <Link to="/notifications">
+              <button>
+                <FontAwesomeIcon
+                  className="text-orange-300"
+                  icon={faBell}
+                  size="sm"
+                />
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

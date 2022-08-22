@@ -1,160 +1,160 @@
 export const MockImages = {
-  "Latest Products": [
+  'Latest Products': [
     {
-      id: "1",
+      id: '1',
       image:
-        "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=398&q=80",
+        'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=398&q=80',
     },
     {
-      id: "2",
+      id: '2',
       image:
-        "https://images.unsplash.com/photo-1587303876752-91efb6315dcc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
+        'https://images.unsplash.com/photo-1587303876752-91efb6315dcc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80',
     },
     {
-      id: "3",
+      id: '3',
       image:
-        "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+        'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
     },
     {
-      id: "4",
+      id: '4',
       image:
-        "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80",
+        'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
     },
     {
-      id: "5",
+      id: '5',
       image:
-        "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=398&q=80",
+        'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=398&q=80',
     },
     {
-      id: "6",
+      id: '6',
       image:
-        "https://images.unsplash.com/photo-1587303876752-91efb6315dcc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
+        'https://images.unsplash.com/photo-1587303876752-91efb6315dcc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80',
     },
     {
-      id: "7",
+      id: '7',
       image:
-        "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+        'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
     },
     {
-      id: "8",
+      id: '8',
       image:
-        "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80",
-    },
-  ],
-  "Most Popular Products": [
-    {
-      id: "9",
-      image:
-        "https://images.unsplash.com/photo-1511556820780-d912e42b4980?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-    },
-    {
-      id: "10",
-      image:
-        "https://images.unsplash.com/photo-1617005082133-548c4dd27f35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-    },
-    {
-      id: "11",
-      image:
-        "https://images.unsplash.com/photo-1576087503901-b2a3e3b66672?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-    },
-    {
-      id: "12",
-      image:
-        "https://images.unsplash.com/photo-1575330933415-cea1e7ce53eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+        'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
     },
   ],
-  "Recently Viewed Products": [
+  'Most Popular Products': [
     {
-      id: "13",
+      id: '9',
       image:
-        "https://images.unsplash.com/photo-1619153709175-64db4b9f5ed5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+        'https://images.unsplash.com/photo-1511556820780-d912e42b4980?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
     },
     {
-      id: "14",
+      id: '10',
       image:
-        "https://images.unsplash.com/photo-1584949514123-474cfa705dfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+        'https://images.unsplash.com/photo-1617005082133-548c4dd27f35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
     },
     {
-      id: "15",
+      id: '11',
       image:
-        "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=398&q=80",
+        'https://images.unsplash.com/photo-1576087503901-b2a3e3b66672?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
     },
     {
-      id: "16",
+      id: '12',
       image:
-        "https://images.unsplash.com/photo-1617005082133-548c4dd27f35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+        'https://images.unsplash.com/photo-1575330933415-cea1e7ce53eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+    },
+  ],
+  'Recently Viewed Products': [
+    {
+      id: '13',
+      image:
+        'https://images.unsplash.com/photo-1619153709175-64db4b9f5ed5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
+    },
+    {
+      id: '14',
+      image:
+        'https://images.unsplash.com/photo-1584949514123-474cfa705dfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+    },
+    {
+      id: '15',
+      image:
+        'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=398&q=80',
+    },
+    {
+      id: '16',
+      image:
+        'https://images.unsplash.com/photo-1617005082133-548c4dd27f35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
     },
   ],
 };
 
 export const MockProduct = {
-  name: "Contemporary wallpaper",
+  name: 'Contemporary wallpaper',
   desciption:
-    "The collection Wallpaper On Demand N.O.W. Edizioni, offers tailor-made wallpapers. Thanks to technical printing and high-quality materials, we realize decorations declined in several color variations, overcoming the modular repetitions. A solution of interior design that satisfy the desires of most demanding customers.",
-  style: "contemporary",
-  seller: "N.O.W. Edizioni",
-  seller_country: "italy",
+    'The collection Wallpaper On Demand N.O.W. Edizioni, offers tailor-made wallpapers. Thanks to technical printing and high-quality materials, we realize decorations declined in several color variations, overcoming the modular repetitions. A solution of interior design that satisfy the desires of most demanding customers.',
+  style: 'contemporary',
+  seller: 'N.O.W. Edizioni',
+  seller_country: 'italy',
   seller_responseTime: 48, // average in hours
   review_rating: 5,
   review_participants: 100,
-  motif: ["panoramic", "geometric"],
-  appearance: ["fabric look"],
+  motif: ['panoramic', 'geometric'],
+  appearance: ['fabric look'],
   options: [
-    "printed",
-    "washable",
-    "fire-retardant",
-    "custom",
-    "water-repellent",
-    "acoustic",
-    "abrasion-resistant",
+    'printed',
+    'washable',
+    'fire-retardant',
+    'custom',
+    'water-repellent',
+    'acoustic',
+    'abrasion-resistant',
   ],
   room: [
-    "living rooms",
-    "bedrooms",
-    "dining rooms",
-    "offices",
+    'living rooms',
+    'bedrooms',
+    'dining rooms',
+    'offices',
     "girl's room",
     "boy's room",
     "teenager's room",
-    "bathrooms",
-    "kitchens",
-    "outdoor use",
+    'bathrooms',
+    'kitchens',
+    'outdoor use',
   ],
-  designer: "Pietro Gaeta",
-  width: "124 cm (49 in)",
+  designer: 'Pietro Gaeta',
+  width: '124 cm (49 in)',
   images_url: [
-    "https://img.archiexpo.com/images_ae/photo-g/148145-17650768.webp",
-    "https://img.archiexpo.com/images_ae/photo-g/148145-17650769.webp",
-    "https://img.archiexpo.com/images_ae/photo-g/148145-17650770.webp",
-    "https://img.archiexpo.com/images_ae/photo-g/148145-17650771.webp",
-    "https://img.archiexpo.com/images_ae/photo-g/148145-17650782.webp",
+    'https://img.archiexpo.com/images_ae/photo-g/148145-17650768.webp',
+    'https://img.archiexpo.com/images_ae/photo-g/148145-17650769.webp',
+    'https://img.archiexpo.com/images_ae/photo-g/148145-17650770.webp',
+    'https://img.archiexpo.com/images_ae/photo-g/148145-17650771.webp',
+    'https://img.archiexpo.com/images_ae/photo-g/148145-17650782.webp',
   ],
 };
 
 export const manyImages = () => {
   let arr = [];
   for (let index = 0; index < 25; index++) {
-    arr = [...arr, ...MockImages["Latest Products"]];
+    arr = [...arr, ...MockImages['Latest Products']];
   }
   return arr;
 };
 
 export const countries = {
-  unknown: "xx",
-  andorra: "ad",
-  "united arb eimarates": "ae",
-  afghanista: "af",
-  "antigua ad Barbuda": "ag",
-  anguilla: "ai",
-  albania: "al",
-  armenia: "am",
-  angola: "ao",
-  antartica: "aq",
-  argentina: "ar",
-  "american amoa": "as",
-  austria: "at",
-  australia: "au",
-  italy: "it",
+  unknown: 'xx',
+  andorra: 'ad',
+  'united arb eimarates': 'ae',
+  afghanista: 'af',
+  'antigua ad Barbuda': 'ag',
+  anguilla: 'ai',
+  albania: 'al',
+  armenia: 'am',
+  angola: 'ao',
+  antartica: 'aq',
+  argentina: 'ar',
+  'american amoa': 'as',
+  austria: 'at',
+  australia: 'au',
+  italy: 'it',
   // tbc: "aw",
   // tbc: "ax",
   // tbc: "az",

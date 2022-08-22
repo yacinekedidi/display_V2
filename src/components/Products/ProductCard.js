@@ -1,10 +1,10 @@
-import React from "react";
-import "../Home/HomeExplore.css";
-import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
+import '../Home/HomeExplore.css';
 // import { VisibilityContext } from "react-horizontal-scrolling-menu";
 
 const Product = styled.div`
@@ -29,7 +29,8 @@ const ProductCard = ({ image, index, itemId }) => {
   return (
     // <div className={`product__card `}>
     <Product
-      className="product__card relative flex h-80  select-none justify-end overflow-hidden bg-gray-100 p-4 text-center text-gray-100 sm:w-[218px]"
+      className="product__card relative flex h-80  select-none justify-end overflow-hidden bg-gray-100 p-4 
+      text-center text-gray-100 sm:w-[251px]"
       index={index + 1}
       image={image}
       tabIndex={0}
