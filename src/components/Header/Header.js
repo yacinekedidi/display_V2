@@ -1,7 +1,8 @@
-import { faBell, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faUser, faMessage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 import logo from '../../assets/logo.svg';
 import ModalOverlay from '../Utils/ModalOverlay';
 import Filters from './Filters';
@@ -12,7 +13,7 @@ import SearchInput from './SearchInput';
 const Header = ({ sticky = false }) => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
-  const [userIsLoggedIn] = useState(true);
+  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
   const showProfileDraw = (e) => {
     setProfileIsOpen(!profileIsOpen);
@@ -22,6 +23,12 @@ const Header = ({ sticky = false }) => {
     // console.log(e.target);
     setShowSearchModal(!showSearchModal);
   };
+
+  useEffect(() => {
+    const cookies = new Cookies();
+    const authToken = cookies.get('token');
+    if (authToken) setUserIsLoggedIn(true);
+  }, []);
 
   return (
     <div
@@ -48,6 +55,7 @@ const Header = ({ sticky = false }) => {
             profileIsOpen={profileIsOpen}
             showProfileDraw={showProfileDraw}
             userIsLoggedIn={userIsLoggedIn}
+            setUserIsLoggedIn={setUserIsLoggedIn}
           />
         </ModalOverlay>
       )}
@@ -65,31 +73,41 @@ const Header = ({ sticky = false }) => {
       ) : (
         <SearchInput showSearchDraw={showSearchDraw} />
       )}
-      <div className="flex flex-col  sm:flex-row-reverse sm:gap-2">
+      <div className="flex flex-col sm:flex-row-reverse sm:gap-4">
         <div className=" relative flex flex-col items-center">
           <button className="" onClick={showProfileDraw}>
-            <FontAwesomeIcon
-              className="text-orange-300"
-              icon={faUser}
-              size="sm"
-            />
+            <FontAwesomeIcon className="text-white" icon={faUser} size="lg" />
             {userIsLoggedIn && profileIsOpen && (
               <ProfileDraw
                 profileIsOpen={profileIsOpen}
                 showProfileDraw={showProfileDraw}
                 userIsLoggedIn={userIsLoggedIn}
+                setUserIsLoggedIn={setUserIsLoggedIn}
               />
             )}
           </button>
         </div>
         {userIsLoggedIn && (
           <div className="flex flex-col items-center">
+            <Link to="/messages">
+              <button>
+                <FontAwesomeIcon
+                  className="text-white"
+                  icon={faMessage}
+                  size="lg"
+                />
+              </button>
+            </Link>
+          </div>
+        )}
+        {userIsLoggedIn && (
+          <div className="flex flex-col items-center">
             <Link to="/notifications">
               <button>
                 <FontAwesomeIcon
-                  className="text-orange-300"
+                  className="text-white"
                   icon={faBell}
-                  size="sm"
+                  size="lg"
                 />
               </button>
             </Link>

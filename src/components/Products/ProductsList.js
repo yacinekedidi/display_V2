@@ -25,19 +25,20 @@ const ProductsList = () => {
     })
   );
   const [page, setPage] = useState(0);
+  const totalPages = 10;
   const options = [
     { value: 'latest', label: 'latest' },
     { value: 'popular', label: 'popular' },
     { value: 'viewed', label: 'viewed' },
   ];
 
-  console.log(items);
   // console.log(items);
   const fetchMoreData = () => {
     // a fake async api call like which sends
     // 20 more records in 1.5 secs
     // const i = page * 20 + 1;
     // setPage((prev) => prev + 1);
+    setPage((prev) => prev + 1);
 
     setTimeout(() => {
       setItems((prev) =>
@@ -107,7 +108,7 @@ const ProductsList = () => {
           <InfiniteScroll
             dataLength={items.length}
             next={fetchMoreData}
-            hasMore={true}
+            hasMore={page < totalPages}
             loader={<h4>Loading...</h4>}
           >
             <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-20 p-8 font-sans ">

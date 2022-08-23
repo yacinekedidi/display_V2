@@ -1,7 +1,6 @@
 import {
   faArrowRightFromBracket,
   faBell,
-  faClose,
   faMessage,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
@@ -9,18 +8,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import Auth from '../Auth/Auth';
+import { logout } from '../Utils/removeCookies';
 
 const id = uuidv4();
 
-const ProfileDraw = ({ profileIsOpen, showProfileDraw, userIsLoggedIn }) => {
+const ProfileDraw = ({
+  profileIsOpen,
+  showProfileDraw,
+  userIsLoggedIn,
+  setUserIsLoggedIn,
+}) => {
   return !userIsLoggedIn ? (
-    <div className="absolute z-30 grid h-4/6 w-1/2 grid-cols-2 overflow-hidden bg-orange-200 opacity-100">
-      <FontAwesomeIcon
-        className="absolute top-2 right-2 z-30 cursor-pointer p-1 text-4xl text-red-900"
-        icon={faClose}
-        onClick={showProfileDraw}
+    <>
+      {/* <div className="absolute z-30 grid h-4/6 w-1/2 grid-cols-2 overflow-hidden bg-orange-200 opacity-100">
+        <FontAwesomeIcon
+          className="absolute top-2 right-2 z-30 cursor-pointer p-1 text-4xl text-red-900"
+          icon={faClose}
+          onClick={showProfileDraw}
+        />
+      </div> */}
+      <Auth
+        userIsLoggedIn={userIsLoggedIn}
+        setUserIsLoggedIn={setUserIsLoggedIn}
+        showProfileDraw={showProfileDraw}
       />
-    </div>
+    </>
   ) : (
     <div
       className="absolute top-5 -right-1 flex w-52 flex-col gap-4 rounded-sm bg-neutral-900 text-left font-sans text-base font-medium text-white shadow-md 
@@ -68,7 +81,10 @@ const ProfileDraw = ({ profileIsOpen, showProfileDraw, userIsLoggedIn }) => {
           <span className="">Messages</span>
         </Link>
       </div>
-      <div className="mb-4 flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500">
+      <div
+        onClick={logout}
+        className="mb-4 flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
+      >
         <FontAwesomeIcon icon={faArrowRightFromBracket} />
         <span className="">Logout</span>
       </div>
