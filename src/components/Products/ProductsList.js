@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSearchParams } from 'react-router-dom';
 import Select from 'react-select';
 // useLocation
 import { v4 as uuidv4 } from 'uuid';
-import { manyImages } from '../../mockdata/productImages';
+import { manyImages, MockImages } from '../../mockdata/productImages';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import ScrollToTop from '../Utils/ScrollToTop';
@@ -17,11 +18,38 @@ import ProductCard from './ProductCard';
 const ProductsList = () => {
   // const { search } = useLocation();
   // console.log(search);
+  const [items, setItems] = useState(
+    Array.from({ length: 20 }).fill({
+      image:
+        'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=398&q=80',
+    })
+  );
+  const [page, setPage] = useState(0);
   const options = [
     { value: 'latest', label: 'latest' },
     { value: 'popular', label: 'popular' },
     { value: 'viewed', label: 'viewed' },
   ];
+
+  console.log(items);
+  // console.log(items);
+  const fetchMoreData = () => {
+    // a fake async api call like which sends
+    // 20 more records in 1.5 secs
+    // const i = page * 20 + 1;
+    // setPage((prev) => prev + 1);
+
+    setTimeout(() => {
+      setItems((prev) =>
+        prev.concat(
+          Array.from({ length: 20 }).fill({
+            image:
+              'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=398&q=80',
+          })
+        )
+      );
+    }, 1500);
+  };
 
   const customStyles = {
     option: (provided, state) => ({
@@ -76,11 +104,18 @@ const ProductsList = () => {
           className="my-8 flex flex-col-reverse rounded-sm  shadow-sm shadow-orange-200 drop-shadow-md lg:flex-row"
           style={{ backgroundColor: 'rgb(26,21,21)' }}
         >
-          <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-20 p-8 font-sans ">
-            {manyImages().map(({ image }, index) => (
-              <ProductCard image={image} key={uuidv4()} index={index} />
-            ))}
-          </div>
+          <InfiniteScroll
+            dataLength={items.length}
+            next={fetchMoreData}
+            hasMore={true}
+            loader={<h4>Loading...</h4>}
+          >
+            <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-20 p-8 font-sans ">
+              {items.map(({ image }, index) => (
+                <ProductCard image={image} key={uuidv4()} index={index} />
+              ))}
+            </div>
+          </InfiniteScroll>
         </div>
       </div>
       <ScrollToTop />
