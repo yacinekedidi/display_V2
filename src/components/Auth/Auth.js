@@ -3,9 +3,6 @@ import React, { useState } from 'react';
 import Cookies from 'universal-cookie';
 import logo from '../../assets/logo.svg';
 
-import signInGym from '../../assets/signInGym.jpg';
-import singnUpGym from '../../assets/singnUpGym.jpg';
-
 const cookies = new Cookies();
 
 const initialState = {

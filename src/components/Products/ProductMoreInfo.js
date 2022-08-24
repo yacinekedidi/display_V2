@@ -1,10 +1,10 @@
-import React from "react";
-import { v4 as uuidv4 } from "uuid";
-import { MockProduct } from "../../mockdata/productImages";
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { MockProduct } from '../../mockdata/productImages';
 
 const ProductMoreInfo = () => {
   return (
-    <div className="mx-auto mb-10 flex flex-col justify-center gap-10 font-sans md:flex-row">
+    <div className="mx-auto mb-10 flex flex-col justify-center gap-10 font-sans md:flex-row ">
       <div className="flex w-full flex-col flex-wrap bg-orange-300 font-sans shadow-sm shadow-gray-400 md:w-1/2">
         <div className="p-2">
           <div className="flex justify-around">
@@ -19,7 +19,7 @@ const ProductMoreInfo = () => {
               <span className="w-1/2 font-bold" key={uuidv4()}>
                 Motif:
               </span>
-              <span>{MockProduct.motif.join(", ")}</span>
+              <span>{MockProduct.motif.join(', ')}</span>
             </div>
             <div className="flex border-b-8 border-b-neutral-900 p-2">
               <span className="w-1/2 font-bold">Appearance:</span>
@@ -27,11 +27,11 @@ const ProductMoreInfo = () => {
             </div>
             <div className="flex flex-wrap justify-between gap-2 border-b-8 border-b-orange-200 p-2 ">
               <span className="font-bold">Options:</span>
-              <span>{MockProduct.options.join(", ")}</span>
+              <span>{MockProduct.options.join(', ')}</span>
             </div>
             <div className="flex flex-wrap justify-between gap-2 border-b-8 border-b-neutral-900 p-2">
               <span className="font-bold">Room/use:</span>
-              <span>{MockProduct.room.join(", ")}</span>
+              <span>{MockProduct.room.join(', ')}</span>
             </div>
             <div className="flex border-b-8 border-b-orange-200 p-2">
               <span className="w-1/2 font-bold">Designer:</span>

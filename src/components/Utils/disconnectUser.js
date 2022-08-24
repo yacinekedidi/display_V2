@@ -2,7 +2,7 @@ import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-export const logout = () => {
+export const logout = async (user) => {
   cookies.remove('userId');
   cookies.remove('username');
   cookies.remove('fullName');
@@ -10,10 +10,7 @@ export const logout = () => {
   cookies.remove('hashedPassword');
   cookies.remove('phoneNumber');
   cookies.remove('token');
-
-  // (async () => {
-  //   await client.disconnectUser();
-  // })();
+  await user.disconnectUser();
 
   window.location.reload();
 };

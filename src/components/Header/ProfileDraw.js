@@ -5,11 +5,12 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { UserContext } from '../../App';
 import Auth from '../Auth/Auth';
-import { logout } from '../Utils/removeCookies';
+import { logout } from '../Utils/disconnectUser';
 
 const id = uuidv4();
 
@@ -19,6 +20,8 @@ const ProfileDraw = ({
   userIsLoggedIn,
   setUserIsLoggedIn,
 }) => {
+  const [user, setUser] = useContext(UserContext);
+
   return !userIsLoggedIn ? (
     <>
       {/* <div className="absolute z-30 grid h-4/6 w-1/2 grid-cols-2 overflow-hidden bg-orange-200 opacity-100">
@@ -82,7 +85,9 @@ const ProfileDraw = ({
         </Link>
       </div>
       <div
-        onClick={logout}
+        onClick={() => {
+          logout(user);
+        }}
         className="mb-4 flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
       >
         <FontAwesomeIcon icon={faArrowRightFromBracket} />

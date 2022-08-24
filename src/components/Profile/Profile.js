@@ -2,9 +2,11 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import ScrollToTop from '../Utils/ScrollToTop';
+import ProfileHome from './ProfileHome';
 
 const Profile = () => {
   const { pathname } = useLocation();
+
   const under =
     pathname.split('/').length > 2 ? pathname.split('/').slice(-1)[0] : null;
   return (
@@ -54,6 +56,9 @@ const Profile = () => {
             {/* <FontAwesomeIcon icon={faDollarSign} /> */}
             <span className="">Requests</span>
           </Link>
+        </div>
+        <div className="m-4 p-4">
+          <ProfileHome />
         </div>
         <ScrollToTop />
         <Outlet />

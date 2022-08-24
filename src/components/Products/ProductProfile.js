@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
-import { MockImages, MockProduct } from "../../mockdata/productImages";
-import ProductInfo from "./ProductInfo";
-import ScrollToTop from "../Utils/ScrollToTop";
-import ProductMoreInfo from "./ProductMoreInfo";
-import HomeProductSection from "../Home/HomeProductSection";
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { MockImages, MockProduct } from '../../mockdata/productImages';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+import HomeProductSection from '../Home/HomeProductSection';
+import ScrollToTop from '../Utils/ScrollToTop';
+import ProductInfo from './ProductInfo';
+import ProductMoreInfo from './ProductMoreInfo';
 
 const ProductProfile = () => {
   const { productId } = useParams();
@@ -14,12 +14,12 @@ const ProductProfile = () => {
   useEffect(() => {
     (document.body.scrollTop !== 0 ||
       document.documentElement.scrollTop !== 0) &&
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [productId]);
 
   return (
-    <>
-      <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-screen-lg">
+    <div className="relative">
+      <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-screen-lg ">
         <Header />
         {/* <BrandLinks /> */}
         <ProductInfo product={MockProduct} />
@@ -30,13 +30,13 @@ const ProductProfile = () => {
          */}
         <HomeProductSection
           title="Recently Viewed Products"
-          products={MockImages["Recently Viewed Products"]}
+          products={MockImages['Recently Viewed Products']}
         />
         {/* <RelatedSearches />  */}
         <ScrollToTop />
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

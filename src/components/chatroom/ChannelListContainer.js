@@ -11,26 +11,45 @@ import doubleRight from '../../assets/double-right.png';
 import { Link } from 'react-router-dom';
 import { ChannelSearch, TeamChannelList, TeamChannelPreview } from './';
 
-import { logout } from '../Utils/removeCookies';
+import { logout } from '../Utils/disconnectUser';
 
 // const cookies = new Cookies();
 
-const SideBar = ({ logout }) => (
-  <div className="channel-list__sidebar">
-    <div className="channel-list__sidebar__icon1">
-      <div className="icon1__inner">
-        <Link className="hover:rotate-180 hover:animate-spin" to="/">
-          <img className="h-8 w-8 sm:h-12 sm:w-12" src={logo} alt="logo" />
-        </Link>
+const SideBar = ({ logout, client }) => {
+  const { image, fullName } = client.user;
+  return (
+    <div className="channel-list__sidebar">
+      <div className="channel-list__sidebar__icon1">
+        <div className="icon1__inner">
+          <Link className="hover:rotate-180 hover:animate-spin" to="/">
+            <img className="h-8 w-8 sm:h-12 sm:w-12" src={logo} alt="logo" />
+          </Link>
+        </div>
       </div>
+      <div className="channel-list__sidebar__icon2 relative box-border  cursor-default transition-all hover:border-2 hover:border-orange-600">
+        <div className="icon1__inner ">
+          <img
+            className="peer rounded-full object-cover"
+            src={image}
+            alt="profile"
+          />
+          <div
+            className="invisible absolute left-full bottom-full whitespace-nowrap rounded-lg rounded-bl-none
+          bg-black px-2 text-center font-sans text-sm font-thin text-white opacity-60 transition-all 
+         peer-hover:visible"
+          >
+            {fullName}
+          </div>
+        </div>
+      </div>
+      {/* <div className="channel-list__sidebar__icon2">
+        <div className="icon1__inner" onClick={logout}>
+          <img src={LogoutIcon} alt="Logout" width="30" />
+        </div>
+      </div> */}
     </div>
-    {/* <div className="channel-list__sidebar__icon2">
-      <div className="icon1__inner" onClick={logout}>
-        <img src={LogoutIcon} alt="Logout" width="30" />
-      </div>
-    </div> */}
-  </div>
-);
+  );
+};
 
 const CompanyHeader = () => (
   <div className="channel-list__header">
@@ -84,7 +103,7 @@ const ChannelListContent = ({
 
   return (
     <>
-      <SideBar logout={logout} />
+      <SideBar logout={logout} client={client} />
       <div className="channel-list__list__wrapper">
         <CompanyHeader />
         <ChannelSearch setToggleContainer={setToggleContainer} />

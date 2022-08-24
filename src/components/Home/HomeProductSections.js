@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import HomeProductSection from "./HomeProductSection";
-import { MockImages } from "../../mockdata/productImages";
-import { v4 as uuidv4 } from "uuid";
-import LoadingSpinner from "../Utils/LoadingSpinner";
-import ModalOverlay from "../Utils/ModalOverlay";
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { MockImages } from '../../mockdata/productImages';
+import LoadingSpinner from '../Utils/LoadingSpinner';
+import ModalOverlay from '../Utils/ModalOverlay';
+import HomeProductSection from './HomeProductSection';
 
 // make fetch calls
 // get 4 latest products
@@ -18,7 +18,7 @@ const HomeProductSections = () => {
   const [isLoading] = useState(false);
 
   return (
-    <div className="p-0 md:p-16">
+    <div className="mb-40 p-0 md:p-16">
       {Object.keys(MockImages).map((key) => (
         <HomeProductSection
           title={key}
@@ -31,7 +31,7 @@ const HomeProductSections = () => {
           <LoadingSpinner />
         </ModalOverlay>
       ) : (
-        ""
+        ''
       )}
     </div>
   );
