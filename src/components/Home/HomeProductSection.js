@@ -48,14 +48,14 @@ const HomeProductSection = ({ title, products }) => {
 
   return (
     <div
-      className="container mb-16 w-screen rounded-b-lg bg-orange-400  p-2 px-0  shadow-sm shadow-orange-200 md:w-[960px]"
+      className="container mb-16 w-screen rounded-b-lg bg-orange-400  p-2 px-0   shadow-sm shadow-orange-200 md:w-[960px]"
       style={{ backgroundColor: 'rgb(26,21,21)' }}
     >
       <div
         className="mt-4 flex flex-col font-serif tracking-widest shadow-sm after:mx-auto after:block after:w-11/12
       after:border-b-2 after:border-b-orange-300 after:pt-1"
       >
-        <div className="peer flex items-center whitespace-nowrap p-2">
+        <div className="peer flex items-center whitespace-normal p-2">
           <Link to={{ pathname: '/products', title: title }}>
             <button
               className="cursor-pointer  border-none bg-transparent px-4 py-2 text-base
