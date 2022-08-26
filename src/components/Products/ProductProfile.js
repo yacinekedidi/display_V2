@@ -19,8 +19,8 @@ const ProductProfile = () => {
 
   return (
     <div className="relative">
-      <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-screen-lg ">
-        <Header />
+      <div className="m-auto mb-40 flex w-full flex-col items-center justify-center lg:max-w-screen-lg">
+        {/* <Header /> */}
         {/* <BrandLinks /> */}
         <ProductInfo product={MockProduct} />
         <ProductMoreInfo />
@@ -35,7 +35,7 @@ const ProductProfile = () => {
         {/* <RelatedSearches />  */}
         <ScrollToTop />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

@@ -10,7 +10,11 @@ import './Messages.css';
 
 // import '@stream-io/stream-chat-css/dist/css/index.css';
 import 'stream-chat-react/dist/css/index.css';
+import Cookies from 'universal-cookie';
 import { UserContext } from '../../App';
+import Header from '../Header/Header';
+import { connectClient } from '../Utils/connectClient';
+import { client } from './stream';
 
 // const cookies = new Cookies();
 
@@ -34,31 +38,47 @@ const Messages = () => {
   const [createType, setCreateType] = useState('');
   const [isCreating, setIsCreating] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [user, setUser] = useContext(UserContext);
+  const [isConnected, setIsConnected] = useState(false);
+  //HERE WHEN A REFRESH HAPPENS WHILE WE'RE IN /messages IT CRASHES BECAUSE WE LOSE THE STATE
+
   // useEffect(() => {
   //   if (authToken) setUser(client);
   // }, []);
 
   // if (!authToken) return <Auth />;
 
+  useEffect(() => {
+    const cookies = new Cookies();
+    const authToken = cookies.get('token');
+    if (!authToken) {
+      setIsConnected(false);
+      return;
+    }
+
+    const client = connectClient(cookies);
+    setIsConnected(true);
+  }, []);
+
   return (
-    <div className="app__wrapper">
-      <Chat client={user}>
-        <ChannelListContainer
-          isCreating={isCreating}
-          setIsCreating={setIsCreating}
-          setCreateType={setCreateType}
-          setIsEditing={setIsEditing}
-        />
-        <ChannelContainer
-          isCreating={isCreating}
-          setIsCreating={setIsCreating}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-          createType={createType}
-        />
-      </Chat>
-    </div>
+    isConnected && (
+      <div className="app__wrapper mb-12 w-full">
+        <Chat client={client}>
+          <ChannelListContainer
+            isCreating={isCreating}
+            setIsCreating={setIsCreating}
+            setCreateType={setCreateType}
+            setIsEditing={setIsEditing}
+          />
+          <ChannelContainer
+            isCreating={isCreating}
+            setIsCreating={setIsCreating}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+            createType={createType}
+          />
+        </Chat>
+      </div>
+    )
   );
 };
 

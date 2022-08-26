@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from 'react';
 
 const ModalOverlay = ({ children, IsOpen = true, setIsOpen = () => {} }) => {
   const elContainer = useRef();
@@ -8,7 +8,7 @@ const ModalOverlay = ({ children, IsOpen = true, setIsOpen = () => {} }) => {
 
   const pressEscape = useCallback(
     (e) => {
-      if (e.key === "Escape" && IsOpen) {
+      if (e.key === 'Escape' && IsOpen) {
         setIsOpen(false);
       }
     },
@@ -17,12 +17,12 @@ const ModalOverlay = ({ children, IsOpen = true, setIsOpen = () => {} }) => {
 
   useEffect(() => {
     // probably not the best way to do this
-    window.document.documentElement.style.overflowY = "hidden";
+    window.document.documentElement.style.overflowY = 'hidden';
 
-    document.addEventListener("keydown", pressEscape);
+    document.addEventListener('keydown', pressEscape);
     return () => {
-      document.removeEventListener("keydown", pressEscape);
-      window.document.documentElement.style.overflowY = "visible";
+      document.removeEventListener('keydown', pressEscape);
+      window.document.documentElement.style.overflowY = 'visible';
     };
   }, [pressEscape]);
 

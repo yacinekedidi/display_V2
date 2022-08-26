@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { UserContext } from '../../App';
 import Auth from '../Auth/Auth';
 import { logout } from '../Utils/disconnectUser';
+import getFormattedName from '../Utils/formatFullname';
 
 const id = uuidv4();
 
@@ -39,7 +40,7 @@ const ProfileDraw = ({
     </>
   ) : (
     <div
-      className="absolute top-5 -right-1 flex w-52 flex-col gap-4 rounded-sm bg-neutral-900 text-left font-sans text-base font-medium text-white shadow-md 
+      className="absolute top-10 -right-1 flex w-52 flex-col gap-4 rounded-sm bg-neutral-900 text-left font-sans text-base font-medium text-white shadow-md 
     shadow-black"
     >
       <div
@@ -48,15 +49,17 @@ const ProfileDraw = ({
       >
         <Link
           className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-300 text-center shadow-sm shadow-black "
-          to={id}
+          to={`/${id}`}
         >
-          <FontAwesomeIcon
-            className="text-neutral-800"
-            icon={faUser}
-            size="lg"
+          <img
+            className="w-32 self-center rounded-full outline outline-orange-400"
+            src={user?.user?.image}
+            alt="avatar"
           />
         </Link>
-        <span className="font-semibold">YacineKedidi</span>
+        <span className="font-semibold">
+          {getFormattedName(user?.user?.fullName)}
+        </span>
       </div>
       <div
         className="flex flex-col gap-y-3 py-0 after:my-0 after:mx-auto after:block after:w-11/12 after:border-b-2 

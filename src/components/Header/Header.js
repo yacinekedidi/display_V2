@@ -1,4 +1,9 @@
-import { faBell, faMessage, faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBell,
+  faMessage,
+  faUser,
+  faUserCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -6,19 +11,16 @@ import Cookies from 'universal-cookie';
 import { UserContext } from '../../App';
 import logo from '../../assets/logo.svg';
 import { client } from '../Messages/stream';
+import { connectClient } from '../Utils/connectClient';
 import ModalOverlay from '../Utils/ModalOverlay';
 import Filters from './Filters';
 import './Header.css';
 import ProfileDraw from './ProfileDraw';
 import SearchInput from './SearchInput';
 
-const cookies = new Cookies();
-const authToken = cookies.get('token');
-
-const Header = ({ sticky = false }) => {
+const Header = ({ userIsLoggedIn, setUserIsLoggedIn, sticky = false }) => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
-  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
   const [user, setUser] = useContext(UserContext);
 
   const showProfileDraw = (e) => {
@@ -31,25 +33,8 @@ const Header = ({ sticky = false }) => {
   };
 
   useEffect(() => {
-    if (authToken) {
-      setUserIsLoggedIn(true);
-
-      !client?.user &&
-        client.connectUser(
-          {
-            id: cookies.get('userId'),
-            name: cookies.get('username'),
-            fullName: cookies.get('fullName'),
-            image: cookies.get('avatarURL'),
-            hashedPassword: cookies.get('hashedPassword'),
-            phoneNumber: cookies.get('phoneNumber'),
-          },
-          authToken
-        );
-
-      setUser(client);
-    }
-  }, [authToken]);
+    connectClient();
+  }, [user]);
 
   return (
     <div
@@ -97,7 +82,18 @@ const Header = ({ sticky = false }) => {
       <div className="flex flex-col sm:flex-row-reverse sm:gap-4">
         <div className=" relative flex flex-col items-center">
           <button className="" onClick={showProfileDraw}>
-            <FontAwesomeIcon className="text-white" icon={faUser} size="lg" />
+            {!userIsLoggedIn ? (
+              <FontAwesomeIcon
+                className="text-sm text-white md:text-4xl"
+                icon={faUserCircle}
+              />
+            ) : (
+              <img
+                className="w-max-lg w-14 self-center rounded-full "
+                src={user?.user?.image}
+                alt="avatar"
+              />
+            )}
             {userIsLoggedIn && profileIsOpen && (
               <ProfileDraw
                 profileIsOpen={profileIsOpen}
@@ -108,32 +104,31 @@ const Header = ({ sticky = false }) => {
             )}
           </button>
         </div>
-        {userIsLoggedIn && (
+
+        {/* {userIsLoggedIn && (
           <div className="flex flex-col items-center">
             <Link to="/messages">
               <button>
                 <FontAwesomeIcon
-                  className="text-white"
+                  className="text-sm text-white md:text-lg"
                   icon={faMessage}
-                  size="lg"
                 />
               </button>
             </Link>
           </div>
-        )}
-        {userIsLoggedIn && (
-          <div className="flex flex-col items-center">
+        )} */}
+        {/* {userIsLoggedIn && (
+          <div className="flex flex-col items-center self-center">
             <Link to="/notifications">
               <button>
                 <FontAwesomeIcon
-                  className="text-white"
+                  className="text-sm text-white md:text-lg"
                   icon={faBell}
-                  size="lg"
                 />
               </button>
             </Link>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

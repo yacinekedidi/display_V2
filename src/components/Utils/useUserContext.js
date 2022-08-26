@@ -4,7 +4,8 @@ import { UserContext } from '../../App';
 const useUserContext = () => {
   const [user, setUser] = useContext(UserContext);
 
-  if (!user) return;
+  if (!user || !user.user) return;
+
   const {
     image,
     id,

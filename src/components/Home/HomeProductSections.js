@@ -18,7 +18,7 @@ const HomeProductSections = () => {
   const [isLoading] = useState(false);
 
   return (
-    <div className="mb-40 p-0 md:p-16">
+    <div className="p-0 md:p-16">
       {Object.keys(MockImages).map((key) => (
         <HomeProductSection
           title={key}

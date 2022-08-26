@@ -1,4 +1,5 @@
 import moment from 'moment';
+import getFormattedName from '../Utils/formatFullname';
 import useUserContext from '../Utils/useUserContext';
 
 const ProfileHome = () => {
@@ -22,7 +23,7 @@ const ProfileHome = () => {
       />
       <div className="flex flex-col items-center justify-center p-4">
         <span className=" font-cairo text-xl font-bold text-orange-400 ">
-          {`${fullName[0].toUpperCase()}${fullName.slice(1)}`}
+          {getFormattedName(fullName)}
         </span>
         <span className="whitespace-pre-wrap text-xs opacity-80">
           joined {moment(created_at).format('DD-MM-YYYY')}

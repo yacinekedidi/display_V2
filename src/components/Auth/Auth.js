@@ -51,6 +51,7 @@ const Auth = ({ userIsLoggedIn, setUserIsLoggedIn, showProfileDraw }) => {
       cookies.set('hashedPassword', hashedPassword);
     }
 
+    showProfileDraw();
     window.location.reload();
   };
 

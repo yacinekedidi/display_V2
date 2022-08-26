@@ -11,8 +11,8 @@ const Profile = () => {
     pathname.split('/').length > 2 ? pathname.split('/').slice(-1)[0] : null;
   return (
     <>
-      <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-screen-lg">
-        <Header />
+      <div className="m-auto mb-40 flex w-full flex-col items-center justify-center overflow-hidden lg:max-w-screen-lg">
+        {/* <Header /> */}
         <div className="flex gap-4 font-sans">
           <Link
             className={`flex items-center gap-x-2 text-white  ${
@@ -63,7 +63,7 @@ const Profile = () => {
         <ScrollToTop />
         <Outlet />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

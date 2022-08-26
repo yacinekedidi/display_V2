@@ -48,7 +48,7 @@ const HomeProductSection = ({ title, products }) => {
 
   return (
     <div
-      className="container mb-10 w-screen rounded-b-lg bg-orange-400  p-2 px-0  shadow-sm shadow-orange-200 md:w-[960px]"
+      className="container mb-16 w-screen rounded-b-lg bg-orange-400  p-2 px-0  shadow-sm shadow-orange-200 md:w-[960px]"
       style={{ backgroundColor: 'rgb(26,21,21)' }}
     >
       <div

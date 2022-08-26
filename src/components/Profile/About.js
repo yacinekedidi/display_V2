@@ -1,12 +1,13 @@
 import moment from 'moment';
 import React from 'react';
+import getFormattedName from '../Utils/formatFullname';
 import useUserContext from '../Utils/useUserContext';
 
 const About = () => {
   const {
     image,
     id,
-    fullName,
+    fullName = '',
     created_at,
     last_active,
     online,
@@ -15,7 +16,7 @@ const About = () => {
   } = useUserContext();
 
   const about = {
-    Fullname: fullName,
+    'Full name': getFormattedName(fullName),
     Bio: 'Yo',
     Email: 'myemail@email.com',
     'Phone Number': phoneNumber,
@@ -26,11 +27,11 @@ const About = () => {
     <>
       {Object.keys(about).map((info, index) => (
         <div
-          className="m-2 flex w-[40vw]  bg-neutral-800 p-4 text-white shadow-md shadow-orange-400"
+          className="my-4 flex w-[90vw] bg-neutral-800 p-4 text-white shadow-md shadow-orange-400 md:w-[40vw]"
           key={index}
         >
-          <span className="w-[20vw]">{info}:</span>
-          <span className="w-[20vw]">{about[info]}</span>
+          <span className="w-[45vw] md:w-[20vw]">{info}:</span>
+          <span className="w-[45vw] md:w-[20vw]">{about[info]}</span>
         </div>
       ))}
     </>

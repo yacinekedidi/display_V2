@@ -12,5 +12,5 @@ export const logout = async (user) => {
   cookies.remove('token');
   await user.disconnectUser();
 
-  window.location.reload();
+  window.location.href = 'http://localhost:3000/';
 };

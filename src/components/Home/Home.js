@@ -8,13 +8,13 @@ const Home = () => {
     <div className="relative">
       <div className="container m-auto">
         <div className="m-auto flex w-full flex-col items-center justify-center overflow-x-hidden lg:max-w-screen-lg">
-          <Header sticky={true} />
+          {/* <Header sticky={true} /> */}
           {/* HomeBrandSection */}
           <HomeProductSections />
         </div>
         <ScrollToTop />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
