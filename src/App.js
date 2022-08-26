@@ -59,7 +59,7 @@ function App() {
               <Route path="products/:productId" element={<ProductProfile />} />
             </Routes>
           </div>
-          {/* <Footer /> */}
+          <Footer />
         </UserContext.Provider>
       </BrowserRouter>
     </>
