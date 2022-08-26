@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const Filters = () => {
-  return <div className="">filters</div>;
+  return <div className="block"></div>;
 };
 
 export default Filters;

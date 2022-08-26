@@ -5,12 +5,10 @@ import {
   faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Cookies from 'universal-cookie';
 import { UserContext } from '../../App';
 import logo from '../../assets/logo.svg';
-import { client } from '../Messages/stream';
 import { connectClient } from '../Utils/connectClient';
 import ModalOverlay from '../Utils/ModalOverlay';
 import Filters from './Filters';
@@ -38,7 +36,7 @@ const Header = ({ userIsLoggedIn, setUserIsLoggedIn, sticky = false }) => {
 
   return (
     <div
-      className={`z-20 mb-16 flex justify-between border-b-2 border-b-orange-200 p-1 ${
+      className={`z-20 mb-16 flex w-[50vw] items-start justify-between gap-6 border-b-2 border-b-orange-200 ${
         sticky ? 'lg:sticky lg:top-0' : ''
       }`}
       style={{ backgroundColor: 'rgb(26,21,21)' }}
@@ -66,43 +64,48 @@ const Header = ({ userIsLoggedIn, setUserIsLoggedIn, sticky = false }) => {
         </ModalOverlay>
       )}
 
-      {showSearchModal ? (
-        <ModalOverlay IsOpen={showSearchDraw} setIsOpen={setShowSearchModal}>
-          <div className="bg-neutral-900">
-            <SearchInput showSearchModal={showSearchModal} focus={true} />
-            {/* filters */}
-            <div className="text-white">
-              <Filters />
-            </div>
-          </div>
-        </ModalOverlay>
-      ) : (
-        <SearchInput showSearchDraw={showSearchDraw} />
-      )}
       <div className="flex flex-col sm:flex-row-reverse sm:gap-4">
-        <div className=" relative flex flex-col items-center">
-          <button className="" onClick={showProfileDraw}>
-            {!userIsLoggedIn ? (
-              <FontAwesomeIcon
-                className="text-sm text-white md:text-4xl"
-                icon={faUserCircle}
-              />
-            ) : (
-              <img
-                className="w-max-lg w-14 self-center rounded-full "
-                src={user?.user?.image}
-                alt="avatar"
-              />
-            )}
-            {userIsLoggedIn && profileIsOpen && (
-              <ProfileDraw
-                profileIsOpen={profileIsOpen}
-                showProfileDraw={showProfileDraw}
-                userIsLoggedIn={userIsLoggedIn}
-                setUserIsLoggedIn={setUserIsLoggedIn}
-              />
-            )}
-          </button>
+        <div className=" relative flex gap-4">
+          {showSearchModal ? (
+            <ModalOverlay
+              IsOpen={showSearchDraw}
+              setIsOpen={setShowSearchModal}
+            >
+              <div className="flex h-1/2 w-screen flex-col items-center self-start bg-gradient-to-b from-white via-orange-300 to-orange-500">
+                <SearchInput showSearchModal={showSearchModal} focus={true} />
+                {/* filters */}
+                <div className="text-white">
+                  <Filters />
+                </div>
+              </div>
+            </ModalOverlay>
+          ) : (
+            <SearchInput showSearchDraw={showSearchDraw} />
+          )}
+          <div className="flex flex-col justify-center">
+            <button className="" onClick={showProfileDraw}>
+              {!userIsLoggedIn ? (
+                <FontAwesomeIcon
+                  className="text-4xl text-white"
+                  icon={faUserCircle}
+                />
+              ) : (
+                <img
+                  className="h-8 w-8 rounded-full"
+                  src={user?.user?.image}
+                  alt="avatar"
+                />
+              )}
+              {userIsLoggedIn && profileIsOpen && (
+                <ProfileDraw
+                  profileIsOpen={profileIsOpen}
+                  showProfileDraw={showProfileDraw}
+                  userIsLoggedIn={userIsLoggedIn}
+                  setUserIsLoggedIn={setUserIsLoggedIn}
+                />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* {userIsLoggedIn && (
