@@ -50,13 +50,12 @@ const SearchInput = ({
     <div className="flex items-center">
       <button
         onClick={showSearchDraw}
-        className="rounded-full p-2.5 text-white"
+        className="rounded-full stroke-orange-400 p-2.5"
       >
         <svg
           aria-hidden="true"
           className="h-6 w-6"
           fill="none"
-          stroke="white"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -170,7 +169,8 @@ const SearchInput = ({
           <input
             type="search"
             id="search-dropdown"
-            className="z-20 block w-full rounded-r-lg border border-l-2 border-gray-300 border-l-gray-50 bg-gray-50 p-2.5 text-sm 
+            className="z-20 block w-full rounded-r-lg border border-l-2 border-gray-300 border-l-gray-50
+             bg-gray-50 p-2.5 text-sm 
             text-gray-900 outline-none "
             placeholder="Search Products, Brands..."
             required

@@ -40,7 +40,7 @@ function App() {
     <>
       <BrowserRouter>
         <UserContext.Provider value={[user, setUser]}>
-          <div className="m-auto mb-40 flex w-full flex-col items-center justify-center ">
+          <div className="m-auto flex w-full flex-col items-center justify-center ">
             <Header
               userIsLoggedIn={userIsLoggedIn}
               setUserIsLoggedIn={setUserIsLoggedIn}
