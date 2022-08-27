@@ -24,41 +24,41 @@ const Messages = () => {
   console.log(user, client);
 
   useEffect(() => {
-    // if (!client._hasConnectionID()) {
-    //   const cookies = new Cookies();
-    //   const authToken = cookies.get('token');
-    //   authToken &&
-    //     authToken.length &&
-    //     (async () => {
-    //       try {
-    //         const client = await connectClient(cookies, authToken);
-    //         // setUser(client);
-    //       } catch (err) {
-    //         console.error(err);
-    //       }
-    //     })();
-    // }
-    // setUser(client);
+    if (!Object.keys(user).length) {
+      const cookies = new Cookies();
+      const authToken = cookies.get('token');
+      (async () => {
+        console.log('connect');
+        try {
+          const client = await connectClient(cookies, authToken);
+          setUser(client);
+        } catch (err) {
+          console.error(err);
+        }
+      })();
+    }
   }, []);
 
   return (
-    <div className="app__wrapper mb-12 w-full">
-      <Chat client={client}>
-        <ChannelListContainer
-          isCreating={isCreating}
-          setIsCreating={setIsCreating}
-          setCreateType={setCreateType}
-          setIsEditing={setIsEditing}
-        />
-        <ChannelContainer
-          isCreating={isCreating}
-          setIsCreating={setIsCreating}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-          createType={createType}
-        />
-      </Chat>
-    </div>
+    Object.keys(user).length && (
+      <div className="app__wrapper mb-12 w-full">
+        <Chat client={client}>
+          <ChannelListContainer
+            isCreating={isCreating}
+            setIsCreating={setIsCreating}
+            setCreateType={setCreateType}
+            setIsEditing={setIsEditing}
+          />
+          <ChannelContainer
+            isCreating={isCreating}
+            setIsCreating={setIsCreating}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+            createType={createType}
+          />
+        </Chat>
+      </div>
+    )
   );
 };
 
