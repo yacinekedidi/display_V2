@@ -48,7 +48,7 @@ const HomeProductSection = ({ title, products }) => {
 
   return (
     <div
-      className="container mb-8 w-screen rounded-b-lg  bg-orange-400 p-2  px-0 shadow-sm shadow-orange-200 md:w-[960px]"
+      className="container m-0 w-screen rounded-b-lg bg-orange-400  p-2 px-0  shadow-sm shadow-orange-200 sm:mb-8 md:w-[960px]"
       style={{ backgroundColor: 'rgb(26,21,21)' }}
     >
       <div
@@ -69,8 +69,8 @@ const HomeProductSection = ({ title, products }) => {
           </Link>
           <div>
             <h2
-              className="bg-gradient-to-br from-orange-700 to-white bg-clip-text font-cairo text-xl font-black text-orange-200 transition-all 
-             duration-75 hover:text-transparent"
+              className="bg-gradient-to-br from-orange-700 to-white bg-clip-text font-cairo text-sm font-black text-orange-200 transition-all duration-75 
+             hover:text-transparent sm:text-xl"
             >
               <Link to={{ pathname: '/products', title: title }}>
                 {titles[title]}

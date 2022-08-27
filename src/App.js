@@ -40,13 +40,8 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <UserContext.Provider value={[user, setUser]}>
-          {/* <div className="m-auto flex w-full flex-col items-center justify-center ">
-            <Header
-              userIsLoggedIn={userIsLoggedIn}
-              setUserIsLoggedIn={setUserIsLoggedIn}
-            /> */}
+      <UserContext.Provider value={[user, setUser]}>
+        <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />} />
             <Route index element={<Home />} />
@@ -60,10 +55,8 @@ function App() {
             <Route path="products" element={<ProductsList />} />
             <Route path="products/:productId" element={<ProductProfile />} />
           </Routes>
-          {/* </div>
-          <Footer /> */}
-        </UserContext.Provider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </UserContext.Provider>
     </>
   );
 }
