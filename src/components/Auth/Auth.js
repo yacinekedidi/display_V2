@@ -14,7 +14,7 @@ const initialState = {
   avatarURL: '',
 };
 
-const Auth = ({ userIsLoggedIn, setUserIsLoggedIn, showProfileDraw }) => {
+const Auth = ({ showProfileDraw }) => {
   const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
 
@@ -51,7 +51,7 @@ const Auth = ({ userIsLoggedIn, setUserIsLoggedIn, showProfileDraw }) => {
       cookies.set('hashedPassword', hashedPassword);
     }
 
-    showProfileDraw();
+    // showProfileDraw();
     window.location.reload();
   };
 

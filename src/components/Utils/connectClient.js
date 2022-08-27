@@ -1,11 +1,7 @@
-import Cookies from 'universal-cookie';
 import { client } from '../Messages/stream';
 
-export const connectClient = () => {
-  const cookies = new Cookies();
-  const authToken = cookies.get('token');
-
-  client.connectUser(
+export const connectClient = async (cookies, authToken) => {
+  return await client.connectUser(
     {
       id: cookies.get('userId'),
       name: cookies.get('username'),
@@ -16,5 +12,4 @@ export const connectClient = () => {
     },
     authToken
   );
-  return client;
 };

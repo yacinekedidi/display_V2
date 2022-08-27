@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Messages from './components/Messages/Messages';
+import { client } from './components/Messages/stream';
 import Notifications from './components/Notifications/Notifications';
 import ProductProfile from './components/Products/ProductProfile';
 import ProductsList from './components/Products/ProductsList';
@@ -18,48 +19,50 @@ import { connectClient } from './components/Utils/connectClient';
 export const UserContext = createContext();
 
 function App() {
-  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
   const [user, setUser] = useState({});
-  // console.log(user?.user);
-
+  console.log(user);
   const cookies = new Cookies();
   const authToken = cookies.get('token');
-
   useEffect(() => {
-    if (!authToken) {
-      setUserIsLoggedIn(false);
-      return;
+    if (!client._getConnectionID()) {
+      authToken &&
+        authToken.length &&
+        (async () => {
+          console.log('connect');
+          try {
+            const client = await connectClient(cookies, authToken);
+            setUser(client);
+          } catch (err) {
+            console.error(err);
+          }
+        })();
     }
-
-    const client = connectClient(cookies);
-    setUser(client);
-    setUserIsLoggedIn(true);
   }, []);
 
   return (
     <>
       <BrowserRouter>
         <UserContext.Provider value={[user, setUser]}>
-          <div className="m-auto flex w-full flex-col items-center justify-center ">
+          {/* <div className="m-auto flex w-full flex-col items-center justify-center ">
             <Header
               userIsLoggedIn={userIsLoggedIn}
               setUserIsLoggedIn={setUserIsLoggedIn}
-            />
-            <Routes>
-              <Route path="/" element={<App />} />
-              <Route index element={<Home />} />
-              <Route path=":username" element={<Profile />}>
-                <Route path="about" element={<About />} />
-                <Route path="favorites" element={<Favorites />} />
-                <Route path="requests" element={<Requests />} />
-              </Route>
-              <Route path="notifications" element={<Notifications />} />
-              <Route path="messages" element={<Messages />} />
-              <Route path="products" element={<ProductsList />} />
-              <Route path="products/:productId" element={<ProductProfile />} />
-            </Routes>
-          </div>
-          <Footer />
+            /> */}
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route index element={<Home />} />
+            <Route path=":username" element={<Profile />}>
+              <Route path="about" element={<About />} />
+              <Route path="favorites" element={<Favorites />} />
+              <Route path="requests" element={<Requests />} />
+            </Route>
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="messages" element={<Messages />} />
+            <Route path="products" element={<ProductsList />} />
+            <Route path="products/:productId" element={<ProductProfile />} />
+          </Routes>
+          {/* </div>
+          <Footer /> */}
         </UserContext.Provider>
       </BrowserRouter>
     </>

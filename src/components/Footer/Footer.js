@@ -44,25 +44,28 @@ const Footer = () => {
           </h2>
           <div className="flex flex-row flex-wrap items-center justify-center gap-2 p-2 md:flex-col">
             <SocialIcon
-              className="w-7"
+              className="w-7 cursor-pointer hover:opacity-80"
               style={{ width: '1.8rem', height: '1.8rem' }}
               network="facebook"
               fgColor="white"
             />
 
             <SocialIcon
+              className="w-7 cursor-pointer hover:opacity-80"
               style={{ width: '1.8rem', height: '1.8rem' }}
               network="twitter"
               fgColor="white"
             />
 
             <SocialIcon
+              className="w-7 cursor-pointer hover:opacity-80"
               style={{ width: '1.8rem', height: '1.8rem' }}
               network="instagram"
               fgColor="white"
             />
 
             <SocialIcon
+              className="w-7 cursor-pointer hover:opacity-80"
               style={{ width: '1.8rem', height: '1.8rem' }}
               network="telegram"
               fgColor="white"

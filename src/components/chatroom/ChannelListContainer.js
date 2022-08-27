@@ -16,7 +16,6 @@ import { logout } from '../Utils/disconnectUser';
 // const cookies = new Cookies();
 
 const SideBar = ({ logout, client }) => {
-  const { image, fullName } = client.user;
   return (
     <div className="channel-list__sidebar">
       <div className="channel-list__sidebar__icon1">
@@ -30,7 +29,7 @@ const SideBar = ({ logout, client }) => {
         <div className="icon1__inner ">
           <img
             className="peer rounded-full object-cover"
-            src={image}
+            src={client.user?.image}
             alt="profile"
           />
           <div
@@ -38,7 +37,7 @@ const SideBar = ({ logout, client }) => {
           bg-black px-2 text-center font-sans text-sm font-thin text-white opacity-60 transition-all 
          peer-hover:visible"
           >
-            {fullName}
+            {client.user?.fullName}
           </div>
         </div>
       </div>

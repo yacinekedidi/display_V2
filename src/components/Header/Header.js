@@ -9,17 +9,17 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../App';
 import logo from '../../assets/logo.svg';
-import { connectClient } from '../Utils/connectClient';
 import ModalOverlay from '../Utils/ModalOverlay';
 import Filters from './Filters';
 import './Header.css';
 import ProfileDraw from './ProfileDraw';
 import SearchInput from './SearchInput';
 
-const Header = ({ userIsLoggedIn, setUserIsLoggedIn, sticky = false }) => {
+const Header = ({ sticky = false }) => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
   const [user, setUser] = useContext(UserContext);
+  const isConnected = Object.keys(user).length ? true : false;
 
   const showProfileDraw = (e) => {
     setProfileIsOpen(!profileIsOpen);
@@ -31,13 +31,13 @@ const Header = ({ userIsLoggedIn, setUserIsLoggedIn, sticky = false }) => {
   };
 
   useEffect(() => {
-    connectClient();
-  }, [user]);
+    // console.log(user);
+  });
 
   return (
     // lg:sticky lg:top-0 lg:bg-transparent lg:backdrop-blur-sm
     <div
-      className={`z-20 mb-16 flex w-1/2 max-w-7xl items-start justify-between gap-6 border-b-2 border-b-orange-200 py-2`}
+      className={`z-20 mb-16 flex w-full max-w-7xl items-start justify-between gap-6 border-b-2 border-b-orange-200 py-2`}
     >
       <div className="flex items-center gap-1">
         <Link className="hover:rotate-180 hover:animate-spin" to="/">
@@ -50,13 +50,11 @@ const Header = ({ userIsLoggedIn, setUserIsLoggedIn, sticky = false }) => {
           Display
         </span> */}
       </div>
-      {!userIsLoggedIn && profileIsOpen && (
+      {!isConnected && profileIsOpen && (
         <ModalOverlay IsOpen={profileIsOpen} setIsOpen={setProfileIsOpen}>
           <ProfileDraw
             profileIsOpen={profileIsOpen}
             showProfileDraw={showProfileDraw}
-            userIsLoggedIn={userIsLoggedIn}
-            setUserIsLoggedIn={setUserIsLoggedIn}
           />
         </ModalOverlay>
       )}
@@ -80,7 +78,7 @@ const Header = ({ userIsLoggedIn, setUserIsLoggedIn, sticky = false }) => {
           )}
           <div className="flex flex-col justify-center">
             <button className="" onClick={showProfileDraw}>
-              {!userIsLoggedIn ? (
+              {!isConnected ? (
                 <FontAwesomeIcon
                   className="text-4xl text-orange-300"
                   icon={faUserCircle}
@@ -88,46 +86,19 @@ const Header = ({ userIsLoggedIn, setUserIsLoggedIn, sticky = false }) => {
               ) : (
                 <img
                   className="h-8 w-8 rounded-full"
-                  src={user?.user?.image}
+                  src={user.me.image}
                   alt="avatar"
                 />
               )}
-              {userIsLoggedIn && profileIsOpen && (
+              {isConnected && profileIsOpen && (
                 <ProfileDraw
                   profileIsOpen={profileIsOpen}
                   showProfileDraw={showProfileDraw}
-                  userIsLoggedIn={userIsLoggedIn}
-                  setUserIsLoggedIn={setUserIsLoggedIn}
                 />
               )}
             </button>
           </div>
         </div>
-
-        {/* {userIsLoggedIn && (
-          <div className="flex flex-col items-center">
-            <Link to="/messages">
-              <button>
-                <FontAwesomeIcon
-                  className="text-sm text-white md:text-lg"
-                  icon={faMessage}
-                />
-              </button>
-            </Link>
-          </div>
-        )} */}
-        {/* {userIsLoggedIn && (
-          <div className="flex flex-col items-center self-center">
-            <Link to="/notifications">
-              <button>
-                <FontAwesomeIcon
-                  className="text-sm text-white md:text-lg"
-                  icon={faBell}
-                />
-              </button>
-            </Link>
-          </div>
-        )} */}
       </div>
     </div>
   );

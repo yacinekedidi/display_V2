@@ -1,5 +1,5 @@
-import React from "react";
-import { Avatar, useChatContext } from "stream-chat-react";
+import React from 'react';
+import { Avatar, useChatContext } from 'stream-chat-react';
 
 const channelByUser = async ({
   client,
@@ -8,7 +8,7 @@ const channelByUser = async ({
   setChannel,
 }) => {
   const filters = {
-    type: "messaging",
+    type: 'messaging',
     member_count: 2,
     members: { $eq: [client.user.id, client.userID] },
   };
@@ -17,7 +17,7 @@ const channelByUser = async ({
 
   if (existingChannel) return setActiveChannel(existingChannel);
 
-  const newChannel = client.channel("messaging", {
+  const newChannel = client.channel('messaging', {
     members: [channel.id, client.userID],
   });
 
@@ -35,7 +35,7 @@ const SearchResult = ({
 }) => {
   const { client, setActiveChannel } = useChatContext();
 
-  if (type === "channel") {
+  if (type === 'channel') {
     return (
       <div
         onClick={() => {
@@ -46,8 +46,8 @@ const SearchResult = ({
         }}
         className={
           focusedId === channel.id
-            ? "channel-search__result-container__focused"
-            : "channel-search__result-container"
+            ? 'channel-search__result-container__focused'
+            : 'channel-search__result-container'
         }
       >
         <div className="result-hashtag">#</div>
@@ -66,8 +66,8 @@ const SearchResult = ({
       }}
       className={
         focusedId === channel.id
-          ? "channel-search__result-container__focused"
-          : "channel-search__result-container"
+          ? 'channel-search__result-container__focused'
+          : 'channel-search__result-container'
       }
     >
       <div className="channel-search__result-user">

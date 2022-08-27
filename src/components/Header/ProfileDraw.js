@@ -5,7 +5,7 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { UserContext } from '../../App';
@@ -15,15 +15,14 @@ import getFormattedName from '../Utils/formatFullname';
 
 const id = uuidv4();
 
-const ProfileDraw = ({
-  profileIsOpen,
-  showProfileDraw,
-  userIsLoggedIn,
-  setUserIsLoggedIn,
-}) => {
+const ProfileDraw = ({ showProfileDraw }) => {
   const [user, setUser] = useContext(UserContext);
 
-  return !userIsLoggedIn ? (
+  useEffect(() => {
+    // console.log(user);
+  });
+
+  return !Object.keys(user).length ? (
     <>
       {/* <div className="absolute z-30 grid h-4/6 w-1/2 grid-cols-2 overflow-hidden bg-orange-200 opacity-100">
         <FontAwesomeIcon
@@ -32,11 +31,7 @@ const ProfileDraw = ({
           onClick={showProfileDraw}
         />
       </div> */}
-      <Auth
-        userIsLoggedIn={userIsLoggedIn}
-        setUserIsLoggedIn={setUserIsLoggedIn}
-        showProfileDraw={showProfileDraw}
-      />
+      <Auth showProfileDraw={showProfileDraw} />
     </>
   ) : (
     <div
@@ -53,12 +48,12 @@ const ProfileDraw = ({
         >
           <img
             className="w-32 self-center rounded-full outline outline-orange-400"
-            src={user?.user?.image}
+            src={user.me.image}
             alt="avatar"
           />
         </Link>
         <span className="font-semibold">
-          {getFormattedName(user?.user?.fullName)}
+          {getFormattedName(user.me.fullName)}
         </span>
       </div>
       <div
@@ -89,7 +84,7 @@ const ProfileDraw = ({
       </div>
       <div
         onClick={() => {
-          logout(user);
+          logout();
         }}
         className="mb-4 flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
       >

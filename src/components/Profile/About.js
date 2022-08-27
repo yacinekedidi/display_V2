@@ -1,19 +1,21 @@
 import moment from 'moment';
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../App';
 import getFormattedName from '../Utils/formatFullname';
 import useUserContext from '../Utils/useUserContext';
 
 const About = () => {
+  const [user, setUser] = useContext(UserContext);
   const {
     image,
     id,
-    fullName = '',
+    fullName,
     created_at,
     last_active,
     online,
     phoneNumber,
     role,
-  } = useUserContext();
+  } = user.me;
 
   const about = {
     'Full name': getFormattedName(fullName),

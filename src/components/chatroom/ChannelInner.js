@@ -121,7 +121,7 @@ const TeamChannelHeader = ({ setIsEditing }) => {
     }, []);
 
     if (channel.type === 'messaging') {
-      console.log(channel);
+      // console.log(channel);
       // console.log(read);
       // console.log(readAt);
       // console.log("onlineUsers", onlineUsers);

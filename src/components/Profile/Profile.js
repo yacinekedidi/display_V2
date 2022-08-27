@@ -12,7 +12,7 @@ const Profile = () => {
   return (
     <>
       <div className="m-auto mb-40 flex w-full flex-col items-center justify-center overflow-hidden lg:max-w-screen-lg">
-        {/* <Header /> */}
+        <Header />
         <div className="flex gap-4 font-sans">
           <Link
             className={`flex items-center gap-x-2 text-white  ${
@@ -63,7 +63,7 @@ const Profile = () => {
         <ScrollToTop />
         <Outlet />
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

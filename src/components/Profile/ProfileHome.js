@@ -1,8 +1,11 @@
 import moment from 'moment';
+import { useContext } from 'react';
+import { UserContext } from '../../App';
 import getFormattedName from '../Utils/formatFullname';
 import useUserContext from '../Utils/useUserContext';
 
 const ProfileHome = () => {
+  const [user, setUser] = useContext(UserContext);
   const {
     image,
     id,
@@ -12,7 +15,7 @@ const ProfileHome = () => {
     online,
     phoneNumber,
     role,
-  } = useUserContext();
+  } = user.me;
 
   return (
     <div className="m-4 flex w-[95vw] flex-col justify-center gap-4 bg-neutral-800 p-4 text-white shadow-md shadow-orange-400 sm:flex-row">

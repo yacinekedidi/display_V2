@@ -13,7 +13,7 @@ import ProductCard from './ProductCard';
 // useSearchParams
 // sort the products by default depending on the query param
 // droplist for sort (latest, most popular, recenlty viewed) => fetch data with the selected option
-// recently viewed might be implemented in local storage
+// recently viewed might be implemented in local storageeE
 
 const ProductsList = () => {
   // const { search } = useLocation();
@@ -92,7 +92,7 @@ const ProductsList = () => {
   return (
     <>
       <div className="m-auto mb-40 flex w-full flex-col items-center justify-center lg:max-w-screen-lg">
-        {/* <Header sticky={false} /> */}
+        <Header sticky={false} />
         <div className="flex w-full justify-end">
           <Select
             styles={customStyles}
@@ -120,7 +120,7 @@ const ProductsList = () => {
         </div>
       </div>
       <ScrollToTop />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

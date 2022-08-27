@@ -1,8 +1,10 @@
 import Cookies from 'universal-cookie';
+import { client } from '../Messages/stream';
 
 const cookies = new Cookies();
 
-export const logout = async (user) => {
+export const logout = async () => {
+  console.log(client);
   cookies.remove('userId');
   cookies.remove('username');
   cookies.remove('fullName');
@@ -10,7 +12,7 @@ export const logout = async (user) => {
   cookies.remove('hashedPassword');
   cookies.remove('phoneNumber');
   cookies.remove('token');
-  await user.disconnectUser();
+  await client.disconnectUser();
 
   window.location.href = 'http://localhost:3000/';
 };
