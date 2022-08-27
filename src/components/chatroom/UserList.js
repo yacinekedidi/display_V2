@@ -65,7 +65,7 @@ const UserList = ({ setSelectedUsers, membersIDS }) => {
           { limit: 8 }
         );
 
-        console.log(response);
+        // console.log(response);
         if (response.users.length) {
           setUsers(response.users);
         } else {

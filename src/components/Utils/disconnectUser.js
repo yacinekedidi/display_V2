@@ -4,7 +4,7 @@ import { client } from '../Messages/stream';
 const cookies = new Cookies();
 
 export const logout = async () => {
-  console.log(client);
+  // console.log(client);
   cookies.remove('userId');
   cookies.remove('username');
   cookies.remove('fullName');

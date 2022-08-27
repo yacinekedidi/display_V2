@@ -9,33 +9,6 @@ const SearchInput = ({
 }) => {
   const [dropdownIsOpen, setDropDownIsOpen] = useState(false);
   const [categoryOption, setCategoryOption] = useState('All categories');
-  //   console.log(showSearchModal);
-  // const styles = ``;
-
-  /* <div className="relative flex w-full p-2">
-      <input
-        style={{ backgroundImage: `url(${faSearch})` }}
-        className={`placeholder:font-mono peer  box-border rounded-xl border-2 border-solid border-gray-600 bg-transparent 
-         text-white outline-none duration-500  placeholder:text-lg placeholder:opacity-50 
-        focus:border-orange-200 focus:placeholder:opacity-100  ${
-          !showSearchModal
-            ? 'placeholder:invisible sm:placeholder:visible'
-            : 'px-10'
-        } `}
-        type="text"
-        placeholder="Search a product or a seller..."
-        autoComplete="off"
-        onBlur={showSearchDraw}
-        onClick={showSearchDraw}
-        autoFocus={focus}
-      />
-      <button className="absolute  p-2 opacity-50 transition-all peer-focus:opacity-100">
-        <FontAwesomeIcon
-          icon={faSearch}
-          className={`text-sm text-orange-200`}
-        />
-      </button>
-    </div> */
 
   const handleDropdown = () => {
     setDropDownIsOpen((prev) => !prev);
@@ -70,19 +43,19 @@ const SearchInput = ({
       </button>
     </div>
   ) : (
-    <form className="w-1/2">
+    <form className="w-full">
       <div className="relative flex flex-col-reverse sm:flex-row">
         <label
           htmlFor="search-dropdown"
           className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
         >
-          Your Email
+          All categories
         </label>
         <button
           onClick={handleDropdown}
-          className="z-10 inline-flex flex-shrink-0 items-center rounded-l-full border 
-          border-gray-300 bg-transparent py-2.5 px-4 text-center text-sm 
-          font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-100 
+          className="z-10 inline-flex w-1/2 flex-shrink-0 items-center rounded-r-full border border-gray-300 
+          bg-transparent py-2.5 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-200
+          focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-fit sm:rounded-r-none sm:rounded-l-full 
           "
           type="button"
         >
@@ -179,7 +152,7 @@ const SearchInput = ({
           <button
             type="submit"
             className="focus:ring-orange-30 absolute top-0 right-0 rounded-r-lg  bg-orange-200 p-2.5 text-sm font-medium
-             text-black hover:bg-gray-200"
+             text-black hover:bg-gray-200 "
           >
             <svg
               aria-hidden="true"
