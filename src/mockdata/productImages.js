@@ -142,7 +142,7 @@ export const manyImages = () => {
     index < MockImages['Latest Products'].length / 4;
     index++
   ) {
-    console.log(MockImages['Latest Products'].slice(index, index + 4));
+    // console.log(MockImages['Latest Products'].slice(index, index + 4));
   }
 
   return arr;

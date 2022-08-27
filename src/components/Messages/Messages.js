@@ -1,18 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Chat } from 'stream-chat-react';
 import 'stream-chat-react/dist/css/index.css';
-// import Cookies from 'universal-cookie';
-// import { Auth, ChannelContainer, ChannelListContainer } from '../chatroom';
-// import Auth from '../../components/Auth/Auth';
 import { ChannelContainer, ChannelListContainer } from '../chatroom';
 import './Messages.css';
-// import { client } from './stream';
 
 // import '@stream-io/stream-chat-css/dist/css/index.css';
 import 'stream-chat-react/dist/css/index.css';
-import Cookies from 'universal-cookie';
 import { UserContext } from '../../App';
-import { connectClient } from '../Utils/connectClient';
 import { client } from './stream';
 
 const Messages = () => {
@@ -21,26 +15,10 @@ const Messages = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [user, setUser] = useContext(UserContext);
 
-  console.log(user, client);
+  // console.log(user, client);
 
-  useEffect(() => {
-    if (!Object.keys(user).length) {
-      const cookies = new Cookies();
-      const authToken = cookies.get('token');
-      (async () => {
-        console.log('connect');
-        try {
-          const client = await connectClient(cookies, authToken);
-          setUser(client);
-        } catch (err) {
-          console.error(err);
-        }
-      })();
-    }
-  }, []);
-
-  return (
-    Object.keys(user).length && (
+  if (Object.keys(user).length)
+    return (
       <div className="app__wrapper mb-12 w-full">
         <Chat client={client}>
           <ChannelListContainer
@@ -58,8 +36,7 @@ const Messages = () => {
           />
         </Chat>
       </div>
-    )
-  );
+    );
 };
 
 export default Messages;

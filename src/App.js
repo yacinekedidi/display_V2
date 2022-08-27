@@ -20,7 +20,7 @@ export const UserContext = createContext();
 
 function App() {
   const [user, setUser] = useState({});
-  console.log(user);
+  // console.log(user);
   const cookies = new Cookies();
   const authToken = cookies.get('token');
   useEffect(() => {
@@ -28,7 +28,6 @@ function App() {
       authToken &&
         authToken.length &&
         (async () => {
-          console.log('connect');
           try {
             const client = await connectClient(cookies, authToken);
             setUser(client);

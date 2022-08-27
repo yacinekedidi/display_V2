@@ -1,11 +1,7 @@
 import moment from 'moment';
 import React, { useContext, useEffect, useState } from 'react';
-import Cookies from 'universal-cookie';
 import { UserContext } from '../../App';
-import { client } from '../Messages/stream';
-import { connectClient } from '../Utils/connectClient';
 import getFormattedName from '../Utils/formatFullname';
-import useUserContext from '../Utils/useUserContext';
 
 const About = () => {
   const [user, setUser] = useContext(UserContext);
@@ -16,24 +12,6 @@ const About = () => {
     'Phone Number': '',
     'Last seen': '',
   });
-
-  const cookies = new Cookies();
-  const authToken = cookies.get('token');
-  useEffect(() => {
-    if (!client._getConnectionID()) {
-      authToken &&
-        authToken.length &&
-        (async () => {
-          console.log('connect');
-          try {
-            const client = await connectClient(cookies, authToken);
-            setUser(client);
-          } catch (err) {
-            console.error(err);
-          }
-        })();
-    }
-  }, []);
 
   useEffect(() => {
     Object.keys(user).length &&
@@ -46,8 +24,8 @@ const About = () => {
       });
   }, [user]);
 
-  return (
-    Object.keys(user).length && (
+  if (Object.keys(user).length)
+    return (
       <>
         {Object.keys(about).map((info, index) => (
           <div
@@ -59,8 +37,7 @@ const About = () => {
           </div>
         ))}
       </>
-    )
-  );
+    );
 };
 
 export default About;
