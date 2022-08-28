@@ -43,19 +43,19 @@ const SearchInput = ({
       </button>
     </div>
   ) : (
-    <form className="w-full">
+    <form className="w-full ">
       <div className="relative flex flex-col-reverse sm:flex-row">
         <label
           htmlFor="search-dropdown"
-          className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          className="sr-only mb-2 text-sm font-medium  "
         >
           All categories
         </label>
         <button
           onClick={handleDropdown}
           className="z-10 inline-flex w-1/2 flex-shrink-0 items-center rounded-r-full border border-gray-300 
-          bg-transparent py-2.5 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-200
-          focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-fit sm:rounded-r-none sm:rounded-l-full 
+          bg-transparent py-2.5 px-4 text-center text-sm font-medium text-black
+           sm:w-fit sm:rounded-r-none sm:rounded-l-full 
           "
           type="button"
         >
@@ -77,7 +77,7 @@ const SearchInput = ({
         <div
           className={`absolute inset-x-auto top-20 z-10 m-0 rounded outline-none sm:top-11 ${
             dropdownIsOpen ? 'block' : 'hidden'
-          }  w-44 divide-y divide-gray-100 rounded-full  text-black shadow`}
+          }  w-44 divide-y divide-gray-100 rounded-full  text-white shadow`}
           style={
             {
               // position: 'absolute',
@@ -88,14 +88,14 @@ const SearchInput = ({
           }
         >
           <ul
-            className="py-1 text-sm text-gray-700 dark:text-gray-200"
+            className="py-1 text-sm text-black "
             aria-labelledby="dropdown-button"
           >
             <li>
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-100 hover:text-black "
               >
                 All categories
               </button>
@@ -104,7 +104,7 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-100 hover:text-black "
               >
                 Electronics
               </button>
@@ -113,7 +113,7 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-100 hover:text-black "
               >
                 Sports
               </button>
@@ -122,7 +122,7 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-100 hover:text-black "
               >
                 Arts
               </button>
@@ -131,7 +131,7 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-gray-100"
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-100 hover:text-black"
               >
                 Design
               </button>
@@ -143,11 +143,12 @@ const SearchInput = ({
             type="search"
             id="search-dropdown"
             className="z-20 block w-full rounded-r-lg border border-l-2 border-gray-300 border-l-gray-50
-             bg-gray-50 p-2.5 text-sm 
-            text-gray-900 outline-none "
+             bg-transparent p-2.5 text-sm text-black
+            outline-none "
             placeholder="Search Products, Brands..."
             required
             autoFocus
+            autoComplete="off"
           />
           <button
             type="submit"
