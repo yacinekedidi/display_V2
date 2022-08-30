@@ -66,8 +66,8 @@ const Header = ({ sticky = false }) => {
               setIsOpen={setShowSearchModal}
             >
               <div
-                className="mt-16 flex h-1/2 w-screen flex-col items-center self-start rounded-t-lg  
-              bg-neutral-900  md:w-[60vw]"
+                className="mt-16 flex h-2/3 w-screen flex-col items-center self-start rounded-lg  
+              border border-orange-300 bg-zinc-900  md:w-[60vw]"
               >
                 <SearchInput showSearchModal={showSearchModal} focus={true} />
                 {/* filters */}

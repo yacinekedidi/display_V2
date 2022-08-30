@@ -46,8 +46,9 @@ const SearchInput = ({
         </label>
         <button
           onClick={handleDropdown}
-          className="z-10 inline-flex w-1/2 flex-shrink-0 items-center rounded-tl-lg border  border-orange-300 bg-black 
-          bg-transparent py-2.5 px-4 text-center text-sm font-medium text-orange-200 hover:bg-orange-200
+          className="z-10 inline-flex w-1/2 flex-shrink-0 items-center rounded-tl-lg border-b border-r border-b-orange-200 
+          border-r-orange-200 bg-black 
+          bg-transparent py-2.5 px-4 text-center font-cairo text-xl font-medium text-orange-200 hover:bg-orange-200
            hover:text-neutral-900 sm:w-fit
           "
           type="button"
@@ -81,14 +82,14 @@ const SearchInput = ({
           }
         >
           <ul
-            className=" top-0 bg-black py-1 text-sm text-orange-200"
+            className=" top-0 whitespace-nowrap bg-black py-1 text-sm text-orange-200"
             aria-labelledby="dropdown-button"
           >
             <li>
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-orange-200 hover:text-neutral-900"
+                className="inline-flex w-full  py-2 px-4 hover:bg-orange-200 hover:text-neutral-900"
               >
                 All categories
               </button>
@@ -135,7 +136,7 @@ const SearchInput = ({
           <input
             type="search"
             id="search-dropdown"
-            className="z-20 block w-full rounded-tr-lg border border-l-2 border-orange-300 border-l-orange-50 bg-black bg-transparent
+            className="z-20 block w-full rounded-tr-lg border border-r-0 border-l-0 border-t-0 border-orange-300  bg-neutral-900 bg-transparent
              py-6 px-14 text-lg text-orange-200
             outline-none "
             placeholder="Search Products, Brands..."
