@@ -1,5 +1,6 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SearchIcon from '@mui/icons-material/Search';
 import React, { useState } from 'react';
 
 const SearchInput = ({
@@ -20,27 +21,19 @@ const SearchInput = ({
   };
 
   return !showSearchModal ? (
-    <div className="flex items-center">
-      <button
+    <div className="relative flex items-center">
+      <input
+        placeholder="Search..."
+        className="cursor-pointer rounded-md border-[1px] border-orange-200 bg-black bg-transparent p-0.5 
+        shadow-sm shadow-orange-200 placeholder:py-1 placeholder:px-8
+        placeholder:font-cairo hover:bg-neutral-900"
         onClick={showSearchDraw}
-        className="rounded-full stroke-orange-400 p-2.5"
-      >
-        <svg
-          aria-hidden="true"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          ></path>
-        </svg>
-        <span className="sr-only">Search</span>
-      </button>
+      />
+      <SearchIcon
+        className="text-orange-20 absolute left-[1rem] top-1/2 -translate-x-1/2  -translate-y-1/2 cursor-pointer text-orange-200"
+        fontSize="small"
+        onClick={showSearchDraw}
+      />
     </div>
   ) : (
     <form className="w-full ">

@@ -85,7 +85,7 @@ const Header = ({ sticky = false }) => {
                 />
               ) : (
                 <img
-                  className="h-8 w-8 rounded-full"
+                  className="h-8 w-8 rounded-full sm:h-12 sm:w-12"
                   src={user.me.image}
                   alt="avatar"
                 />

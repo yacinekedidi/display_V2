@@ -206,7 +206,8 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
               <div className="flex flex-col gap-2">
                 <div>
                   <input
-                    className="p-2 font-cairo text-black"
+                    className="p-2 font-cairo text-black placeholder:font-cairo"
+                    placeholder="product title..."
                     style={{
                       background: 'rgba( 255, 255, 255, 0.25 )',
                       boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
@@ -598,6 +599,7 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
               >
                 <TextField
                   className="h-full w-full text-justify font-cairo text-sm leading-loose tracking-widest  text-black lg:text-lg"
+                  placeholder="product description..."
                   fullWidth
                   multiline
                   value={description}
