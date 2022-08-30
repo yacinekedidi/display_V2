@@ -83,28 +83,25 @@ function getStyles(name, tagName, theme) {
   };
 }
 
-const EditProduct = ({ product, isEditing, setIsEditing }) => {
+const AddProduct = ({ product, addingProduct, setIsAddingProduct }) => {
   const theme = useTheme();
-  const [tagName, settagName] = useState([
-    ...product.motif,
-    ...product.appearance,
-  ]); //tags
-  const [title, setTitle] = useState(product.name);
-  const [titleNote, setTitleNote] = useState(product.name_note);
-  const [sellerName, setSellerName] = useState(product.seller);
-  const [imageUrls, setImageUrls] = useState(product.images_url);
+  const [tagName, settagName] = useState([]); //tags
+  const [title, setTitle] = useState('');
+  const [titleNote, setTitleNote] = useState('');
+  const [sellerName, setSellerName] = useState('');
+  const [imageUrls, setImageUrls] = useState([]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [newImageUrl, setNewImageUrl] = useState('');
 
-  const [description, setDescription] = useState(product.desciption);
+  const [description, setDescription] = useState('');
   const [characteristics, setCharacteristics] = useState({
-    style: product.style,
-    motif: product.motif,
-    appearance: product.appearance,
-    options: product.options,
-    room: product.room,
-    designer: product.designer,
-    width: product.width,
+    style: '',
+    motif: [],
+    appearance: '',
+    options: [],
+    room: [],
+    designer: '',
+    width: '',
   });
 
   const handleChangeCharteristics = (event) => {
@@ -152,12 +149,16 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
     <>
       <>
         <h1 className="self-start py-2 font-sans text-4xl text-white">
-          Editing...
+          Adding...
         </h1>
         <div
           className={`relative mb-10 flex flex-col-reverse gap-10 bg-orange-200 py-16 px-24 font-sans shadow-sm shadow-gray-400 md:flex-row`}
         >
-          <div className="flex w-full flex-shrink-0  flex-col justify-center gap-4 md:w-1/2">
+          <div
+            className={`flex w-full ${
+              imageUrls.length ? 'flex-shrink-0' : ''
+            }  flex-col justify-center gap-4 md:w-1/2`}
+          >
             <div>
               <img
                 className=""
@@ -201,7 +202,11 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
               ))}
             </div>
           </div>
-          <div className="flex  w-full flex-shrink-0 flex-col gap-8 md:w-1/2">
+          <div
+            className={`flex  w-full ${
+              imageUrls.length ? 'flex-shrink-0 md:w-1/2' : ''
+            } flex-col gap-8 `}
+          >
             <div className="text-3xl md:w-full">
               <div className="flex flex-col gap-2">
                 <div>
@@ -340,7 +345,7 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
                 className="text-black hover:text-orange-600"
                 fontSize="large"
                 onClick={() => {
-                  setIsEditing(false);
+                  setIsAddingProduct(false);
                 }}
               />
             </button>
@@ -616,4 +621,4 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
   );
 };
 
-export default EditProduct;
+export default AddProduct;

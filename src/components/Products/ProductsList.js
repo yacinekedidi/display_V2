@@ -1,13 +1,19 @@
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import React, { useCallback, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSearchParams } from 'react-router-dom';
 import Select from 'react-select';
 // useLocation
 import { v4 as uuidv4 } from 'uuid';
-import { manyImages, MockImages } from '../../mockdata/productImages';
+import {
+  manyImages,
+  MockImages,
+  MockProduct,
+} from '../../mockdata/productImages';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import ScrollToTop from '../Utils/ScrollToTop';
+import AddProduct from './AddProduct';
 import ProductCard from './ProductCard';
 
 // useSearchParams
@@ -75,6 +81,7 @@ const ProductsList = () => {
 
   const defaultValue = { value: 'latest', label: 'latest' };
   const [searchParams, setSearchParams] = useSearchParams();
+  const [addingProduct, setIsAddingProduct] = useState(false);
   // const searchTerm = searchParams.get("sort") || "";
   const handleQuery = useCallback(
     (e) => {
@@ -91,7 +98,7 @@ const ProductsList = () => {
 
   return (
     <>
-      <div className="m-auto mb-40 flex w-full flex-col items-center justify-center lg:max-w-screen-lg">
+      <div className=" m-auto mb-40 flex w-full flex-col items-center justify-center lg:max-w-screen-lg">
         <Header sticky={false} />
         <div className="flex w-full justify-end">
           <Select
@@ -101,8 +108,18 @@ const ProductsList = () => {
             onChange={handleQuery}
           />
         </div>
+        {addingProduct ? (
+          <AddProduct
+            product={MockProduct}
+            addingProduct={addingProduct}
+            setIsAddingProduct={setIsAddingProduct}
+          />
+        ) : (
+          ''
+        )}
+
         <div
-          className="my-8 flex flex-col-reverse rounded-sm  shadow-sm shadow-orange-200 drop-shadow-md lg:flex-row"
+          className="relative my-8 flex flex-col-reverse rounded-sm  shadow-sm shadow-orange-200 drop-shadow-md lg:flex-row"
           style={{ backgroundColor: 'rgb(26,21,21)' }}
         >
           <InfiniteScroll
@@ -117,6 +134,25 @@ const ProductsList = () => {
               ))}
             </div>
           </InfiniteScroll>
+          {!addingProduct ? (
+            <div>
+              <button
+                className="absolute top-0 right-0 m-2 rounded-md 
+                p-0.5 font-cairo font-extrabold  hover:opacity-80"
+                style={{ color: 'rgb(26,21,21)' }}
+              >
+                <AddCircleOutlineIcon
+                  className="text-white hover:text-orange-600"
+                  fontSize="large"
+                  onClick={() => {
+                    setIsAddingProduct(true);
+                  }}
+                />
+              </button>
+            </div>
+          ) : (
+            ''
+          )}
         </div>
       </div>
       <ScrollToTop />
