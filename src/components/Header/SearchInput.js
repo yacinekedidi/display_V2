@@ -24,7 +24,7 @@ const SearchInput = ({
     <div className="relative flex items-center">
       <input
         placeholder="Search..."
-        className="cursor-pointer rounded-md border-[1px] border-orange-200 bg-black bg-transparent p-0.5 
+        className="cursor-pointer rounded-lg border-[1px] border-orange-200 bg-black bg-transparent p-0.5 
         shadow-sm shadow-orange-200 placeholder:py-1 placeholder:px-8
         placeholder:font-cairo hover:bg-neutral-900"
         onClick={showSearchDraw}
@@ -36,7 +36,7 @@ const SearchInput = ({
       />
     </div>
   ) : (
-    <form className="w-full ">
+    <form className="w-full">
       <div className="relative flex flex-col-reverse sm:flex-row">
         <label
           htmlFor="search-dropdown"
@@ -46,9 +46,9 @@ const SearchInput = ({
         </label>
         <button
           onClick={handleDropdown}
-          className="z-10 inline-flex w-1/2 flex-shrink-0 items-center rounded-r-full border border-gray-300 
-          bg-transparent py-2.5 px-4 text-center text-sm font-medium text-black
-           hover:bg-orange-200 sm:w-fit sm:rounded-r-none sm:rounded-l-full
+          className="z-10 inline-flex w-1/2 flex-shrink-0 items-center rounded-tl-lg border  border-orange-300 bg-black 
+          bg-transparent py-2.5 px-4 text-center text-sm font-medium text-orange-200 hover:bg-orange-200
+           hover:text-neutral-900 sm:w-fit
           "
           type="button"
         >
@@ -68,9 +68,9 @@ const SearchInput = ({
           </svg>
         </button>
         <div
-          className={`absolute inset-x-auto top-20 z-10 m-0 rounded outline-none sm:top-11 ${
+          className={`z-10  m-0 flex outline-none ${
             dropdownIsOpen ? 'block' : 'hidden'
-          }  w-44 divide-y divide-gray-100 rounded-full  text-white shadow`}
+          }  w-44 divide-y divide-orange-300 text-orange-300 shadow`}
           style={
             {
               // position: 'absolute',
@@ -81,14 +81,14 @@ const SearchInput = ({
           }
         >
           <ul
-            className="py-1 text-sm text-black "
+            className=" top-0 bg-black py-1 text-sm text-orange-200"
             aria-labelledby="dropdown-button"
           >
             <li>
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-orange-200"
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-200 hover:text-neutral-900"
               >
                 All categories
               </button>
@@ -97,7 +97,7 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-orange-200"
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-200 hover:text-neutral-900"
               >
                 Electronics
               </button>
@@ -106,7 +106,7 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-orange-200"
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-200 hover:text-neutral-900"
               >
                 Sports
               </button>
@@ -115,7 +115,7 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-orange-200"
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-200 hover:text-neutral-900"
               >
                 Arts
               </button>
@@ -124,19 +124,19 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-orange-200"
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-200 hover:text-neutral-900"
               >
                 Design
               </button>
             </li>
           </ul>
         </div>
-        <div className="relative w-full">
+        <div className="relative w-full ">
           <input
             type="search"
             id="search-dropdown"
-            className="z-20 block w-full rounded-r-lg border border-l-2 border-gray-300 border-l-gray-50
-             bg-transparent p-2.5 text-sm text-black
+            className="z-20 block w-full rounded-tr-lg border border-l-2 border-orange-300 border-l-orange-50 bg-black bg-transparent
+             py-6 px-14 text-lg text-orange-200
             outline-none "
             placeholder="Search Products, Brands..."
             required
@@ -145,12 +145,12 @@ const SearchInput = ({
           />
           <button
             type="submit"
-            className="focus:ring-orange-30 absolute top-0 right-0 rounded-r-lg  bg-gray-200 p-2.5 text-sm font-medium
-             text-black hover:bg-orange-200 "
+            className="focus:ring-orange-30 absolute top-0 -left-2 rounded-r-lg  p-6 text-xl font-medium
+             text-orange-200 hover:opacity-80"
           >
             <svg
               aria-hidden="true"
-              className="h-5 w-5"
+              className="h-7 w-7"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

@@ -65,7 +65,10 @@ const Header = ({ sticky = false }) => {
               IsOpen={showSearchDraw}
               setIsOpen={setShowSearchModal}
             >
-              <div className="mx-auto mt-16 flex h-1/2 w-screen flex-col items-center self-start rounded-lg  rounded-b-md bg-gray-100 p-0 sm:p-4 md:w-[60vw]">
+              <div
+                className="mt-16 flex h-1/2 w-screen flex-col items-center self-start rounded-t-lg  
+              bg-neutral-900  md:w-[60vw]"
+              >
                 <SearchInput showSearchModal={showSearchModal} focus={true} />
                 {/* filters */}
                 <div className="text-white">
