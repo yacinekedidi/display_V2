@@ -183,7 +183,7 @@
   }
   .product__card:hover .product__card--content,
   .product__card:focus-within .product__card--content {
-    transform: translateY(0);
+    transform: translateY(50%);
   }
   .product__card:hover .product__card--content > *:not(.product__card--seller),
   .product__card:focus-within

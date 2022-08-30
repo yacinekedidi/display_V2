@@ -1,6 +1,6 @@
-import React from "react";
-import { Channel, MessageTeam, Avatar } from "stream-chat-react";
-import { ChannelInner, CreateChannel, EditChannel } from "./";
+import React, { useState } from 'react';
+import { Avatar, Channel, MessageTeam } from 'stream-chat-react';
+import { ChannelInner, CreateChannel, EditChannel } from './';
 
 const ChannelContainer = ({
   isCreating,
@@ -9,6 +9,8 @@ const ChannelContainer = ({
   setIsEditing,
   createType,
 }) => {
+  // get the channel members so while editing we can have them already checked
+
   if (isCreating) {
     return (
       <div className="channel__container">

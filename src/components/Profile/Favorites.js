@@ -1,6 +1,8 @@
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 const products = [
   {
@@ -85,16 +87,18 @@ const Favorites = () => {
               />
             </div>
             <div className="p-2"></div>
-            <div className="p-2">
-              {/* backgroundimage = loader */}
-              <div className="">
-                <img
-                  className="transition hover:scale-110 "
-                  src={product.image}
-                  alt=""
-                />
+            <Link to={`/products/${uuidv4()}`} key={uuidv4()}>
+              <div className="p-2">
+                {/* backgroundimage = loader */}
+                <div className="">
+                  <img
+                    className="transition hover:scale-110 "
+                    src={product.image}
+                    alt=""
+                  />
+                </div>
               </div>
-            </div>
+            </Link>
             <div className="p-4"></div>
             <div
               className="text-md absolute bottom-0  flex w-[95%] justify-center rounded-md

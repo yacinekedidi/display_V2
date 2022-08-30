@@ -1,23 +1,24 @@
 import {
+  faCalculator,
+  faClock,
+  faClose,
+  faDollarSign,
+  faHeart,
   faLocationDot,
   faStar,
   faTag,
-  faClock,
-  faDollarSign,
-  faCalculator,
-  faHeart,
-  faClose,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import ModalOverlay from "../Utils/ModalOverlay";
-import ZoomImage from "../Utils/ZoomImage";
-import { countries } from "../../mockdata/productImages";
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { countries } from '../../mockdata/productImages';
+import ModalOverlay from '../Utils/ModalOverlay';
+import ZoomImage from '../Utils/ZoomImage';
 
-const ProductInfo = ({ product }) => {
-  const [selectedImage, setSelectedImage] = useState(0);
+const ProductInfo = ({ product, title, isEditing, setIsEditing }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
 
   const handleImageSelect = (idx) => {
     setSelectedImage(idx);
@@ -29,7 +30,7 @@ const ProductInfo = ({ product }) => {
 
   return (
     <div
-      className={`mb-10 flex flex-col-reverse gap-10 bg-orange-300 py-16 px-24 font-sans shadow-sm shadow-gray-400 md:flex-row`}
+      className={`relative mb-10 flex flex-col-reverse gap-10 bg-orange-300 py-16 px-24 font-sans shadow-sm shadow-gray-400 md:flex-row`}
     >
       <div className="flex flex-1 flex-col justify-center gap-4">
         <div>
@@ -40,7 +41,7 @@ const ProductInfo = ({ product }) => {
               onClick={handleModal}
             />
           ) : (
-            ""
+            ''
           )}
           <img
             className="cursor-zoom-in"
@@ -53,7 +54,7 @@ const ProductInfo = ({ product }) => {
           {product.images_url.map((url, idx) => (
             <img
               className={`mx-auto h-16 w-24 cursor-pointer border-2 shadow-sm hover:border-neutral-900 ${
-                selectedImage === idx ? "border-4 border-neutral-900" : ""
+                selectedImage === idx ? 'border-4 border-neutral-900' : ''
               } hover:shadow-lg`}
               src={url}
               alt=""
@@ -75,7 +76,7 @@ const ProductInfo = ({ product }) => {
       <div className="flex flex-1 flex-col gap-8">
         <div className="text-3xl md:w-full">
           <h2 className="font-bold">{product.name}</h2>
-          <p className="font-thin">DANZA</p>
+          <p className="font-thin uppercase">{product.name_note}</p>
         </div>
         <div className="flex gap-2">
           {[...product.motif, ...product.appearance].map((tag) => (
@@ -101,19 +102,19 @@ const ProductInfo = ({ product }) => {
                 className="text-white"
                 icon={faLocationDot}
                 size="lg"
-              />{" "}
+              />{' '}
               <span
                 className={`fi fi-${
                   product.seller_country.toLowerCase() in countries
                     ? countries[product.seller_country.toLowerCase()]
-                    : countries["unknown"]
+                    : countries['unknown']
                 } peer cursor-help`}
-              ></span>{" "}
+              ></span>{' '}
               <span
                 className="text-md absolute top-1/2 left-12 hidden rounded-full rounded-tl-none bg-neutral-900 px-2  
               text-white opacity-80 peer-hover:inline-block"
               >
-                {" "}
+                {' '}
                 {product.seller_country}
               </span>
             </span>
@@ -141,11 +142,11 @@ const ProductInfo = ({ product }) => {
         <div className="self-center">
           <div className="flex flex-col gap-2 text-lg">
             <button className="space-x-1 border-2 bg-transparent p-2 font-sans font-bold tracking-wide text-neutral-900 hover:bg-neutral-900 hover:text-white">
-              <FontAwesomeIcon icon={faDollarSign} />{" "}
+              <FontAwesomeIcon icon={faDollarSign} />{' '}
               <span>Request price options</span>
             </button>
             <button className="space-x-1 whitespace-nowrap border-2 p-2 font-sans font-bold tracking-wide  text-neutral-900 hover:bg-neutral-900 hover:text-white">
-              <FontAwesomeIcon icon={faCalculator} />{" "}
+              <FontAwesomeIcon icon={faCalculator} />{' '}
               <span>Request a personalized quote</span>
             </button>
           </div>
@@ -165,8 +166,28 @@ const ProductInfo = ({ product }) => {
           />
         </ModalOverlay>
       ) : (
-        ""
+        ''
       )}
+      <div>
+        {!isEditing ? (
+          <button
+            className="absolute top-0 right-0 m-2 rounded-md 
+          p-0.5 font-cairo font-extrabold "
+            style={{ color: 'rgb(26,21,21)' }}
+          >
+            <EditOutlinedIcon
+              className="hover:text-orange-600"
+              fontSize="large"
+              onClick={() => {
+                setIsEditing((prev) => !prev);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            />
+          </button>
+        ) : (
+          ''
+        )}
+      </div>
     </div>
   );
 };

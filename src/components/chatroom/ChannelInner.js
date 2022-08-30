@@ -17,7 +17,7 @@ import userOnline from '../../assets/user-online.png';
 
 export const GiphyContext = React.createContext({});
 
-const ChannelInner = ({ setIsEditing }) => {
+const ChannelInner = ({ setIsEditing, setChannelMembers }) => {
   const [giphyState, setGiphyState] = useState(false);
   const { sendMessage } = useChannelActionContext();
 
@@ -83,6 +83,7 @@ const TeamChannelHeader = ({ setIsEditing }) => {
     const additionalMembers = membersWithoutMe.length - 3;
 
     useEffect(() => {
+      console.log(channel);
       (async () => {
         await channel.watch({ presence: true });
         client.on((event) => {

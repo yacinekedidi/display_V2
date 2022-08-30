@@ -33,9 +33,11 @@ const HomeProductSection = ({ title, products }) => {
   const elContainer = useRef();
 
   const titles = {
-    'Latest Products': 'View all the latest products',
-    'Most Popular Products': 'View all the trending products',
-    'Recently Viewed Products': 'View all your recently visited products',
+    'Latest Products': 'latest products',
+    'Most Popular Products': 'trending products',
+    'Recently Viewed Products': 'recently visited products',
+    'Related Products': 'related products',
+    'Products From Same Brand': 'products from the same brand',
   };
 
   const HandleScrollLeft = () => {
@@ -48,34 +50,45 @@ const HomeProductSection = ({ title, products }) => {
 
   return (
     <div
-      className="container m-0 w-screen rounded-b-lg bg-orange-400  p-2 px-0  shadow-sm shadow-orange-200 sm:mb-8 md:w-[960px]"
+      className="container w-screen rounded-b-lg bg-orange-400  p-2 px-0  shadow-sm shadow-orange-200 sm:mb-8 md:w-[960px]"
       style={{ backgroundColor: 'rgb(26,21,21)' }}
     >
       <div
-        className="mt-4 flex flex-col font-serif tracking-widest shadow-sm after:mx-auto after:block after:w-11/12
+        className="flex flex-col font-serif tracking-widest shadow-sm after:mx-auto after:block after:w-11/12
       after:border-b-2 after:border-b-orange-300 after:pt-1"
       >
-        <div className="peer flex items-center whitespace-normal p-2">
-          <Link to={{ pathname: '/products', title: title }}>
-            <button
-              className="cursor-pointer  border-none bg-transparent px-4 py-2 text-base
-             font-bold"
-            >
-              <FontAwesomeIcon
-                icon={faAnglesRight}
-                className="text-md text-orange-200  shadow-orange-400 drop-shadow-md"
-              />
-            </button>
-          </Link>
+        <div className="relative flex justify-between">
           <div>
-            <h2
-              className="bg-gradient-to-br from-orange-700 to-white bg-clip-text font-cairo text-sm font-black text-orange-200 transition-all duration-75 
-             hover:text-transparent sm:text-xl"
-            >
+            <div className="peer flex items-center whitespace-normal p-2">
               <Link to={{ pathname: '/products', title: title }}>
-                {titles[title]}
+                <button
+                  className="cursor-pointer  border-none bg-transparent px-4 py-2 text-base
+             font-bold"
+                >
+                  <FontAwesomeIcon
+                    icon={faAnglesRight}
+                    className="text-md text-orange-200  shadow-orange-400 drop-shadow-md"
+                  />
+                </button>
               </Link>
-            </h2>
+              <div>
+                <h2
+                  className="bg-gradient-to-br from-orange-700 to-white bg-clip-text font-cairo text-sm font-black text-orange-200 transition-all duration-75 
+             hover:text-transparent sm:text-xl"
+                >
+                  <Link to={{ pathname: '/products', title: title }}>
+                    {titles[title]}
+                  </Link>
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div className="absolute -top-1/2 right-0">
+            <Link to={{ pathname: '/products', title: title }}>
+              <button className="m-2 rounded-sm bg-orange-300 px-4 py-1 font-cairo text-lg font-extrabold shadow-sm shadow-orange-300 hover:opacity-80">
+                See all
+              </button>
+            </Link>
           </div>
         </div>
         {/* <FontAwesomeIcon

@@ -55,7 +55,7 @@ const SearchInput = ({
           onClick={handleDropdown}
           className="z-10 inline-flex w-1/2 flex-shrink-0 items-center rounded-r-full border border-gray-300 
           bg-transparent py-2.5 px-4 text-center text-sm font-medium text-black
-           sm:w-fit sm:rounded-r-none sm:rounded-l-full 
+           hover:bg-orange-200 sm:w-fit sm:rounded-r-none sm:rounded-l-full
           "
           type="button"
         >
@@ -95,7 +95,7 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-orange-100 hover:text-black "
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-200"
               >
                 All categories
               </button>
@@ -104,7 +104,7 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-orange-100 hover:text-black "
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-200"
               >
                 Electronics
               </button>
@@ -113,7 +113,7 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-orange-100 hover:text-black "
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-200"
               >
                 Sports
               </button>
@@ -122,7 +122,7 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-orange-100 hover:text-black "
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-200"
               >
                 Arts
               </button>
@@ -131,7 +131,7 @@ const SearchInput = ({
               <button
                 type="button"
                 onClick={handleOptionChange}
-                className="inline-flex w-full py-2 px-4 hover:bg-orange-100 hover:text-black"
+                className="inline-flex w-full py-2 px-4 hover:bg-orange-200"
               >
                 Design
               </button>
@@ -152,8 +152,8 @@ const SearchInput = ({
           />
           <button
             type="submit"
-            className="focus:ring-orange-30 absolute top-0 right-0 rounded-r-lg  bg-orange-200 p-2.5 text-sm font-medium
-             text-black hover:bg-gray-200 "
+            className="focus:ring-orange-30 absolute top-0 right-0 rounded-r-lg  bg-gray-200 p-2.5 text-sm font-medium
+             text-black hover:bg-orange-200 "
           >
             <svg
               aria-hidden="true"

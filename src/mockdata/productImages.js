@@ -89,6 +89,7 @@ export const MockImages = {
 
 export const MockProduct = {
   name: 'Contemporary wallpaper',
+  name_note: 'Danza',
   desciption:
     'The collection Wallpaper On Demand N.O.W. Edizioni, offers tailor-made wallpapers. Thanks to technical printing and high-quality materials, we realize decorations declined in several color variations, overcoming the modular repetitions. A solution of interior design that satisfy the desires of most demanding customers.',
   style: 'contemporary',

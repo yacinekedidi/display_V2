@@ -18,22 +18,25 @@ const HomeProductSections = () => {
   const [isLoading] = useState(false);
 
   return (
-    <div className="p-0 md:p-16">
-      {Object.keys(MockImages).map((key) => (
-        <HomeProductSection
-          title={key}
-          products={MockImages[key]}
-          key={uuidv4()}
-        />
-      ))}
-      {isLoading ? (
-        <ModalOverlay>
-          <LoadingSpinner />
-        </ModalOverlay>
-      ) : (
-        ''
-      )}
-    </div>
+    <>
+      <div className="p-12"></div>
+      <div className="flex flex-col gap-16 p-0 md:p-16">
+        {Object.keys(MockImages).map((key) => (
+          <HomeProductSection
+            title={key}
+            products={MockImages[key]}
+            key={uuidv4()}
+          />
+        ))}
+        {isLoading ? (
+          <ModalOverlay>
+            <LoadingSpinner />
+          </ModalOverlay>
+        ) : (
+          ''
+        )}
+      </div>
+    </>
   );
 };
 

@@ -17,7 +17,6 @@ const ListContainer = ({ children }) => {
 
 const UserItem = ({ user, setSelectedUsers }) => {
   const [selected, setSelected] = useState(false);
-
   const handleSelect = () => {
     if (selected) {
       setSelectedUsers((prevUsers) =>
@@ -59,6 +58,7 @@ const UserList = ({ setSelectedUsers, membersIDS }) => {
         //   { id: 1 },
         //   { limit: 8 }
         // );
+
         const response = await client.queryUsers(
           { id: { $ne: client.userID } },
           { id: 1 },

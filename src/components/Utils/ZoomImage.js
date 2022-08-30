@@ -1,10 +1,10 @@
 import React, {
-  useRef,
-  useMemo,
-  useEffect,
-  useState,
   useCallback,
-} from "react";
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 const SCROLL_SENSITIVITY = 0.0007;
 const MAX_ZOOM = 5;
@@ -55,7 +55,7 @@ const ZoomImage = ({ image }) => {
   const draw = useCallback(() => {
     if (canvasRef.current) {
       const { width, height } = canvasRef.current;
-      const context = canvasRef.current.getContext("2d");
+      const context = canvasRef.current.getContext('2d');
 
       // Set canvas dimensions
       canvasRef.current.width = width;
@@ -89,7 +89,7 @@ const ZoomImage = ({ image }) => {
           canvasRef.current.width = width * scale;
           canvasRef.current.height = height * scale;
           canvasRef.current
-            .getContext("2d")
+            .getContext('2d')
             .drawImage(background, 0, 0, width * scale, height * scale);
         }
       });
@@ -110,7 +110,7 @@ const ZoomImage = ({ image }) => {
         canvasRef.current.height = height;
 
         // Set image as background
-        canvasRef.current.getContext("2d").drawImage(background, 0, 0);
+        canvasRef.current.getContext('2d').drawImage(background, 0, 0);
       };
     }
   }, [background, image]);
@@ -122,7 +122,7 @@ const ZoomImage = ({ image }) => {
   return (
     <div ref={containerRef}>
       <canvas
-        className="cursor-zoom-in"
+        className=""
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onWheel={handleWheel}

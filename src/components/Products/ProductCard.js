@@ -29,18 +29,20 @@ const ProductCard = ({ image, index, itemId }) => {
   return (
     // <div className={`product__card `}>
     <Product
-      className="product__card relative flex h-80  w-full select-none justify-end overflow-hidden bg-gray-100 p-4 
-      text-center text-gray-100 sm:w-[251px]"
+      className="product__card relative flex h-80 w-[251px] select-none justify-end overflow-hidden bg-gray-100 
+      p-4 text-center text-gray-100"
       index={index + 1}
       image={image}
       tabIndex={0}
     >
       <div className="product__card--content">
         <h2 className="product__card--seller">Enea</h2>
-        <p className="product__card--name">Contemporary side table PUCK</p>
+        <p className="product__card--name hidden sm:block">
+          Contemporary side table PUCK
+        </p>
         {/* <button className="product__card--view">View</button> */}
-        <div className="flex  gap-2  text-neutral-900">
-          <div className="rounded-full bg-neutral-900  p-3 ">
+        <div className="flex gap-2  text-neutral-900">
+          <div className="rounded-full  p-1 ">
             <Link to={`/products/${uuidv4()}`} key={uuidv4()}>
               <FontAwesomeIcon
                 className="cursor-pointer hover:opacity-60"
@@ -52,7 +54,7 @@ const ProductCard = ({ image, index, itemId }) => {
           </div>
           {/* need the know the answer to "does this product belong in the user's favorites?" */}
           {/* it is ? => red else white */}
-          <div className="rounded-full  bg-neutral-900 p-3">
+          <div className="rounded-full p-1">
             <FontAwesomeIcon
               className=" cursor-pointer hover:text-red-500"
               icon={faHeart}
