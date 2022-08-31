@@ -53,8 +53,8 @@ const ProductInfo = ({ product, title, isEditing, setIsEditing }) => {
         <div className="flex flex-wrap gap-1">
           {product.images_url.map((url, idx) => (
             <img
-              className={`mx-auto h-16 w-24 cursor-pointer border-2 shadow-sm hover:border-neutral-900 ${
-                selectedImage === idx ? 'border-4 border-neutral-900' : ''
+              className={`mx-auto h-16 w-24 cursor-pointer border-2 shadow-sm hover:border-gray-900 ${
+                selectedImage === idx ? 'border-4 border-gray-900' : ''
               } hover:shadow-lg`}
               src={url}
               alt=""
@@ -68,7 +68,7 @@ const ProductInfo = ({ product, title, isEditing, setIsEditing }) => {
         <div className="self-center">
           {/* the user might already have it as favorite so no need to show this */}
           <div className="flex cursor-pointer items-center gap-2 hover:underline hover:opacity-60">
-            <FontAwesomeIcon className="text-rose-600" icon={faHeart} />
+            <FontAwesomeIcon className="text-red-600" icon={faHeart} />
             <p className="text-sm font-thin">add to your favorites</p>
           </div>
         </div>
@@ -111,7 +111,7 @@ const ProductInfo = ({ product, title, isEditing, setIsEditing }) => {
                 } peer cursor-help`}
               ></span>{' '}
               <span
-                className="text-md absolute top-1/2 left-12 hidden rounded-full rounded-tl-none bg-neutral-900 px-2  
+                className="text-md absolute top-1/2 left-12 hidden rounded-full rounded-tl-none bg-gray-900 px-2  
               text-white opacity-80 peer-hover:inline-block"
               >
                 {' '}
@@ -125,7 +125,7 @@ const ProductInfo = ({ product, title, isEditing, setIsEditing }) => {
             {/* incomplete for other ratings half stars etc... */}
             {new Array(product.review_rating).fill(0).map((x) => (
               <FontAwesomeIcon
-                className="text-lg text-orange-400"
+                className="text-lg text-orange-700"
                 icon={faStar}
                 key={uuidv4()}
               />
@@ -141,11 +141,11 @@ const ProductInfo = ({ product, title, isEditing, setIsEditing }) => {
         </div>
         <div className="self-center">
           <div className="flex flex-col gap-2 text-lg">
-            <button className="space-x-1 border-2 bg-transparent p-2 font-sans font-bold tracking-wide text-neutral-900 hover:bg-neutral-900 hover:text-white">
+            <button className="space-x-1 border-2 bg-transparent p-2 font-sans font-bold tracking-wide text-gray-900 hover:bg-gray-900 hover:text-white">
               <FontAwesomeIcon icon={faDollarSign} />{' '}
               <span>Request price options</span>
             </button>
-            <button className="space-x-1 whitespace-nowrap border-2 p-2 font-sans font-bold tracking-wide  text-neutral-900 hover:bg-neutral-900 hover:text-white">
+            <button className="space-x-1 whitespace-nowrap border-2 p-2 font-sans font-bold tracking-wide  text-gray-900 hover:bg-gray-900 hover:text-white">
               <FontAwesomeIcon icon={faCalculator} />{' '}
               <span>Request a personalized quote</span>
             </button>

@@ -41,7 +41,7 @@ const ProductCard = ({ image, index, itemId }) => {
           Contemporary side table PUCK
         </p>
         {/* <button className="product__card--view">View</button> */}
-        <div className="flex gap-2  text-neutral-900">
+        <div className="flex gap-2  text-gray-900">
           <div className="rounded-full  p-1 ">
             <Link to={`/products/${uuidv4()}`} key={uuidv4()}>
               <FontAwesomeIcon

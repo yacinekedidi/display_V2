@@ -157,7 +157,11 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
         <div
           className={`relative mb-10 flex flex-col-reverse gap-10 bg-orange-200 py-16 px-24 font-sans shadow-sm shadow-gray-400 md:flex-row`}
         >
-          <div className="flex w-full flex-shrink-0  flex-col justify-center gap-4 md:w-1/2">
+          <div
+            className={`flex w-full ${
+              imageUrls.length ? 'flex-shrink-0' : ''
+            }  flex-col justify-center gap-4 md:w-1/2`}
+          >
             <div>
               <img
                 className=""
@@ -174,10 +178,8 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
                 <>
                   <div className="relative mx-auto">
                     <img
-                      className={` h-16 w-24 cursor-pointer border-2 shadow-sm hover:border-neutral-900 ${
-                        selectedImage === idx
-                          ? 'border-4 border-neutral-900'
-                          : ''
+                      className={` h-16 w-24 cursor-pointer border-2 shadow-sm hover:border-gray-900 ${
+                        selectedImage === idx ? 'border-4 border-gray-900' : ''
                       } hover:shadow-lg`}
                       src={url}
                       alt=""
@@ -201,7 +203,11 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
               ))}
             </div>
           </div>
-          <div className="flex  w-full flex-shrink-0 flex-col gap-8 md:w-1/2">
+          <div
+            className={`flex  w-full ${
+              imageUrls.length ? 'flex-shrink-0 md:w-1/2' : ''
+            } flex-col gap-8 `}
+          >
             <div className="text-3xl md:w-full">
               <div className="flex flex-col gap-2">
                 <div>
@@ -371,7 +377,7 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
               </h1>
             </div>
             <div className="grid grid-cols-1 content-between gap-6 p-4 ">
-              <div className="flex border-spacing-y-4  border-b-neutral-900 p-2">
+              <div className="flex border-spacing-y-4  border-b-gray-900 p-2">
                 {/* <span className="w-1/2 font-bold">Style:</span> */}
                 <Box
                   component="form"
@@ -431,7 +437,7 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
                   </Select>
                 </FormControl>
               </div>
-              <div className="flex  border-b-neutral-900 p-2">
+              <div className="flex  border-b-gray-900 p-2">
                 <Box
                   component="form"
                   sx={{
@@ -491,7 +497,7 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
                   </Select>
                 </FormControl>
               </div>
-              <div className="flex flex-wrap justify-between gap-2  border-b-neutral-900 p-2">
+              <div className="flex flex-wrap justify-between gap-2  border-b-gray-900 p-2">
                 {/* <span className="font-bold">Room/use:</span>
                 <span>{product.room.join(', ')}</span> */}
                 <FormControl sx={{ m: 1, width: 300 }}>
@@ -551,7 +557,7 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
                   />
                 </Box>
               </div>
-              <div className="flex  border-b-neutral-900 p-2">
+              <div className="flex  border-b-gray-900 p-2">
                 <Box
                   component="form"
                   sx={{

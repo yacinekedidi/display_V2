@@ -1,11 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const withMT = require('@material-tailwind/react/utils/withMT');
+
+module.exports = withMT({
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     fontFamily: {
       sans: ['Rubik', 'sans-serif'],
       serif: ['Cardo', 'serif'],
-      cairo: ['Cairo', 'san-setif'],
+      cairo: ['Cairo', 'sans-serif'],
     },
     extend: {
       borderWidth: {
@@ -23,4 +25,4 @@ module.exports = {
     },
   },
   plugins: [require('tailwind-scrollbar-hide')],
-};
+});

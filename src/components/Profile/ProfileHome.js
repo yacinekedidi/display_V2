@@ -9,7 +9,7 @@ const ProfileHome = () => {
 
   if (Object.keys(user).length)
     return (
-      <div className="m-4 flex w-[95vw] flex-col justify-center gap-4 bg-neutral-800 p-4 text-white shadow-md shadow-orange-400 sm:flex-row">
+      <div className="m-4 flex w-[95vw] flex-col justify-center gap-4 bg-gray-900 p-4 text-white shadow-md shadow-orange-400 sm:flex-row">
         <img
           className="w-32 self-center rounded-full outline outline-orange-400"
           src={user.me.image}

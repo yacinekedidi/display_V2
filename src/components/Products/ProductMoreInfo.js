@@ -16,7 +16,7 @@ const ProductMoreInfo = () => {
             </h1>
           </div>
           <div className="grid grid-cols-1 content-between gap-6 p-4 ">
-            <div className="flex border-spacing-y-4 border-b-8 border-b-neutral-900 p-2">
+            <div className="flex border-spacing-y-4 border-b-8 border-b-gray-900 p-2">
               <span className="w-1/2 font-bold">Style:</span>
               <span>{MockProduct.style}</span>
             </div>
@@ -26,7 +26,7 @@ const ProductMoreInfo = () => {
               </span>
               <span>{MockProduct.motif.join(', ')}</span>
             </div>
-            <div className="flex border-b-8 border-b-neutral-900 p-2">
+            <div className="flex border-b-8 border-b-gray-900 p-2">
               <span className="w-1/2 font-bold">Appearance:</span>
               <span>{MockProduct.appearance}</span>
             </div>
@@ -34,7 +34,7 @@ const ProductMoreInfo = () => {
               <span className="font-bold">Options:</span>
               <span>{MockProduct.options.join(', ')}</span>
             </div>
-            <div className="flex flex-wrap justify-between gap-2 border-b-8 border-b-neutral-900 p-2">
+            <div className="flex flex-wrap justify-between gap-2 border-b-8 border-b-gray-900 p-2">
               <span className="font-bold">Room/use:</span>
               <span>{MockProduct.room.join(', ')}</span>
             </div>
@@ -42,7 +42,7 @@ const ProductMoreInfo = () => {
               <span className="w-1/2 font-bold">Designer:</span>
               <span>by {MockProduct.designer}</span>
             </div>
-            <div className="flex border-b-8 border-b-neutral-900 p-2">
+            <div className="flex border-b-8 border-b-gray-900 p-2">
               <span className="w-1/2 font-bold">Width:</span>
               <span>{MockProduct.width}</span>
             </div>

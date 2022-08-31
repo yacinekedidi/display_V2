@@ -35,7 +35,7 @@ const ProfileDraw = ({ showProfileDraw }) => {
     </>
   ) : (
     <div
-      className="absolute top-12 -right-1 flex w-52 flex-col gap-4 rounded-sm bg-neutral-900 text-left font-sans text-base font-medium text-white shadow-md 
+      className="absolute top-12 -right-1 flex w-52 flex-col gap-4 rounded-sm bg-gray-900 text-left font-sans text-base font-medium text-white shadow-md 
     shadow-black"
     >
       <div

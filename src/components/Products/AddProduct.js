@@ -175,10 +175,8 @@ const AddProduct = ({ product, addingProduct, setIsAddingProduct }) => {
                 <>
                   <div className="relative mx-auto">
                     <img
-                      className={` h-16 w-24 cursor-pointer border-2 shadow-sm hover:border-neutral-900 ${
-                        selectedImage === idx
-                          ? 'border-4 border-neutral-900'
-                          : ''
+                      className={` h-16 w-24 cursor-pointer border-2 shadow-sm hover:border-gray-900 ${
+                        selectedImage === idx ? 'border-4 border-gray-900' : ''
                       } hover:shadow-lg`}
                       src={url}
                       alt=""
@@ -376,7 +374,7 @@ const AddProduct = ({ product, addingProduct, setIsAddingProduct }) => {
               </h1>
             </div>
             <div className="grid grid-cols-1 content-between gap-6 p-4 ">
-              <div className="flex border-spacing-y-4  border-b-neutral-900 p-2">
+              <div className="flex border-spacing-y-4  border-b-gray-900 p-2">
                 {/* <span className="w-1/2 font-bold">Style:</span> */}
                 <Box
                   component="form"
@@ -436,7 +434,7 @@ const AddProduct = ({ product, addingProduct, setIsAddingProduct }) => {
                   </Select>
                 </FormControl>
               </div>
-              <div className="flex  border-b-neutral-900 p-2">
+              <div className="flex  border-b-gray-900 p-2">
                 <Box
                   component="form"
                   sx={{
@@ -496,7 +494,7 @@ const AddProduct = ({ product, addingProduct, setIsAddingProduct }) => {
                   </Select>
                 </FormControl>
               </div>
-              <div className="flex flex-wrap justify-between gap-2  border-b-neutral-900 p-2">
+              <div className="flex flex-wrap justify-between gap-2  border-b-gray-900 p-2">
                 {/* <span className="font-bold">Room/use:</span>
                 <span>{product.room.join(', ')}</span> */}
                 <FormControl sx={{ m: 1, width: 300 }}>
@@ -556,7 +554,7 @@ const AddProduct = ({ product, addingProduct, setIsAddingProduct }) => {
                   />
                 </Box>
               </div>
-              <div className="flex  border-b-neutral-900 p-2">
+              <div className="flex  border-b-gray-900 p-2">
                 <Box
                   component="form"
                   sx={{
