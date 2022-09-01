@@ -13,7 +13,7 @@ import {
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import ScrollToTop from '../Utils/ScrollToTop';
-import AddProduct from './AddProduct';
+import AddProduct from './Add/AddProduct';
 import ProductCard from './ProductCard';
 
 // useSearchParams
@@ -98,16 +98,9 @@ const ProductsList = () => {
 
   return (
     <>
-      <div className=" m-auto mb-40 flex w-full flex-col items-center justify-center lg:max-w-screen-lg">
+      <div className=" m-auto flex flex-col items-center justify-center lg:max-w-7xl">
         <Header sticky={false} />
-        <div className="flex w-full justify-end">
-          <Select
-            styles={customStyles}
-            options={options}
-            defaultValue={defaultValue}
-            onChange={handleQuery}
-          />
-        </div>
+
         {addingProduct ? (
           <AddProduct
             product={MockProduct}
@@ -117,7 +110,14 @@ const ProductsList = () => {
         ) : (
           ''
         )}
-
+        <div className="flex w-full justify-end">
+          <Select
+            styles={customStyles}
+            options={options}
+            defaultValue={defaultValue}
+            onChange={handleQuery}
+          />
+        </div>
         <div
           className="relative my-8 flex flex-col-reverse rounded-sm  shadow-sm shadow-orange-200 drop-shadow-md lg:flex-row"
           style={{ backgroundColor: 'rgb(26,21,21)' }}
@@ -128,7 +128,7 @@ const ProductsList = () => {
             hasMore={page < totalPages}
             loader={<h4>Loading...</h4>}
           >
-            <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-20 p-8 font-sans ">
+            <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-20 p-4 font-sans ">
               {items.map(({ image }, index) => (
                 <ProductCard image={image} key={uuidv4()} index={index} />
               ))}

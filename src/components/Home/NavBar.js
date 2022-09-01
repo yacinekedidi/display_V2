@@ -36,7 +36,6 @@ const NavBar = () => {
           }}
         >
           <IconButton
-            sx={{ textAlign: 'left' }}
             size="large"
             aria-label="account of current user"
             aria-controls="menu-appbar"

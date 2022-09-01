@@ -16,7 +16,7 @@ import './Header.css';
 import ProfileDraw from './ProfileDraw';
 import SearchInput from './SearchInput';
 
-const Header = ({ sticky = false }) => {
+const Header = () => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
   const [user, setUser] = useContext(UserContext);
@@ -37,9 +37,9 @@ const Header = ({ sticky = false }) => {
 
   return (
     // lg:sticky lg:top-0 lg:bg-transparent lg:backdrop-blur-sm
-    <>
+    <div className="flex w-full flex-col items-start lg:items-center">
       <div
-        className={`z-20 flex w-full max-w-7xl items-start justify-between gap-6 border-b-2 border-b-orange-200 py-2`}
+        className={` z-20 flex w-full max-w-7xl items-start justify-between gap-6 border-b-2 border-b-orange-200  px-2 py-2`}
       >
         <div className="flex  items-center gap-1">
           <div className="m-auto flex flex-col items-center">
@@ -55,9 +55,9 @@ const Header = ({ sticky = false }) => {
             </span>
           </div>
 
-          <div className="">
+          {/* <div className="">
             <NavBar />
-          </div>
+          </div> */}
         </div>
         {!isConnected && profileIsOpen && (
           <ModalOverlay IsOpen={profileIsOpen} setIsOpen={setProfileIsOpen}>
@@ -113,8 +113,13 @@ const Header = ({ sticky = false }) => {
           </div>
         </div>
       </div>
-      <div className="p-4"></div>
-    </>
+      <div>
+        <div className="">
+          <NavBar />
+        </div>
+        <div className="p-8"></div>
+      </div>
+    </div>
   );
 };
 

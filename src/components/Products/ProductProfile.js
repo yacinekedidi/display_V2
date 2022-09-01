@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import HomeProductSection from '../Home/HomeProductSection';
 import ScrollToTop from '../Utils/ScrollToTop';
-import EditProduct from './EditProduct';
+import EditProduct from './Edit/EditProduct';
 import ProductInfo from './ProductInfo';
 import ProductMoreInfo from './ProductMoreInfo';
 
@@ -21,7 +21,7 @@ const ProductProfile = () => {
 
   return (
     <div className="relative">
-      <div className="m-auto mb-40 flex w-full flex-col items-center justify-center lg:max-w-screen-lg">
+      <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-screen-lg">
         <Header />
         {/* <BrandLinks /> */}
         {isEditing ? (
@@ -44,15 +44,17 @@ const ProductProfile = () => {
         <RelatedBrandProducts />
         <RecentlyViewedProducts /> => <HomeProductSection title="Recently Viewed Products" />
          */}
-        <HomeProductSection
-          title="Products From Same Brand"
-          products={MockImages['Recently Viewed Products']}
-        />
-        {/* <RelatedSearches />  */}
-        <HomeProductSection
-          title="Related Products"
-          products={MockImages['Recently Viewed Products']}
-        />
+        <div>
+          <HomeProductSection
+            title="Products From Same Brand"
+            products={MockImages['Recently Viewed Products']}
+          />
+          {/* <RelatedSearches />  */}
+          <HomeProductSection
+            title="Related Products"
+            products={MockImages['Recently Viewed Products']}
+          />
+        </div>
         <ScrollToTop />
       </div>
       <Footer />

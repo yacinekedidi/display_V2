@@ -132,6 +132,45 @@ export const MockProduct = {
   ],
 };
 
+export const MockBrands = [
+  {
+    name: 'Nike',
+    email: 'nike@email.com',
+    'phone number': '55123456',
+    image_url: 'https://i.ebayimg.com/images/g/atoAAOSwZzVeJrV1/s-l200.webp',
+  },
+  {
+    name: 'Apple',
+    email: 'apple@email.com',
+    'phone number': '55123456',
+    image_url: 'https://i.ebayimg.com/images/g/T38AAOSwPGBeJrV1/s-l200.webp',
+  },
+  {
+    name: 'Sony',
+    email: 'sony@email.com',
+    'phone number': '55123456',
+    image_url: 'https://i.ebayimg.com/images/g/uIAAAOSw7PNeJrV1/s-l200.webp',
+  },
+  {
+    name: 'Samsung',
+    email: 'samsung@email.com',
+    'phone number': '55123456',
+    image_url: 'https://i.ebayimg.com/images/g/BkwAAOSwpfpeJrV0/s-l200.webp',
+  },
+  {
+    name: 'Born',
+    email: 'bornpretty@email.com',
+    'phone number': '55123456',
+    image_url: 'https://i.ebayimg.com/images/g/j-MAAOSwaBJeJrV1/s-l200.webp',
+  },
+  {
+    name: 'Ugreen',
+    email: 'ugreen@email.com',
+    'phone number': '55123456',
+    image_url: 'https://i.ebayimg.com/images/g/dLMAAOSwwS5eJrV0/s-l200.webp',
+  },
+];
+
 export const manyImages = () => {
   let arr = [];
   for (let index = 0; index < 2; index++) {

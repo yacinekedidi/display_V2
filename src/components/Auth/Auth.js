@@ -31,7 +31,7 @@ const Auth = ({ showProfileDraw }) => {
     // const URL = 'https://gym-pager.herokuapp.com/auth';
 
     const {
-      data: { token, userId, hashedPassword, fullName },
+      data: { token, userId, hashedPassword, fullName, role },
     } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
       username,
       password,
@@ -41,6 +41,7 @@ const Auth = ({ showProfileDraw }) => {
     });
 
     cookies.set('token', token);
+    cookies.set('role', role);
     cookies.set('username', username);
     cookies.set('fullName', fullName);
     cookies.set('userId', userId);

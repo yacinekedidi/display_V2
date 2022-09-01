@@ -29,8 +29,8 @@ const ProductCard = ({ image, index, itemId }) => {
   return (
     // <div className={`product__card `}>
     <Product
-      className="product__card relative flex h-80 w-[251px] select-none justify-end overflow-hidden bg-gray-100 
-      p-4 text-center text-gray-100"
+      className="product__card relative flex h-72 w-[200px] select-none justify-end overflow-hidden bg-gray-100 
+       text-center text-gray-100"
       index={index + 1}
       image={image}
       tabIndex={0}

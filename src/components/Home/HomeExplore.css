@@ -117,7 +117,7 @@
 }
 
 .product__card--content > * + * {
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 .product__card--seller {
@@ -161,7 +161,7 @@
   }
 
   .product__card--content {
-    transform: translateY(calc(100% - 4.5rem));
+    transform: translateY(calc(100% - 3rem));
   }
   .product__card--content > *:not(.product__card--seller) {
     opacity: 0;
@@ -175,7 +175,7 @@
   }
   .product__card:hover:before,
   .product__card:focus-within:before {
-    transform: translateY(-4%);
+    transform: translateY(-10%);
   }
   .product__card:hover:after,
   .product__card:focus-within:after {
