@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div className="relative">
       <div className="container m-auto">
-        <div className="lg:max-w-screen-7xl m-auto flex flex-col items-center justify-center  overflow-x-hidden">
+        <div className="lg:max-w-screen-7xl m-auto flex w-full flex-col items-center justify-center overflow-x-hidden">
           <Header sticky={true} />
           <HomBrandSection />
           {/* <PromoteSlider /> */}

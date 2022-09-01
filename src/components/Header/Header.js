@@ -75,8 +75,8 @@ const Header = () => {
                 setIsOpen={setShowSearchModal}
               >
                 <div
-                  className="bg-zinc-900 mt-16 flex h-2/3 w-screen flex-col items-center self-start  
-              rounded-lg border border-orange-300  md:w-[60vw]"
+                  className="bg-zinc-900 mt-16 flex h-2/3 w-screen max-w-7xl flex-col items-center  
+              self-start rounded-lg border  border-orange-300 md:w-[60vw]"
                 >
                   <SearchInput showSearchModal={showSearchModal} focus={true} />
                   {/* filters */}
@@ -97,7 +97,7 @@ const Header = () => {
                   />
                 ) : (
                   <img
-                    className="h-8 w-8 rounded-full sm:h-12 sm:w-12"
+                    className="h-12 w-12 rounded-full sm:h-14 sm:w-14"
                     src={user.me.image}
                     alt="avatar"
                   />

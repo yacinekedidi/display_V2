@@ -24,9 +24,9 @@ const SearchInput = ({
     <div className="relative flex items-center">
       <input
         placeholder="Search..."
-        className="cursor-pointer rounded-lg border-[1px] border-orange-200 bg-black bg-transparent p-0.5 
-        shadow-sm shadow-orange-200 placeholder:py-1 placeholder:px-8
-        placeholder:font-cairo hover:bg-gray-900"
+        className="w-8 cursor-pointer rounded-lg border-[1px] border-orange-200 bg-black bg-transparent p-0.5 shadow-sm 
+        shadow-orange-200 placeholder:py-1 placeholder:px-8 placeholder:font-cairo
+        hover:bg-gray-900 sm:w-full"
         onClick={showSearchDraw}
       />
       <SearchIcon

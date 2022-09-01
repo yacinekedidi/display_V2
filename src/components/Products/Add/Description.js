@@ -23,7 +23,7 @@ const Description = () => {
             sx={{
               '& .MuiTextField-root': {
                 m: 1,
-                width: '38ch',
+                width: '25ch',
                 padding: '1rem .5rem',
               },
             }}
