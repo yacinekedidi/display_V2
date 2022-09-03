@@ -12,9 +12,11 @@ const Home = () => {
       <div className="container m-auto">
         <div className=" flex flex-col items-center justify-center ">
           <Header sticky={true} />
-          <HomBrandSection />
-          {/* <PromoteSlider /> */}
-          <HomeProductSections />
+          <div className=" shadow-sm shadow-orange-100">
+            <HomBrandSection />
+            {/* <PromoteSlider /> */}
+            <HomeProductSections />
+          </div>
         </div>
 
         <ScrollToTop />

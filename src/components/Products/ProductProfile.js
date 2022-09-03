@@ -34,17 +34,20 @@ const ProductProfile = () => {
           ''
         )}
 
-        <ProductInfo
-          product={MockProduct}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-        />
-        <ProductMoreInfo />
+        <div className="p-2 shadow-sm shadow-orange-100">
+          <ProductInfo
+            product={MockProduct}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+          />
+          <ProductMoreInfo />
+        </div>
         {/*
         <RelatedBrandProducts />
         <RecentlyViewedProducts /> => <HomeProductSection title="Recently Viewed Products" />
          */}
-        <div>
+        <div className="p-4"></div>
+        <div className="p-2 shadow-sm shadow-orange-100">
           <HomeProductSection
             title="Products From Same Brand"
             products={MockImages['Recently Viewed Products']}

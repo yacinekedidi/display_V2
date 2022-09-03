@@ -30,7 +30,8 @@ const ProductInfo = ({ product, title, isEditing, setIsEditing }) => {
 
   return (
     <div
-      className={`relative mb-10 flex flex-col-reverse gap-10 bg-orange-300 py-16 px-24 font-sans shadow-sm shadow-gray-400 md:flex-row`}
+      className={`relative mx-auto mb-10 flex flex-col-reverse gap-10 bg-orange-300 py-16 px-24 
+      font-sans shadow-sm shadow-gray-400 md:flex-row`}
     >
       <div className="flex flex-1 flex-col justify-center gap-4">
         <div>

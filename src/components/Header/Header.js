@@ -39,7 +39,7 @@ const Header = () => {
     // lg:sticky lg:top-0 lg:bg-transparent lg:backdrop-blur-sm
     <div className="flex w-full flex-col items-start lg:items-center">
       <div
-        className={` z-20 flex w-full items-start justify-between gap-6 border-b-[1px] border-b-gray-800 px-2  py-2 lg:max-w-7xl`}
+        className={` z-20 flex w-full items-start justify-between gap-6 border-b-[1px] border-b-orange-100 px-2  py-2 lg:max-w-7xl`}
       >
         <div className="flex  items-center gap-1">
           <div className="m-auto flex flex-col items-center">
@@ -75,14 +75,10 @@ const Header = () => {
                 setIsOpen={setShowSearchModal}
               >
                 <div
-                  className="bg-zinc-900 mt-16 flex h-2/3 w-screen max-w-7xl flex-col items-center  
+                  className="bg-zinc-900 mt-16 flex h-2/3 w-full max-w-7xl flex-col  
               self-start rounded-lg border  border-orange-300 md:w-[60vw]"
                 >
                   <SearchInput showSearchModal={showSearchModal} focus={true} />
-                  {/* filters */}
-                  <div className="text-white">
-                    <Filters />
-                  </div>
                 </div>
               </ModalOverlay>
             ) : (

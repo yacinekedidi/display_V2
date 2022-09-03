@@ -99,7 +99,7 @@ const ProductsList = () => {
 
   return (
     <>
-      <div className=" m-auto flex flex-col items-center justify-center lg:max-w-7xl">
+      <div className=" m-auto flex w-full flex-col items-center justify-center lg:max-w-7xl">
         <Header sticky={false} />
 
         {addingProduct ? (
@@ -157,8 +157,8 @@ const ProductsList = () => {
             ''
           )}
         </div>
+        <ScrollToTop />
       </div>
-      <ScrollToTop />
       <Footer />
     </>
   );

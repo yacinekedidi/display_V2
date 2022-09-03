@@ -5,9 +5,14 @@ import Description from './Description';
 
 const AddProduct = ({ product, addingProduct, setIsAddingProduct }) => {
   return (
-    <div>
+    <div className="w-full max-w-7xl">
       <div>
-        <h1 className="py-2 font-sans text-4xl text-white">Adding...</h1>
+        <h1
+          className="bg-gradient-to-br from-orange-700 to-white bg-clip-text py-2 font-cairo text-2xl font-black uppercase 
+                       text-transparent transition-all duration-75"
+        >
+          creating new Product...
+        </h1>
         <BasicInfo setIsAddingProduct={setIsAddingProduct} />
       </div>
       {/* ProductMoreInfo */}

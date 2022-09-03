@@ -31,7 +31,12 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
   return (
     <>
       <div>
-        <h1 className="py-2 font-sans text-4xl text-white">Editing...</h1>
+        <h1
+          className="bg-gradient-to-br from-orange-700 to-white bg-clip-text py-2 font-cairo text-2xl font-black uppercase 
+                       text-transparent transition-all duration-75"
+        >
+          Editing product...
+        </h1>
         <BasicInfo
           product={product}
           MenuProps={MenuProps}

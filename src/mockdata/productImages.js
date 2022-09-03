@@ -88,6 +88,7 @@ export const MockImages = {
 };
 
 export const MockProduct = {
+  id: 1,
   name: 'Contemporary wallpaper',
   name_note: 'Danza',
   desciption:

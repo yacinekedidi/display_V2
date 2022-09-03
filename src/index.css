@@ -5,6 +5,28 @@
 @import '~@csstools/normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap');
 
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: black;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #e7a923;
+    border-radius: 100vh;
+    /* border: 3px solid #f6f7ed; */
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: white;
+  }
+}
+
 body {
   margin: 0;
   min-width: 100%;

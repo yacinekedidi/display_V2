@@ -89,13 +89,13 @@ const BasicInfo = ({ setIsAddingProduct }) => {
 
   return (
     <div
-      className={`relative mb-10 flex flex-col-reverse gap-10 bg-orange-200 py-16 px-24 font-sans shadow-sm 
-      shadow-gray-400 md:flex-row`}
+      className={`relative m-auto mb-10 flex  flex-col-reverse gap-10 bg-orange-200 py-16 px-24 font-sans 
+      shadow-sm shadow-gray-400 md:flex-row`}
     >
       <div
         className={`flex  ${
           imageUrls.length ? 'flex-shrink-0' : ''
-        }  flex-col justify-center gap-4 md:w-1/2`}
+        }   flex-col justify-center gap-4 md:w-1/2`}
       >
         <div>
           <img

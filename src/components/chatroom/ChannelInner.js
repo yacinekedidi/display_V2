@@ -83,7 +83,7 @@ const TeamChannelHeader = ({ setIsEditing }) => {
     const additionalMembers = membersWithoutMe.length - 3;
 
     useEffect(() => {
-      console.log(channel);
+      // console.log(channel);
       (async () => {
         await channel.watch({ presence: true });
         client.on((event) => {
