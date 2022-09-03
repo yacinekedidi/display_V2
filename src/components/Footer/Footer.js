@@ -6,8 +6,8 @@ import logo from '../../assets/logo.svg';
 
 const Footer = () => {
   return (
-    <div className="flex w-full items-end justify-center self-end text-orange-200">
-      <div className="flex w-[60vw] flex-col-reverse justify-around gap-4 border-t-2 border-t-orange-200 p-4  md:flex-row md:gap-8">
+    <div className="mx-auto flex w-full text-orange-200 lg:max-w-7xl">
+      <div className="flex w-full flex-col-reverse justify-around gap-4 border-t-[1px] border-t-gray-800 p-4  md:flex-row md:gap-8">
         <div className="flex items-center justify-center gap-2 p-4 font-cairo">
           <Link className="hover:rotate-180 hover:animate-spin" to="/">
             <img className="h-8 w-8 sm:h-10 sm:w-10" src={logo} alt="logo" />

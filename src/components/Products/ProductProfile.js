@@ -21,7 +21,7 @@ const ProductProfile = () => {
 
   return (
     <div className="relative">
-      <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-screen-lg">
+      <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-7xl">
         <Header />
         {/* <BrandLinks /> */}
         {isEditing ? (

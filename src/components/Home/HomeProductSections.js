@@ -31,7 +31,7 @@ const HomeProductSections = () => {
   return (
     <>
       {/* <div className="p-12"></div> */}
-      <div className="flex flex-col p-0 md:p-16">
+      <div className="flex flex-col p-0 ">
         {Object.keys(MockImages).map((key) => (
           <HomeProductSection
             title={key}

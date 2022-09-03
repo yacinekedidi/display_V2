@@ -8,9 +8,9 @@ import PromoteSlider from './PromoteSlider';
 
 const Home = () => {
   return (
-    <div className="relative">
+    <div className="relative m-auto w-full lg:max-w-7xl">
       <div className="container m-auto">
-        <div className="lg:max-w-screen-7xl m-auto flex w-full flex-col items-center justify-center overflow-x-hidden">
+        <div className=" flex flex-col items-center justify-center ">
           <Header sticky={true} />
           <HomBrandSection />
           {/* <PromoteSlider /> */}

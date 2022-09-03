@@ -50,8 +50,8 @@ const HomeProductSection = ({ title, products }) => {
 
   return (
     <>
-      <div>
-        <div className="peer flex w-full flex-col items-center justify-between whitespace-normal  p-8 sm:flex-row">
+      <div className="md:py-4">
+        <div className="peer flex w-full  flex-col items-center justify-between whitespace-normal p-8 sm:flex-row">
           <div className="flex items-center justify-between">
             {/* <Link to={{ pathname: '/products', title: title }}>
               <button className="cursor-pointer  border-none bg-transparent px-4 py-2 text-base font-bold">
@@ -61,7 +61,7 @@ const HomeProductSection = ({ title, products }) => {
                 />
               </button>
             </Link> */}
-            <div>
+            <div className="w-full">
               <h2
                 className="bg-gradient-to-br from-orange-700 to-white bg-clip-text text-center font-cairo text-2xl font-black uppercase 
                       text-orange-200 transition-all duration-75 hover:text-transparent"
@@ -100,7 +100,7 @@ const HomeProductSection = ({ title, products }) => {
           </div>
           </div> */}
           {/* <FontAwesomeIcon
-          className="text-rose-600"
+          className="text-rose-400"
           icon={faFireFlameCurved}
           beat
         /> */}
@@ -109,8 +109,8 @@ const HomeProductSection = ({ title, products }) => {
           {/* <div className="home__products--latest "> */}
           <MdChevronLeft
             onClick={HandleScrollLeft}
-            className="cursor-pointer text-orange-200 opacity-50 transition-all duration-300 ease-in-out hover:opacity-100  "
-            size={80}
+            className="cursor-pointer text-orange-200 opacity-50 transition-all duration-300 ease-in-out hover:opacity-100 "
+            size={40}
           />
           {/* <div
           className="grid gap-4 overflow-x-scroll whitespace-nowrap p-12 font-sans sm:grid-cols-2 lg:grid-cols-4"
@@ -139,7 +139,7 @@ const HomeProductSection = ({ title, products }) => {
           <MdChevronRight
             onClick={HandleScrollRight}
             className="cursor-pointer text-orange-200 opacity-50 transition-all duration-300 ease-in-out hover:opacity-100  "
-            size={80}
+            size={40}
           />
         </div>
       </div>

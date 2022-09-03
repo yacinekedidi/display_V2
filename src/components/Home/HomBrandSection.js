@@ -3,7 +3,7 @@ import { MockBrands } from '../../mockdata/productImages';
 const HomBrandSection = () => {
   return (
     // w-[90vw] lg:max-w-7xl
-    <div className="hidden w-full flex-wrap rounded-lg bg-transparent  md:flex-row lg:block ">
+    <div className="hidden w-full max-w-7xl flex-wrap rounded-lg  bg-transparent md:flex-row lg:block ">
       {/* <div className="p-8">
         <h2
           className="bg-gradient-to-br from-orange-700 to-white bg-clip-text font-cairo text-sm font-black uppercase text-orange-200 

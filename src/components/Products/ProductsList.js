@@ -12,6 +12,7 @@ import {
 } from '../../mockdata/productImages';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import ModalOverlay from '../Utils/ModalOverlay';
 import ScrollToTop from '../Utils/ScrollToTop';
 import AddProduct from './Add/AddProduct';
 import ProductCard from './ProductCard';
@@ -102,12 +103,14 @@ const ProductsList = () => {
         <Header sticky={false} />
 
         {addingProduct ? (
+          // <ModalOverlay setIsOpen={setIsAddingProduct} IsOpen={addingProduct}>
           <AddProduct
             product={MockProduct}
             addingProduct={addingProduct}
             setIsAddingProduct={setIsAddingProduct}
           />
         ) : (
+          // </ModalOverlay>
           ''
         )}
         <div className="flex w-full justify-end">

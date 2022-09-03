@@ -30,10 +30,8 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
 
   return (
     <>
-      <>
-        <h1 className="self-start py-2 font-sans text-4xl text-white">
-          Editing...
-        </h1>
+      <div>
+        <h1 className="py-2 font-sans text-4xl text-white">Editing...</h1>
         <BasicInfo
           product={product}
           MenuProps={MenuProps}
@@ -41,7 +39,7 @@ const EditProduct = ({ product, isEditing, setIsEditing }) => {
           setIsEditing={setIsEditing}
           getStyles={getStyles}
         />
-      </>
+      </div>
       {/* ProductMoreInfo */}
       <div className="mx-auto mb-10 flex flex-col justify-center gap-10 font-sans md:flex-row ">
         <Characteristics

@@ -29,7 +29,7 @@ const About = () => {
       <>
         {Object.keys(about).map((info, index) => (
           <div
-            className="my-4 flex w-[90vw] bg-gray-900 p-4 text-white shadow-md shadow-orange-400 md:w-[40vw]"
+            className="my-4 flex w-full justify-center bg-gray-900 p-4 text-white shadow-sm shadow-orange-400 md:max-w-2xl"
             key={index}
           >
             <span className="w-[45vw] md:w-[20vw]">{info}:</span>
