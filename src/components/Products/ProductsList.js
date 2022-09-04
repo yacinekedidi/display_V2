@@ -99,8 +99,15 @@ const ProductsList = () => {
 
   return (
     <>
+      <div
+        className="w-full shadow-sm shadow-gray-800"
+        style={{ backgroundColor: '#231f20' }}
+      >
+        <Header className="max-w-7xl" sticky={true} />
+      </div>
+      <div className="p-4"></div>
       <div className=" m-auto flex w-full flex-col items-center justify-center lg:max-w-7xl">
-        <Header sticky={false} />
+        {/* <Header sticky={false} /> */}
 
         {addingProduct ? (
           // <ModalOverlay setIsOpen={setIsAddingProduct} IsOpen={addingProduct}>
@@ -159,7 +166,13 @@ const ProductsList = () => {
         </div>
         <ScrollToTop />
       </div>
-      <Footer />
+      <div className="py-4"></div>
+      <div
+        className="w-full shadow-sm shadow-gray-800"
+        style={{ backgroundColor: '#231f20' }}
+      >
+        <Footer className="max-w-7xl" />
+      </div>
     </>
   );
 };

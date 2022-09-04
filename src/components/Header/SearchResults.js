@@ -6,7 +6,7 @@ const SearchResults = ({ results }) => {
     <div className="scrollbar flex flex-col gap-4 overflow-y-auto p-2 text-orange-200">
       {results.map((product) => (
         <div
-          className="flex  bg-gray-900 shadow-sm shadow-orange-100"
+          className="flex flex-col bg-gray-900  shadow-sm shadow-orange-100 sm:flex-row"
           key={product.id}
         >
           <div className="w-32">

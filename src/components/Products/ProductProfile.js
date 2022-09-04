@@ -20,48 +20,65 @@ const ProductProfile = () => {
   }, [productId]);
 
   return (
-    <div className="relative">
-      <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-7xl">
-        <Header />
-        {/* <BrandLinks /> */}
-        {isEditing ? (
-          <EditProduct
-            product={MockProduct}
-            isEditing={isEditing}
-            setIsEditing={setIsEditing}
-          />
-        ) : (
-          ''
-        )}
+    <>
+      <div
+        className="w-full shadow-sm shadow-gray-800"
+        style={{ backgroundColor: '#231f20' }}
+      >
+        <Header className="max-w-7xl" sticky={true} />
+      </div>
+      <div className="py-4"></div>
+      <div className="relative">
+        <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-7xl">
+          {/* <Header /> */}
 
-        <div className="p-2 shadow-sm shadow-orange-100">
-          <ProductInfo
-            product={MockProduct}
-            isEditing={isEditing}
-            setIsEditing={setIsEditing}
-          />
-          <ProductMoreInfo />
-        </div>
-        {/*
+          {/* <BrandLinks /> */}
+          {isEditing ? (
+            <EditProduct
+              product={MockProduct}
+              isEditing={isEditing}
+              setIsEditing={setIsEditing}
+            />
+          ) : (
+            ''
+          )}
+
+          <div className="p-2 shadow-sm shadow-orange-100">
+            <ProductInfo
+              product={MockProduct}
+              isEditing={isEditing}
+              setIsEditing={setIsEditing}
+            />
+            <ProductMoreInfo />
+          </div>
+          {/*
         <RelatedBrandProducts />
         <RecentlyViewedProducts /> => <HomeProductSection title="Recently Viewed Products" />
          */}
-        <div className="p-4"></div>
-        <div className="p-2 shadow-sm shadow-orange-100">
-          <HomeProductSection
-            title="Products From Same Brand"
-            products={MockImages['Recently Viewed Products']}
-          />
-          {/* <RelatedSearches />  */}
-          <HomeProductSection
-            title="Related Products"
-            products={MockImages['Recently Viewed Products']}
-          />
+          <div className="py-4"></div>
+          <div className="p-2 shadow-sm shadow-orange-100">
+            <HomeProductSection
+              title="Products From Same Brand"
+              products={MockImages['Recently Viewed Products']}
+            />
+            {/* <RelatedSearches />  */}
+            <HomeProductSection
+              title="Related Products"
+              products={MockImages['Recently Viewed Products']}
+            />
+          </div>
+          <ScrollToTop />
         </div>
-        <ScrollToTop />
+        {/* <Footer /> */}
       </div>
-      <Footer />
-    </div>
+      <div className="py-4"></div>
+      <div
+        className="w-full shadow-sm shadow-gray-800"
+        style={{ backgroundColor: '#231f20' }}
+      >
+        <Footer className="max-w-7xl" />
+      </div>
+    </>
   );
 };
 

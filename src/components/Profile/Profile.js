@@ -11,8 +11,15 @@ const Profile = () => {
     pathname.split('/').length > 2 ? pathname.split('/').slice(-1)[0] : null;
   return (
     <>
+      <div
+        className="w-full shadow-sm shadow-gray-800"
+        style={{ backgroundColor: '#231f20' }}
+      >
+        <Header className="max-w-7xl" sticky={true} />
+      </div>
+      <div className="py-4"></div>
       <div className="m-auto mb-40 flex w-full flex-col items-center justify-center  lg:max-w-7xl">
-        <Header />
+        {/* <Header /> */}
         <div className="flex gap-4 font-sans">
           <Link
             className={`flex items-center gap-x-2 text-white  ${
@@ -63,7 +70,13 @@ const Profile = () => {
         <ScrollToTop />
         <Outlet />
       </div>
-      <Footer />
+      <div className="py-4"></div>
+      <div
+        className="w-full shadow-sm shadow-gray-800"
+        style={{ backgroundColor: '#231f20' }}
+      >
+        <Footer className="max-w-7xl" />
+      </div>
     </>
   );
 };
