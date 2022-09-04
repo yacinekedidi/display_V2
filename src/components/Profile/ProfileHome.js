@@ -1,6 +1,7 @@
 import moment from 'moment';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
+import Footer from '../Footer/Footer';
 import getFormattedName from '../Utils/formatFullname';
 
 const ProfileHome = () => {
