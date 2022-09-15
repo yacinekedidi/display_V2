@@ -10,7 +10,6 @@ const CategoryMain = ({ selectedSellers, categoryName }) => {
     selectedSellers,
     categoryName
   );
-
   const { user } = UseGetUser();
 
   if (loading || !Object.keys(user).length)

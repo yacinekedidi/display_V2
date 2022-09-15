@@ -1,14 +1,15 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSearchParams } from 'react-router-dom';
 import Select from 'react-select';
-import { v4 as uuidv4 } from 'uuid';
+import getProductsByPage from '../../apis/getProductsByPage';
+import useGetProductsByPage from '../../hooks/useGetProductsByPage';
 import UseGetUser from '../../hooks/useGetUser';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import ScrollToTop from '../../Utils/ScrollToTop';
+import useUtils from '../../Utils/useUtils';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import AddProduct from './Add/AddProduct';
@@ -16,88 +17,13 @@ import ProductCard from './ProductCard';
 
 // recently viewed might be implemented in local storage
 
-const options = [
-  { value: 'latest', label: 'latest' },
-  { value: 'popular', label: 'popular' },
-  { value: 'viewed', label: 'viewed' },
-];
-
-const sortWith = {
-  latest: 'created_at',
-  popular: 'favorite_count',
-  viewed: 'views',
-};
-
 const ProductsList = () => {
+  const { customStyles, options } = useUtils();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchOption, setSearchOption] = useState({
-    value: searchParams.get('sort'),
-    label: searchParams.get('sort'),
-  });
   const [addingProduct, setIsAddingProduct] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const LIMIT = useRef(20);
-  const page = useRef(0);
-  const [items, setItems] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
   const { user } = UseGetUser();
-
-  // const renderCount = useRef(0);
-
-  const fetchMoreData = () => {
-    (async () => {
-      try {
-        const params = {
-          sort: sortWith[searchOption.value],
-          limit: LIMIT.current,
-          reverse: -1,
-        };
-        const res = await axios.get(
-          `https://pure-plains-38823.herokuapp.com/products/page/${page.current}`,
-          {
-            params,
-          }
-        );
-        // console.log(res.data.length, LIMIT, page.current + 1);
-        setHasMore(
-          (res.data.length + items.length) /
-            (LIMIT.current * (page.current + 1)) >=
-            1
-        );
-
-        if (res.data.length) {
-          // setPage((prev) => prev + 1);
-          page.current += 1;
-          setItems((prev) => [...prev, ...res.data]);
-        }
-        setIsLoading(false);
-        // else {
-        //   page.current = 0;
-        // }
-      } catch (err) {}
-    })();
-  };
-
-  const customStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      color: state.isSelected ? 'white' : 'black',
-      padding: '.01rem',
-      cursor: 'pointer',
-    }),
-    control: (_, { selectProps: { width } }) => ({
-      // none of react-select's styles are passed to <Control />
-      display: 'flex',
-      opacity: '1',
-      cursor: 'pointer',
-    }),
-    singleValue: (provided, state) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 300ms';
-
-      return { ...provided, opacity, transition };
-    },
-  };
+  const { items, isLoading, hasMore, setSearchOption, searchOption } =
+    useGetProductsByPage(searchParams);
 
   const handleQuery = (e) => {
     setSearchOption({
@@ -106,19 +32,6 @@ const ProductsList = () => {
     });
     setSearchParams({ sort: e.value });
   };
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    fetchMoreData();
-
-    return () => {
-      page.current = 0;
-      setItems([]);
-    };
-  }, [searchParams]);
-
-  // seller_name = user.me.username
 
   if (isLoading || !Object.keys(user).length)
     return (
@@ -170,7 +83,7 @@ const ProductsList = () => {
             >
               <InfiniteScroll
                 dataLength={items.length}
-                next={fetchMoreData}
+                next={getProductsByPage}
                 hasMore={hasMore}
                 loader={<h4>Loading...</h4>}
               >
@@ -182,7 +95,7 @@ const ProductsList = () => {
                         // image={item.pics_url ? item.pics_url[0] : ''}
                         product={item}
                         user={user}
-                        key={uuidv4()}
+                        key={item._id}
                         itemId={item._id}
                         index={index}
                       />
