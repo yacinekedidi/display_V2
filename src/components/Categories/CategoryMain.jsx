@@ -27,16 +27,22 @@ const CategoryMain = ({ selectedSellers, categoryName }) => {
         className="  p-4 shadow-sm shadow-gray-500"
         style={{ backgroundColor: '#231f20' }}
       >
-        <div className="grid w-full grid-cols-1 justify-items-center gap-8 sm:grid-cols-3 lg:grid-cols-4">
-          {products?.map((product, index) => (
-            <ProductCard
-              product={product}
-              user={user}
-              key={product._id}
-              index={index}
-            />
-          ))}
-        </div>
+        {products.length ? (
+          <div className="grid w-full grid-cols-1 justify-items-center gap-8 sm:grid-cols-3 lg:grid-cols-4">
+            {products?.map((product, index) => (
+              <ProductCard
+                product={product}
+                user={user}
+                key={product._id}
+                index={index}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center font-cairo">
+            there are currently no products in here! {':('}
+          </div>
+        )}
       </div>
     </div>
   );

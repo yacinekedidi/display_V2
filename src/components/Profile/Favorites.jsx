@@ -93,7 +93,7 @@ const Favorites = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(
+        const response = await Promise.get(
           `https://pure-plains-38823.herokuapp.com/users/${'61e8098b63becc1f2d5bc7e9'}`
         );
         setFavorites(response.data?.favorites);
@@ -109,7 +109,7 @@ const Favorites = () => {
         (product_id) =>
           `https://pure-plains-38823.herokuapp.com/products/${product_id}`
       );
-      const res = await axios.all(
+      const res = await Promise.all(
         endpoints.map((endpoint) => axios.get(endpoint))
       );
       setProducts(res.map((result) => result.data));
@@ -117,7 +117,7 @@ const Favorites = () => {
     })();
   }, [favorites]);
 
-  if (isLoading)
+  if (isLoading || !products.length)
     return (
       <ModalOverlay>
         <LoadingSpinner />

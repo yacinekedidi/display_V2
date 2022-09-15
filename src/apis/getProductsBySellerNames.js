@@ -7,7 +7,7 @@ const getProductsBySellerNames = async (selectedSellers, categoryName) => {
         (sellerName) =>
           `https://pure-plains-38823.herokuapp.com/products/seller/${sellerName}`
       );
-      const response = await axios.all(
+      const response = await Promise.all(
         endpoints.map((endpoint) => axios.get(endpoint))
       );
       let products = [];
