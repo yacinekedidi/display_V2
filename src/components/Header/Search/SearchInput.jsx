@@ -40,7 +40,7 @@ const SearchInput = ({
     }
     axios
       .get(
-        `http://pure-plains-38823.herokuapp.com/products/title/${search}/category/${categoryOption}?page=${page}`
+        `https://pure-plains-38823.herokuapp.com/products/title/${search}/category/${categoryOption}?page=${page}`
       )
       .then((response) => setResults(response.data));
   }, [search, categoryOption, page]);

@@ -37,7 +37,7 @@ const ProductProfile = () => {
           // ${user.me.user_id}
           // 61e8098b63becc1f2d5bc7e9 yass
           // 61e809b542bcd1cf883f0ba9 med
-          `http://pure-plains-38823.herokuapp.com/users/${'61e8098b63becc1f2d5bc7e9'}`,
+          `https://pure-plains-38823.herokuapp.com/users/${'61e8098b63becc1f2d5bc7e9'}`,
         ];
         const res = await axios.all(
           gendpoints.map((endpoint) => axios.get(endpoint))
@@ -46,8 +46,8 @@ const ProductProfile = () => {
         setUser(res[1].data);
 
         const endpoints = [
-          `http://pure-plains-38823.herokuapp.com/products/category/${res[0].data.category}`,
-          `http://pure-plains-38823.herokuapp.com/products/seller/${res[0].data.seller_name}`,
+          `https://pure-plains-38823.herokuapp.com/products/category/${res[0].data.category}`,
+          `https://pure-plains-38823.herokuapp.com/products/seller/${res[0].data.seller_name}`,
           // user.me.user_id
           // 631b0a0f5ef3261916329056 humble
           // 62f796467b251588f339a60c firstone

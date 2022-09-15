@@ -77,7 +77,7 @@ const Favorites = () => {
     // console.log(productId);
     axios
       .delete(
-        `http://pure-plains-38823.herokuapp.com/users/${'61e8098b63becc1f2d5bc7e9'}/favorites/${productId}`
+        `https://pure-plains-38823.herokuapp.com/users/${'61e8098b63becc1f2d5bc7e9'}/favorites/${productId}`
       )
       .then((res) =>
         setProducts((prev) =>
@@ -94,7 +94,7 @@ const Favorites = () => {
     (async () => {
       try {
         const response = await axios.get(
-          `http://pure-plains-38823.herokuapp.com/users/${'61e8098b63becc1f2d5bc7e9'}`
+          `https://pure-plains-38823.herokuapp.com/users/${'61e8098b63becc1f2d5bc7e9'}`
         );
         setFavorites(response.data?.favorites);
       } catch (err) {
@@ -107,7 +107,7 @@ const Favorites = () => {
     (async () => {
       const endpoints = favorites.map(
         (product_id) =>
-          `http://pure-plains-38823.herokuapp.com/products/${product_id}`
+          `https://pure-plains-38823.herokuapp.com/products/${product_id}`
       );
       const res = await axios.all(
         endpoints.map((endpoint) => axios.get(endpoint))
