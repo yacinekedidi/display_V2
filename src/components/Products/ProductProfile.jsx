@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import LoadingSpinner from '../../Utils/LoadingSpinner';
+import ModalOverlay from '../../Utils/ModalOverlay';
 import ScrollToTop from '../../Utils/ScrollToTop';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -75,7 +77,12 @@ const ProductProfile = () => {
     })();
   }, [productId]);
 
-  if (isLoading) return '...Loading';
+  if (isLoading)
+    return (
+      <ModalOverlay>
+        <LoadingSpinner />
+      </ModalOverlay>
+    );
   return (
     <>
       <Header className="max-w-7xl" sticky={true} />

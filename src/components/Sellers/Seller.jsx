@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import LoadingSpinner from '../../Utils/LoadingSpinner';
+import ModalOverlay from '../../Utils/ModalOverlay';
 import ScrollToTop from '../../Utils/ScrollToTop';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -10,16 +12,27 @@ const Seller = () => {
   const { pathname } = useLocation();
   const { sellername } = useParams();
   const [seller, setSeller] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`https://pure-plains-38823.herokuapp.com/sellers/name/${sellername}`)
-      .then((res) => setSeller(res.data))
+      .then((res) => {
+        setSeller(res.data);
+        setLoading(false);
+      })
       .catch((err) => console.error(err));
   }, [sellername]);
 
   const under =
     pathname.split('/').length > 3 ? pathname.split('/').slice(-1)[0] : null;
+
+  if (loading)
+    return (
+      <ModalOverlay>
+        <LoadingSpinner />
+      </ModalOverlay>
+    );
   return (
     <>
       <Header />

@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSearchParams } from 'react-router-dom';
 import Select from 'react-select';
 import { v4 as uuidv4 } from 'uuid';
-import useGetUser from '../../hooks/useGetUser';
+import UseGetUser from '../../hooks/useGetUser';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import ScrollToTop from '../../Utils/ScrollToTop';
@@ -40,7 +40,7 @@ const ProductsList = () => {
   const page = useRef(0);
   const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  const { user } = useGetUser();
+  const { user } = UseGetUser();
 
   // const renderCount = useRef(0);
 

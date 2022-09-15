@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useGetSellersByCategory from '../../hooks/useGetSellersByCategory';
+import UseGetSellersByCategory from '../../hooks/useGetSellersByCategory';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import Footer from '../Footer/Footer';
@@ -15,7 +15,7 @@ import CategorySideBar from './CategorySideBar';
 
 const Category = () => {
   const { categoryname } = useParams();
-  const { loading = true, sellerNames } = useGetSellersByCategory(categoryname);
+  const { loading = true, sellerNames } = UseGetSellersByCategory(categoryname);
   const [selectedSellers, setSelectedSellers] = useState([]);
 
   useEffect(() => {

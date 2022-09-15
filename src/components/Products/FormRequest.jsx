@@ -1,18 +1,21 @@
-import emailjs from '@emailjs/browser';
+import CloseIcon from '@mui/icons-material/Close';
 import {
   Checkbox,
   FormControlLabel,
   FormGroup,
   TextareaAutosize,
 } from '@mui/material';
-import axios from 'axios';
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import useSendEmailToUser from '../../hooks/useSendEmailToUser';
+import FormRequestSuccess from './FormRequestSuccess';
 
-const FormRequest = ({ product, seller, user }) => {
+const FormRequest = ({ product, seller, user, handleFormModal }) => {
   const [textarea, setTextArea] = useState('');
-  const [isSent, setIsSent] = useState(false);
   const [docChecked, setDocChecked] = useState(false);
   const [telChecked, setTelChecked] = useState(false);
+  const [data, setData] = useState({});
+  const { isSent } = useSendEmailToUser(data);
 
   const handleChange = (e) => {
     setTextArea(e.target.value);
@@ -23,7 +26,7 @@ const FormRequest = ({ product, seller, user }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = {
+    setData({
       service_id: 'service_m0zdqz6',
       template_id: 'template_a57ek7r',
       user_id: 'zxYZASRbzkvbCWkC9',
@@ -40,35 +43,19 @@ const FormRequest = ({ product, seller, user }) => {
           ? '✅ receive a phone call'
           : '❌ receive telephone call',
       },
-    };
-    axios
-      .post(`https://api.emailjs.com/api/v1.0/email/send`, data)
-      .then((res) => setIsSent(true));
+    });
   };
 
   return (
-    <div className="max-h-7xl scrollbar  mx-auto h-full w-full max-w-7xl overflow-auto bg-orange-200">
+    <div className="max-h-7xl scrollbar relative  mx-auto h-full w-full max-w-7xl overflow-auto bg-orange-200">
+      <CloseIcon
+        className="absolute top-0 right-0 cursor-pointer text-orange-200 hover:text-orange-600"
+        fontSize="large"
+        onClick={handleFormModal}
+      />
       {isSent ? (
-        <div
-          className="flex h-full  flex-col items-center justify-center font-sans text-3xl text-orange-200 shadow-sm shadow-orange-400"
-          style={{ backgroundColor: '#231f20' }}
-        >
-          <div>
-            we sent your request to seller&nbsp;
-            <span className="font-black text-orange-900">
-              {product.seller_name}&nbsp;
-            </span>
-            concerning their product&nbsp;
-            <span className="font-black text-orange-900">{product.title}</span>
-          </div>
-          <p className="text-md font-cairo font-extralight opacity-80">
-            watch your email <span className="text-white">{user.email}</span> to
-            hear from them!
-          </p>
-          ✅
-        </div>
+        <FormRequestSuccess product={product} user={user} />
       ) : (
-        // <Success />
         <form
           className=" flex h-full w-full flex-col items-center justify-between gap-y-4"
           onSubmit={handleSubmit}
@@ -158,7 +145,12 @@ const FormRequest = ({ product, seller, user }) => {
             style={{ backgroundColor: '#231f20' }}
           >
             {product.pics_url.map((url) => (
-              <img className="max-h-7xl h-[300px]" src={url} alt="" />
+              <img
+                className="max-h-7xl h-[300px]"
+                src={url}
+                alt=""
+                key={uuidv4()}
+              />
             ))}
             <h1
               className="font-sans text-5xl text-orange-200"

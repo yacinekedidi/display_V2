@@ -14,12 +14,12 @@ import Seller from './components/Sellers/Seller';
 import SellerAbout from './components/Sellers/SellerAbout';
 import SellerProducts from './components/Sellers/SellerProducts';
 import SellerRequests from './components/Sellers/SellerRequests';
-import useClient from './hooks/useClient';
+import UseClient from './hooks/useClient';
 
 export const UserContext = createContext();
 
 function App() {
-  const [user, setUser] = useClient();
+  const [user, setUser] = UseClient();
 
   return (
     <>

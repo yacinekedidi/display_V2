@@ -292,7 +292,12 @@ const ProductInfo = ({
       </div>
       {isFormOpen ? (
         <ModalOverlay IsOpen={isFormOpen} setIsOpen={handleFormModal}>
-          <FormRequest product={product} user={user} seller={seller} />
+          <FormRequest
+            product={product}
+            handleFormModal={handleFormModal}
+            user={user}
+            seller={seller}
+          />
         </ModalOverlay>
       ) : (
         ''
