@@ -69,7 +69,7 @@ const FormRequest = ({ product, seller, user, handleFormModal }) => {
           </div>
 
           <div
-            className="flex w-3/4 items-center justify-center gap-8 rounded-sm bg-white shadow-sm shadow-orange-400"
+            className="flex w-full items-center justify-center gap-8 rounded-sm bg-white shadow-sm shadow-orange-400"
             style={{ backgroundColor: '#231f20' }}
           >
             <div className="flex flex-col gap-y-4 p-4">
