@@ -93,7 +93,7 @@ const Favorites = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await Promise.get(
+        const response = await axios.get(
           `https://pure-plains-38823.herokuapp.com/users/${'61e8098b63becc1f2d5bc7e9'}`
         );
         setFavorites(response.data?.favorites);
