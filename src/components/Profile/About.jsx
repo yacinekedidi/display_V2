@@ -29,7 +29,8 @@ const About = () => {
       <div className="py-4">
         {Object.keys(about).map((info, index) => (
           <div
-            className="flex w-full justify-center bg-gray-900 p-4 text-white shadow-sm shadow-orange-400 md:max-w-2xl"
+            className="flex w-full justify-center  p-4 text-white shadow-sm shadow-orange-400 md:max-w-2xl"
+            style={{ backgroundColor: '#231f20' }}
             key={index}
           >
             <span className="w-[45vw]  text-orange-300 md:w-[20vw]">

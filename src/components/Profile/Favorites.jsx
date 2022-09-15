@@ -126,7 +126,7 @@ const Favorites = () => {
   return (
     <div
       className="container m-0 w-screen rounded-b-lg p-2 shadow-sm shadow-orange-200 sm:mb-4 md:w-full"
-      style={{ backgroundColor: 'rgb(26,21,21)' }}
+      style={{ backgroundColor: '#231f20' }}
     >
       <div className="grid w-full gap-6 md:grid-cols-2  lg:grid-cols-4">
         {/* card */}

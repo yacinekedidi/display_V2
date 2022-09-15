@@ -92,7 +92,10 @@ const ProductProfile = () => {
                 productId={productId}
               />
             ) : (
-              <div className="p-2 shadow-sm shadow-orange-100">
+              <div
+                className="p-2 shadow-sm shadow-orange-100"
+                style={{ backgroundColor: '#231f20' }}
+              >
                 <ProductInfo
                   seller={seller}
                   user={user}
@@ -111,7 +114,10 @@ const ProductProfile = () => {
         <RecentlyViewedProducts /> => <HomeProductSection title="Recently Viewed Products" />
          */}
           <div className="py-4"></div>
-          <div className="p-2 shadow-sm shadow-orange-100">
+          <div
+            className="p-2 shadow-sm shadow-orange-100"
+            style={{ backgroundColor: '#231f20' }}
+          >
             {Object.keys({
               ...productsRelatedCategory,
               ...productsRelatedSeller,
