@@ -82,7 +82,7 @@
 }
 
 .product__card--content > * + * {
-  margin-top: 0rem;
+  margin-top: 5.5rem; /* this 1 */
 }
 
 .product__card--seller {
@@ -118,7 +118,7 @@
   }
   .product__card:hover:before,
   .product__card:focus-within:before {
-    transform: translateY(-10%);
+    transform: translateY(-4%);
   }
   .product__card:hover:after,
   .product__card:focus-within:after {
@@ -126,7 +126,7 @@
   }
   .product__card:hover .product__card--content,
   .product__card:focus-within .product__card--content {
-    transform: translateY(50%);
+    transform: translateY(0%); /*this 50%*/
   }
   .product__card:hover .product__card--content > *:not(.product__card--seller),
   .product__card:focus-within
