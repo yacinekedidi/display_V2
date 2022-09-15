@@ -12,7 +12,6 @@ const CategoryMain = ({ selectedSellers, categoryName }) => {
   );
 
   const { user } = useGetUser();
-  console.log(user);
 
   if (loading || !Object.keys(user).length)
     return (

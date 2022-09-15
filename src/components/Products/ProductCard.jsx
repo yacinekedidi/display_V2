@@ -4,7 +4,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import LoadingSpinner from '../../Utils/LoadingSpinner';
 import '../Home/HomeExplore.css';
 
 const Product = styled.div`
@@ -18,7 +17,6 @@ const Product = styled.div`
 
 const ProductCard = ({ product, index, user }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  console.log(user);
   // const [isLoading, setIsLoading] = useState(true);
   // ${user.me.user_id}
   // 61e8098b63becc1f2d5bc7e9 yass
