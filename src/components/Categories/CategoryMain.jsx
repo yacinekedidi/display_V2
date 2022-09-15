@@ -23,7 +23,7 @@ const CategoryMain = ({ selectedSellers, categoryName }) => {
 
   return (
     <div className="flex w-full flex-col lg:w-[75%]">
-      <div className="">2</div>
+      {/* <div className="">2</div> */}
       <div
         className="  p-4 shadow-sm shadow-gray-500"
         style={{ backgroundColor: '#231f20' }}

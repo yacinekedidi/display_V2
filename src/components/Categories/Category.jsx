@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useGetSellersByCategory from '../../hooks/useGetSellersByCategory';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
@@ -17,6 +17,10 @@ const Category = () => {
   const { categoryname } = useParams();
   const { loading = true, sellerNames } = useGetSellersByCategory(categoryname);
   const [selectedSellers, setSelectedSellers] = useState([]);
+
+  useEffect(() => {
+    setSelectedSellers([]);
+  }, [categoryname]);
 
   if (loading)
     return (
