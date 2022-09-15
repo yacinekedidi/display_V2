@@ -69,7 +69,7 @@ const HomeProductSection = ({ title, products, user, noLinks = false }) => {
       </div>
       <div
         className="container w-screen rounded-b-lg bg-orange-400 p-2 px-0  sm:mb-8 md:max-w-7xl"
-        style={{ backgroundColor: 'rgb(26,21,21)' }}
+        style={{ backgroundColor: '#231f20' }}
       >
         <div className="flex flex-col font-serif tracking-widest shadow-sm "></div>
         <div className="relative flex items-center justify-center">
