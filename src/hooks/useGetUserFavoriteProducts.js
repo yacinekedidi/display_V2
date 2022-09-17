@@ -4,7 +4,6 @@ import getUserFavoriteProducts from '../apis/getUserFavoriteProducts';
 const useGetUserFavoriteProducts = (favorites) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     getUserFavoriteProducts(favorites)
       .then((prods) => {

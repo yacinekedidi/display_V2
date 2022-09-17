@@ -19,11 +19,11 @@ import UseClient from './hooks/useClient';
 export const UserContext = createContext();
 
 function App() {
-  const [user, setUser] = UseClient();
+  const [user, setUser, unreadMessages] = UseClient();
 
   return (
     <>
-      <UserContext.Provider value={[user, setUser]}>
+      <UserContext.Provider value={[user, setUser, unreadMessages]}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />} />

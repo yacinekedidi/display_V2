@@ -3,7 +3,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
-import { FormHelperText, Input } from '@mui/material';
+import { FormHelperText, IconButton, Input, Tooltip } from '@mui/material';
 
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -27,7 +27,7 @@ const MenuProps = {
   },
 };
 
-const CATEGORIES = ['Electronics', 'Sport', 'Art', 'Design', 'office'];
+const CATEGORIES = ['Electronics', 'Sport', 'Art', 'Design'];
 
 function getStyles(name, tagName, theme) {
   return {
@@ -52,6 +52,7 @@ const BasicInfo = ({ product, setProduct, setIsAddingProduct }) => {
   };
 
   const handleChangeNewUrl = (event) => {
+    console.log(event.target.value);
     setNewImageUrl(event.target.value);
   };
 
@@ -108,9 +109,9 @@ const BasicInfo = ({ product, setProduct, setIsAddingProduct }) => {
       className={`relative mb-10 flex flex-col-reverse gap-10 bg-orange-200 py-16 px-24 font-sans shadow-sm shadow-gray-400 md:flex-row`}
     >
       <div
-        className={`flex w-full ${
-          product?.pics_url.length ? 'flex-shrink-0' : ''
-        }  flex-col justify-center gap-4 md:w-1/2`}
+        className={`flex ${
+          product?.pics_url.length ? 'flex-shrink-0 gap-4 md:w-1/2' : ''
+        }  flex-col justify-center`}
       >
         <div>
           <img
@@ -148,12 +149,12 @@ const BasicInfo = ({ product, setProduct, setIsAddingProduct }) => {
         </div>
       </div>
       <div
-        className={`flex  w-full ${
-          product?.pics_url.length ? 'flex-shrink-0 md:w-1/2' : ''
-        } flex-col gap-8 `}
+        className={`flex w-full ${
+          product?.pics_url.length ? 'flex-shrink-0   md:w-1/2' : ''
+        } flex-col items-center gap-y-8`}
       >
         <div className="text-3xl md:w-full">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center ">
             <div>
               <input
                 className="p-2 font-cairo text-black placeholder:font-cairo"
@@ -249,6 +250,8 @@ const BasicInfo = ({ product, setProduct, setIsAddingProduct }) => {
         <div className="">
           <div className="flex items-center text-lg">
             <input
+              // type="file"
+              // multiple
               className="m-2 w-full p-2 text-black placeholder:font-cairo"
               style={{
                 background: 'rgba( 255, 255, 255, 0.25 )',
@@ -276,28 +279,37 @@ const BasicInfo = ({ product, setProduct, setIsAddingProduct }) => {
       </div>
       <div>
         <button
-          className="absolute top-0 right-0 m-2 rounded-md 
+          className="absolute top-0 right-0  rounded-md 
                     p-0.5 font-cairo font-extrabold  hover:opacity-80"
           style={{ color: 'rgb(26,21,21)' }}
         >
-          <CancelOutlinedIcon
-            className="text-black hover:text-orange-600"
-            fontSize="large"
-            onClick={() => {
-              setIsAddingProduct(false);
-            }}
-          />
+          <Tooltip title="Cancel">
+            <IconButton>
+              <CancelOutlinedIcon
+                className="text-black hover:text-orange-600"
+                fontSize="large"
+                onClick={() => {
+                  setIsAddingProduct(false);
+                }}
+              />
+            </IconButton>
+          </Tooltip>
         </button>
+
         <button
           type="submit"
-          className="absolute top-0 right-10 m-2 rounded-md 
+          className="absolute top-0 right-10  rounded-md 
                     p-0.5 font-cairo font-extrabold  hover:opacity-80"
           style={{ color: 'rgb(26,21,21)' }}
         >
-          <SaveOutlinedIcon
-            className="text-black hover:text-orange-600"
-            fontSize="large"
-          />
+          <Tooltip title="Save">
+            <IconButton>
+              <SaveOutlinedIcon
+                className="text-black hover:text-orange-600"
+                fontSize="large"
+              />
+            </IconButton>
+          </Tooltip>
         </button>
       </div>
     </div>

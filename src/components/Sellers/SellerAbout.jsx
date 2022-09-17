@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 
 const SellerAbout = () => {
   const [{ phone_number, name, email, website }] = useOutletContext();

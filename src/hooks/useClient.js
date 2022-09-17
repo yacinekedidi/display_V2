@@ -5,23 +5,41 @@ import { client } from '../Utils/stream';
 
 const useClient = () => {
   const [user, setUser] = useState({});
-  const cookies = new Cookies();
-  const authToken = cookies.get('token');
+  const [unreadMessages, setUnreadMessages] = useState(null);
+
   useEffect(() => {
-    if (!client._getConnectionID()) {
-      authToken &&
-        authToken.length &&
-        (async () => {
-          try {
-            const client = await connectClient(cookies, authToken);
-            setUser(client);
-          } catch (err) {
-            console.error(err);
-          }
-        })();
+    const cookies = new Cookies();
+
+    const myClientEventListener = client.on((e) => {
+      // console.log(e);
+      if (
+        e.type === 'notification.message_new' ||
+        e.type === 'notification.mark_read'
+      ) {
+        setUnreadMessages(e.total_unread_count);
+      }
+    });
+
+    const authToken = cookies.get('token');
+    if (!client._getConnectionID() && authToken && authToken.length) {
+      const initChat = async () => {
+        try {
+          const chatClient = await connectClient(cookies, authToken);
+          setUser(chatClient);
+          // console.log(chatClient);
+          setUnreadMessages(chatClient.me.total_unread_count);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      initChat();
     }
-  });
-  return [user, setUser];
+    return () => {
+      client.disconnectUser();
+      myClientEventListener.unsubscribe();
+    };
+  }, []);
+  return [user, setUser, unreadMessages];
 };
 
 export default useClient;

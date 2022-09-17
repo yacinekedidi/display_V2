@@ -5,13 +5,13 @@ import {
   faDollarSign,
   faHeart,
   faLocationDot,
-  faStar,
   faTag,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { IconButton, Rating, Tooltip } from '@mui/material';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
@@ -212,13 +212,21 @@ const ProductInfo = ({
         <div className="flex flex-col justify-between">
           <div className="">
             {/* incomplete for other ratings half stars etc... */}
-            {new Array(REVIEW_RATING).fill(0).map((x) => (
+            {/* {new Array(REVIEW_RATING).fill(0).map((x) => (
               <FontAwesomeIcon
                 className="text-lg text-orange-700"
                 icon={faStar}
                 key={uuidv4()}
               />
-            ))}
+            ))} */}
+            <Rating
+              sx={{ color: 'orangered' }}
+              name="half-rating-read"
+              defaultValue={2.5}
+              precision={0.5}
+              readOnly
+              size="large"
+            />
           </div>
           <p className="font-sm font-thin">
             Feedback on the quality of responses from{' '}
@@ -271,23 +279,32 @@ const ProductInfo = ({
       )}
       <div>
         <button
-          className="absolute top-0 right-0 m-2 rounded-md 
+          className="absolute top-0 right-0  rounded-md 
           p-0.5 font-cairo font-extrabold "
           style={{ color: 'rgb(26,21,21)' }}
         >
-          <DeleteOutlineIcon
-            className="hover:text-orange-600"
-            fontSize="large"
-            onClick={handleClick}
-          />
-          <EditOutlinedIcon
-            className="hover:text-orange-600"
-            fontSize="large"
-            onClick={() => {
-              setIsEditing((prev) => !prev);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
+          <Tooltip title="Delete">
+            <IconButton>
+              <DeleteOutlineIcon
+                className="hover:text-orange-600"
+                fontSize="large"
+                onClick={handleClick}
+              />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Edit">
+            <IconButton>
+              <EditOutlinedIcon
+                className="hover:text-orange-600"
+                fontSize="large"
+                onClick={() => {
+                  setIsEditing((prev) => !prev);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+            </IconButton>
+          </Tooltip>
         </button>
       </div>
       {isFormOpen ? (

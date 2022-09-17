@@ -3,7 +3,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
-import { FormHelperText, Input } from '@mui/material';
+import { FormHelperText, IconButton, Input, Tooltip } from '@mui/material';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import FormControl from '@mui/material/FormControl';
@@ -15,7 +15,7 @@ import React, { useContext, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ProductContext } from '../ProductProfile';
 
-const CATEGORIES = ['Electronics', 'Sport', 'Art', 'Design', 'office'];
+const CATEGORIES = ['Electronics', 'Sport', 'Art', 'Design'];
 
 const BasicInfo = ({
   changedProduct,
@@ -261,28 +261,37 @@ const BasicInfo = ({
       </div>
       <div>
         <button
-          className="absolute top-0 right-0 m-2 rounded-md 
+          className="absolute top-0 right-0 rounded-md 
                     p-0.5 font-cairo font-extrabold  hover:opacity-80"
           style={{ color: 'rgb(26,21,21)' }}
         >
-          <CancelOutlinedIcon
-            className="text-black hover:text-orange-600"
-            fontSize="large"
-            onClick={() => {
-              setIsEditing(false);
-            }}
-          />
+          <Tooltip title="Cancel">
+            <IconButton>
+              <CancelOutlinedIcon
+                className="text-black hover:text-orange-600"
+                fontSize="large"
+                onClick={() => {
+                  setIsEditing(false);
+                }}
+              />
+            </IconButton>
+          </Tooltip>
         </button>
+
         <button
           type="submit"
-          className="absolute top-0 right-10 m-2 rounded-md 
+          className="absolute top-0 right-10 rounded-md 
                     p-0.5 font-cairo font-extrabold  hover:opacity-80"
           style={{ color: 'rgb(26,21,21)' }}
         >
-          <SaveOutlinedIcon
-            className="text-black hover:text-orange-600"
-            fontSize="large"
-          />
+          <Tooltip title="Save">
+            <IconButton>
+              <SaveOutlinedIcon
+                className="text-black hover:text-orange-600"
+                fontSize="large"
+              />
+            </IconButton>
+          </Tooltip>
         </button>
       </div>
     </div>

@@ -5,10 +5,23 @@ import {
   FormGroup,
   TextareaAutosize,
 } from '@mui/material';
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import useSendEmailToUser from '../../hooks/useSendEmailToUser';
 import FormRequestSuccess from './FormRequestSuccess';
+
+// ${user.me.user_id}
+// 61e8098b63becc1f2d5bc7e9 yass
+// 61e809b542bcd1cf883f0ba9 med
+// const PostProductRequest = async () => {
+//   try {
+// axios.post(`https://pure-plains-38823.herokuapp.com/users/${'61e8098b63becc1f2d5bc7e9'}/requests/`)
+//   }
+//   catch(err) {
+
+//   }
+// }
 
 const FormRequest = ({ product, seller, user, handleFormModal }) => {
   const [textarea, setTextArea] = useState('');
@@ -16,6 +29,13 @@ const FormRequest = ({ product, seller, user, handleFormModal }) => {
   const [telChecked, setTelChecked] = useState(false);
   const [data, setData] = useState({});
   const { isSent } = useSendEmailToUser(data);
+
+  // useEffect(() => {
+  //   if (isSent)
+  //   {
+
+  //   }
+  // }, [isSent]);
 
   const handleChange = (e) => {
     setTextArea(e.target.value);

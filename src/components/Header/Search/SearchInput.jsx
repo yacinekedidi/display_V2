@@ -3,6 +3,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import SearchResults from './SearchResults';
 
+const CATEGORIES = ['All', 'Electronics', 'Sport', 'Art', 'Design'];
+
 const SearchInput = ({
   showSearchModal = false,
   showSearchDraw = () => {},
@@ -21,7 +23,9 @@ const SearchInput = ({
   };
 
   const handleOptionChange = (e) => {
-    setCategoryOption(e.target.textContent.toLowerCase());
+    setCategoryOption(
+      `${e.target.textContent[0]}${e.target.textContent.toLowerCase().slice(1)}`
+    );
     setDropDownIsOpen(false);
   };
 
@@ -112,51 +116,17 @@ const SearchInput = ({
               className=" top-0 whitespace-nowrap bg-black py-1 text-sm text-orange-200"
               aria-labelledby="dropdown-button"
             >
-              <li>
-                <button
-                  type="button"
-                  onClick={handleOptionChange}
-                  className="inline-flex w-full  py-2 px-4 hover:bg-orange-200 hover:text-gray-900"
-                >
-                  All
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={handleOptionChange}
-                  className="inline-flex w-full py-2 px-4 hover:bg-orange-200 hover:text-gray-900"
-                >
-                  Office
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={handleOptionChange}
-                  className="inline-flex w-full py-2 px-4 hover:bg-orange-200 hover:text-gray-900"
-                >
-                  Sports
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={handleOptionChange}
-                  className="inline-flex w-full py-2 px-4 hover:bg-orange-200 hover:text-gray-900"
-                >
-                  Arts
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={handleOptionChange}
-                  className="inline-flex w-full py-2 px-4 hover:bg-orange-200 hover:text-gray-900"
-                >
-                  Design
-                </button>
-              </li>
+              {CATEGORIES.map((category) => (
+                <li key={category}>
+                  <button
+                    type="button"
+                    onClick={handleOptionChange}
+                    className="inline-flex w-full  py-2 px-4 hover:bg-orange-200 hover:text-gray-900"
+                  >
+                    {category}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="relative w-full ">

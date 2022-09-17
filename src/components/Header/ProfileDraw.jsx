@@ -6,37 +6,19 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CloseIcon from '@mui/icons-material/Close';
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import { v4 as uuidv4 } from 'uuid';
+
 import { UserContext } from '../../App';
 import { logout } from '../../Utils/disconnectUser';
 import getFormattedName from '../../Utils/formatFullname';
 import Auth from '../Auth/Auth';
-import AdminProfileDraw from './AdminProfileDraw';
 
-const id = uuidv4();
-const cookies = new Cookies();
-const userId = cookies.get('userId');
-
-const ProfileDraw = ({ showProfileDraw, role }) => {
-  const [user, setUser] = useContext(UserContext);
-
-  // const [userRole, setUserRole] = useState('user');
-  // const getRole = async () => {
-  //   const URL = 'http://localhost:5000/auth';
-  //   const {
-  //     data: { role },
-  //   } = await axios.get(`${URL}/role/${userId}`);
-  //   return role;
-  // };
-  // useEffect(() => {
-  //   getRole()
-  //     .then((role) => setUserRole(role))
-  //     .catch((err) => console.error(err));
-  // }, []);
+const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
+  const cookies = new Cookies();
+  const userId = cookies.get('userId');
+  const [user] = useContext(UserContext);
 
   return !Object.keys(user).length ? (
     <>
@@ -69,7 +51,7 @@ const ProfileDraw = ({ showProfileDraw, role }) => {
       >
         <Link
           className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-300 text-center shadow-sm shadow-black "
-          to={`/user/${id}`}
+          to={`/user/${userId}`}
         >
           <img
             className="w-32 self-center rounded-full outline outline-orange-400"
@@ -90,7 +72,7 @@ const ProfileDraw = ({ showProfileDraw, role }) => {
         >
           <Link
             className="flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
-            to={`/user/${id}`}
+            to={{ pathname: `/user/${userId}` }}
           >
             <FontAwesomeIcon icon={faUser} size="sm" />
             <span className="">Profile</span>
@@ -107,7 +89,20 @@ const ProfileDraw = ({ showProfileDraw, role }) => {
             to={`/messages`}
           >
             <FontAwesomeIcon icon={faMessage} size="sm" />
-            <span className="">Messages</span>
+            <div className="flex w-full items-center justify-between">
+              <span className="">Messages</span>
+              {unreadMessages ? (
+                <div
+                  className="rounded-[8px]  px-2 font-cairo 
+                          text-sm  text-white"
+                  style={{ backgroundColor: '#f5424e' }}
+                >
+                  {unreadMessages}
+                </div>
+              ) : (
+                ''
+              )}
+            </div>
           </Link>
         </div>
         <div

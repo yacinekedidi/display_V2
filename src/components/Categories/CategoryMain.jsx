@@ -1,18 +1,13 @@
 import React from 'react';
-import UseGetProductsBySellerNames from '../../hooks/useGetProductsBySellerNames';
 import UseGetUser from '../../hooks/useGetUser';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import ProductCard from '../Products/ProductCard';
 
-const CategoryMain = ({ selectedSellers, categoryName }) => {
-  const { loading, products } = UseGetProductsBySellerNames(
-    selectedSellers,
-    categoryName
-  );
+const CategoryMain = ({ products }) => {
   const { user } = UseGetUser();
 
-  if (loading || !Object.keys(user).length)
+  if (!Object.keys(user).length)
     return (
       <ModalOverlay>
         <LoadingSpinner />

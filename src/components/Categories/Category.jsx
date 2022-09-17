@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
+import useGetProductsBySellerNames from '../../hooks/useGetProductsBySellerNames';
 import UseGetSellersByCategory from '../../hooks/useGetSellersByCategory';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
@@ -8,19 +9,12 @@ import Header from '../Header/Header';
 import CategoryMain from './CategoryMain';
 import CategorySideBar from './CategorySideBar';
 
-// sidebar (sellername, countries)
-// get seller by category endpoint (find seller that has products of that category)
-// use product characteristics ? unrealistic without sub-categories
-// filter by most favorite/latest/views
-
 const Category = () => {
   const { categoryname } = useParams();
-  const { loading = true, sellerNames } = UseGetSellersByCategory(categoryname);
-  const [selectedSellers, setSelectedSellers] = useState([]);
+  const { sellerNames, selectedSellers, setSelectedSellers } =
+    UseGetSellersByCategory(categoryname);
 
-  useEffect(() => {
-    setSelectedSellers([]);
-  }, [categoryname]);
+  const { loading, products } = useGetProductsBySellerNames(selectedSellers);
 
   if (loading)
     return (
@@ -31,18 +25,15 @@ const Category = () => {
   return (
     <>
       <Header />
-
       <div className="flex justify-center text-orange-200">
         <div className="flex h-full w-full max-w-7xl flex-wrap justify-center gap-x-12 md:w-full md:justify-between lg:flex-nowrap">
           <CategorySideBar
             sellerNames={sellerNames}
             selectedSellers={selectedSellers}
             setSelectedSellers={setSelectedSellers}
+            productTags={products.map((product) => product.tags)}
           />
-          <CategoryMain
-            selectedSellers={selectedSellers}
-            categoryName={categoryname}
-          />
+          <CategoryMain products={products} />
         </div>
       </div>
       <Footer />

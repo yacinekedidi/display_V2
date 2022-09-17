@@ -16,17 +16,16 @@ export const ProductContext = createContext({});
 
 const ProductProfile = () => {
   const { productId } = useParams();
-
   const [isEditing, setIsEditing] = useState(false);
   const {
-    isLoading,
     product,
     setProduct,
+    productsRelatedCategory,
+    productsRelatedSeller,
     seller,
     user,
     setUser,
-    productsRelatedCategory,
-    productsRelatedSeller,
+    isLoading,
   } = useGetMultiEndpoints(productId);
 
   if (isLoading)

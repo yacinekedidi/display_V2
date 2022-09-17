@@ -1,7 +1,7 @@
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import deleteUserFavorite from '../../apis/deleteUserFavorite';
 import useGetUserFavoriteProducts from '../../hooks/useGetUserFavoriteProducts';
 import useGetUserFavorites from '../../hooks/useGetUserFavorites';
@@ -10,7 +10,8 @@ import ModalOverlay from '../../Utils/ModalOverlay';
 
 const Favorites = () => {
   const { pathname } = useLocation();
-  const { favorites } = useGetUserFavorites(pathname);
+  const { username } = useParams();
+  const { favorites } = useGetUserFavorites(pathname, username);
   const { products, setProducts, isLoading } =
     useGetUserFavoriteProducts(favorites);
 

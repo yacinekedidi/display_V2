@@ -1,6 +1,6 @@
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../App';
 import logo from '../../assets/logo.svg';
@@ -9,10 +9,12 @@ import NavBar from '../Home/NavBar';
 import ProfileDraw from './ProfileDraw';
 import SearchInput from './Search/SearchInput';
 
+// do this inside messages and set the context state for the unread in there
+
 const Header = () => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
-  const [user, setUser] = useContext(UserContext);
+  const [user, setUser, unreadMessages] = useContext(UserContext);
   const isConnected = Object.keys(user).length ? true : false;
 
   const showProfileDraw = (e) => {
@@ -94,14 +96,28 @@ const Header = () => {
                         icon={faUserCircle}
                       />
                     ) : (
-                      <img
-                        className="h-12 w-12 rounded-full sm:h-14 sm:w-14"
-                        src={user.me.image}
-                        alt="avatar"
-                      />
+                      <div className="relative m-2 inline-block">
+                        <img
+                          className="h-12 w-12 rounded-full sm:h-14 sm:w-14"
+                          src={user.me.image}
+                          alt="avatar"
+                        />
+                        {unreadMessages ? (
+                          <div
+                            className="absolute -top-2 -right-3 rounded-[8px] py-1 px-3 font-cairo 
+                          text-sm  text-white"
+                            style={{ backgroundColor: '#f5424e' }}
+                          >
+                            {unreadMessages}
+                          </div>
+                        ) : (
+                          ''
+                        )}
+                      </div>
                     )}
                     {isConnected && profileIsOpen && (
                       <ProfileDraw
+                        unreadMessages={unreadMessages}
                         profileIsOpen={profileIsOpen}
                         showProfileDraw={showProfileDraw}
                       />

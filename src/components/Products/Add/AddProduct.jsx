@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { UserContext } from '../../../App';
 import BasicInfo from './BasicInfo';
 import Characteristics from './Characteristics';
 import Description from './Description';
 
 const AddProduct = ({ addingProduct, setIsAddingProduct }) => {
-  const [user] = useContext(UserContext);
+  // const [user] = useContext(UserContext);
+  const [success, setSuccess] = useState(false);
   const [product, setProduct] = useState({
     title: '',
     pics_url: [],
@@ -14,6 +16,7 @@ const AddProduct = ({ addingProduct, setIsAddingProduct }) => {
     descriptions: '',
     tags: [],
     characteristics: {},
+    seller_name: 'humble',
   });
 
   const handleSubmit = (e) => {
@@ -22,13 +25,16 @@ const AddProduct = ({ addingProduct, setIsAddingProduct }) => {
 
     // need to be a seller
     // axios.post('https://pure-plains-38823.herokuapp.com/products', {...product, seller_id: user.me.id});
-    axios.post('https://pure-plains-38823.herokuapp.com/products', {
-      ...product,
-      seller_id: '62f796467b251588f339a60c',
-    });
+    axios
+      .post('https://pure-plains-38823.herokuapp.com/products', {
+        ...product,
+      })
+      .then(() => setSuccess(true));
   };
 
-  return (
+  return success ? (
+    <Navigate to={`/`} replace={true} />
+  ) : (
     <form className="w-full max-w-7xl" onSubmit={handleSubmit}>
       <div>
         <h1

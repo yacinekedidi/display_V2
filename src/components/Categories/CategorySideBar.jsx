@@ -16,16 +16,24 @@ const CategorySideBar = ({
   sellerNames,
   selectedSellers,
   setSelectedSellers,
+  productTags,
 }) => {
   const { theme } = useTheme();
   const { MenuProps, getStyles } = useStyles();
+
+  let combinedProductTags = [];
+  productTags.forEach((tags) => {
+    const filtered = tags.filter((tag) => !combinedProductTags.includes(tag));
+    combinedProductTags = [...combinedProductTags, ...filtered];
+    return combinedProductTags;
+  });
 
   return (
     <div
       className="w-full p-4 shadow-sm shadow-gray-500 lg:w-[25%]"
       style={{ backgroundColor: '#231f20' }}
     >
-      <div className="py-2">
+      <div className="flex flex-col  gap-y-4 py-2">
         <ThemeProvider theme={theme}>
           <FormControl sx={{ width: '100%' }}>
             <InputLabel sx={{ color: 'white' }}>Sellers</InputLabel>
@@ -60,6 +68,11 @@ const CategorySideBar = ({
             </Select>
           </FormControl>
         </ThemeProvider>
+        <div className="mx-auto flex flex-wrap gap-x-4 gap-y-2">
+          {combinedProductTags.map((tag) => (
+            <Chip label={tag} variant="outlined" sx={{ color: 'white' }} />
+          ))}
+        </div>
       </div>
     </div>
   );
