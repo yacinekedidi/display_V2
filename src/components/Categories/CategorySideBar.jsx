@@ -70,7 +70,12 @@ const CategorySideBar = ({
         </ThemeProvider>
         <div className="mx-auto flex flex-wrap gap-x-4 gap-y-2">
           {combinedProductTags.map((tag) => (
-            <Chip label={tag} variant="outlined" sx={{ color: 'white' }} />
+            <Chip
+              key={tag}
+              label={tag}
+              variant="outlined"
+              sx={{ color: 'white' }}
+            />
           ))}
         </div>
       </div>

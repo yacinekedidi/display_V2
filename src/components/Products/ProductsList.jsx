@@ -66,14 +66,14 @@ const ProductsList = () => {
                   className="rounded-md 
                 p-0.5 font-cairo font-extrabold  hover:opacity-80"
                   style={{ color: 'rgb(26,21,21)' }}
+                  onClick={() => {
+                    setIsAddingProduct(true);
+                  }}
                 >
                   <Tooltip title="Add product">
                     <AddCircleOutlineIcon
                       className="text-white hover:text-orange-600"
                       fontSize="large"
-                      onClick={() => {
-                        setIsAddingProduct(true);
-                      }}
                     />
                   </Tooltip>
                 </button>

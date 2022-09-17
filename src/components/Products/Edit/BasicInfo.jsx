@@ -264,15 +264,15 @@ const BasicInfo = ({
           className="absolute top-0 right-0 rounded-md 
                     p-0.5 font-cairo font-extrabold  hover:opacity-80"
           style={{ color: 'rgb(26,21,21)' }}
+          onClick={() => {
+            setIsEditing(false);
+          }}
         >
           <Tooltip title="Cancel">
             <IconButton>
               <CancelOutlinedIcon
                 className="text-black hover:text-orange-600"
                 fontSize="large"
-                onClick={() => {
-                  setIsEditing(false);
-                }}
               />
             </IconButton>
           </Tooltip>

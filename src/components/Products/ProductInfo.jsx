@@ -14,7 +14,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { IconButton, Rating, Tooltip } from '@mui/material';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { countries } from '../../mockdata/productImages';
 import ModalOverlay from '../../Utils/ModalOverlay';
@@ -175,9 +175,11 @@ const ProductInfo = ({
         <div className="flex flex-col gap-2">
           <p>Sold by:</p>
           <div className="flex items-center gap-4">
-            <h2 className="text-2xl font-bold tracking-wider">
-              {product?.seller_name}
-            </h2>
+            <Link to={`/seller/${product?.seller_name}`}>
+              <h2 className="text-2xl font-bold tracking-wider transition hover:text-orange-900">
+                {product?.seller_name}
+              </h2>
+            </Link>
             <span className="relative flex items-center gap-2">
               <FontAwesomeIcon
                 className="text-white"
@@ -204,21 +206,15 @@ const ProductInfo = ({
         <div className="flex flex-col gap-2">
           <p>Category:</p>
           <div className="flex items-center gap-4">
-            <h2 className="text-2xl font-bold tracking-wider">
-              {product?.category}
-            </h2>
+            <Link to={`/category/${product?.category.toLowerCase()}`}>
+              <h2 className="text-2xl font-bold tracking-wider transition hover:text-orange-900">
+                {product?.category}
+              </h2>
+            </Link>
           </div>
         </div>
         <div className="flex flex-col justify-between">
           <div className="">
-            {/* incomplete for other ratings half stars etc... */}
-            {/* {new Array(REVIEW_RATING).fill(0).map((x) => (
-              <FontAwesomeIcon
-                className="text-lg text-orange-700"
-                icon={faStar}
-                key={uuidv4()}
-              />
-            ))} */}
             <Rating
               sx={{ color: 'orangered' }}
               name="half-rating-read"
@@ -278,34 +274,38 @@ const ProductInfo = ({
         ''
       )}
       <div>
-        <button
+        <div
           className="absolute top-0 right-0  rounded-md 
           p-0.5 font-cairo font-extrabold "
           style={{ color: 'rgb(26,21,21)' }}
         >
-          <Tooltip title="Delete">
-            <IconButton>
-              <DeleteOutlineIcon
-                className="hover:text-orange-600"
-                fontSize="large"
-                onClick={handleClick}
-              />
-            </IconButton>
-          </Tooltip>
+          <button onClick={handleClick}>
+            <Tooltip title="Delete">
+              <IconButton>
+                <DeleteOutlineIcon
+                  className="hover:text-orange-600"
+                  fontSize="large"
+                />
+              </IconButton>
+            </Tooltip>
+          </button>
 
-          <Tooltip title="Edit">
-            <IconButton>
-              <EditOutlinedIcon
-                className="hover:text-orange-600"
-                fontSize="large"
-                onClick={() => {
-                  setIsEditing((prev) => !prev);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-              />
-            </IconButton>
-          </Tooltip>
-        </button>
+          <button
+            onClick={() => {
+              setIsEditing((prev) => !prev);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
+            <Tooltip title="Edit">
+              <IconButton>
+                <EditOutlinedIcon
+                  className="hover:text-orange-600"
+                  fontSize="large"
+                />
+              </IconButton>
+            </Tooltip>
+          </button>
+        </div>
       </div>
       {isFormOpen ? (
         <ModalOverlay IsOpen={isFormOpen} setIsOpen={handleFormModal}>

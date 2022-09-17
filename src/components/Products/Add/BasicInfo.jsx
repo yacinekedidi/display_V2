@@ -282,15 +282,15 @@ const BasicInfo = ({ product, setProduct, setIsAddingProduct }) => {
           className="absolute top-0 right-0  rounded-md 
                     p-0.5 font-cairo font-extrabold  hover:opacity-80"
           style={{ color: 'rgb(26,21,21)' }}
+          onClick={() => {
+            setIsAddingProduct(false);
+          }}
         >
           <Tooltip title="Cancel">
             <IconButton>
               <CancelOutlinedIcon
                 className="text-black hover:text-orange-600"
                 fontSize="large"
-                onClick={() => {
-                  setIsAddingProduct(false);
-                }}
               />
             </IconButton>
           </Tooltip>

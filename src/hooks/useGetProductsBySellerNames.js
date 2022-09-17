@@ -3,7 +3,6 @@ import getProductsBySellerNames from '../apis/getProductsBySellerNames';
 
 const useGetProductsBySellerNames = (selectedSellers) => {
   const [products, setProducts] = useState([]);
-
   const [loading, setIsLoading] = useState(false);
 
   useEffect(() => {
