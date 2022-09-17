@@ -14,6 +14,5 @@ export const logout = async () => {
   cookies.remove('token');
   await client.disconnectUser();
 
-  // TEMPORARY
-  window.location.href = 'http://localhost:3000/';
+  window.location.href = 'https://display-v2.vercel.app/';
 };

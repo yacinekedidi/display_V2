@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../App';
 import BasicInfo from './BasicInfo';
 import Characteristics from './Characteristics';
@@ -8,7 +8,7 @@ import Description from './Description';
 
 const AddProduct = ({ addingProduct, setIsAddingProduct }) => {
   // const [user] = useContext(UserContext);
-  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
   const [product, setProduct] = useState({
     title: '',
     pics_url: [],
@@ -29,12 +29,10 @@ const AddProduct = ({ addingProduct, setIsAddingProduct }) => {
       .post('https://pure-plains-38823.herokuapp.com/products', {
         ...product,
       })
-      .then(() => setSuccess(true));
+      .then(() => navigate('/'));
   };
 
-  return success ? (
-    <Navigate to={`/`} replace={true} />
-  ) : (
+  return (
     <form className="w-full max-w-7xl" onSubmit={handleSubmit}>
       <div>
         <h1
