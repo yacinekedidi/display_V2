@@ -13,7 +13,7 @@ sm:flex-row"
         className="w-32 self-center rounded-sm  shadow-sm shadow-orange-400"
         src={
           seller.pic_url ||
-          'https://media.istockphoto.com/vectors/male-face-silhouette-or-icon-man-avatar-profile-unknown-or-anonymous-vector-id1087531642?k=20&m=1087531642&s=170667a&w=0&h=ge3fq1Dw0-J2FoW96c8klSiHyOnitVhReUUuIIYqtvw='
+          'https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg'
         }
         alt="avatar"
       />
