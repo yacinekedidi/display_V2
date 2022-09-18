@@ -13,18 +13,15 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { Rating, Tooltip } from '@mui/material';
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { useProduct } from '../../contexts/product-context';
 import { countries } from '../../mockdata/productImages';
 import ModalOverlay from '../../Utils/ModalOverlay';
+import useUtils from '../../Utils/useUtils';
 import ZoomImage from '../../Utils/ZoomImage';
 import FormRequest from './FormRequest';
-import { ProductContext } from './ProductProfile';
-
-const REVIEW_RATING = 5;
-const REVIEW_PARTICIPANTS = 100;
-const RESPONSE_TIME = 48;
 
 const ProductInfo = ({
   seller,
@@ -34,7 +31,8 @@ const ProductInfo = ({
   setIsEditing,
   productId,
 }) => {
-  const [product] = useContext(ProductContext);
+  const { REVIEW_PARTICIPANTS, RESPONSE_TIME } = useUtils();
+  const { product } = useProduct();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
   const [isFormOpen, setIsFormOpen] = useState(false);

@@ -11,11 +11,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { ProductContext } from '../ProductProfile';
-
-const CATEGORIES = ['Electronics', 'Sport', 'Art', 'Design'];
+import { useProduct } from '../../../contexts/product-context';
+import useUtils from '../../../Utils/useUtils';
 
 const BasicInfo = ({
   changedProduct,
@@ -25,7 +24,8 @@ const BasicInfo = ({
   getStyles,
   setIsEditing,
 }) => {
-  const [product] = useContext(ProductContext);
+  const { CATEGORIES } = useUtils();
+  const { product } = useProduct();
   const [newTag, setNewTag] = useState('');
   const [tags, setTags] = useState(product.tags); // can only add to this
 

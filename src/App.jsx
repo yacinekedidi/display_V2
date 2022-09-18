@@ -1,4 +1,3 @@
-import { createContext } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Category from './components/Categories/Category';
 import Messages from './components/Chatroom/Messages/Messages';
@@ -14,16 +13,12 @@ import Seller from './components/Sellers/Seller';
 import SellerAbout from './components/Sellers/SellerAbout';
 import SellerProducts from './components/Sellers/SellerProducts';
 import SellerRequests from './components/Sellers/SellerRequests';
-import UseClient from './hooks/useClient';
-
-export const UserContext = createContext();
+import { AuthProvider } from './contexts/user-context';
 
 function App() {
-  const [user, setUser, unreadMessages] = UseClient();
-
   return (
     <>
-      <UserContext.Provider value={[user, setUser, unreadMessages]}>
+      <AuthProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />} />
@@ -45,7 +40,7 @@ function App() {
             <Route path="products/:productId" element={<ProductProfile />} />
           </Routes>
         </BrowserRouter>
-      </UserContext.Provider>
+      </AuthProvider>
     </>
   );
 }

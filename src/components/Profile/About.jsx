@@ -1,10 +1,11 @@
 import moment from 'moment';
-import React, { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../../App';
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../../contexts/user-context';
+
 import getFormattedName from '../../Utils/formatFullname';
 
 const About = () => {
-  const [user, setUser] = useContext(UserContext);
+  const { user } = useAuth();
   const [about, setAbout] = useState({
     Fullname: '',
     Bio: '',

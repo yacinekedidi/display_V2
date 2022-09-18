@@ -1,9 +1,11 @@
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useState } from 'react';
+
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../App';
 import logo from '../../assets/logo.svg';
+import { useAuth } from '../../contexts/user-context';
+
 import ModalOverlay from '../../Utils/ModalOverlay';
 import NavBar from '../Home/NavBar';
 import ProfileDraw from './ProfileDraw';
@@ -14,7 +16,7 @@ import SearchInput from './Search/SearchInput';
 const Header = () => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
-  const [user, setUser, unreadMessages] = useContext(UserContext);
+  const { user, unreadMessages } = useAuth();
   const isConnected = Object.keys(user).length ? true : false;
 
   const showProfileDraw = (e) => {
@@ -127,10 +129,11 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div>
-            <div className="">
+          <div className="flex w-full max-w-7xl items-center">
+            <div className="w-[75%]">
               <NavBar />
             </div>
+            {/* <div className=" flex w-[25%] justify-end ">x</div> */}
           </div>
         </div>
         {/* <div className="p-8"></div> */}

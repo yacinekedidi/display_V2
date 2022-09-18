@@ -1,12 +1,10 @@
 import moment from 'moment';
-import { useContext } from 'react';
-import { UserContext } from '../../App';
+import { useAuth } from '../../contexts/user-context';
+
 import getFormattedName from '../../Utils/formatFullname';
-import Footer from '../Footer/Footer';
 
 const ProfileHome = () => {
-  const [user, setUser] = useContext(UserContext);
-  // console.log(user);
+  const { user } = useAuth();
 
   if (Object.keys(user).length)
     return (

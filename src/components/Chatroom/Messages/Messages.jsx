@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Chat } from 'stream-chat-react';
 import 'stream-chat-react/dist/css/index.css';
 import { ChannelContainer, ChannelListContainer } from '..';
@@ -6,14 +6,15 @@ import './Messages.css';
 
 // import '@stream-io/stream-chat-css/dist/css/index.css';
 import 'stream-chat-react/dist/css/index.css';
-import { UserContext } from '../../../App';
+
+import { useAuth } from '../../../contexts/user-context';
 import { client } from '../../../Utils/stream';
 
 const Messages = () => {
   const [createType, setCreateType] = useState('');
   const [isCreating, setIsCreating] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [user, setUser] = useContext(UserContext);
+  const { user } = useAuth();
 
   if (Object.keys(user).length)
     return (

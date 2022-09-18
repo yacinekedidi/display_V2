@@ -20,6 +20,12 @@ const useUtils = () => {
     },
   };
 
+  const REVIEW_RATING = 5;
+  const REVIEW_PARTICIPANTS = 100;
+  const RESPONSE_TIME = 48;
+
+  const CATEGORIES = ['Electronics', 'Sport', 'Art', 'Design'];
+
   const options = [
     { value: 'latest', label: 'latest' },
     { value: 'popular', label: 'popular' },
@@ -32,6 +38,14 @@ const useUtils = () => {
     viewed: 'views',
   };
 
-  return { customStyles, options, sortWith };
+  return {
+    customStyles,
+    options,
+    sortWith,
+    CATEGORIES,
+    REVIEW_PARTICIPANTS,
+    RESPONSE_TIME,
+    REVIEW_RATING,
+  };
 };
 export default useUtils;

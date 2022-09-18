@@ -6,11 +6,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CloseIcon from '@mui/icons-material/Close';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
-import { UserContext } from '../../App';
+import { useAuth } from '../../contexts/user-context';
+
 import { logout } from '../../Utils/disconnectUser';
 import getFormattedName from '../../Utils/formatFullname';
 import Auth from '../Auth/Auth';
@@ -18,7 +19,7 @@ import Auth from '../Auth/Auth';
 const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
   const cookies = new Cookies();
   const userId = cookies.get('userId');
-  const [user] = useContext(UserContext);
+  const { user } = useAuth();
 
   return !Object.keys(user).length ? (
     <>

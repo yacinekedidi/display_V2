@@ -1,13 +1,11 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { UserContext } from '../../../App';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BasicInfo from './BasicInfo';
 import Characteristics from './Characteristics';
 import Description from './Description';
 
 const AddProduct = ({ addingProduct, setIsAddingProduct }) => {
-  // const [user] = useContext(UserContext);
   const navigate = useNavigate();
   const [product, setProduct] = useState({
     title: '',

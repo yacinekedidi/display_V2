@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { ProductContext } from './ProductProfile';
+import React from 'react';
+import { useProduct } from '../../contexts/product-context';
 
 const ProductMoreInfo = () => {
-  const [product] = useContext(ProductContext);
+  const { product } = useProduct();
   return (
     <div className="mx-auto mb-10 flex flex-col justify-center gap-10 font-sans md:flex-row ">
       <div className="mb-10 flex min-w-[50%]  flex-col-reverse gap-10 bg-orange-300 py-8 px-12 font-sans shadow-sm shadow-gray-400 md:flex-row lg:p-0">

@@ -1,38 +1,19 @@
 import { useTheme } from '@mui/material/styles';
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
-import { UserContext } from '../../../App';
-import { ProductContext } from '../ProductProfile';
+import React, { useState } from 'react';
+import { useProduct } from '../../../contexts/product-context';
+import { useAuth } from '../../../contexts/user-context';
+import useStyles from '../../../Utils/useStyles';
 import BasicInfo from './BasicInfo';
 import Characteristics from './Characteristics';
 import Description from './Description';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-function getStyles(name, tagName, theme) {
-  return {
-    fontWeight:
-      tagName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
 const EditProduct = ({ isEditing, setIsEditing, productId }) => {
   const theme = useTheme();
-  const [product, setProduct] = useContext(ProductContext);
+  const { product, setProduct } = useProduct();
   const [changedProduct, setChangedProduct] = useState(product);
-  const [user] = useContext(UserContext);
+  const { user } = useAuth();
+  const { MenuProps, getStyles } = useStyles();
 
   const handleSubmit = (e) => {
     e.preventDefault();

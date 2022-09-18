@@ -1,6 +1,7 @@
-import React, { createContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { ProductProvider } from '../../contexts/product-context';
 import useGetMultiEndpoints from '../../hooks/useGetMultiEndpoints';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
@@ -11,8 +12,6 @@ import HomeProductSection from '../Home/HomeProductSection';
 import EditProduct from './Edit/EditProduct';
 import ProductInfo from './ProductInfo';
 import ProductMoreInfo from './ProductMoreInfo';
-
-export const ProductContext = createContext({});
 
 const ProductProfile = () => {
   const { productId } = useParams();
@@ -42,7 +41,8 @@ const ProductProfile = () => {
           {/* <Header /> */}
 
           {/* <BrandLinks /> */}
-          <ProductContext.Provider value={[product, setProduct]}>
+          <ProductProvider product={product} setProduct={setProduct}>
+            {/* <ProductContext.Provider value={[product, setProduct]}> */}
             {isEditing ? (
               <EditProduct
                 isEditing={isEditing}
@@ -65,7 +65,8 @@ const ProductProfile = () => {
                 <ProductMoreInfo />
               </div>
             )}
-          </ProductContext.Provider>
+            {/* </ProductContext.Provider> */}
+          </ProductProvider>
 
           {/*
         <RelatedBrandProducts />
