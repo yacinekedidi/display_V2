@@ -40,7 +40,7 @@ const Notifications = () => {
             <DoneIcon /> Done
           </p>
         </div>
-        <div className="flex w-[75%] justify-center gap-x-4 p-4">
+        <div className="flex w-full justify-center gap-x-4 p-4 md:w-[75%]">
           {selectedMenu === 1 ? <InboxNotifs /> : <ReadNotifs />}
         </div>
       </div>
