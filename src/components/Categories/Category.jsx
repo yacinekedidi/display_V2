@@ -11,10 +11,16 @@ import CategorySideBar from './CategorySideBar';
 
 const Category = () => {
   const { categoryname } = useParams();
+  const category = `${categoryname[0].toUpperCase()}${categoryname
+    .slice(1)
+    .toLowerCase()}`;
   const { sellerNames, selectedSellers, setSelectedSellers } =
-    UseGetSellersByCategory(categoryname);
+    UseGetSellersByCategory(category);
 
-  const { loading, products } = useGetProductsBySellerNames(selectedSellers);
+  const { loading, products } = useGetProductsBySellerNames(
+    selectedSellers,
+    category
+  );
 
   if (loading)
     return (

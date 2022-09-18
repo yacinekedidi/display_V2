@@ -1,6 +1,6 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import useGetMultiProductsEndpointsByQueryWithUser from '../../hooks/useGetMultiProductsEndpointsByQueryWithUser.';
+import useGetMultiProductsEndpointsByQueryWithUser from '../../hooks/useGetMultiProductsEndpointsByQueryWithUser';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import HomeProductSection from './HomeProductSection';

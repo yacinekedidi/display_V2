@@ -1,23 +1,24 @@
 import { useEffect, useState } from 'react';
 import getProductsBySellerNames from '../apis/getProductsBySellerNames';
 
-const useGetProductsBySellerNames = (selectedSellers) => {
+const useGetProductsBySellerNames = (selectedSellers, category) => {
   const [products, setProducts] = useState([]);
   const [loading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (selectedSellers.length) {
       setIsLoading(true);
-      getProductsBySellerNames(selectedSellers)
+      getProductsBySellerNames(selectedSellers, category)
         .then((res) => {
           setIsLoading(false);
+          console.log(res);
           setProducts(res);
         })
         .catch((err) => console.log(err));
     }
 
     return () => setProducts([]);
-  }, [selectedSellers]);
+  }, [selectedSellers, category]);
 
   return {
     loading,

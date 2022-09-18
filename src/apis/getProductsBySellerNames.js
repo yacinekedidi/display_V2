@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const getProductsBySellerNames = async (selectedSellers) => {
+const getProductsBySellerNames = async (selectedSellers, category) => {
   try {
     const endpoints = selectedSellers.map(
       (sellerName) =>
-        `https://pure-plains-38823.herokuapp.com/products/seller/${sellerName}`
+        `https://pure-plains-38823.herokuapp.com/products/seller/${sellerName}/category/${category}`
     );
     const response = await Promise.all(
       endpoints.map((endpoint) => axios.get(endpoint))
