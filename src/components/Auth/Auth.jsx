@@ -1,8 +1,6 @@
-import axios from 'axios';
 import React, { useState } from 'react';
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
+import PostSignupOrLogin from '../../apis/PostSignupOrLogin';
+import saveUserCookies from '../../Utils/saveUserCookies';
 
 const initialState = {
   fullName: '',
@@ -24,31 +22,28 @@ const Auth = ({ showProfileDraw }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { username, password, phoneNumber, avatarURL } = form;
-
-    const URL = 'https://pure-plains-38823.herokuapp.com/auth';
-
     const {
-      data: { token, userId, hashedPassword, fullName, role },
-    } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
+      token,
+      userId,
+      hashedPassword,
+      fullName,
+      role,
       username,
-      password,
-      fullName: form.fullName,
       phoneNumber,
       avatarURL,
-    });
+    } = await PostSignupOrLogin(form, isSignup);
 
-    cookies.set('token', token);
-    cookies.set('role', role);
-    cookies.set('username', username);
-    cookies.set('fullName', fullName);
-    cookies.set('userId', userId);
-
-    if (isSignup) {
-      cookies.set('phoneNumber', phoneNumber);
-      cookies.set('avatarURL', avatarURL);
-      cookies.set('hashedPassword', hashedPassword);
-    }
+    saveUserCookies(
+      isSignup,
+      token,
+      userId,
+      hashedPassword,
+      fullName,
+      role,
+      username,
+      phoneNumber,
+      avatarURL
+    );
 
     // showProfileDraw();
     window.location.reload();

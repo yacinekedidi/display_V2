@@ -1,6 +1,6 @@
 import SearchIcon from '@mui/icons-material/Search';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import useGetProductByCategoryAndByPage from '../../../hooks/useGetProductByCategoryAndByPage';
 import SearchResults from './SearchResults';
 
 const CATEGORIES = ['All', 'Electronics', 'Sport', 'Art', 'Design'];
@@ -12,11 +12,8 @@ const SearchInput = ({
 }) => {
   const [dropdownIsOpen, setDropDownIsOpen] = useState(false);
   const [categoryOption, setCategoryOption] = useState('all');
-
   const [search, setSearch] = useState('');
-  const [results, setResults] = useState([]);
-
-  const [page, setPage] = useState(0);
+  const { results } = useGetProductByCategoryAndByPage(search, categoryOption);
 
   const handleDropdown = () => {
     setDropDownIsOpen((prev) => !prev);
@@ -36,18 +33,6 @@ const SearchInput = ({
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-
-  useEffect(() => {
-    if (!search.length) {
-      setResults([]);
-      return;
-    }
-    axios
-      .get(
-        `https://pure-plains-38823.herokuapp.com/products/title/${search}/category/${categoryOption}?page=${page}`
-      )
-      .then((response) => setResults(response.data));
-  }, [search, categoryOption, page]);
 
   return !showSearchModal ? (
     <div className="relative flex items-center">
