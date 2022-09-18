@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import { IconButton, Rating, Tooltip } from '@mui/material';
+import { Rating, Tooltip } from '@mui/material';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
@@ -279,32 +279,28 @@ const ProductInfo = ({
           p-0.5 font-cairo font-extrabold "
           style={{ color: 'rgb(26,21,21)' }}
         >
-          <button onClick={handleClick}>
-            <Tooltip title="Delete">
-              <IconButton>
-                <DeleteOutlineIcon
-                  className="hover:text-orange-600"
-                  fontSize="large"
-                />
-              </IconButton>
-            </Tooltip>
-          </button>
+          <Tooltip title="Delete">
+            <button onClick={handleClick}>
+              <DeleteOutlineIcon
+                className="hover:text-orange-600"
+                fontSize="large"
+              />
+            </button>
+          </Tooltip>
 
-          <button
-            onClick={() => {
-              setIsEditing((prev) => !prev);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          >
-            <Tooltip title="Edit">
-              <IconButton>
-                <EditOutlinedIcon
-                  className="hover:text-orange-600"
-                  fontSize="large"
-                />
-              </IconButton>
-            </Tooltip>
-          </button>
+          <Tooltip title="Edit">
+            <button
+              onClick={() => {
+                setIsEditing((prev) => !prev);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
+              <EditOutlinedIcon
+                className="hover:text-orange-600"
+                fontSize="large"
+              />
+            </button>
+          </Tooltip>
         </div>
       </div>
       {isFormOpen ? (

@@ -1,5 +1,5 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { IconButton, Tooltip } from '@mui/material';
+import { Tooltip } from '@mui/material';
 import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSearchParams } from 'react-router-dom';
@@ -62,21 +62,21 @@ const ProductsList = () => {
                 />
               </div>
               <div>
-                <button
-                  className="rounded-md 
+                <Tooltip title="Add product">
+                  <button
+                    className="rounded-md 
                 p-0.5 font-cairo font-extrabold  hover:opacity-80"
-                  style={{ color: 'rgb(26,21,21)' }}
-                  onClick={() => {
-                    setIsAddingProduct(true);
-                  }}
-                >
-                  <Tooltip title="Add product">
+                    style={{ color: 'rgb(26,21,21)' }}
+                    onClick={() => {
+                      setIsAddingProduct(true);
+                    }}
+                  >
                     <AddCircleOutlineIcon
                       className="text-white hover:text-orange-600"
                       fontSize="large"
                     />
-                  </Tooltip>
-                </button>
+                  </button>
+                </Tooltip>
               </div>
             </div>
 

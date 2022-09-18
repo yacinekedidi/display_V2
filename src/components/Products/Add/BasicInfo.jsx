@@ -3,7 +3,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
-import { FormHelperText, IconButton, Input, Tooltip } from '@mui/material';
+import { FormHelperText, Input, Tooltip } from '@mui/material';
 
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -278,39 +278,35 @@ const BasicInfo = ({ product, setProduct, setIsAddingProduct }) => {
         </div>
       </div>
       <div>
-        <button
-          className="absolute top-0 right-0  rounded-md 
+        <Tooltip title="Cancel">
+          <button
+            className="absolute top-0 right-0  rounded-md 
                     p-0.5 font-cairo font-extrabold  hover:opacity-80"
-          style={{ color: 'rgb(26,21,21)' }}
-          onClick={() => {
-            setIsAddingProduct(false);
-          }}
-        >
-          <Tooltip title="Cancel">
-            <IconButton>
-              <CancelOutlinedIcon
-                className="text-black hover:text-orange-600"
-                fontSize="large"
-              />
-            </IconButton>
-          </Tooltip>
-        </button>
+            style={{ color: 'rgb(26,21,21)' }}
+            onClick={() => {
+              setIsAddingProduct(false);
+            }}
+          >
+            <CancelOutlinedIcon
+              className="text-black hover:text-orange-600"
+              fontSize="large"
+            />
+          </button>
+        </Tooltip>
 
-        <button
-          type="submit"
-          className="absolute top-0 right-10  rounded-md 
+        <Tooltip title="Save">
+          <button
+            type="submit"
+            className="absolute top-0 right-10  rounded-md 
                     p-0.5 font-cairo font-extrabold  hover:opacity-80"
-          style={{ color: 'rgb(26,21,21)' }}
-        >
-          <Tooltip title="Save">
-            <IconButton>
-              <SaveOutlinedIcon
-                className="text-black hover:text-orange-600"
-                fontSize="large"
-              />
-            </IconButton>
-          </Tooltip>
-        </button>
+            style={{ color: 'rgb(26,21,21)' }}
+          >
+            <SaveOutlinedIcon
+              className="text-black hover:text-orange-600"
+              fontSize="large"
+            />
+          </button>
+        </Tooltip>
       </div>
     </div>
   );
