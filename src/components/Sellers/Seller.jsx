@@ -82,7 +82,10 @@ const Seller = () => {
               <img
                 className="object-cover"
                 // need a generic placeholder in case the seller doesn't have one
-                src={seller.banner_url}
+                src={
+                  seller.banner_url ||
+                  'https://images.unsplash.com/photo-1631477076114-9123f721b9dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+                }
                 alt="logo"
               />
             </div>
