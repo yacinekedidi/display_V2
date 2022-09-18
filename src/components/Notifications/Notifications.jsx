@@ -19,10 +19,10 @@ const Notifications = () => {
     <>
       <Header />
       <div
-        className="mx-auto flex max-w-7xl gap-x-6 p-4 text-orange-200"
+        className="mx-auto flex max-w-7xl flex-col gap-x-6 p-4 text-orange-200 md:flex-row"
         style={{ backgroundColor: '#231f20' }}
       >
-        <div className="flex w-[25%] flex-col gap-y-4 p-4 text-center font-cairo text-2xl">
+        <div className="flex w-full  flex-col  gap-y-4 p-4 text-center font-cairo text-2xl md:w-[25%]">
           <p
             className={`flex cursor-pointer items-center gap-x-4 rounded-md p-2 capitalize duration-75 ease-linear  ${
               selectedMenu === 1 ? 'bg-orange-900' : 'hover:bg-gray-600'
