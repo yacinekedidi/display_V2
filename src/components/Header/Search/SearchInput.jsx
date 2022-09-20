@@ -1,6 +1,8 @@
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useState } from 'react';
 import useGetProductByCategoryAndByPage from '../../../hooks/useGetProductByCategoryAndByPage';
+import LoadingSpinner from '../../../Utils/LoadingSpinner';
+import ModalOverlay from '../../../Utils/ModalOverlay';
 import SearchResults from './SearchResults';
 
 const CATEGORIES = ['All', 'Electronics', 'Sport', 'Art', 'Design'];
@@ -13,7 +15,10 @@ const SearchInput = ({
   const [dropdownIsOpen, setDropDownIsOpen] = useState(false);
   const [categoryOption, setCategoryOption] = useState('all');
   const [search, setSearch] = useState('');
-  const { results } = useGetProductByCategoryAndByPage(search, categoryOption);
+  const { results, loading } = useGetProductByCategoryAndByPage(
+    search,
+    categoryOption
+  );
 
   const handleDropdown = () => {
     setDropDownIsOpen((prev) => !prev);
@@ -28,11 +33,19 @@ const SearchInput = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSearch('');
   };
 
   const handleChange = (e) => {
-    setSearch(e.target.value);
+    if (e.target.value !== search) setSearch(e.target.value);
   };
+  // fixes a bug but makes the search unpleasant
+  // if (loading)
+  //   return (
+  //     <ModalOverlay>
+  //       <LoadingSpinner />
+  //     </ModalOverlay>
+  //   );
 
   return !showSearchModal ? (
     <div className="relative flex items-center">
@@ -125,11 +138,13 @@ const SearchInput = ({
               required
               autoFocus
               autoComplete="off"
+              value={search}
               onChange={handleChange}
             />
             <button
               className="focus:ring-orange-30 absolute top-0 -left-2 rounded-r-lg  p-6 text-xl font-medium
              text-orange-200 hover:opacity-80"
+              type="submit"
             >
               <svg
                 aria-hidden="true"

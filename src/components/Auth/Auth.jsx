@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Cookies from 'universal-cookie';
+
 import PostSignupOrLogin from '../../apis/PostSignupOrLogin';
 import saveUserCookies from '../../Utils/saveUserCookies';
 
@@ -22,28 +24,20 @@ const Auth = ({ showProfileDraw }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const {
-      token,
-      userId,
-      hashedPassword,
-      fullName,
-      role,
-      username,
-      phoneNumber,
-      avatarURL,
-    } = await PostSignupOrLogin(form, isSignup);
+    const user = await PostSignupOrLogin(form, isSignup);
 
-    saveUserCookies(
-      isSignup,
-      token,
-      userId,
-      hashedPassword,
-      fullName,
-      role,
-      username,
-      phoneNumber,
-      avatarURL
-    );
+    if (user)
+      saveUserCookies(
+        isSignup,
+        user?.token,
+        user?.userId,
+        user?.hashedPassword,
+        user?.fullName,
+        user?.role,
+        user?.username,
+        user?.phoneNumber,
+        user?.avatarURL
+      );
 
     // showProfileDraw();
     window.location.reload();

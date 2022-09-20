@@ -8,6 +8,7 @@ import ProductsList from './components/Products/ProductsList';
 import About from './components/Profile/About';
 import Favorites from './components/Profile/Favorites';
 import Profile from './components/Profile/Profile';
+import RequestDetails from './components/Profile/RequestDetails';
 import Requests from './components/Profile/Requests';
 import Seller from './components/Sellers/Seller';
 import SellerAbout from './components/Sellers/SellerAbout';
@@ -38,6 +39,10 @@ function App() {
             <Route path="messages" element={<Messages />} />
             <Route path="products" element={<ProductsList />} />
             <Route path="products/:productId" element={<ProductProfile />} />
+            <Route
+              path="requests/:productName/:requestId"
+              element={<RequestDetails />}
+            />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
