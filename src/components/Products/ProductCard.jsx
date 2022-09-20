@@ -19,13 +19,13 @@ const ProductCard = ({ product, index, user }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   // const [isLoading, setIsLoading] = useState(true);
   // ${user.me.user_id}
-  // 61e8098b63becc1f2d5bc7e9 yass
+  // 632a002f5c8ee6f8800e0a0e andrew
   // 61e809b542bcd1cf883f0ba9 med
   const handleClick = () => {
     if (!isFavorite)
       axios
         .patch(
-          `https://pure-plains-38823.herokuapp.com/users/${'61e8098b63becc1f2d5bc7e9'}/favorites/${
+          `https://pure-plains-38823.herokuapp.com/users/${'632a002f5c8ee6f8800e0a0e'}/favorites/${
             product._id
           }`
         )
@@ -36,7 +36,7 @@ const ProductCard = ({ product, index, user }) => {
     else {
       axios
         .delete(
-          `https://pure-plains-38823.herokuapp.com/users/${'61e8098b63becc1f2d5bc7e9'}/favorites/${
+          `https://pure-plains-38823.herokuapp.com/users/${'632a002f5c8ee6f8800e0a0e'}/favorites/${
             product._id
           }`
         )
