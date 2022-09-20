@@ -35,7 +35,7 @@ const Auth = ({ showProfileDraw }) => {
         user?.fullName,
         user?.role,
         user?.username,
-        user?.phoneNumber,
+        user?.phone_number,
         user?.avatarURL
       );
 

@@ -6,16 +6,19 @@ const PostSignupOrLogin = async (form, isSignup) => {
 
   const { username, password, phoneNumber, avatarURL, email, fullName } = form;
 
-  const res = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
-    username,
-    password,
-    email,
-    fullName,
-    phoneNumber,
-    avatarURL,
-  });
-
-  return res.data;
+  try {
+    const res = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
+      username,
+      password,
+      email,
+      fullName,
+      phoneNumber,
+      avatarURL,
+    });
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export default PostSignupOrLogin;
