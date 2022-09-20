@@ -46,7 +46,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   padding: 2rem;
   box-shadow: 0px 1px 5px rgb(0 0 0 / 10%);
   border-radius: 5px;
@@ -66,7 +65,7 @@ body {
   flex-direction: column;
   position: relative;
 
-  margin: 1rem 0rem;
+  margin: 0.5rem 0rem;
 }
 
 .auth__form-container_fields-content_input label {

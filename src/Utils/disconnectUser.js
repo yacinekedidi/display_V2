@@ -12,6 +12,8 @@ export const logout = async () => {
   cookies.remove('hashedPassword');
   cookies.remove('phoneNumber');
   cookies.remove('token');
+  cookies.remove('email');
+  cookies.remove('role');
   await client.disconnectUser();
 
   window.location.href = 'https://display-v2.vercel.app/';

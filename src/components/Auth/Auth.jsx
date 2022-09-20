@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Cookies from 'universal-cookie';
 
 import PostSignupOrLogin from '../../apis/PostSignupOrLogin';
 import saveUserCookies from '../../Utils/saveUserCookies';
@@ -25,12 +24,13 @@ const Auth = ({ showProfileDraw }) => {
     e.preventDefault();
 
     const user = await PostSignupOrLogin(form, isSignup);
-
+    console.log(user);
     if (user)
       saveUserCookies(
         isSignup,
         user?.token,
         user?.userId,
+        user?.email,
         user?.hashedPassword,
         user?.fullName,
         user?.role,
@@ -53,7 +53,7 @@ const Auth = ({ showProfileDraw }) => {
         <div className="auth__form-container_fields-content">
           <p>{isSignup ? 'Sign Up' : 'Sign In'}</p>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="grid grid-cols-2">
             {isSignup && (
               <div className="auth__form-container_fields-content_input">
                 <label htmlFor="fullName">Full Name</label>
@@ -76,6 +76,30 @@ const Auth = ({ showProfileDraw }) => {
                 required
               />
             </div>
+            {isSignup && (
+              <div className="auth__form-container_fields-content_input">
+                <label htmlFor="username">Email</label>
+                <input
+                  name="email"
+                  type="text"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            )}
+            {isSignup && (
+              <div className="auth__form-container_fields-content_input">
+                <label htmlFor="username">Role</label>
+                <input
+                  name="role"
+                  type="text"
+                  placeholder="admin/user/seller"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            )}
             {isSignup && (
               <div className="auth__form-container_fields-content_input">
                 <label htmlFor="phoneNumber">Phone Number</label>

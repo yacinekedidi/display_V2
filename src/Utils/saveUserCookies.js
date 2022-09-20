@@ -4,6 +4,7 @@ const saveUserCookies = (
   isSignup,
   token,
   userId,
+  email,
   hashedPassword,
   fullName,
   role,
@@ -20,6 +21,7 @@ const saveUserCookies = (
   cookies.set('userId', userId);
 
   if (isSignup) {
+    cookies.set('email', email);
     cookies.set('phoneNumber', phoneNumber);
     cookies.set('avatarURL', avatarURL);
     cookies.set('hashedPassword', hashedPassword);

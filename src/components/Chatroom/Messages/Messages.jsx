@@ -6,6 +6,7 @@ import './Messages.css';
 
 // import '@stream-io/stream-chat-css/dist/css/index.css';
 import 'stream-chat-react/dist/css/index.css';
+// import '~stream-chat-react/dist/css/v2/index.css';
 
 import { useAuth } from '../../../contexts/user-context';
 import { client } from '../../../Utils/stream';
