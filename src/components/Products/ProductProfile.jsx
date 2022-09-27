@@ -31,7 +31,7 @@ const ProductProfile = () => {
     isLoading,
   } = useGetMultiEndpoints(productId, u?.me?.id);
 
-  if (isLoading || !Object.keys(u).length)
+  if (isLoading)
     return (
       <ModalOverlay>
         <LoadingSpinner />

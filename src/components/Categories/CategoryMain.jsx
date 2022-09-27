@@ -1,18 +1,9 @@
 import React from 'react';
 import UseGetUser from '../../hooks/useGetUser';
-import LoadingSpinner from '../../Utils/LoadingSpinner';
-import ModalOverlay from '../../Utils/ModalOverlay';
 import ProductCard from '../Products/ProductCard';
 
 const CategoryMain = ({ products, uid }) => {
   const { user } = UseGetUser(uid);
-  // console.log(uid);
-  // if (!uid)
-  //   return (
-  //     <ModalOverlay>
-  //       <LoadingSpinner />
-  //     </ModalOverlay>
-  //   );
 
   return (
     <div className="flex w-full flex-col lg:w-[75%]">

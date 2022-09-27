@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-// ${user.me.user_id}
-// 632a002f5c8ee6f8800e0a0e andrew
-// 61e809b542bcd1cf883f0ba9 med
 const getUser = async (uid) => {
   if (uid) {
     try {

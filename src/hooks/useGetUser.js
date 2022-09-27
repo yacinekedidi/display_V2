@@ -10,7 +10,7 @@ const useGetUser = (uid) => {
       .catch((err) => console.log(err));
 
     return () => setUser({});
-  }, []);
+  }, [uid]);
 
   return { user, setUser };
 };
