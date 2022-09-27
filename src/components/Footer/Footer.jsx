@@ -31,21 +31,21 @@ const Footer = () => {
                 Categories
               </h2>
               <div className="flex flex-row items-center justify-center gap-4 p-2 sm:items-start md:flex-col md:gap-0">
-                <a className="hover:opacity-75" href="/">
+                <Link className="hover:opacity-75" to={'/category/electronics'}>
                   Electronics
-                </a>
-                <a className="hover:opacity-75" href="/">
+                </Link>
+                <Link className="hover:opacity-75" to={'/category/sport'}>
                   Sports
-                </a>
-                <a className="hover:opacity-75" href="/">
+                </Link>
+                <Link className="hover:opacity-75" to={'/category/fashion'}>
                   Fashion
-                </a>
-                <a className="hover:opacity-75" href="/">
+                </Link>
+                <Link className="hover:opacity-75" to={'/category/art'}>
                   Art
-                </a>
-                <a className="hover:opacity-75" href="/">
+                </Link>
+                <Link className="hover:opacity-75" to={'/category/books'}>
                   Books
-                </a>
+                </Link>
               </div>
             </div>
             <div className="font-cairo">
