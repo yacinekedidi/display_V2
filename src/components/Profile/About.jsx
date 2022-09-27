@@ -17,11 +17,11 @@ const About = () => {
   useEffect(() => {
     Object.keys(user).length &&
       setAbout({
-        Fullname: getFormattedName(user.me.fullName),
+        Fullname: getFormattedName(user?.me.fullName),
         Bio: 'Yo',
-        Email: 'myemail@email.com',
-        'Phone Number': user.me.phoneNumber,
-        'Last seen': moment(user.me.last_active).fromNow(),
+        Email: user?.me.email,
+        'Phone Number': user?.me.phoneNumber,
+        'Last seen': moment(user?.me.last_active).fromNow(),
       });
   }, [user]);
 

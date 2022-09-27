@@ -5,6 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSearchParams } from 'react-router-dom';
 import Select from 'react-select';
 import getProductsByPage from '../../apis/getProductsByPage';
+import { useAuth } from '../../contexts/user-context';
 import useGetProductsByPage from '../../hooks/useGetProductsByPage';
 import UseGetUser from '../../hooks/useGetUser';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
@@ -22,6 +23,7 @@ const ProductsList = () => {
   const { customStyles, options } = useUtils();
   const [searchParams, setSearchParams] = useSearchParams();
   const [addingProduct, setIsAddingProduct] = useState(false);
+
   const { user } = UseGetUser();
   const { items, isLoading, hasMore, setSearchOption, searchOption } =
     useGetProductsByPage(searchParams);
@@ -34,7 +36,7 @@ const ProductsList = () => {
     setSearchParams({ sort: e.value });
   };
 
-  if (isLoading || !Object.keys(user).length)
+  if (isLoading)
     return (
       <ModalOverlay>
         <LoadingSpinner />

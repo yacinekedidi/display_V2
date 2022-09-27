@@ -15,15 +15,15 @@ const ProfileHome = () => {
       >
         <img
           className="w-32 self-center rounded-full shadow-sm shadow-orange-400"
-          src={user.me.image}
+          src={user?.me.image}
           alt="avatar"
         />
         <div className="flex flex-col items-center justify-center p-4">
           <span className=" font-cairo text-xl font-bold text-orange-400 ">
-            {getFormattedName(user.me.fullName)}
+            {getFormattedName(user?.fullName)}
           </span>
           <span className="whitespace-pre-wrap text-xs opacity-80">
-            joined {moment(user.me.created_at).format('DD-MM-YYYY')}
+            joined {moment(user?.created_at).format('DD-MM-YYYY')}
           </span>
         </div>
       </div>

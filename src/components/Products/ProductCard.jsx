@@ -15,19 +15,14 @@ const Product = styled.div`
   }
 `;
 
-const ProductCard = ({ product, index, user }) => {
+const ProductCard = ({ product, index, user = {} }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  // const [isLoading, setIsLoading] = useState(true);
-  // ${user.me.user_id}
-  // 632a002f5c8ee6f8800e0a0e andrew
-  // 61e809b542bcd1cf883f0ba9 med
+
   const handleClick = () => {
     if (!isFavorite)
       axios
         .patch(
-          `https://pure-plains-38823.herokuapp.com/users/${'632a002f5c8ee6f8800e0a0e'}/favorites/${
-            product._id
-          }`
+          `https://pure-plains-38823.herokuapp.com/users/${user._id}/favorites/${product._id}`
         )
         .then((res) => {
           setIsFavorite(true);
@@ -36,9 +31,7 @@ const ProductCard = ({ product, index, user }) => {
     else {
       axios
         .delete(
-          `https://pure-plains-38823.herokuapp.com/users/${'632a002f5c8ee6f8800e0a0e'}/favorites/${
-            product._id
-          }`
+          `https://pure-plains-38823.herokuapp.com/users/${user._id}/favorites/${product._id}`
         )
         .then((res) => {
           setIsFavorite(false);
@@ -48,10 +41,11 @@ const ProductCard = ({ product, index, user }) => {
   };
 
   useEffect(() => {
-    setIsFavorite(user.favorites.some((favorite) => favorite === product._id));
+    setIsFavorite(
+      user?.favorites?.some((favorite) => favorite === product._id)
+    );
   }, [user, product._id]);
 
-  // if (isLoading) return <LoadingSpinner />;
   return (
     <Product
       className="product__card relative flex h-72 w-[200px] select-none justify-end overflow-hidden bg-gray-100 

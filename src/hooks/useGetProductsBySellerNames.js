@@ -11,7 +11,7 @@ const useGetProductsBySellerNames = (selectedSellers, category) => {
       getProductsBySellerNames(selectedSellers, category)
         .then((res) => {
           setIsLoading(false);
-          console.log(res);
+          // console.log(res);
           setProducts(res);
         })
         .catch((err) => console.log(err));

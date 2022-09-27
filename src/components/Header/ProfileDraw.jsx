@@ -20,6 +20,7 @@ const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
   const cookies = new Cookies();
   const userId = cookies.get('userId');
   const { user } = useAuth();
+  console.log(user);
 
   return !Object.keys(user).length ? (
     <>
@@ -56,12 +57,12 @@ const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
         >
           <img
             className="w-32 self-center rounded-full outline outline-orange-400"
-            src={user.me.image}
+            src={user?.me.image}
             alt="avatar"
           />
         </Link>
         <span className="font-semibold">
-          {getFormattedName(user.me.fullName)}
+          {getFormattedName(user?.me.fullName)}
         </span>
       </div>
 

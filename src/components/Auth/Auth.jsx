@@ -24,7 +24,7 @@ const Auth = ({ showProfileDraw }) => {
     e.preventDefault();
 
     const user = await PostSignupOrLogin(form, isSignup);
-    console.log(user);
+    // console.log(user);
     if (user)
       saveUserCookies(
         isSignup,

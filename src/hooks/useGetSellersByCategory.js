@@ -11,8 +11,15 @@ const useGetSellersByCategory = (categoryname) => {
     getSellersByCategory(categoryname)
       .then((res) => {
         setLoading(false);
-        setSellerNames(res);
-        setSelectedSellers(res);
+        console.log('res', res);
+        let response = [];
+        res
+          .map((seller) => seller.seller_name)
+          .forEach((seller) => {
+            if (!response.includes(seller)) response.push(seller);
+          });
+        setSellerNames(response);
+        setSelectedSellers(response);
       })
       .catch((err) => console.log(err));
 

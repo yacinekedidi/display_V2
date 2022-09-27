@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import getProductsByPage from '../apis/getProductsByPage';
 import useUtils from '../Utils/useUtils';
 
@@ -13,26 +13,23 @@ const useGetProductsByPage = (searchParams) => {
     value: searchParams.get('sort'),
     label: searchParams.get('sort'),
   });
-  const params = {
-    sort: sortWith[searchOption.value],
-    limit: LIMIT.current,
-    reverse: -1,
-  };
+  const params = useMemo(
+    () => ({
+      sort: sortWith[searchOption.value],
+      limit: LIMIT.current,
+      reverse: -1,
+    }),
+    [searchOption.value]
+  );
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     getProductsByPage(page, params)
-      .then((products) => {
-        setHasMore(
-          (products.length + items.length) /
-            (LIMIT.current * (page.current + 1)) >=
-            1
-        );
-        if (products.length) {
-          page.current += 1;
-          setItems((prev) => [...prev, ...products]);
-        }
+      .then((productsPage) => {
+        setHasMore(!!productsPage.nextPage);
+        page.current = productsPage.nextPage;
+        setItems((prev) => [...prev, ...productsPage.data]);
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
@@ -41,7 +38,7 @@ const useGetProductsByPage = (searchParams) => {
       page.current = 0;
       setItems([]);
     };
-  }, [searchParams]);
+  }, [params]);
 
   return { items, isLoading, hasMore, setSearchOption, searchOption };
 };

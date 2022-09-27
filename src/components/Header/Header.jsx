@@ -16,7 +16,7 @@ import SearchInput from './Search/SearchInput';
 const Header = () => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
-  const { user, unreadMessages } = useAuth();
+  const { user } = useAuth();
   const isConnected = Object.keys(user).length ? true : false;
 
   const showProfileDraw = (e) => {
@@ -101,10 +101,10 @@ const Header = () => {
                       <div className="relative m-2 inline-block">
                         <img
                           className="h-12 w-12 rounded-full sm:h-14 sm:w-14"
-                          src={user.me.image}
+                          src={user?.me?.image}
                           alt="avatar"
                         />
-                        {unreadMessages ? (
+                        {/* {unreadMessages ? (
                           <div
                             className="absolute -top-2 -right-3 rounded-[8px] py-1 px-3 font-cairo 
                           text-sm  text-white"
@@ -114,12 +114,12 @@ const Header = () => {
                           </div>
                         ) : (
                           ''
-                        )}
+                        )} */}
                       </div>
                     )}
                     {isConnected && profileIsOpen && (
                       <ProfileDraw
-                        unreadMessages={unreadMessages}
+                        // unreadMessages={unreadMessages}
                         profileIsOpen={profileIsOpen}
                         showProfileDraw={showProfileDraw}
                       />

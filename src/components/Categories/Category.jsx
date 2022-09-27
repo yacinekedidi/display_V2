@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useAuth } from '../../contexts/user-context';
 import useGetProductsBySellerNames from '../../hooks/useGetProductsBySellerNames';
 import UseGetSellersByCategory from '../../hooks/useGetSellersByCategory';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
@@ -10,6 +11,7 @@ import CategoryMain from './CategoryMain';
 import CategorySideBar from './CategorySideBar';
 
 const Category = () => {
+  const { user } = useAuth();
   const { categoryname } = useParams();
   const category = `${categoryname[0].toUpperCase()}${categoryname
     .slice(1)
@@ -39,7 +41,7 @@ const Category = () => {
             setSelectedSellers={setSelectedSellers}
             productTags={products.map((product) => product.tags)}
           />
-          <CategoryMain products={products} />
+          <CategoryMain products={products} uid={user?.me?.id} />
         </div>
       </div>
       <Footer />

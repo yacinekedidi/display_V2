@@ -25,7 +25,7 @@ import FormRequest from './FormRequest';
 
 const ProductInfo = ({
   seller,
-  user,
+  user = {},
   setUser,
   isEditing,
   setIsEditing,
@@ -38,7 +38,7 @@ const ProductInfo = ({
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   const [isFavorite, setIsFavorite] = useState(
-    user.favorites.includes(product._id)
+    user?.favorites?.includes(product._id)
   );
 
   // console.log(user.favorites.includes(product._id));
@@ -58,7 +58,7 @@ const ProductInfo = ({
     // 61e809b542bcd1cf883f0ba9 med
     if (!isFavorite) {
       axios.patch(
-        `https://pure-plains-38823.herokuapp.com/users/${'632a002f5c8ee6f8800e0a0e'}/favorites/${productId}`
+        `https://pure-plains-38823.herokuapp.com/users/${user._id}/favorites/${productId}`
       );
       setUser((prev) => ({
         ...prev,
@@ -67,7 +67,7 @@ const ProductInfo = ({
       setIsFavorite(true);
     } else {
       axios.delete(
-        `https://pure-plains-38823.herokuapp.com/users/${'632a002f5c8ee6f8800e0a0e'}/favorites/${productId}`
+        `https://pure-plains-38823.herokuapp.com/users/${user._id}/favorites/${productId}`
       );
       setUser((prev) => ({
         ...prev,
@@ -90,7 +90,7 @@ const ProductInfo = ({
 
   useEffect(() => {
     // console.log(user.favorites, productId);
-    setIsFavorite(user.favorites.includes(productId));
+    setIsFavorite(user?.favorites?.includes(productId) || false);
   }, [user.favorites, productId]);
 
   if (isDeleted) return <Navigate to={`/`} replace={true} />;

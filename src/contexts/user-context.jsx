@@ -4,9 +4,15 @@ import useClient from '../hooks/useClient';
 const UserContext = createContext();
 
 const AuthProvider = (props) => {
-  const [user, setUser, unreadMessages] = useClient();
+  const {
+    user = {},
+    error = null,
+    isError = false,
+    isLoading = true,
+    initChat,
+  } = useClient();
 
-  const authContextValue = { user, setUser, unreadMessages };
+  const authContextValue = { user, error, isError, isLoading, initChat };
   return <UserContext.Provider value={authContextValue} {...props} />;
 };
 

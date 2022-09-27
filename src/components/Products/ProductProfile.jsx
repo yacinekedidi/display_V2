@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { ProductProvider } from '../../contexts/product-context';
+import { useAuth } from '../../contexts/user-context';
 import useGetMultiEndpoints from '../../hooks/useGetMultiEndpoints';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import ScrollToTop from '../../Utils/ScrollToTop';
+import { client } from '../../Utils/stream';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import HomeProductSection from '../Home/HomeProductSection';
@@ -14,6 +16,8 @@ import ProductInfo from './ProductInfo';
 import ProductMoreInfo from './ProductMoreInfo';
 
 const ProductProfile = () => {
+  const { user: u } = useAuth();
+  console.log(u);
   const { productId } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const {
@@ -25,9 +29,9 @@ const ProductProfile = () => {
     user,
     setUser,
     isLoading,
-  } = useGetMultiEndpoints(productId);
+  } = useGetMultiEndpoints(productId, u?.me?.id);
 
-  if (isLoading)
+  if (isLoading || !Object.keys(u).length)
     return (
       <ModalOverlay>
         <LoadingSpinner />

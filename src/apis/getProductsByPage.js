@@ -8,7 +8,7 @@ const getProductsByPage = async (page, params) => {
         params,
       }
     );
-
+    console.log(res.data);
     return res.data;
   } catch (err) {}
 };

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import getUser from '../apis/getUser';
 
-const useGetUser = () => {
+const useGetUser = (uid) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    getUser()
+    getUser(uid)
       .then((user) => setUser(user))
       .catch((err) => console.log(err));
 

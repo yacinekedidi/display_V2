@@ -16,7 +16,7 @@ const Favorites = () => {
     useGetUserFavoriteProducts(favorites);
 
   const handleClick = (productId) => {
-    deleteUserFavorite(productId)
+    deleteUserFavorite(productId, username)
       .then((res) =>
         setProducts((prev) =>
           prev.filter((product) => productId !== product._id)

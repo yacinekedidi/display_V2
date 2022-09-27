@@ -28,6 +28,8 @@ const CategorySideBar = ({
     return combinedProductTags;
   });
 
+  console.log(combinedProductTags, selectedSellers, sellerNames);
+
   return (
     <div
       className="w-full p-4 shadow-sm shadow-gray-500 lg:w-[25%]"
@@ -49,16 +51,16 @@ const CategorySideBar = ({
               input={<OutlinedInput id="select-multiple-chip" label="seller" />}
               renderValue={(selected) => (
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  {selected.map((value) => (
-                    <Chip sx={{ color: 'white' }} key={value} label={value} />
+                  {selected.map((value, idx) => (
+                    <Chip sx={{ color: 'white' }} key={idx} label={value} />
                   ))}
                 </Box>
               )}
               MenuProps={MenuProps}
             >
-              {sellerNames.map((sellerName) => (
+              {sellerNames.map((sellerName, idx) => (
                 <MenuItem
-                  key={sellerName}
+                  key={idx}
                   value={sellerName}
                   style={getStyles(sellerName, selectedSellers, theme)}
                 >
@@ -69,9 +71,9 @@ const CategorySideBar = ({
           </FormControl>
         </ThemeProvider>
         <div className="mx-auto flex flex-wrap gap-x-4 gap-y-2">
-          {combinedProductTags.map((tag) => (
+          {combinedProductTags.map((tag, idx) => (
             <Chip
-              key={tag}
+              key={idx}
               label={tag}
               variant="outlined"
               sx={{ color: 'white' }}
