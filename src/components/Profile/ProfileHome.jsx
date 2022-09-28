@@ -20,10 +20,10 @@ const ProfileHome = () => {
         />
         <div className="flex flex-col items-center justify-center p-4">
           <span className=" font-cairo text-xl font-bold text-orange-400 ">
-            {getFormattedName(user?.fullName)}
+            {getFormattedName(user?.me.fullName)}
           </span>
           <span className="whitespace-pre-wrap text-xs opacity-80">
-            joined {moment(user?.created_at).format('DD-MM-YYYY')}
+            joined {moment(user?.me.created_at).format('DD-MM-YYYY')}
           </span>
         </div>
       </div>
