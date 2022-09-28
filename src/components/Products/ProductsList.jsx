@@ -82,7 +82,7 @@ const ProductsList = () => {
             </div>
 
             <div
-              className="relative my-8 flex flex-col-reverse rounded-sm  shadow-sm shadow-orange-200 drop-shadow-md lg:flex-row"
+              className="relative my-8 flex flex-col-reverse rounded-sm  shadow-md shadow-gray-900 drop-shadow-md lg:flex-row"
               style={{ backgroundColor: 'rgb(26,21,21)' }}
             >
               <InfiniteScroll

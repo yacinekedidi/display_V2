@@ -9,7 +9,7 @@ const CategoryMain = ({ products, uid }) => {
     <div className="flex w-full flex-col lg:w-[75%]">
       {/* <div className="">2</div> */}
       <div
-        className="  p-4 shadow-sm shadow-gray-500"
+        className="  p-4 shadow-md shadow-gray-900"
         style={{ backgroundColor: '#231f20' }}
       >
         {products.length ? (

@@ -30,7 +30,7 @@ const CategorySideBar = ({
 
   return (
     <div
-      className="w-full p-4 shadow-sm shadow-gray-500 lg:w-[25%]"
+      className="w-full p-4 shadow-md shadow-gray-900 lg:w-[25%]"
       style={{ backgroundColor: '#231f20' }}
     >
       <div className="flex flex-col  gap-y-4 py-2">

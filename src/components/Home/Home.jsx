@@ -14,7 +14,7 @@ const Home = () => {
       >
         <div className="container m-auto">
           <div className=" flex flex-col items-center justify-center ">
-            <div className=" shadow-sm shadow-orange-100">
+            <div className=" shadow-md shadow-gray-900">
               <HomBrandSection />
               <HomeProductSections />
             </div>

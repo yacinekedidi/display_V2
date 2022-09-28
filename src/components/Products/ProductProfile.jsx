@@ -49,7 +49,7 @@ const ProductProfile = () => {
               />
             ) : (
               <div
-                className="p-2 shadow-sm shadow-orange-100"
+                className="p-2 shadow-md shadow-gray-900"
                 style={{ backgroundColor: '#231f20' }}
               >
                 <ProductInfo
@@ -67,7 +67,7 @@ const ProductProfile = () => {
 
           <div className="py-4"></div>
           <div
-            className="p-2 shadow-sm shadow-orange-100"
+            className="p-2 shadow-md shadow-gray-900"
             style={{ backgroundColor: '#231f20' }}
           >
             {Object.keys({
