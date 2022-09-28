@@ -40,38 +40,44 @@ const Seller = () => {
         <div className=" w-full p-4">
           <SellerHome seller={seller} />
         </div>
-        <div className="flex gap-4 py-2 font-sans text-sm uppercase">
+        <div className="text-md flex w-full justify-center gap-16 py-2 font-cairo  shadow-sm shadow-gray-900">
           <Link
-            className={`flex items-center gap-x-2 text-white  ${
-              !under ? 'text-orange-400 ' : ''
+            className={`flex items-center gap-x-2 px-4 py-1 text-white  ${
+              !under ? 'text-orange-400 shadow-xl shadow-gray-900' : ''
             }`}
             to=""
           >
-            <span className="">Home</span>
+            <span className="">home</span>
           </Link>
           <Link
-            className={`flex items-center gap-x-2 text-white  ${
-              under === 'about' ? 'text-orange-400 ' : ''
+            className={`flex items-center gap-x-2 px-4 py-1 text-white  ${
+              under === 'about'
+                ? 'text-orange-400 shadow-xl shadow-gray-900'
+                : ''
             }`}
             to={{ pathname: 'about' }}
           >
-            <span className="">About</span>
+            <span className="">about</span>
           </Link>
           <Link
-            className={`flex items-center gap-x-2 text-white ${
-              under === 'products' ? 'text-orange-400 ' : ''
+            className={`flex items-center gap-x-2 px-4 py-1 text-white ${
+              under === 'products'
+                ? 'text-orange-400 shadow-xl shadow-gray-900'
+                : ''
             }`}
             to={{ pathname: 'products' }}
           >
-            <span className="">Products</span>
+            <span className="">products</span>
           </Link>
           <Link
-            className={`flex items-center gap-x-2 text-white ${
-              under === 'requests' ? 'text-orange-400 ' : ''
+            className={`flex items-center gap-x-2 px-4 py-1 text-white ${
+              under === 'requests'
+                ? 'text-orange-400 shadow-xl shadow-gray-900'
+                : ''
             }`}
             to={{ pathname: 'requests' }}
           >
-            <span className="">Requests</span>
+            <span className="">requests</span>
           </Link>
         </div>
 

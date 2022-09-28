@@ -5,38 +5,11 @@ import {
   FormGroup,
   TextareaAutosize,
 } from '@mui/material';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import sendEmailToUser from '../../apis/sendEmailToUser';
+import { useSendEmailToSeller } from '../../hooks/useSendEmailToSeller';
 import useSendEmailToUser from '../../hooks/useSendEmailToUser';
 import FormRequestSuccess from './FormRequestSuccess';
-
-// ${user.me.user_id}
-// 61e8098b63becc1f2d5bc7e9 yass
-// 61e809b542bcd1cf883f0ba9 med
-const PostProductRequest = async (productId, data) => {
-  try {
-    axios.patch(
-      `https://pure-plains-38823.herokuapp.com/products/${productId}/requests/`,
-      { user_id: '61e8098b63becc1f2d5bc7e9', data }
-    );
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const useSendEmailToSeller = async (isSent, template_params, productId) => {
-  useEffect(() => {
-    if (isSent)
-      sendEmailToUser({
-        service_id: process.env.REACT_APP_EMAILJS_SERVICE_ID,
-        template_id: process.env.REACT_APP_EMAILJS_TEMPLATE_ID_SELLER,
-        user_id: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
-        template_params,
-      }).then(() => PostProductRequest(productId, template_params));
-  }, [isSent, template_params, productId]);
-};
 
 const FormRequest = ({ product, seller, user, handleFormModal }) => {
   const [textarea, setTextArea] = useState('');
@@ -48,7 +21,7 @@ const FormRequest = ({ product, seller, user, handleFormModal }) => {
     to_email: 'hdanimeclips11@gmail.com', //seller email
     to_name: seller.name,
     product_name: product.title,
-    user_name: user.firstName,
+    user_name: user.fullName,
     message: textarea,
     recieve_doc: docChecked
       ? '✅ receive documentation'
@@ -57,7 +30,7 @@ const FormRequest = ({ product, seller, user, handleFormModal }) => {
       ? `✅ receive a phone call - ${user.phone_number}`
       : '❌ receive telephone call',
   };
-  useSendEmailToSeller(isSent, template_params, product._id);
+  useSendEmailToSeller(isSent, template_params, product._id, user._id);
 
   const handleChange = (e) => {
     setTextArea(e.target.value);
@@ -68,8 +41,8 @@ const FormRequest = ({ product, seller, user, handleFormModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const template_params = {
-      to_email: 'hdanimeclips11@gmail.com', //user email
-      to_name: user.firstName,
+      to_email: user.email, //user email
+      to_name: user.fullName,
       product_title: product.title,
       seller_name: seller.name,
       message: textarea,

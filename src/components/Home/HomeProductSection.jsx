@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-
 import ProductCard from '../Products/ProductCard';
 import './HomeExplore.css';
 
@@ -44,7 +43,7 @@ const HomeProductSection = ({ title, products, user, noLinks = false }) => {
                 {noLinks ? (
                   titles[title]
                 ) : (
-                  <Link to={{ pathname: `/products?sort=${sort[title]}` }}>
+                  <Link to={`products?sort=${sort[title]}`} state={{ user }}>
                     {titles[title]}
                   </Link>
                 )}
@@ -55,7 +54,7 @@ const HomeProductSection = ({ title, products, user, noLinks = false }) => {
             ''
           ) : (
             <div className="">
-              <Link to={{ pathname: `/products?sort=${sort[title]}` }}>
+              <Link to={`products?sort=${sort[title]}`} state={{ user }}>
                 <button
                   className="rounded-sm bg-transparent px-4 py-1 font-cairo text-orange-200 shadow-sm 
                     shadow-orange-200 hover:opacity-80"

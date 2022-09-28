@@ -23,6 +23,10 @@ const useGetRequestedProducts = (requestIds) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!requestIds.length) {
+      setLoading(false);
+      return;
+    }
     getRequestedProducts().then((prods) => {
       setRequestsProducts((prev) => {
         let filtered = [];
@@ -41,23 +45,23 @@ const useGetRequestedProducts = (requestIds) => {
   return { requestedProducts, loading };
 };
 
-const useGetUserRequests = () => {
+const useGetUserRequests = (uid) => {
   const [requestsIds, setRequestsIds] = useState([]);
 
   useEffect(() => {
-    getUser()
+    getUser(uid)
       .then((res) => {
         setRequestsIds(res.requests);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [uid]);
 
   return { requestsIds };
 };
 
 const Requests = () => {
-  const { username } = useParams();
-  const { requestsIds } = useGetUserRequests();
+  const { username: uid } = useParams();
+  const { requestsIds } = useGetUserRequests(uid);
   const { requestedProducts, loading } = useGetRequestedProducts(requestsIds);
   console.log(requestedProducts);
 

@@ -2,7 +2,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Tooltip } from '@mui/material';
 import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import Select from 'react-select';
 import getProductsByPage from '../../apis/getProductsByPage';
 import { useAuth } from '../../contexts/user-context';
@@ -21,10 +21,13 @@ import ProductCard from './ProductCard';
 
 const ProductsList = () => {
   const { customStyles, options } = useUtils();
+  const {
+    state: { user },
+  } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [addingProduct, setIsAddingProduct] = useState(false);
 
-  const { user } = UseGetUser();
+  // const { user } = UseGetUser(u?.id);
   const { items, isLoading, hasMore, setSearchOption, searchOption } =
     useGetProductsByPage(searchParams);
 
