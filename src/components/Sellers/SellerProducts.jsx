@@ -1,41 +1,26 @@
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip } from '@mui/material';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
+import { deleteProduct } from '../../apis/deleteProduct';
+import { useGetSellerProducts } from '../../hooks/useGetSellerProducts';
 
 const SellerProducts = () => {
   const [seller] = useOutletContext();
-  const [products, setProducts] = useState([]);
+  const { products, setProducts } = useGetSellerProducts(seller);
 
   const handleClick = (productId) => {
-    (async () => {
-      try {
-        const res = await axios.delete(
-          `https://pure-plains-38823.herokuapp.com/products/${productId}`
-        );
+    deleteProduct(productId)
+      .then(() =>
         setProducts((prev) =>
           prev.filter((product) => product._id !== productId)
-        );
-      } catch (err) {}
-    })();
+        )
+      )
+      .catch((err) => console.error(err));
   };
 
-  useEffect(() => {
-    axios
-      .get(
-        // ${seller.name}
-        `https://pure-plains-38823.herokuapp.com/products/seller/${seller.name}`
-      )
-      .then((res) => setProducts(res.data))
-      .catch((err) => console.error(err));
-  }, [seller]);
-
   return (
-    <div
-      className="static top-0 flex h-full w-full max-w-7xl  justify-center bg-transparent p-4 shadow-sm shadow-gray-100 lg:absolute "
-      // style={{ backgroundColor: '#231f20' }}
-    >
+    <div className="static top-0 flex h-full w-full max-w-7xl  justify-center bg-transparent p-4 shadow-sm shadow-gray-100 lg:absolute ">
       <div className="flex h-full w-full flex-col items-center p-8">
         <div className="grid w-full gap-6 backdrop-blur-sm md:grid-cols-2 lg:grid-cols-4">
           {products.map((product) => (
@@ -56,7 +41,6 @@ const SellerProducts = () => {
               <div className="p-2"></div>
               <Link to={`/products/${product._id}`} key={product._id}>
                 <div className=" p-2">
-                  {/* backgroundimage = loader */}
                   <div className="">
                     <img
                       className="transition hover:scale-110 "
@@ -66,13 +50,6 @@ const SellerProducts = () => {
                   </div>
                 </div>
               </Link>
-              {/* <div className="p-2"></div>
-              <div
-                className="text-md absolute  bottom-0 hidden w-full justify-center  rounded-md bg-gray-50
-                        py-1 font-cairo font-black hover:opacity-80  group-hover:flex"
-              >
-                <button className="">Enea</button>
-              </div> */}
             </div>
           ))}
         </div>

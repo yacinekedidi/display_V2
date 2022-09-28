@@ -38,6 +38,21 @@ const useUtils = () => {
     viewed: 'views',
   };
 
+  const TITLES = {
+    'Latest Products': 'Latest products',
+    'Most Popular Products': 'Trending products',
+    'Recently Viewed Products': 'Recently visited products',
+    'Related Products': 'Related products',
+    'Products From Same Seller': 'Products from the same seller',
+  };
+
+  const SORT = {
+    'Latest Products': 'latest',
+    'Most Popular Products': 'popular',
+    'Recently Viewed Products': 'viewed',
+  };
+  const PAGES = ['home', 'electronics', 'sport', 'art', 'design'];
+
   return {
     customStyles,
     options,
@@ -46,6 +61,9 @@ const useUtils = () => {
     REVIEW_PARTICIPANTS,
     RESPONSE_TIME,
     REVIEW_RATING,
+    TITLES,
+    SORT,
+    PAGES,
   };
 };
 export default useUtils;

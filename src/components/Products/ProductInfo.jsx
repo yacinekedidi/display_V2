@@ -85,7 +85,6 @@ const ProductInfo = ({
   };
 
   useEffect(() => {
-    // console.log(user.favorites, productId);
     setIsFavorite(user?.favorites?.includes(productId) || false);
   }, [user.favorites, productId]);
 
@@ -151,7 +150,6 @@ const ProductInfo = ({
       <div className="flex flex-1 flex-col gap-8">
         <div className="text-3xl md:w-full">
           <h2 className="font-bold">{product.title}</h2>
-          {/* <p className="font-thin uppercase">{product.name_note}</p> */}
         </div>
         <div className="flex gap-2">
           {product.tags.map((tag) => (
@@ -254,11 +252,6 @@ const ProductInfo = ({
 
       {modalIsOpen ? (
         <ModalOverlay IsOpen={modalIsOpen} setIsOpen={handleModal}>
-          {/* <img
-            className="block h-auto max-h-full w-auto max-w-full opacity-100"
-            src={product["images_url"][selectedImage]}
-            alt=""
-          /> */}
           <ZoomImage
             image={product?.pics_url[selectedImage]}
             className="block h-auto max-h-full w-auto max-w-full opacity-100"

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import getRelatedCategoryAndSeller from '../apis/getRelatedCategoryAndSeller';
 import getUserAndProduct from '../apis/getUserAndProduct';
-import { useAuth } from '../contexts/user-context';
 
 const useGetMultiEndpoints = (productId, uid) => {
   const [product, setProduct] = useState({});
@@ -36,7 +35,7 @@ const useGetMultiEndpoints = (productId, uid) => {
         setIsLoading(false);
       });
     });
-  }, [productId]);
+  }, [productId, uid]);
 
   return {
     isLoading,

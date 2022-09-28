@@ -15,30 +15,12 @@ import Select from '@mui/material/Select';
 import { useTheme } from '@mui/material/styles';
 import { React, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-const CATEGORIES = ['Electronics', 'Sport', 'Art', 'Design'];
-
-function getStyles(name, tagName, theme) {
-  return {
-    fontWeight:
-      tagName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
+import useStyles from '../../../Utils/useStyles';
+import useUtils from '../../../Utils/useUtils';
 
 const BasicInfo = ({ product, setProduct, setIsAddingProduct }) => {
+  const { CATEGORIES } = useUtils();
+  const { getStyles, MenuProps } = useStyles();
   const theme = useTheme();
   const [newTag, setNewTag] = useState('');
   const [tags, setTags] = useState([]); // can only add to this

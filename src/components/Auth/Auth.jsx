@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-
 import PostSignupOrLogin from '../../apis/PostSignupOrLogin';
 import saveUserCookies from '../../Utils/saveUserCookies';
 
-const initialState = {
-  fullName: '',
-  username: '',
-  password: '',
-  confirmPassword: '',
-  phoneNumber: '',
-  avatarURL: '',
-};
-
 const Auth = ({ showProfileDraw }) => {
-  const [form, setForm] = useState(initialState);
+  const [form, setForm] = useState({
+    fullName: '',
+    username: '',
+    password: '',
+    confirmPassword: '',
+    phoneNumber: '',
+    avatarURL: '',
+  });
   const [isSignup, setIsSignup] = useState(false);
 
   const handleChange = (e) => {
@@ -26,7 +23,6 @@ const Auth = ({ showProfileDraw }) => {
     const user = await PostSignupOrLogin(form, isSignup);
     user && saveUserCookies({ isSignup, ...user });
 
-    // showProfileDraw();
     window.location.reload();
   };
 

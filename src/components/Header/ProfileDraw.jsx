@@ -24,13 +24,6 @@ const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
 
   return !Object.keys(user).length ? (
     <>
-      {/* <div className="absolute z-30 grid h-4/6 w-1/2 grid-cols-2 overflow-hidden bg-orange-200 opacity-100">
-        <FontAwesomeIcon
-          className="absolute top-2 right-2 z-30 cursor-pointer p-1 text-4xl text-red-900"
-          icon={faClose}
-          onClick={showProfileDraw}
-        />
-      </div> */}
       <div>
         <CloseIcon
           fontSize="large"

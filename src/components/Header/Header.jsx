@@ -11,8 +11,6 @@ import NavBar from '../Home/NavBar';
 import ProfileDraw from './ProfileDraw';
 import SearchInput from './Search/SearchInput';
 
-// do this inside messages and set the context state for the unread in there
-
 const Header = () => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
@@ -24,12 +22,10 @@ const Header = () => {
   };
 
   const showSearchDraw = (e) => {
-    // console.log(e.target);
     setShowSearchModal(!showSearchModal);
   };
 
   return (
-    // lg:sticky lg:top-0 lg:bg-transparent lg:backdrop-blur-sm
     <>
       <div
         className="w-full shadow-sm shadow-gray-800"
@@ -56,10 +52,6 @@ const Header = () => {
                   Display
                 </span>
               </div>
-
-              {/* <div className="">
-            <NavBar />
-          </div> */}
             </div>
             {!isConnected && profileIsOpen && (
               <ModalOverlay IsOpen={profileIsOpen} setIsOpen={setProfileIsOpen}>
@@ -133,10 +125,8 @@ const Header = () => {
             <div className="w-[75%]">
               <NavBar />
             </div>
-            {/* <div className=" flex w-[25%] justify-end ">x</div> */}
           </div>
         </div>
-        {/* <div className="p-8"></div> */}
       </div>
       <div className="py-4"></div>
     </>

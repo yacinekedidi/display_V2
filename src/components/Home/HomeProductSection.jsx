@@ -2,25 +2,13 @@ import React, { useRef } from 'react';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import useUtils from '../../Utils/useUtils';
 import ProductCard from '../Products/ProductCard';
 import './HomeExplore.css';
 
 const HomeProductSection = ({ title, products, user, noLinks = false }) => {
   const elContainer = useRef();
-  // console.log(products);
-  const titles = {
-    'Latest Products': 'Latest products',
-    'Most Popular Products': 'Trending products',
-    'Recently Viewed Products': 'Recently visited products',
-    'Related Products': 'Related products',
-    'Products From Same Seller': 'Products from the same seller',
-  };
-
-  const sort = {
-    'Latest Products': 'latest',
-    'Most Popular Products': 'popular',
-    'Recently Viewed Products': 'viewed',
-  };
+  const { SORT, TITLES } = useUtils();
 
   const HandleScrollLeft = () => {
     if (elContainer.current.scrollLeft) elContainer.current.scrollLeft -= 290;
@@ -41,10 +29,10 @@ const HomeProductSection = ({ title, products, user, noLinks = false }) => {
                       text-orange-200 transition-all duration-75 hover:text-transparent"
               >
                 {noLinks ? (
-                  titles[title]
+                  TITLES[title]
                 ) : (
-                  <Link to={`products?sort=${sort[title]}`} state={{ user }}>
-                    {titles[title]}
+                  <Link to={`products?sort=${SORT[title]}`} state={{ user }}>
+                    {TITLES[title]}
                   </Link>
                 )}
               </h2>
@@ -54,7 +42,7 @@ const HomeProductSection = ({ title, products, user, noLinks = false }) => {
             ''
           ) : (
             <div className="">
-              <Link to={`products?sort=${sort[title]}`} state={{ user }}>
+              <Link to={`products?sort=${SORT[title]}`} state={{ user }}>
                 <button
                   className="rounded-sm bg-transparent px-4 py-1 font-cairo text-orange-200 shadow-sm 
                     shadow-orange-200 hover:opacity-80"

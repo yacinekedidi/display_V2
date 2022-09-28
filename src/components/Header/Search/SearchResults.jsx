@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import DescriptionFormatted from '../../../Utils/DescriptionFormatted';
 
 const SearchResults = ({ results, showSearchDraw }) => {
-  // console.log(results);
-
   return (
     results.length > 0 && (
       <div className="scrollbar flex flex-col gap-4 overflow-y-auto p-2 text-orange-200">

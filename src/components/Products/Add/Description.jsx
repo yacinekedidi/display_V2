@@ -13,7 +13,6 @@ const Description = ({ product, setProduct }) => {
             Description
           </h1>
           <Box
-            // component="form"
             sx={{
               '& .MuiTextField-root': {
                 m: 1,

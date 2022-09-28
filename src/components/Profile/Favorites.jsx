@@ -37,8 +37,6 @@ const Favorites = () => {
       style={{ backgroundColor: '#231f20' }}
     >
       <div className="grid w-full gap-6 md:grid-cols-2  lg:grid-cols-4">
-        {/* card */}
-
         {products.map((product) => (
           <div
             className=" relative flex flex-col items-center p-6"
@@ -55,7 +53,6 @@ const Favorites = () => {
             <div className="p-2"></div>
             <Link to={`/products/${product._id}`} key={product._id}>
               <div className="p-2">
-                {/* backgroundimage = loader */}
                 <div className="">
                   <img
                     className="transition hover:scale-110 "

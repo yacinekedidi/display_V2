@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import { MockBrands } from '../../mockdata/productImages';
-const id = uuidv4();
+
 const HomBrandSection = () => {
   return (
     <div className="hidden w-full max-w-7xl flex-wrap rounded-lg  bg-transparent md:flex-row lg:block ">

@@ -9,12 +9,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-const pages = ['home', 'electronics', 'sport', 'art', 'design'];
+import useUtils from '../../Utils/useUtils';
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
-
+  const { PAGES } = useUtils();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -64,7 +63,7 @@ const NavBar = () => {
               },
             }}
           >
-            {pages.map((page) => (
+            {PAGES.map((page) => (
               <Link to={page === 'home' ? '/' : `/category/${page}`} key={page}>
                 <MenuItem
                   sx={{
@@ -81,7 +80,7 @@ const NavBar = () => {
           </Menu>
         </Box>
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          {pages.map((page) => (
+          {PAGES.map((page) => (
             <Link to={page === 'home' ? '/' : `/category/${page}`} key={page}>
               <Button onClick={handleCloseNavMenu} sx={{ display: 'block' }}>
                 <span className="font-cairo text-orange-200">{page}</span>

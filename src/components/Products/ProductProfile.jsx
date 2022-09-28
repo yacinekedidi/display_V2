@@ -7,7 +7,6 @@ import useGetMultiEndpoints from '../../hooks/useGetMultiEndpoints';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import ScrollToTop from '../../Utils/ScrollToTop';
-import { client } from '../../Utils/stream';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import HomeProductSection from '../Home/HomeProductSection';
@@ -17,7 +16,6 @@ import ProductMoreInfo from './ProductMoreInfo';
 
 const ProductProfile = () => {
   const { user: u } = useAuth();
-  console.log(u);
   const { productId } = useParams();
   const [isEditing, setIsEditing] = useState(false);
   const {
@@ -42,11 +40,7 @@ const ProductProfile = () => {
       <Header className="max-w-7xl" sticky={true} />
       <div className="relative">
         <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-7xl">
-          {/* <Header /> */}
-
-          {/* <BrandLinks /> */}
           <ProductProvider product={product} setProduct={setProduct}>
-            {/* <ProductContext.Provider value={[product, setProduct]}> */}
             {isEditing ? (
               <EditProduct
                 isEditing={isEditing}
@@ -69,13 +63,8 @@ const ProductProfile = () => {
                 <ProductMoreInfo />
               </div>
             )}
-            {/* </ProductContext.Provider> */}
           </ProductProvider>
 
-          {/*
-        <RelatedBrandProducts />
-        <RecentlyViewedProducts /> => <HomeProductSection title="Recently Viewed Products" />
-         */}
           <div className="py-4"></div>
           <div
             className="p-2 shadow-sm shadow-orange-100"

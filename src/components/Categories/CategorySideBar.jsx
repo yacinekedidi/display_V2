@@ -28,8 +28,6 @@ const CategorySideBar = ({
     return combinedProductTags;
   });
 
-  console.log(combinedProductTags, selectedSellers, sellerNames);
-
   return (
     <div
       className="w-full p-4 shadow-sm shadow-gray-500 lg:w-[25%]"

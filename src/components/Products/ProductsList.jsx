@@ -6,7 +6,6 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import Select from 'react-select';
 import getProductsByPage from '../../apis/getProductsByPage';
 import useGetProductsByPage from '../../hooks/useGetProductsByPage';
-import UseGetUser from '../../hooks/useGetUser';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import ScrollToTop from '../../Utils/ScrollToTop';
@@ -26,7 +25,6 @@ const ProductsList = () => {
   console.log(searchParams);
   const [addingProduct, setIsAddingProduct] = useState(false);
 
-  // const { user } = UseGetUser(u?.id);
   const { items, isLoading, hasMore, setSearchOption, searchOption } =
     useGetProductsByPage(searchParams);
 

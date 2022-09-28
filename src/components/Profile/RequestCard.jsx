@@ -6,8 +6,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const RequestCard = ({ product, requests }) => {
-  return requests.map((request) => (
-    <div className="flex flex-col">
+  return requests.map((request, idx) => (
+    <div className="flex flex-col" key={request.id}>
       {/* <div className="py-2 text-center font-sans text-sm  text-orange-200 opacity-90">
         Requested product at 05/05/2022
       </div> */}
@@ -45,10 +45,10 @@ const RequestCard = ({ product, requests }) => {
           </div>
 
           <div className="flex flex-wrap justify-center pt-4">
-            {product.tags.map((tag) => (
+            {product.tags.map((tag, idx) => (
               <div
                 className="flex items-center gap-1 rounded-full border-x-4 px-2 py-1"
-                key={''}
+                key={idx}
               >
                 <FontAwesomeIcon className="text-white" icon={faTag} />
                 <p className=" whitespace-nowrap font-cairo text-sm font-extralight italic opacity-80">

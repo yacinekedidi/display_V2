@@ -21,7 +21,6 @@ const Profile = () => {
             }`}
             to=""
           >
-            {/* <FontAwesomeIcon icon={faUser} size="sm" /> */}
             <span className="">home</span>
           </Link>
           <Link
@@ -32,7 +31,6 @@ const Profile = () => {
             }`}
             to="about"
           >
-            {/* <FontAwesomeIcon icon={faUser} size="sm" /> */}
             <span className="">about</span>
           </Link>
           <Link
@@ -43,7 +41,6 @@ const Profile = () => {
             }`}
             to={`favorites`}
           >
-            {/* <FontAwesomeIcon icon={faHeart} size="sm" /> */}
             <span className="">favorites</span>
           </Link>
           <Link
@@ -54,7 +51,6 @@ const Profile = () => {
             }`}
             to={`requests`}
           >
-            {/* <FontAwesomeIcon icon={faDollarSign} /> */}
             <span className="">requests</span>
           </Link>
         </div>

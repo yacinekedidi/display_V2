@@ -19,7 +19,6 @@ const initChat = async () => {
       },
       authToken
     );
-    // console.log(currentUser.me);
     return currentUser;
   } catch (err) {
     throw new Error(err);
