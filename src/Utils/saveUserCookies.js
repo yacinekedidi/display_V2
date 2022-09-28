@@ -1,21 +1,18 @@
 import Cookies from 'universal-cookie';
 
-const saveUserCookies = (
+const saveUserCookies = ({
   isSignup,
   token,
   userId,
   email,
-  hashedPassword,
   fullName,
-  role,
   username,
-  phoneNumber,
-  avatarURL
-) => {
+  phone_number: phoneNumber,
+  avatarURL,
+}) => {
   const cookies = new Cookies();
 
   cookies.set('token', token);
-  cookies.set('role', role);
   cookies.set('username', username);
   cookies.set('fullName', fullName);
   cookies.set('userId', userId);
@@ -24,7 +21,7 @@ const saveUserCookies = (
     cookies.set('email', email);
     cookies.set('phoneNumber', phoneNumber);
     cookies.set('avatarURL', avatarURL);
-    cookies.set('hashedPassword', hashedPassword);
+    //cookies.set('hashedPassword', hashedPassword);
   }
 };
 

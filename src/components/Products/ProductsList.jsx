@@ -2,10 +2,9 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Tooltip } from '@mui/material';
 import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import Select from 'react-select';
 import getProductsByPage from '../../apis/getProductsByPage';
-import { useAuth } from '../../contexts/user-context';
 import useGetProductsByPage from '../../hooks/useGetProductsByPage';
 import UseGetUser from '../../hooks/useGetUser';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
@@ -17,14 +16,14 @@ import Header from '../Header/Header';
 import AddProduct from './Add/AddProduct';
 import ProductCard from './ProductCard';
 
-// recently viewed might be implemented in local storage
-
 const ProductsList = () => {
   const { customStyles, options } = useUtils();
   const {
     state: { user },
   } = useLocation();
+
   const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams);
   const [addingProduct, setIsAddingProduct] = useState(false);
 
   // const { user } = UseGetUser(u?.id);
@@ -36,7 +35,7 @@ const ProductsList = () => {
       value: e.value,
       label: e.value,
     });
-    setSearchParams({ sort: e.value });
+    setSearchParams({ sort: e.value }, { state: { user } });
   };
 
   if (isLoading)
@@ -45,7 +44,6 @@ const ProductsList = () => {
         <LoadingSpinner />
       </ModalOverlay>
     );
-  // if (!items.length) return 'EMPTY';
   return (
     <>
       <Header className="max-w-7xl" sticky={true} />
@@ -97,10 +95,8 @@ const ProductsList = () => {
               >
                 <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-20 p-4 font-sans ">
                   {items.map((item, index) => {
-                    // console.log(item);
                     return (
                       <ProductCard
-                        // image={item.pics_url ? item.pics_url[0] : ''}
                         product={item}
                         user={user}
                         key={item._id}

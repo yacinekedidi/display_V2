@@ -24,20 +24,7 @@ const Auth = ({ showProfileDraw }) => {
     e.preventDefault();
 
     const user = await PostSignupOrLogin(form, isSignup);
-    // console.log(user);
-    if (user)
-      saveUserCookies(
-        isSignup,
-        user?.token,
-        user?.userId,
-        user?.email,
-        user?.hashedPassword,
-        user?.fullName,
-        user?.role,
-        user?.username,
-        user?.phone_number,
-        user?.avatarURL
-      );
+    user && saveUserCookies({ isSignup, ...user });
 
     // showProfileDraw();
     window.location.reload();
@@ -83,18 +70,6 @@ const Auth = ({ showProfileDraw }) => {
                   name="email"
                   type="text"
                   placeholder="Email"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            )}
-            {isSignup && (
-              <div className="auth__form-container_fields-content_input">
-                <label htmlFor="username">Role</label>
-                <input
-                  name="role"
-                  type="text"
-                  placeholder="admin/user/seller"
                   onChange={handleChange}
                   required
                 />
