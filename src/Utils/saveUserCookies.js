@@ -7,6 +7,7 @@ const saveUserCookies = ({
   email,
   fullName,
   username,
+  hashedPassword,
   phone_number: phoneNumber,
   avatarURL,
 }) => {
@@ -21,7 +22,7 @@ const saveUserCookies = ({
     cookies.set('email', email);
     cookies.set('phoneNumber', phoneNumber);
     cookies.set('avatarURL', avatarURL);
-    //cookies.set('hashedPassword', hashedPassword);
+    cookies.set('hashedPassword', hashedPassword);
   }
 };
 

@@ -33,7 +33,7 @@ const Favorites = () => {
     );
   return (
     <div
-      className="container m-0 w-screen rounded-b-lg p-2 shadow-sm shadow-orange-200 sm:mb-4 md:w-full"
+      className="container m-0 w-screen rounded-b-lg p-2 shadow-md shadow-gray-900 sm:mb-4 md:w-full"
       style={{ backgroundColor: '#231f20' }}
     >
       <div className="grid w-full gap-6 md:grid-cols-2  lg:grid-cols-4">

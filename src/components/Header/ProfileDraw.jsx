@@ -8,19 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Cookies from 'universal-cookie';
-
 import { useAuth } from '../../contexts/user-context';
-
-import { logout } from '../../Utils/disconnectUser';
 import getFormattedName from '../../Utils/formatFullname';
 import Auth from '../Auth/Auth';
 
 const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
-  const cookies = new Cookies();
-  const userId = cookies.get('userId');
-  const { user } = useAuth();
-  console.log(user);
+  const { user, logout } = useAuth();
 
   return !Object.keys(user).length ? (
     <>
@@ -46,7 +39,7 @@ const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
       >
         <Link
           className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-300 text-center shadow-sm shadow-black "
-          to={`/user/${userId}`}
+          to={`/user/${user?.me?.id}`}
         >
           <img
             className="w-32 self-center rounded-full outline outline-orange-400"
@@ -55,7 +48,7 @@ const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
           />
         </Link>
         <span className="font-semibold">
-          {getFormattedName(user?.me.fullName)}
+          {getFormattedName(user?.me?.fullName)}
         </span>
       </div>
 
@@ -67,7 +60,7 @@ const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
         >
           <Link
             className="flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
-            to={{ pathname: `/user/${userId}` }}
+            to={{ pathname: `/user/${user?.me?.id}` }}
           >
             <FontAwesomeIcon icon={faUser} size="sm" />
             <span className="">Profile</span>
@@ -101,9 +94,7 @@ const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
           </Link>
         </div>
         <div
-          onClick={() => {
-            logout();
-          }}
+          onClick={logout}
           className="mb-4 flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
         >
           <FontAwesomeIcon icon={faArrowRightFromBracket} />

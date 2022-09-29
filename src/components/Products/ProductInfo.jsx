@@ -12,10 +12,12 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { Rating, Tooltip } from '@mui/material';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { addProductToUserFavorites } from '../../apis/addProductToUserFavorites';
+import { deleteProduct } from '../../apis/deleteProduct';
+import { removeProductFromUserFavorites } from '../../apis/removeProductFromUserFavorites';
 import { useProduct } from '../../contexts/product-context';
 import { countries } from '../../mockdata/productImages';
 import ModalOverlay from '../../Utils/ModalOverlay';
@@ -53,39 +55,31 @@ const ProductInfo = ({
 
   const handleClickFavorite = (isFavorite) => {
     if (!isFavorite) {
-      axios.patch(
-        `https://pure-plains-38823.herokuapp.com/users/${user._id}/favorites/${productId}`
-      );
-      setUser((prev) => ({
-        ...prev,
-        favorites: [...prev.favorites, productId],
-      }));
-      setIsFavorite(true);
+      addProductToUserFavorites(user._id, product._id).then(() => {
+        setUser((prev) => ({
+          ...prev,
+          favorites: [...prev.favorites, productId],
+        }));
+        setIsFavorite(true);
+      });
     } else {
-      axios.delete(
-        `https://pure-plains-38823.herokuapp.com/users/${user._id}/favorites/${productId}`
-      );
-      setUser((prev) => ({
-        ...prev,
-        favorites: prev.favorites.filter((id) => id !== productId),
-      }));
-      setIsFavorite(false);
+      removeProductFromUserFavorites(user._id, product._id).then(() => {
+        setUser((prev) => ({
+          ...prev,
+          favorites: prev.favorites.filter((id) => id !== productId),
+        }));
+        setIsFavorite(false);
+      });
     }
   };
 
-  const handleClick = (e) => {
-    (async () => {
-      try {
-        await axios.delete(
-          `https://pure-plains-38823.herokuapp.com/products/${productId}`
-        );
-        setIsDeleted(true);
-      } catch (err) {}
-    })();
+  const handleClick = () => {
+    deleteProduct(productId).then(() => setIsDeleted(true));
   };
 
   useEffect(() => {
     setIsFavorite(user?.favorites?.includes(productId) || false);
+    return () => setSelectedImage(0);
   }, [user.favorites, productId]);
 
   if (isDeleted) return <Navigate to={`/`} replace={true} />;

@@ -5,6 +5,21 @@ import { client } from '../Utils/stream';
 const cookies = new Cookies();
 const authToken = cookies.get('token');
 
+const logout = async () => {
+  cookies.remove('userId');
+  cookies.remove('username');
+  cookies.remove('fullName');
+  cookies.remove('avatarURL');
+  cookies.remove('hashedPassword');
+  cookies.remove('phoneNumber');
+  cookies.remove('token');
+  cookies.remove('email');
+  cookies.remove('role');
+  await client.disconnectUser();
+
+  window.location.href = 'https://display-v2.vercel.app/';
+};
+
 const initChat = async () => {
   try {
     const currentUser = await client.connectUser(
@@ -42,11 +57,11 @@ const useClient = () => {
       })
       .finally(() => setIsLoading(false));
 
-    return () => {
-      client.disconnectUser();
-    };
+    // return () => {
+    //   client.disconnectUser();
+    // };
   }, []);
-  return { user, isLoading, isError, error, initChat };
+  return { user, isLoading, isError, error, logout };
 };
 
 export default useClient;

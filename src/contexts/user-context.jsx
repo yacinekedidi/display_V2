@@ -9,10 +9,10 @@ const AuthProvider = (props) => {
     error = null,
     isError = false,
     isLoading = true,
-    initChat,
+    logout = () => {},
   } = useClient();
 
-  const authContextValue = { user, error, isError, isLoading, initChat };
+  const authContextValue = { user, error, isError, isLoading, logout };
   return <UserContext.Provider value={authContextValue} {...props} />;
 };
 

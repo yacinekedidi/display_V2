@@ -7,9 +7,10 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { logout } from '../../Utils/disconnectUser';
+import { useAuth } from '../../contexts/user-context';
 
 const AdminProfileDraw = ({ id }) => {
+  const { logout } = useAuth();
   return (
     <>
       <div
@@ -39,9 +40,7 @@ after:border-b-orange-300 after:pt-1"
         </Link>
       </div>
       <div
-        onClick={() => {
-          logout();
-        }}
+        onClick={logout}
         className="mb-4 flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
       >
         <FontAwesomeIcon icon={faArrowRightFromBracket} />

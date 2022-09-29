@@ -1,9 +1,10 @@
 import { faHeart, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { addProductToUserFavorites } from '../../apis/addProductToUserFavorites';
+import { removeProductFromUserFavorites } from '../../apis/removeProductFromUserFavorites';
 import '../Home/HomeExplore.css';
 
 const Product = styled.div`
@@ -11,7 +12,7 @@ const Product = styled.div`
     background-image: url(${(props) => props.image});
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
   }
 `;
 
@@ -20,19 +21,13 @@ const ProductCard = ({ product, index, user = {} }) => {
 
   const handleClick = () => {
     if (!isFavorite)
-      axios
-        .patch(
-          `https://pure-plains-38823.herokuapp.com/users/${user._id}/favorites/${product._id}`
-        )
+      addProductToUserFavorites(user._id, product._id)
         .then((res) => {
           setIsFavorite(true);
         })
         .catch((err) => console.error(err));
     else {
-      axios
-        .delete(
-          `https://pure-plains-38823.herokuapp.com/users/${user._id}/favorites/${product._id}`
-        )
+      removeProductFromUserFavorites(user._id, product._id)
         .then((res) => {
           setIsFavorite(false);
         })

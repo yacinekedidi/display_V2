@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ChannelList, useChatContext } from 'stream-chat-react';
-// import Cookies from 'universal-cookie';
-import logo from '../../assets/logo.svg';
-
-import LogoutIcon from '../../assets/logout.png';
-
+import { ChannelSearch, TeamChannelList, TeamChannelPreview } from '.';
 import doubleLeft from '../../assets/double-left.png';
 import doubleRight from '../../assets/double-right.png';
+import logo from '../../assets/logo.svg';
+import LogoutIcon from '../../assets/logout.png';
 
-import { Link } from 'react-router-dom';
-import { ChannelSearch, TeamChannelList, TeamChannelPreview } from '.';
-
-import { logout } from '../../Utils/disconnectUser';
-
-// const cookies = new Cookies();
-
-const SideBar = ({ logout, client }) => {
+const SideBar = ({ client }) => {
   return (
     <div className="channel-list__sidebar">
       <div className="channel-list__sidebar__icon1">
@@ -81,28 +73,12 @@ const ChannelListContent = ({
   setToggleContainer,
 }) => {
   const { client } = useChatContext();
-  // console.log(client.state);
-  // const logout = () => {
-  //   cookies.remove('userId');
-  //   cookies.remove('username');
-  //   cookies.remove('fullName');
-  //   cookies.remove('avatarURL');
-  //   cookies.remove('hashedPassword');
-  //   cookies.remove('phoneNumber');
-  //   cookies.remove('token');
-
-  //   // (async () => {
-  //   //   await client.disconnectUser();
-  //   // })();
-
-  //   window.location.reload();
-  // };
 
   const filters = { members: { $in: [client.userID] } };
 
   return (
     <>
-      <SideBar logout={logout} client={client} />
+      <SideBar client={client} />
       <div className="channel-list__list__wrapper">
         <CompanyHeader />
         <ChannelSearch setToggleContainer={setToggleContainer} />

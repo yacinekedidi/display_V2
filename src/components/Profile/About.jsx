@@ -30,7 +30,7 @@ const About = () => {
       <div className="py-4">
         {Object.keys(about).map((info, index) => (
           <div
-            className="flex w-full justify-center  p-4 text-white shadow-sm shadow-orange-400 md:max-w-2xl"
+            className="flex w-full justify-center  p-4 text-white shadow-md shadow-gray-900 md:max-w-2xl"
             style={{ backgroundColor: '#231f20' }}
             key={index}
           >
