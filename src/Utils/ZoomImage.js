@@ -5,12 +5,14 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import ArrowLeft from '../assets/ArrowLeft';
+import ArrowRight from '../assets/ArrowRight';
 
 const SCROLL_SENSITIVITY = 0.0007;
 const MAX_ZOOM = 5;
 const MIN_ZOOM = 0.1;
 
-const ZoomImage = ({ image }) => {
+const ZoomImage = ({ image, images, selectedImage, setSelectedImage }) => {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [draggind, setDragging] = useState(false);
@@ -43,6 +45,27 @@ const ZoomImage = ({ image }) => {
       touch.current = { x: clientX, y: clientY };
     }
   };
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'ArrowRight') {
+        setSelectedImage((prev) =>
+          prev < images.length - 1 ? prev + 1 : prev
+        );
+      }
+
+      if (e.key === 'ArrowLeft') {
+        setSelectedImage((prev) => (prev > 0 ? prev - 1 : prev));
+      }
+    },
+    [images]
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
   const handleMouseDown = (event) => {
     const { clientX, clientY } = event;
@@ -120,7 +143,7 @@ const ZoomImage = ({ image }) => {
   }, [zoom, offset, draw]);
 
   return (
-    <div ref={containerRef}>
+    <div className="relative flex w-full justify-center" ref={containerRef}>
       <canvas
         className=""
         onMouseDown={handleMouseDown}
@@ -129,6 +152,21 @@ const ZoomImage = ({ image }) => {
         onMouseMove={handleMouseMove}
         ref={canvasRef}
       />
+
+      <button
+        className="absolute top-1/2 right-0 disabled:opacity-0"
+        onClick={() => setSelectedImage((prev) => prev + 1)}
+        disabled={selectedImage === images.length - 1}
+      >
+        <ArrowRight />
+      </button>
+      <button
+        className="absolute top-1/2 left-0 disabled:opacity-0"
+        onClick={() => setSelectedImage((prev) => prev - 1)}
+        disabled={selectedImage === 0}
+      >
+        <ArrowLeft />
+      </button>
     </div>
   );
 };

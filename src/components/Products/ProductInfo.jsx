@@ -110,22 +110,22 @@ const ProductInfo = ({
           />
         </div>
         <div className="flex flex-wrap gap-1">
-          {product?.pics_url.map((url, idx) => (
-            <img
-              className={`mx-auto h-16 w-24 cursor-pointer border-2 shadow-sm hover:border-gray-900 ${
-                selectedImage === idx ? 'border-4 border-gray-900' : ''
-              } hover:shadow-lg`}
-              src={url}
-              alt=""
-              key={uuidv4()}
-              onClick={() => {
-                handleImageSelect(idx);
-              }}
-            />
-          ))}
+          {product?.pics_url.length > 1 &&
+            product?.pics_url.map((url, idx) => (
+              <img
+                className={`mx-auto h-16 w-24 cursor-pointer border-2 shadow-sm hover:border-gray-900 ${
+                  selectedImage === idx ? 'border-4 border-gray-900' : ''
+                } hover:shadow-lg`}
+                src={url}
+                alt=""
+                key={uuidv4()}
+                onClick={() => {
+                  handleImageSelect(idx);
+                }}
+              />
+            ))}
         </div>
         <div className="self-center">
-          {/* the user might already have it as favorite so no need to show this */}
           {/* this will not appear for sellers */}
           <div className="flex cursor-pointer items-center gap-2 hover:underline hover:opacity-60">
             <FontAwesomeIcon className="text-red-600" icon={faHeart} />
@@ -247,6 +247,9 @@ const ProductInfo = ({
       {modalIsOpen ? (
         <ModalOverlay IsOpen={modalIsOpen} setIsOpen={handleModal}>
           <ZoomImage
+            images={product?.pics_url}
+            selectedImage={selectedImage}
+            setSelectedImage={setSelectedImage}
             image={product?.pics_url[selectedImage]}
             className="block h-auto max-h-full w-auto max-w-full opacity-100"
           />
