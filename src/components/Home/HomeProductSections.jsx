@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../../contexts/user-context';
@@ -20,7 +21,12 @@ const HomeProductSections = () => {
 
   return (
     <>
-      <div className="m-auto flex flex-col p-0">
+      <motion.div
+        className="m-auto flex flex-col p-0"
+        initial={{ y: 300, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
         {Object.keys({ ...latestProducts, ...trendingProducts }).map((key) => (
           <HomeProductSection
             title={key}
@@ -29,7 +35,7 @@ const HomeProductSections = () => {
             key={uuidv4()}
           />
         ))}
-      </div>
+      </motion.div>
     </>
   );
 };

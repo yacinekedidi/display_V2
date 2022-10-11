@@ -154,19 +154,22 @@ const ZoomImage = ({ image, images, selectedImage, setSelectedImage }) => {
       />
 
       <button
-        className="absolute top-1/2 right-0 disabled:opacity-0"
+        className="absolute top-1/2 right-0 hover:opacity-60 disabled:opacity-0"
         onClick={() => setSelectedImage((prev) => prev + 1)}
         disabled={selectedImage === images.length - 1}
       >
         <ArrowRight />
       </button>
       <button
-        className="absolute top-1/2 left-0 disabled:opacity-0"
+        className="absolute top-1/2 left-0 hover:opacity-60 disabled:opacity-0"
         onClick={() => setSelectedImage((prev) => prev - 1)}
         disabled={selectedImage === 0}
       >
         <ArrowLeft />
       </button>
+      <p className="absolute top-20 right-16 text-[26px] text-white">
+        {selectedImage + 1}/{images.length}
+      </p>
     </div>
   );
 };

@@ -1,10 +1,16 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MockBrands } from '../../mockdata/productImages';
 
 const HomBrandSection = () => {
   return (
-    <div className="hidden w-full max-w-7xl flex-wrap rounded-lg  bg-transparent md:flex-row lg:block ">
+    <motion.div
+      className="hidden w-full max-w-7xl flex-wrap rounded-lg  bg-transparent md:flex-row lg:block "
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       <div className="flex justify-center gap-x-10 px-16">
         {MockBrands.map((brand) => (
           <Link to={`/seller/${brand.name}`} key={brand.id}>
@@ -25,7 +31,7 @@ const HomBrandSection = () => {
           </Link>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
