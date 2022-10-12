@@ -5,7 +5,7 @@ import LoadingSpinner from '../../../Utils/LoadingSpinner';
 import ModalOverlay from '../../../Utils/ModalOverlay';
 import SearchResults from './SearchResults';
 
-const CATEGORIES = ['All', 'Electronics', 'Sport', 'Art', 'Design'];
+const CATEGORIES = ['all', 'Electronics', 'Sport', 'Art', 'Design'];
 
 const SearchInput = ({
   user,

@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import getUser from '../../../apis/getUser';
-import useGetUser from '../../../hooks/useGetUser';
 import DescriptionFormatted from '../../../Utils/DescriptionFormatted';
 import LoadingSpinner from '../../../Utils/LoadingSpinner';
 import ModalOverlay from '../../../Utils/ModalOverlay';
