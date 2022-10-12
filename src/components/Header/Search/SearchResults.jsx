@@ -1,38 +1,9 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import getUser from '../../../apis/getUser';
+import { useAddRecentlySearchedProduct } from '../../../hooks/useAddRecentlySearchedProduct';
 import DescriptionFormatted from '../../../Utils/DescriptionFormatted';
 import LoadingSpinner from '../../../Utils/LoadingSpinner';
 import ModalOverlay from '../../../Utils/ModalOverlay';
-
-const addRecentlySearchedProduct = async (recentlySearched, uid) => {
-  const response = await axios.patch(
-    `https://pure-plains-38823.herokuapp.com/users/${uid}/search/${recentlySearched}`
-  );
-
-  return response.data;
-};
-
-const useAddRecentlySearchedProduct = (recentlySearched, user) => {
-  const [newUser, setnewUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    if (user?.me?.id.length && recentlySearched?.length)
-      addRecentlySearchedProduct(recentlySearched, user.me.id)
-        .then((user) => setnewUser(user))
-        .catch(() => setIsError(true))
-        .finally(() => setIsLoading(false));
-    else {
-      getUser(user?.me?.id).then((u) => setnewUser(u));
-      setIsLoading(false);
-    }
-  }, [user, recentlySearched]);
-
-  return { newUser, isLoading, isError };
-};
 
 const SearchResults = ({
   user,
@@ -57,17 +28,22 @@ const SearchResults = ({
 
   return (
     <>
-      <div className="w-100 flex flex-wrap gap-4 py-1.5 px-4">
-        {newUser?.recently_searched?.map((searched, index) => (
-          <p
-            key={index}
-            className="cursor-pointer whitespace-nowrap rounded-full border-2 border-orange-200 px-4 py-1 font-cairo 
-          text-lg text-orange-200 hover:bg-blue-gray-900"
-            onClick={() => setSearch(searched)}
-          >
-            {searched}
-          </p>
-        ))}
+      <div className="flex flex-col">
+        <p className="px-4 py-2 font-cairo text-white">
+          you recently searched for:
+        </p>
+        <div className="w-100 flex flex-wrap gap-4 py-1 px-4">
+          {newUser?.recently_searched?.map((searched, index) => (
+            <p
+              key={index}
+              className="cursor-pointer whitespace-nowrap rounded-full px-4 font-cairo text-lg text-orange-200 
+          shadow-md shadow-black hover:bg-blue-gray-800"
+              onClick={() => setSearch(searched)}
+            >
+              {searched}
+            </p>
+          ))}
+        </div>
       </div>
       <div className="scrollbar flex flex-col gap-4 overflow-y-auto p-2 text-orange-200">
         {results.map((product) => (
@@ -76,7 +52,7 @@ const SearchResults = ({
             key={product._id}
             onClick={showSearchDraw}
           >
-            <div className="flex cursor-pointer  flex-col bg-gray-900  shadow-sm shadow-orange-100 hover:bg-gray-800 sm:flex-row">
+            <div className="flex cursor-pointer  flex-col bg-gray-900  shadow-sm shadow-black hover:bg-gray-800 sm:flex-row">
               <div className="w-32">
                 <img
                   className="object-cover"
