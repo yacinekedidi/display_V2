@@ -57,11 +57,11 @@ const SearchResults = ({
 
   return (
     <>
-      <div className="w-100 flex gap-4 py-1.5 px-4">
+      <div className="w-100 flex flex-wrap gap-4 py-1.5 px-4">
         {newUser?.recently_searched?.map((searched, index) => (
           <p
             key={index}
-            className="cursor-pointer flex-wrap rounded-full border-2 border-orange-200 px-4 py-1 font-cairo 
+            className="cursor-pointer whitespace-nowrap rounded-full border-2 border-orange-200 px-4 py-1 font-cairo 
           text-lg text-orange-200 hover:bg-blue-gray-900"
             onClick={() => setSearch(searched)}
           >
@@ -74,10 +74,7 @@ const SearchResults = ({
           <Link
             to={`/products/${product._id}`}
             key={product._id}
-            onClick={() => {
-              showSearchDraw();
-              // here
-            }}
+            onClick={showSearchDraw}
           >
             <div className="flex cursor-pointer  flex-col bg-gray-900  shadow-sm shadow-orange-100 hover:bg-gray-800 sm:flex-row">
               <div className="w-32">
