@@ -8,6 +8,7 @@ import SearchResults from './SearchResults';
 const CATEGORIES = ['All', 'Electronics', 'Sport', 'Art', 'Design'];
 
 const SearchInput = ({
+  user,
   showSearchModal = false,
   showSearchDraw = () => {},
   focus = false,
@@ -15,7 +16,8 @@ const SearchInput = ({
   const [dropdownIsOpen, setDropDownIsOpen] = useState(false);
   const [categoryOption, setCategoryOption] = useState('all');
   const [search, setSearch] = useState('');
-  const { results, loading } = useGetProductByCategoryAndByPage(
+  const [recentlySearched, setRecentlySearched] = useState('');
+  const { results, setResults, loading } = useGetProductByCategoryAndByPage(
     search,
     categoryOption
   );
@@ -33,6 +35,7 @@ const SearchInput = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setRecentlySearched(search);
     setSearch('');
   };
 
@@ -167,7 +170,13 @@ const SearchInput = ({
         </div>
       </form>
 
-      <SearchResults results={results} showSearchDraw={showSearchDraw} />
+      <SearchResults
+        recentlySearched={recentlySearched}
+        setSearch={setSearch}
+        results={results}
+        user={user}
+        showSearchDraw={showSearchDraw}
+      />
     </>
   );
 };

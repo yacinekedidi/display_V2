@@ -1,16 +1,84 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import getUser from '../../../apis/getUser';
+import useGetUser from '../../../hooks/useGetUser';
 import DescriptionFormatted from '../../../Utils/DescriptionFormatted';
+import LoadingSpinner from '../../../Utils/LoadingSpinner';
+import ModalOverlay from '../../../Utils/ModalOverlay';
 
-const SearchResults = ({ results, showSearchDraw }) => {
+const addRecentlySearchedProduct = async (recentlySearched, uid) => {
+  const response = await axios.patch(
+    `https://pure-plains-38823.herokuapp.com/users/${uid}/search/${recentlySearched}`
+  );
+
+  return response.data;
+};
+
+const useAddRecentlySearchedProduct = (recentlySearched, user) => {
+  const [newUser, setnewUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    if (user?.me?.id.length && recentlySearched?.length)
+      addRecentlySearchedProduct(recentlySearched, user.me.id)
+        .then((user) => setnewUser(user))
+        .catch(() => setIsError(true))
+        .finally(() => setIsLoading(false));
+    else {
+      getUser(user.me.id).then((u) => setnewUser(u));
+      setIsLoading(false);
+    }
+  }, [user, recentlySearched]);
+
+  return { newUser, isLoading, isError };
+};
+
+const SearchResults = ({
+  user,
+  results,
+  recentlySearched,
+  setSearch,
+  showSearchDraw,
+}) => {
+  const { newUser, isLoading, isError } = useAddRecentlySearchedProduct(
+    recentlySearched,
+    user
+  );
+
+  if (isLoading)
+    return (
+      <ModalOverlay>
+        <LoadingSpinner />
+      </ModalOverlay>
+    );
+
+  if (isError) return <div>Something went wrong!</div>;
+
   return (
-    results.length > 0 && (
+    <>
+      <div className="w-100 flex gap-4 py-1.5 px-4">
+        {newUser?.recently_searched?.map((searched, index) => (
+          <p
+            key={index}
+            className="cursor-pointer flex-wrap rounded-full border-2 border-orange-200 px-4 py-1 font-cairo 
+          text-lg text-orange-200 hover:bg-blue-gray-900"
+            onClick={() => setSearch(searched)}
+          >
+            {searched}
+          </p>
+        ))}
+      </div>
       <div className="scrollbar flex flex-col gap-4 overflow-y-auto p-2 text-orange-200">
         {results.map((product) => (
           <Link
             to={`/products/${product._id}`}
             key={product._id}
-            onClick={showSearchDraw}
+            onClick={() => {
+              showSearchDraw();
+              // here
+            }}
           >
             <div className="flex cursor-pointer  flex-col bg-gray-900  shadow-sm shadow-orange-100 hover:bg-gray-800 sm:flex-row">
               <div className="w-32">
@@ -35,7 +103,7 @@ const SearchResults = ({ results, showSearchDraw }) => {
           </Link>
         ))}
       </div>
-    )
+    </>
   );
 };
 

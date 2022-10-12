@@ -76,6 +76,7 @@ const Header = () => {
                         showSearchModal={showSearchModal}
                         showSearchDraw={showSearchDraw}
                         focus={true}
+                        user={user}
                       />
                     </div>
                   </ModalOverlay>
