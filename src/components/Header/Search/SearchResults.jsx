@@ -26,7 +26,7 @@ const useAddRecentlySearchedProduct = (recentlySearched, user) => {
         .catch(() => setIsError(true))
         .finally(() => setIsLoading(false));
     else {
-      getUser(user.me.id).then((u) => setnewUser(u));
+      getUser(user?.me?.id).then((u) => setnewUser(u));
       setIsLoading(false);
     }
   }, [user, recentlySearched]);
