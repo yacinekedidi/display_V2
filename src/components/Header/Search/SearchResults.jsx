@@ -1,5 +1,7 @@
-import React from 'react';
+import CloseIcon from '@mui/icons-material/Close';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { deleteRecentlySearchedProduct } from '../../../apis/deleteRecentlySearchedProduct';
 import { useAddRecentlySearchedProduct } from '../../../hooks/useAddRecentlySearchedProduct';
 import DescriptionFormatted from '../../../Utils/DescriptionFormatted';
 import LoadingSpinner from '../../../Utils/LoadingSpinner';
@@ -12,10 +14,18 @@ const SearchResults = ({
   setSearch,
   showSearchDraw,
 }) => {
-  const { newUser, isLoading, isError } = useAddRecentlySearchedProduct(
+  const [newUser, setNewUser] = useState(null);
+  const { isLoading, isError } = useAddRecentlySearchedProduct(
+    setNewUser,
     recentlySearched,
     user
   );
+
+  const handleClick = (searchItemToRemove) => {
+    deleteRecentlySearchedProduct(searchItemToRemove, user?.me?.id)
+      .then((user) => setNewUser(user))
+      .catch(console.error);
+  };
 
   if (isLoading)
     return (
@@ -34,14 +44,25 @@ const SearchResults = ({
         </p>
         <div className="w-100 flex flex-wrap gap-4 py-1 px-4">
           {newUser?.recently_searched?.map((searched, index) => (
-            <p
-              key={index}
-              className="cursor-pointer whitespace-nowrap rounded-full px-4 font-cairo text-lg text-orange-200 
+            <div className="group relative">
+              <p
+                key={index}
+                className="cursor-pointer whitespace-nowrap rounded-full px-4 font-cairo text-lg text-orange-200 
           shadow-md shadow-black hover:bg-blue-gray-800"
-              onClick={() => setSearch(searched)}
-            >
-              {searched}
-            </p>
+                onClick={() => setSearch(searched)}
+              >
+                {searched}
+              </p>
+              <p
+                className="absolute -right-2 -top-2  hidden text-white group-hover:block"
+                onClick={() => handleClick(searched)}
+              >
+                <CloseIcon
+                  className="cursor-pointer transition hover:text-orange-600"
+                  fontSize="medium"
+                />
+              </p>
+            </div>
           ))}
         </div>
       </div>

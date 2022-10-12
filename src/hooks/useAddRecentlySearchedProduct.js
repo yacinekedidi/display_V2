@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import { addRecentlySearchedProduct } from '../apis/addRecentlySearchedProduct';
 import getUser from '../apis/getUser';
 
-export const useAddRecentlySearchedProduct = (recentlySearched, user) => {
-  const [newUser, setnewUser] = useState(null);
+export const useAddRecentlySearchedProduct = (
+  setnewUser,
+  recentlySearched,
+  user
+) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -14,10 +17,10 @@ export const useAddRecentlySearchedProduct = (recentlySearched, user) => {
         .catch(() => setIsError(true))
         .finally(() => setIsLoading(false));
     else {
-      getUser(user?.me?.id).then((u) => setnewUser(u));
+      getUser(user?.me?.id).then((resUser) => setnewUser(resUser));
       setIsLoading(false);
     }
-  }, [user, recentlySearched]);
+  }, [recentlySearched, user]);
 
-  return { newUser, isLoading, isError };
+  return { isLoading, isError };
 };
