@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { API_ENDPOINTS } from '../Utils/constants';
 
-export const deleteRecentlySearchedProduct = async (toRemove, uid) => {
+export const deleteAllRecentlySearchedProducts = async (uid) => {
   const response = await axios.delete(
-    `${API_ENDPOINTS.products}/${uid}/search/delete/${toRemove}`
+    `${API_ENDPOINTS.users}/${uid}/search/clear`
   );
   return response.data;
 };

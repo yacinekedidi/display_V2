@@ -1,7 +1,6 @@
 import axios from 'axios';
+import { API_ENDPOINTS } from '../Utils/constants';
 
 export const removeProductFromUserFavorites = async (uid, pid) => {
-  axios.delete(
-    `https://pure-plains-38823.herokuapp.com/users/${uid}/favorites/${pid}`
-  );
+  axios.delete(`${API_ENDPOINTS.users}/${uid}/favorites/${pid}`);
 };

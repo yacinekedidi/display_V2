@@ -1,8 +1,6 @@
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useState } from 'react';
 import useGetProductByCategoryAndByPage from '../../../hooks/useGetProductByCategoryAndByPage';
-import LoadingSpinner from '../../../Utils/LoadingSpinner';
-import ModalOverlay from '../../../Utils/ModalOverlay';
 import SearchResults from './SearchResults';
 
 const CATEGORIES = ['all', 'Electronics', 'Sport', 'Art', 'Design'];
@@ -17,10 +15,7 @@ const SearchInput = ({
   const [categoryOption, setCategoryOption] = useState('all');
   const [search, setSearch] = useState('');
   const [recentlySearched, setRecentlySearched] = useState('');
-  const { results, setResults, loading } = useGetProductByCategoryAndByPage(
-    search,
-    categoryOption
-  );
+  const { results } = useGetProductByCategoryAndByPage(search, categoryOption);
 
   const handleDropdown = () => {
     setDropDownIsOpen((prev) => !prev);
@@ -36,7 +31,6 @@ const SearchInput = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     setRecentlySearched(search);
-    setSearch('');
   };
 
   const handleChange = (e) => {

@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useProduct } from '../../../contexts/product-context';
 import { useAuth } from '../../../contexts/user-context';
+import { API_ENDPOINTS } from '../../../Utils/constants';
 import useStyles from '../../../Utils/useStyles';
 import BasicInfo from './BasicInfo';
 import Characteristics from './Characteristics';
@@ -33,7 +34,7 @@ const EditProduct = ({ isEditing, setIsEditing, productId }) => {
     // }`;
     axios
       .patch(
-        `https://pure-plains-38823.herokuapp.com/products/${productId}?seller_id=631b0a0f5ef3261916329056`,
+        `${API_ENDPOINTS.products}/${productId}?seller_id=631b0a0f5ef3261916329056`,
         {
           title,
           pics_url,

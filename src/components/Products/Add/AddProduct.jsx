@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_ENDPOINTS } from '../../../Utils/constants';
 import BasicInfo from './BasicInfo';
 import Characteristics from './Characteristics';
 import Description from './Description';
@@ -24,7 +25,7 @@ const AddProduct = ({ addingProduct, setIsAddingProduct }) => {
     // need to be a seller
     // axios.post('https://pure-plains-38823.herokuapp.com/products', {...product, seller_id: user.me.id});
     axios
-      .post('https://pure-plains-38823.herokuapp.com/products', {
+      .post(API_ENDPOINTS.products, {
         ...product,
       })
       .then(() => navigate('/'));

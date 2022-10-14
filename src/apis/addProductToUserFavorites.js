@@ -1,7 +1,6 @@
 import axios from 'axios';
+import { API_ENDPOINTS } from '../Utils/constants';
 
 export const addProductToUserFavorites = async (uid, pid) => {
-  axios.patch(
-    `https://pure-plains-38823.herokuapp.com/users/${uid}/favorites/${pid}`
-  );
+  axios.patch(`${API_ENDPOINTS.users}/${uid}/favorites/${pid}`);
 };

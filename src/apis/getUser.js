@@ -1,10 +1,9 @@
 import axios from 'axios';
+import { API_ENDPOINTS } from '../Utils/constants';
 
 const getUser = async (uid) => {
   if (uid) {
-    const res = await axios.get(
-      `https://pure-plains-38823.herokuapp.com/users/${uid}`
-    );
+    const res = await axios.get(`${API_ENDPOINTS.users}/${uid}`);
     return res.data;
   }
 };

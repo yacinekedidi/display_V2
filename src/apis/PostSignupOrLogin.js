@@ -1,11 +1,10 @@
 import axios from 'axios';
+import { API_ENDPOINTS } from '../Utils/constants';
 
-const PostSignupOrLogin = async (form, isSignup) => {
-  const URL = 'https://pure-plains-38823.herokuapp.com/auth';
-
+const PostSignupOrLogin = async (form, mode) => {
   const { username, password, phoneNumber, avatarURL, email, fullName } = form;
 
-  const res = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
+  const res = await axios.post(`${API_ENDPOINTS.auth}/${mode}`, {
     username,
     password,
     email,

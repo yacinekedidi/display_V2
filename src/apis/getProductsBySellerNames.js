@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { API_ENDPOINTS } from '../Utils/constants';
 
 const getProductsBySellerNames = async (selectedSellers, category) => {
   const endpoints = selectedSellers.map(
     (sellerName) =>
-      `https://pure-plains-38823.herokuapp.com/products/seller/${sellerName}/category/${category}`
+      `${API_ENDPOINTS.products}/seller/${sellerName}/category/${category}`
   );
   const response = await Promise.all(
     endpoints.map((endpoint) => axios.get(endpoint))

@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { API_ENDPOINTS } from '../Utils/constants';
 
 export const addRecentlySearchedProduct = async (recentlySearched, uid) => {
   const response = await axios.patch(
-    `https://pure-plains-38823.herokuapp.com/users/${uid}/search/${recentlySearched}`
+    `${API_ENDPOINTS.users}/${uid}/search/${recentlySearched}`
   );
 
   return response.data;

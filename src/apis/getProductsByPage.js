@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { API_ENDPOINTS } from '../Utils/constants';
 
 const getProductsByPage = async (page, params) => {
   const res = await axios.get(
-    `https://pure-plains-38823.herokuapp.com/products/page/${page.current}`,
+    `${API_ENDPOINTS.products}/page/${page.current}`,
     {
       params,
     }

@@ -1,7 +1,6 @@
 import axios from 'axios';
+import { API_ENDPOINTS } from '../Utils/constants';
 
 export const deleteProduct = async (productId) => {
-  await axios.delete(
-    `https://pure-plains-38823.herokuapp.com/products/${productId}`
-  );
+  await axios.delete(`${API_ENDPOINTS.products}/${productId}`);
 };

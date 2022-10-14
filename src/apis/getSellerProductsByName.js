@@ -1,9 +1,8 @@
 import axios from 'axios';
+import { API_ENDPOINTS } from '../Utils/constants';
 
 const getSellerProductsByName = async (sellerName) => {
-  const res = await axios.get(
-    `https://pure-plains-38823.herokuapp.com/products/seller/${sellerName}`
-  );
+  const res = await axios.get(`${API_ENDPOINTS.products}/seller/${sellerName}`);
   return res.data;
 };
 

@@ -1,12 +1,10 @@
 import axios from 'axios';
+import { API_ENDPOINTS } from '../Utils/constants';
 
 const getUserAndProduct = async (productId, uid) => {
-  const gendpoints = [
-    `https://pure-plains-38823.herokuapp.com/products/${productId}`,
-  ];
+  const gendpoints = [`${API_ENDPOINTS.products}/${productId}`];
 
-  if (uid)
-    gendpoints.push(`https://pure-plains-38823.herokuapp.com/users/${uid}`);
+  if (uid) gendpoints.push(`${API_ENDPOINTS.users}/${uid}`);
   const res = await Promise.all(
     gendpoints.map((endpoint) => axios.get(endpoint))
   );

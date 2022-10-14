@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import PostSignupOrLogin from '../../apis/PostSignupOrLogin';
 import saveUserCookies from '../../Utils/saveUserCookies';
+import Login from './LoginContents';
+import RegisterSeller from './RegisterSellerFormContents';
+import RegisterUser from './RegisterUserFormContents';
 
 const Auth = ({ showProfileDraw }) => {
   const [form, setForm] = useState({
@@ -11,7 +14,7 @@ const Auth = ({ showProfileDraw }) => {
     phoneNumber: '',
     avatarURL: '',
   });
-  const [isSignup, setIsSignup] = useState(false);
+  const [mode, setMode] = useState('login');
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,125 +23,64 @@ const Auth = ({ showProfileDraw }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user = await PostSignupOrLogin(form, isSignup);
-    user && saveUserCookies({ isSignup, ...user });
+    const user = await PostSignupOrLogin(form, mode);
+    user && saveUserCookies({ mode, ...user });
 
     window.location.reload();
   };
 
-  const switchMode = () => {
-    setIsSignup((prevIsSignup) => !prevIsSignup);
+  const switchMode = (newMode = '') => {
+    if (newMode.length) {
+      setMode('sellerSignup');
+    } else setMode(mode === 'signup' ? 'login' : 'signup');
   };
 
   return (
     <div className="auth__form-container">
       <div className="auth__form-container_fields">
         <div className="auth__form-container_fields-content">
-          <p>{isSignup ? 'Sign Up' : 'Sign In'}</p>
+          {mode === 'signup' && <p>Sign Up</p>}
+          {mode === 'login' && <p>Sign In</p>}
+          {mode === 'sellerSignup' && <p>Sign Up as Seller</p>}
 
           <form onSubmit={handleSubmit} className="grid grid-cols-2">
-            {isSignup && (
-              <div className="auth__form-container_fields-content_input">
-                <label htmlFor="fullName">Full Name</label>
-                <input
-                  name="fullName"
-                  type="text"
-                  placeholder="Full Name"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+            {mode === 'sellerSignup' && (
+              <RegisterSeller handleChange={handleChange} />
             )}
-            <div className="auth__form-container_fields-content_input">
-              <label htmlFor="username">Username</label>
-              <input
-                name="username"
-                type="text"
-                placeholder="Username"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            {isSignup && (
-              <div className="auth__form-container_fields-content_input">
-                <label htmlFor="username">Email</label>
-                <input
-                  name="email"
-                  type="text"
-                  placeholder="Email"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            )}
-            {isSignup && (
-              <div className="auth__form-container_fields-content_input">
-                <label htmlFor="phoneNumber">Phone Number</label>
-                <input
-                  name="phoneNumber"
-                  type="text"
-                  placeholder="Phone Number"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            )}
-            {isSignup && (
-              <div className="auth__form-container_fields-content_input">
-                <label htmlFor="avatarURL">Avatar URL</label>
-                <input
-                  name="avatarURL"
-                  type="text"
-                  placeholder="Avatar URL"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            )}
-            <div className="auth__form-container_fields-content_input">
-              <label htmlFor="password">Password</label>
-              <input
-                name="password"
-                type="password"
-                placeholder="Password"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            {isSignup && (
-              <div className="auth__form-container_fields-content_input">
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input
-                  name="confirmPassword"
-                  type="password"
-                  placeholder="Confirm Password"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            )}
+
+            {mode === 'signup' && <RegisterUser handleChange={handleChange} />}
+
+            {mode === 'login' && <Login handleChange={handleChange} />}
+
             <div className="auth__form-container_fields-content_button">
-              <button>{isSignup ? 'Sign Up' : 'Sign In'}</button>
+              <button>{mode === 'login' ? 'Login' : 'Register'}</button>
             </div>
           </form>
-          <div className="auth__form-container_fields-account">
+          <div className="auth__form-container_fields-account flex flex-col items-start py-2">
             <p>
-              {isSignup ? 'Already have an account?' : "Don't have an account?"}
+              {mode === 'signup' && 'Already have an account?'}
+              {mode === 'login' && "Don't have an account?"}
+
               <span onClick={switchMode}>
-                {isSignup ? 'Sign In' : 'Sign Up'}
+                {mode === 'signup' ? 'login' : 'signup'}
               </span>
             </p>
+            {mode !== 'sellerSignup' && (
+              <span onClick={() => switchMode('sellerSignup')}>
+                Sign Up as a seller
+              </span>
+            )}
           </div>
         </div>
       </div>
       <div className="auth__form-container_image">
         <img
           src={
-            isSignup
+            mode === 'signup'
               ? 'https://images.unsplash.com/photo-1547887537-6158d64c35b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'
               : 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1376&q=80'
           }
-          alt="sign in"
+          alt=""
         />
       </div>
     </div>

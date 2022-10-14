@@ -1,7 +1,7 @@
 import Cookies from 'universal-cookie';
 
 const saveUserCookies = ({
-  isSignup,
+  mode,
   token,
   userId,
   email,
@@ -18,7 +18,7 @@ const saveUserCookies = ({
   cookies.set('fullName', fullName);
   cookies.set('userId', userId);
 
-  if (isSignup) {
+  if (mode === 'signup') {
     cookies.set('email', email);
     cookies.set('phoneNumber', phoneNumber);
     cookies.set('avatarURL', avatarURL);
