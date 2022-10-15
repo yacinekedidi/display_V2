@@ -19,11 +19,9 @@ const EditProduct = ({ isEditing, setIsEditing, productId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsEditing(false);
-    // console.log('changed Product', changedProduct);
 
     const { title, pics_url, category, descriptions, tags, characteristics } =
       changedProduct;
-    console.log(changedProduct);
     // setProduct(changedProduct); //remove
 
     // ?${user_id}
@@ -49,7 +47,7 @@ const EditProduct = ({ isEditing, setIsEditing, productId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="w-full" onSubmit={handleSubmit}>
       <div>
         <h1
           className="bg-gradient-to-br from-orange-700 to-white bg-clip-text py-2 font-cairo text-2xl font-black uppercase 

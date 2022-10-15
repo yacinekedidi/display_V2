@@ -92,7 +92,8 @@ const BasicInfo = ({
 
   return (
     <div
-      className={`relative mb-10 flex flex-col-reverse gap-10 bg-orange-200 py-16 px-24 font-sans shadow-sm shadow-gray-400 md:flex-row`}
+      className={`relative mb-10 flex flex-col-reverse gap-10 bg-orange-200 py-16 px-24 font-sans shadow-sm shadow-gray-400 
+      md:flex-row`}
     >
       <div
         className={`flex w-full ${
@@ -138,19 +139,12 @@ const BasicInfo = ({
           changedProduct.pics_url.length ? 'flex-shrink-0 md:w-1/2' : ''
         } flex-col gap-8 `}
       >
-        <div className="text-3xl md:w-full">
+        <div className="mx-auto w-[250px] self-start text-3xl md:w-full">
           <div className="flex flex-col gap-2">
             <div>
               <input
-                className="p-2 font-cairo text-black placeholder:font-cairo"
+                className="w-full rounded-md  bg-orange-300 p-2 font-cairo shadow-sm shadow-black  placeholder:font-cairo"
                 placeholder="product title..."
-                style={{
-                  background: 'rgba( 255, 255, 255, 0.25 )',
-                  boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-                  backdropFilter: 'blur( 4px )',
-                  borderRadius: '10px',
-                  border: '1px solid rgba( 255, 255, 255, 0.18 )',
-                }}
                 value={changedProduct.title}
                 name="title"
                 onChange={handleChange}
@@ -235,14 +229,7 @@ const BasicInfo = ({
         <div className="">
           <div className="flex items-center text-lg">
             <input
-              className="m-2 w-full p-2 text-black placeholder:font-cairo"
-              style={{
-                background: 'rgba( 255, 255, 255, 0.25 )',
-                boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-                backdropFilter: 'blur( 4px )',
-                borderRadius: '10px',
-                border: '1px solid rgba( 255, 255, 255, 0.18 )',
-              }}
+              className="m-2 w-full rounded-md bg-orange-300  p-2 shadow-sm shadow-black placeholder:font-cairo placeholder:text-black"
               placeholder="add an image url"
               onChange={handleChangeNewUrl}
               // onKeyDown={(event) => {

@@ -24,11 +24,10 @@ const Description = ({ product, setProduct }) => {
             autoComplete="off"
           >
             <TextField
-              className="h-full w-full text-justify font-cairo text-sm leading-loose tracking-widest  text-black lg:text-lg"
+              className=" w-full text-justify font-cairo text-sm leading-loose tracking-widest  text-black lg:text-lg"
               placeholder="product description..."
               fullWidth
               multiline
-              rows={60}
               value={product.descriptions}
               variant="standard"
               onChange={(e) => {

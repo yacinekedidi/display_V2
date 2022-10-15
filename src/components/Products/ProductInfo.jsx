@@ -86,7 +86,7 @@ const ProductInfo = ({
 
   return (
     <div
-      className={`relative mx-auto mb-10 flex flex-col-reverse gap-10 bg-orange-300 py-16 px-24 
+      className={`relative mx-auto  mb-10 flex flex-col-reverse gap-10 bg-orange-300 py-16 px-4 
       font-sans shadow-sm shadow-gray-400 md:flex-row`}
     >
       <div className="flex flex-1 flex-col justify-center gap-4">

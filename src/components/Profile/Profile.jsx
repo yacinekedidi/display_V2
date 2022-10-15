@@ -14,7 +14,7 @@ const Profile = () => {
       <Header className="max-w-7xl" sticky={true} />
       <div className="m-auto mb-40 flex w-full flex-col items-center justify-center  lg:max-w-7xl">
         <ProfileHome />
-        <div className="text-md flex w-full justify-center gap-16 py-4 px-4 font-cairo  shadow-sm shadow-gray-900">
+        <div className="text-md flex w-full justify-center py-4 px-4 font-cairo shadow-sm  shadow-gray-900 md:gap-16">
           <Link
             className={`flex items-center gap-x-2 px-4 py-1 text-white  ${
               !under ? 'text-orange-400 shadow-xl shadow-gray-900' : ''

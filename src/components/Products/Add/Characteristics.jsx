@@ -72,46 +72,36 @@ const Characteristics = ({ product, setProduct }) => {
                 </div>
               );
             })}
-          <div className="flex gap-2 px-4">
-            <input
-              className="px-2 font-cairo font-bold text-black placeholder:font-cairo"
-              placeholder="Characteristic property..."
-              style={{
-                background: 'rgba( 255, 255, 255, 0.25 )',
-                boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-                backdropFilter: 'blur( 4px )',
-                borderRadius: '10px',
-                border: '1px solid rgba( 255, 255, 255, 0.18 )',
-              }}
-              value={characteristicProp}
-              onChange={(e) => {
-                setCharacteristicProp(e.target.value);
-              }}
-            />
-            :
-            <input
-              placeholder="Characteristic value..."
-              className="px-2 font-cairo text-black placeholder:font-cairo"
-              style={{
-                background: 'rgba( 255, 255, 255, 0.25 )',
-                boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-                backdropFilter: 'blur( 4px )',
-                borderRadius: '10px',
-                border: '1px solid rgba( 255, 255, 255, 0.18 )',
-              }}
-              value={characteristicVal}
-              onChange={(e) => {
-                setCharacteristicVal(e.target.value);
-              }}
-            />
-            {characteristicVal.length && characteristicProp.length ? (
-              <AddCircleOutlineIcon
-                className="cursor-pointer hover:text-orange-600"
-                onClick={handleAddCharacteristic}
+          <div className="flex flex-wrap gap-2 px-4">
+            <div className="flex items-center gap-2">
+              <input
+                className=" w-full rounded-md  bg-orange-300 p-2  font-cairo shadow-sm shadow-black  placeholder:font-cairo placeholder:text-black"
+                placeholder="Characteristic property..."
+                value={characteristicProp}
+                onChange={(e) => {
+                  setCharacteristicProp(e.target.value);
+                }}
               />
-            ) : (
-              ''
-            )}
+              <span>:</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <input
+                placeholder="Characteristic value..."
+                className=" w-full rounded-md bg-orange-300 p-2  font-cairo shadow-sm shadow-black  placeholder:font-cairo placeholder:text-black"
+                value={characteristicVal}
+                onChange={(e) => {
+                  setCharacteristicVal(e.target.value);
+                }}
+              />
+              {characteristicVal.length && characteristicProp.length ? (
+                <AddCircleOutlineIcon
+                  className="cursor-pointer hover:text-orange-600"
+                  onClick={handleAddCharacteristic}
+                />
+              ) : (
+                ''
+              )}
+            </div>
           </div>
         </div>
       </div>

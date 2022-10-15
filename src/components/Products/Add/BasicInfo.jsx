@@ -135,19 +135,13 @@ const BasicInfo = ({ product, setProduct, setIsAddingProduct }) => {
           product?.pics_url.length ? 'flex-shrink-0   md:w-1/2' : ''
         } flex-col items-center gap-y-8`}
       >
-        <div className="text-3xl md:w-full">
+        <div className="w-full text-3xl md:w-full">
           <div className="flex flex-col items-center ">
             <div>
               <input
-                className="p-2 font-cairo text-black placeholder:font-cairo"
+                className="w-[250px] rounded-md bg-orange-300 p-2 font-cairo text-black shadow-sm shadow-black placeholder:font-cairo 
+                 placeholder:text-black md:w-full"
                 placeholder="product title..."
-                style={{
-                  background: 'rgba( 255, 255, 255, 0.25 )',
-                  boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-                  backdropFilter: 'blur( 4px )',
-                  borderRadius: '10px',
-                  border: '1px solid rgba( 255, 255, 255, 0.18 )',
-                }}
                 value={product.title}
                 name="title"
                 onChange={handleChange}
@@ -234,14 +228,7 @@ const BasicInfo = ({ product, setProduct, setIsAddingProduct }) => {
             <input
               // type="file"
               // multiple
-              className="m-2 w-full p-2 text-black placeholder:font-cairo"
-              style={{
-                background: 'rgba( 255, 255, 255, 0.25 )',
-                boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-                backdropFilter: 'blur( 4px )',
-                borderRadius: '10px',
-                border: '1px solid rgba( 255, 255, 255, 0.18 )',
-              }}
+              className="m-2 w-full rounded-md bg-orange-300 p-2 text-black shadow-sm shadow-black placeholder:font-cairo placeholder:text-black"
               placeholder="add an image url"
               value={newImageUrl}
               onChange={handleChangeNewUrl}

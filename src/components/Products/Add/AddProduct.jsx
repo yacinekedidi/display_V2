@@ -32,7 +32,7 @@ const AddProduct = ({ addingProduct, setIsAddingProduct }) => {
   };
 
   return (
-    <form className="w-full max-w-7xl" onSubmit={handleSubmit}>
+    <form className="w-full" onSubmit={handleSubmit}>
       <div>
         <h1
           className="bg-gradient-to-br from-orange-700 to-white bg-clip-text py-2 font-cairo text-2xl font-black uppercase 

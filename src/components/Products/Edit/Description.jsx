@@ -12,7 +12,6 @@ const Description = ({ changedProduct, setChangedProduct }) => {
             Description
           </h1>
           <Box
-            // component="form"
             sx={{
               '& .MuiTextField-root': {
                 m: 1,
@@ -24,11 +23,10 @@ const Description = ({ changedProduct, setChangedProduct }) => {
             autoComplete="off"
           >
             <TextField
-              className="h-full w-full text-justify font-cairo text-sm leading-loose tracking-widest  text-black lg:text-lg"
+              className=" w-full text-justify font-cairo text-sm leading-loose tracking-widest  text-black lg:text-lg"
               placeholder="product description..."
               fullWidth
               multiline
-              rows={60}
               value={changedProduct.descriptions}
               variant="standard"
               onChange={(e) => {

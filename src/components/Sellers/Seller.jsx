@@ -30,7 +30,7 @@ const Seller = () => {
         <div className=" w-full p-4">
           <SellerHome seller={seller} />
         </div>
-        <div className="text-md flex w-full justify-center gap-16 py-2 font-cairo  shadow-sm shadow-gray-900">
+        <div className="text-md flex w-full justify-center py-2 font-cairo shadow-sm  shadow-gray-900 md:gap-16">
           <Link
             className={`flex items-center gap-x-2 px-4 py-1 text-white  ${
               !under ? 'text-orange-400 shadow-xl shadow-gray-900' : ''

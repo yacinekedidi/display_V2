@@ -39,7 +39,7 @@ const ProductProfile = () => {
     <>
       <Header className="max-w-7xl" sticky={true} />
       <div className="relative">
-        <div className="m-auto flex w-full flex-col items-center justify-center lg:max-w-7xl">
+        <div className="m-auto flex w-full max-w-7xl flex-col items-center justify-center">
           <ProductProvider product={product} setProduct={setProduct}>
             {isEditing ? (
               <EditProduct
