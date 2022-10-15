@@ -22,7 +22,6 @@ const ProductsList = () => {
   } = useLocation();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
   const [addingProduct, setIsAddingProduct] = useState(false);
 
   const { items, isLoading, hasMore, setSearchOption, searchOption } =

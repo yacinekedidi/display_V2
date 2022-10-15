@@ -11,7 +11,6 @@ const useGetSellersByCategory = (categoryname) => {
     getSellersByCategory(categoryname)
       .then((res) => {
         setLoading(false);
-        console.log('res', res);
         let response = [];
         res
           .map((seller) => seller.seller_name)

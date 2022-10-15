@@ -45,6 +45,16 @@ const Profile = () => {
           </Link>
           <Link
             className={`flex items-center gap-x-2 px-4 py-1 text-white ${
+              under === 'history'
+                ? 'text-orange-400 shadow-xl shadow-gray-900'
+                : ''
+            }`}
+            to={`history`}
+          >
+            <span className="">history</span>
+          </Link>
+          <Link
+            className={`flex items-center gap-x-2 px-4 py-1 text-white ${
               under === 'requests'
                 ? 'text-orange-400 shadow-xl shadow-gray-900'
                 : ''

@@ -3,14 +3,25 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../../contexts/user-context';
 import useGetMultiProductsEndpointsByQueryWithUser from '../../hooks/useGetMultiProductsEndpointsByQueryWithUser';
+import { useGetUserRecentlyViewedProducts } from '../../hooks/useGetUserRecentlyViewedProducts';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import HomeProductSection from './HomeProductSection';
 
 const HomeProductSections = () => {
   const { user: u } = useAuth();
-  const { isLoading, latestProducts, trendingProducts, user } =
-    useGetMultiProductsEndpointsByQueryWithUser(u?.me?.id);
+  const {
+    isLoading,
+    latestProducts,
+    trendingProducts,
+    mostViewedProducts,
+    user,
+  } = useGetMultiProductsEndpointsByQueryWithUser(u?.me?.id);
+
+  const { recentlyViewedProducts } = useGetUserRecentlyViewedProducts(
+    user?.recently_viewed,
+    true
+  );
 
   if (isLoading)
     return (
@@ -27,10 +38,22 @@ const HomeProductSections = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {Object.keys({ ...latestProducts, ...trendingProducts }).map((key) => (
+        {Object.keys({
+          ...latestProducts,
+          ...trendingProducts,
+          ...mostViewedProducts,
+          ...recentlyViewedProducts,
+        }).map((key) => (
           <HomeProductSection
             title={key}
-            products={{ ...latestProducts, ...trendingProducts }[key]}
+            products={
+              {
+                ...latestProducts,
+                ...trendingProducts,
+                ...mostViewedProducts,
+                ...recentlyViewedProducts,
+              }[key]
+            }
             user={user}
             key={uuidv4()}
           />

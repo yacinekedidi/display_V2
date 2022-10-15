@@ -6,9 +6,10 @@ const getMultiProductsEndpointsByQueryWithUser = async (uid) => {
   const endpoints = [
     `${API_ENDPOINTS.products}?sort=created_at`,
     `${API_ENDPOINTS.products}?sort=favorite_count`,
+    `${API_ENDPOINTS.products}?sort=views`,
   ];
   if (uid) endpoints.push(`${API_ENDPOINTS.users}/${uid}`);
-  const res = await axios.all(
+  const res = await Promise.all(
     endpoints.map((endpoint) => axios.get(endpoint, { params }))
   );
   return res;

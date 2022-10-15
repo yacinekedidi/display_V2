@@ -56,7 +56,7 @@ const Favorites = () => {
                 <div className="">
                   <img
                     className="transition hover:scale-110 "
-                    src={product.pics_url[0]}
+                    src={product?.pics_url[0]}
                     alt=""
                   />
                 </div>

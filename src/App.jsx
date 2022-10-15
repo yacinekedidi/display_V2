@@ -7,6 +7,7 @@ import ProductProfile from './components/Products/ProductProfile';
 import ProductsList from './components/Products/ProductsList';
 import About from './components/Profile/About';
 import Favorites from './components/Profile/Favorites';
+import ProductsViewed from './components/Profile/history';
 import Profile from './components/Profile/Profile';
 import RequestDetails from './components/Profile/RequestDetails';
 import Requests from './components/Profile/Requests';
@@ -28,6 +29,7 @@ function App() {
               <Route path="about" element={<About />} />
               <Route path="favorites" element={<Favorites />} />
               <Route path="requests" element={<Requests />} />
+              <Route path="history" element={<ProductsViewed />} />
             </Route>
             <Route path="seller/:sellername" element={<Seller />}>
               <Route path="about" element={<SellerAbout />} />

@@ -42,6 +42,7 @@ const useUtils = () => {
     'Latest Products': 'Latest products',
     'Most Popular Products': 'Trending products',
     'Recently Viewed Products': 'Recently visited products',
+    'Most Viewed Products': 'Most viewed products',
     'Related Products': 'Related products',
     'Products From Same Seller': 'Products from the same seller',
   };
@@ -49,7 +50,7 @@ const useUtils = () => {
   const SORT = {
     'Latest Products': 'latest',
     'Most Popular Products': 'popular',
-    'Recently Viewed Products': 'viewed',
+    'Most Viewed Products': 'viewed',
   };
   const PAGES = ['home', 'electronics', 'sport', 'art', 'design'];
 

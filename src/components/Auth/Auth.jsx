@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PostSignupOrLogin from '../../apis/PostSignupOrLogin';
 import saveUserCookies from '../../Utils/saveUserCookies';
-import Login from './LoginContents';
-import RegisterSeller from './RegisterSellerFormContents';
-import RegisterUser from './RegisterUserFormContents';
+import Login from './FormContents/LoginContents';
+import RegisterSeller from './FormContents/RegisterSellerFormContents';
+import RegisterUser from './FormContents/RegisterUserFormContents';
 
 const Auth = ({ showProfileDraw }) => {
   const [form, setForm] = useState({
@@ -42,14 +42,11 @@ const Auth = ({ showProfileDraw }) => {
           {mode === 'signup' && <p>Sign Up</p>}
           {mode === 'login' && <p>Sign In</p>}
           {mode === 'sellerSignup' && <p>Sign Up as Seller</p>}
-
           <form onSubmit={handleSubmit} className="grid grid-cols-2">
             {mode === 'sellerSignup' && (
               <RegisterSeller handleChange={handleChange} />
             )}
-
             {mode === 'signup' && <RegisterUser handleChange={handleChange} />}
-
             {mode === 'login' && <Login handleChange={handleChange} />}
 
             <div className="auth__form-container_fields-content_button">

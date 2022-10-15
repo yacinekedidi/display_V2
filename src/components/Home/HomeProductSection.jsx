@@ -30,27 +30,40 @@ const HomeProductSection = ({ title, products, user, noLinks = false }) => {
               >
                 {noLinks ? (
                   TITLES[title]
-                ) : (
+                ) : title !== 'Recently Viewed Products' ? (
                   <Link to={`products?sort=${SORT[title]}`} state={{ user }}>
                     {TITLES[title]}
                   </Link>
+                ) : (
+                  <Link to={`user/${user._id}/history`}>{TITLES[title]}</Link>
                 )}
               </h2>
             </div>
           </div>
           {noLinks ? (
             ''
-          ) : (
-            <div className="">
+          ) : title !== 'Recently Viewed Products' ? (
+            <>
               <Link to={`products?sort=${SORT[title]}`} state={{ user }}>
                 <button
                   className="rounded-sm bg-transparent px-4 py-1 font-cairo text-orange-200 shadow-sm 
-                    shadow-orange-200 hover:opacity-80"
+                      shadow-orange-200 hover:opacity-80"
                 >
                   see more
                 </button>
               </Link>
-            </div>
+            </>
+          ) : (
+            <>
+              <Link to={`/user/${user._id}/history`}>
+                <button
+                  className="rounded-sm bg-transparent px-4 py-1 font-cairo text-orange-200 shadow-sm 
+                shadow-orange-200 hover:opacity-80"
+                >
+                  see more
+                </button>
+              </Link>
+            </>
           )}
         </div>
       </div>
@@ -76,7 +89,7 @@ const HomeProductSection = ({ title, products, user, noLinks = false }) => {
                 <ProductCard
                   product={product}
                   user={user}
-                  key={product._id || uuidv4()}
+                  key={product?._id || uuidv4()}
                   index={index}
                 />
               ))}

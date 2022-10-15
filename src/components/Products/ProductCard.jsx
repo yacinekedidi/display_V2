@@ -21,13 +21,13 @@ const ProductCard = ({ product, index, user = {} }) => {
 
   const handleClick = () => {
     if (!isFavorite)
-      addProductToUserFavorites(user._id, product._id)
+      addProductToUserFavorites(user._id, product?._id)
         .then((res) => {
           setIsFavorite(true);
         })
         .catch((err) => console.error(err));
     else {
-      removeProductFromUserFavorites(user._id, product._id)
+      removeProductFromUserFavorites(user._id, product?._id)
         .then((res) => {
           setIsFavorite(false);
         })
@@ -37,25 +37,25 @@ const ProductCard = ({ product, index, user = {} }) => {
 
   useEffect(() => {
     setIsFavorite(
-      user?.favorites?.some((favorite) => favorite === product._id)
+      user?.favorites?.some((favorite) => favorite === product?._id)
     );
-  }, [user, product._id]);
+  }, [user, product?._id]);
 
   return (
     <Product
       className="product__card relative flex h-72 w-[200px] select-none justify-end overflow-hidden bg-gray-100 
        text-center text-gray-100"
       index={index + 1}
-      image={product.pics_url ? product.pics_url[0] : ''}
+      image={product?.pics_url ? product?.pics_url?.[0] : ''}
       tabIndex={0}
     >
       <div className="product__card--content">
         <h2 className="product__card--seller capitalize">
-          {product.seller_name}
+          {product?.seller_name}
         </h2>
         <div className="flex gap-2  text-gray-900">
           <div className="rounded-full  p-1 ">
-            <Link to={`/products/${product._id}`} key={product._id}>
+            <Link to={`/products/${product?._id}`} key={product?._id}>
               <FontAwesomeIcon
                 className="cursor-pointer hover:opacity-60"
                 icon={faSearch}
@@ -79,7 +79,7 @@ const ProductCard = ({ product, index, user = {} }) => {
           </div>
         </div>
         <p className="product__card--name hidden capitalize sm:block">
-          {product.title}
+          {product?.title}
         </p>
       </div>
     </Product>
