@@ -4,10 +4,10 @@ import ProductCard from '../Products/ProductCard';
 
 const CategoryMain = ({ products, u }) => {
   const [user, setUser] = useState(null);
-
+  console.log(u);
   useEffect(() => {
-    if (u?.me?.role === 'user')
-      getUser(u?.me?.id)
+    if (u?.role === 'user')
+      getUser(u?.id)
         .then((user) => setUser(user))
         .catch(console.error);
   }, [u]);
