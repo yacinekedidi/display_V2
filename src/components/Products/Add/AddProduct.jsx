@@ -1,13 +1,17 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookie from 'universal-cookie';
+import { useAuth } from '../../../contexts/user-context';
 import { API_ENDPOINTS } from '../../../Utils/constants';
 import BasicInfo from './BasicInfo';
 import Characteristics from './Characteristics';
 import Description from './Description';
+const cookie = new Cookie();
 
 const AddProduct = ({ addingProduct, setIsAddingProduct }) => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [product, setProduct] = useState({
     title: '',
     pics_url: [],
@@ -15,19 +19,26 @@ const AddProduct = ({ addingProduct, setIsAddingProduct }) => {
     descriptions: '',
     tags: [],
     characteristics: {},
-    seller_name: 'humble',
+    seller_name: user?.me?.name,
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsAddingProduct(false);
 
-    // need to be a seller
-    // axios.post('https://pure-plains-38823.herokuapp.com/products', {...product, seller_id: user.me.id});
     axios
-      .post(API_ENDPOINTS.products, {
-        ...product,
-      })
+      .post(
+        API_ENDPOINTS.products,
+        {
+          ...product,
+          seller_id: user?.me?.id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${cookie.get('token')}`,
+          },
+        }
+      )
       .then(() => navigate('/'));
   };
 

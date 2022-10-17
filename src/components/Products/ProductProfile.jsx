@@ -78,6 +78,7 @@ const ProductProfile = () => {
               <HomeProductSection
                 title={key}
                 user={user}
+                u={u?.me}
                 products={
                   { ...productsRelatedCategory, ...productsRelatedSeller }[key]
                 }

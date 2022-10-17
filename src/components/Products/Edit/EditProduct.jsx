@@ -1,6 +1,7 @@
 import { useTheme } from '@mui/material/styles';
 import axios from 'axios';
 import React, { useState } from 'react';
+import Cookie from 'universal-cookie';
 import { useProduct } from '../../../contexts/product-context';
 import { useAuth } from '../../../contexts/user-context';
 import { API_ENDPOINTS } from '../../../Utils/constants';
@@ -8,6 +9,7 @@ import useStyles from '../../../Utils/useStyles';
 import BasicInfo from './BasicInfo';
 import Characteristics from './Characteristics';
 import Description from './Description';
+const cookie = new Cookie();
 
 const EditProduct = ({ isEditing, setIsEditing, productId }) => {
   const theme = useTheme();
@@ -22,17 +24,10 @@ const EditProduct = ({ isEditing, setIsEditing, productId }) => {
 
     const { title, pics_url, category, descriptions, tags, characteristics } =
       changedProduct;
-    // setProduct(changedProduct); //remove
 
-    // ?${user_id}
-    // 631b0a0f5ef3261916329056 humble
-    // 62f796467b251588f339a60c firstone
-    // const URL = `https://pure-plains-38823.herokuapp.com/products/${productId}?seller_id=${
-    //   user?.me?.id || ''
-    // }`;
     axios
       .patch(
-        `${API_ENDPOINTS.products}/${productId}?seller_id=631b0a0f5ef3261916329056`,
+        `${API_ENDPOINTS.products}/${productId}`,
         {
           title,
           pics_url,
@@ -40,6 +35,12 @@ const EditProduct = ({ isEditing, setIsEditing, productId }) => {
           descriptions,
           tags,
           characteristics,
+          seller_id: user?.me?.id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${cookie.get('token')}`,
+          },
         }
       )
       .then((res) => setProduct(changedProduct))

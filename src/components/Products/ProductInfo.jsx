@@ -44,6 +44,8 @@ const ProductInfo = ({
     user?.favorites?.includes(product._id)
   );
 
+  console.log(product);
+
   const handleImageSelect = (idx) => {
     setSelectedImage(idx);
   };
@@ -276,7 +278,7 @@ const ProductInfo = ({
       ) : (
         ''
       )}
-      {u?.role === 'seller' ? (
+      {u?.role === 'seller' && product?.seller_name === u?.name ? (
         <div>
           <div
             className="absolute top-0 right-0  rounded-md 
