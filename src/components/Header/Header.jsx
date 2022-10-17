@@ -9,6 +9,7 @@ import { useAuth } from '../../contexts/user-context';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import NavBar from '../Home/NavBar';
 import ProfileDraw from './ProfileDraw';
+import ProfileDrawSeller from './ProfileDrawSeller';
 import SearchInput from './Search/SearchInput';
 
 const Header = () => {
@@ -110,13 +111,20 @@ const Header = () => {
                         )} */}
                       </div>
                     )}
-                    {isConnected && profileIsOpen && (
-                      <ProfileDraw
-                        // unreadMessages={unreadMessages}
-                        profileIsOpen={profileIsOpen}
-                        showProfileDraw={showProfileDraw}
-                      />
-                    )}
+                    {isConnected &&
+                      profileIsOpen &&
+                      (user?.me?.role === 'user' ? (
+                        <ProfileDraw
+                          // unreadMessages={unreadMessages}
+                          profileIsOpen={profileIsOpen}
+                          showProfileDraw={showProfileDraw}
+                        />
+                      ) : (
+                        <ProfileDrawSeller
+                          profileIsOpen={profileIsOpen}
+                          showProfileDraw={showProfileDraw}
+                        />
+                      ))}
                   </button>
                 </div>
               </div>

@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { API_ENDPOINTS } from '../Utils/constants';
 
-const getUserAndProduct = async (productId, uid) => {
+const getUserAndProduct = async (productId, u) => {
   const gendpoints = [
-    `${API_ENDPOINTS.products}/${productId}?visit=true&userId=${uid}`,
+    `${API_ENDPOINTS.products}/${productId}?visit=true&userId=${u?.id}`,
   ];
 
-  if (uid) gendpoints.push(`${API_ENDPOINTS.users}/${uid}`);
+  if (u?.id && u?.role === 'user')
+    gendpoints.push(`${API_ENDPOINTS.users}/${u?.id}`);
   const res = await Promise.all(
     gendpoints.map((endpoint) => axios.get(endpoint))
   );

@@ -1,13 +1,18 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { useAuth } from '../../contexts/user-context';
 import ScrollToTop from '../../Utils/ScrollToTop';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import Seller from '../Sellers/Seller';
 import ProfileHome from './ProfileHome';
 
 const Profile = () => {
   const { pathname } = useLocation();
+  const { user } = useAuth();
   const under =
     pathname.split('/').length > 3 ? pathname.split('/').slice(-1)[0] : null;
+
+  if (user?.me?.role === 'seller') return <Seller />;
 
   return (
     <>

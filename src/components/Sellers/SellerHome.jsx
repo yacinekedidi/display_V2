@@ -12,7 +12,7 @@ sm:flex-row"
       <img
         className="w-32 self-center rounded-sm  shadow-sm shadow-orange-400"
         src={
-          seller.pic_url ||
+          seller.avatarURL ||
           'https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg'
         }
         alt="avatar"

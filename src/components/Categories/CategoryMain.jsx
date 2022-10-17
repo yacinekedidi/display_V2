@@ -1,9 +1,16 @@
-import React from 'react';
-import UseGetUser from '../../hooks/useGetUser';
+import React, { useEffect, useState } from 'react';
+import getUser from '../../apis/getUser';
 import ProductCard from '../Products/ProductCard';
 
 const CategoryMain = ({ products, u }) => {
-  const { user } = UseGetUser(u?.id);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (u?.me?.role === 'user')
+      getUser(u?.me?.id)
+        .then((user) => setUser(user))
+        .catch(console.error);
+  }, [u]);
 
   return (
     <div className="flex w-full flex-col lg:w-[75%]">

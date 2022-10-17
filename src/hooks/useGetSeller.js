@@ -4,7 +4,9 @@ import { getSeller } from '../apis/getSeller';
 export const useGetSeller = (sellername) => {
   const [seller, setSeller] = useState({});
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
+    if (!sellername) return;
     getSeller(sellername)
       .then((seller) => {
         setSeller(seller);

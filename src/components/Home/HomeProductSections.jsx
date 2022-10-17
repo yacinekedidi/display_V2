@@ -16,7 +16,7 @@ const HomeProductSections = () => {
     trendingProducts,
     mostViewedProducts,
     user,
-  } = useGetMultiProductsEndpointsByQueryWithUser(u?.me?.id);
+  } = useGetMultiProductsEndpointsByQueryWithUser(u?.me);
 
   const { recentlyViewedProducts } = useGetUserRecentlyViewedProducts(
     user?.recently_viewed,

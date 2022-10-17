@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import getRelatedCategoryAndSeller from '../apis/getRelatedCategoryAndSeller';
 import getUserAndProduct from '../apis/getUserAndProduct';
 
-const useGetMultiEndpoints = (productId, uid) => {
+const useGetMultiEndpoints = (productId, u) => {
   const [product, setProduct] = useState({});
   const [seller, setSeller] = useState({});
   const [user, setUser] = useState({});
@@ -17,9 +17,9 @@ const useGetMultiEndpoints = (productId, uid) => {
       document.documentElement.scrollTop !== 0) &&
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
-    getUserAndProduct(productId, uid).then((res) => {
+    getUserAndProduct(productId, u).then((res) => {
       setProduct(res[0].data);
-      if (uid) setUser(res[1].data);
+      if (u?.id.length && u?.role === 'user') setUser(res[1].data);
       getRelatedCategoryAndSeller(res).then((response) => {
         setRelatedCategory({
           'Related Products': response[0].data.filter(
@@ -35,7 +35,7 @@ const useGetMultiEndpoints = (productId, uid) => {
         setIsLoading(false);
       });
     });
-  }, [productId, uid]);
+  }, [productId, u]);
 
   return {
     isLoading,

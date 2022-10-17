@@ -14,6 +14,7 @@ import Auth from '../Auth/Auth';
 
 const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
   const { user, logout } = useAuth();
+  // const { user: u, isLoading } = useGetUser(user?.me?.id);
 
   return !Object.keys(user).length ? (
     <>
@@ -48,7 +49,7 @@ const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
           />
         </Link>
         <span className="font-semibold">
-          {getFormattedName(user?.me?.fullName)}
+          {getFormattedName(user?.me?.name)}
         </span>
       </div>
 

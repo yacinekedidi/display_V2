@@ -27,7 +27,7 @@ const ProductProfile = () => {
     user,
     setUser,
     isLoading,
-  } = useGetMultiEndpoints(productId, u?.me?.id);
+  } = useGetMultiEndpoints(productId, u?.me);
 
   if (isLoading)
     return (
