@@ -4,7 +4,6 @@ import ProductCard from '../Products/ProductCard';
 
 const CategoryMain = ({ products, u }) => {
   const [user, setUser] = useState(null);
-  console.log(u);
   useEffect(() => {
     if (u?.role === 'user')
       getUser(u?.id)

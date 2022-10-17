@@ -11,7 +11,6 @@ import SellerHome from './SellerHome';
 const Seller = () => {
   const { pathname } = useLocation();
   const { sellername } = useParams();
-  console.log(sellername);
   const { seller, loading } = useGetSeller(sellername);
 
   const under =

@@ -14,7 +14,6 @@ const PostSignupOrLogin = async (form, mode) => {
   } = form;
 
   const role = mode === 'signupSeller' ? 'seller' : 'user';
-  console.log(role);
   const res = await axios.post(`${API_ENDPOINTS.auth}/${mode}`, {
     username,
     password,

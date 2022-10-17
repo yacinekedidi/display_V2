@@ -5,7 +5,7 @@ import {
   faDollarSign,
   faHeart,
   faLocationDot,
-  faTag,
+  faTag
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -44,7 +44,6 @@ const ProductInfo = ({
     user?.favorites?.includes(product._id)
   );
 
-  console.log(product);
 
   const handleImageSelect = (idx) => {
     setSelectedImage(idx);

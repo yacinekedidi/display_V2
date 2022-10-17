@@ -77,7 +77,6 @@ const BasicInfo = ({ product, setProduct, setIsAddingProduct }) => {
     let idx;
     setProduct((prev) => {
       idx = prev.pics_url.length - 2 > 0 ? prev.pics_url.length - 2 : 0;
-      console.log(idx);
       return {
         ...prev,
         pics_url: prev.pics_url.filter((pic_url) => pic_url !== url),
