@@ -18,7 +18,7 @@ import ProductCard from './ProductCard';
 const ProductsList = () => {
   const { customStyles, options } = useUtils();
   const {
-    state: { user },
+    state: { user, u },
   } = useLocation();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -32,7 +32,7 @@ const ProductsList = () => {
       value: e.value,
       label: e.value,
     });
-    setSearchParams({ sort: e.value }, { state: { user } });
+    setSearchParams({ sort: e.value }, { state: { user, u } });
   };
 
   if (isLoading)
@@ -61,23 +61,24 @@ const ProductsList = () => {
                   onChange={handleQuery}
                 />
               </div>
-              <div>
-                <Tooltip title="Add product">
-                  <button
-                    className="rounded-md 
-                p-0.5 font-cairo font-extrabold  hover:opacity-80"
-                    style={{ color: 'rgb(26,21,21)' }}
-                    onClick={() => {
-                      setIsAddingProduct(true);
-                    }}
-                  >
-                    <AddCircleOutlineIcon
-                      className="text-white hover:text-orange-600"
-                      fontSize="large"
-                    />
-                  </button>
-                </Tooltip>
-              </div>
+              {['seller', 'admin'].includes(u?.role) ? (
+                <div>
+                  <Tooltip title="Add product">
+                    <button
+                      className="rounded-md p-0.5 font-cairo font-extrabold  hover:opacity-80"
+                      style={{ color: 'rgb(26,21,21)' }}
+                      onClick={() => {
+                        setIsAddingProduct(true);
+                      }}
+                    >
+                      <AddCircleOutlineIcon
+                        className="text-white hover:text-orange-600"
+                        fontSize="large"
+                      />
+                    </button>
+                  </Tooltip>
+                </div>
+              ) : null}
             </div>
 
             <div
@@ -95,6 +96,7 @@ const ProductsList = () => {
                     return (
                       <ProductCard
                         product={item}
+                        u={u}
                         user={user}
                         key={item._id}
                         itemId={item._id}

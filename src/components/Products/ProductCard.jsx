@@ -16,7 +16,7 @@ const Product = styled.div`
   }
 `;
 
-const ProductCard = ({ product, index, user = {} }) => {
+const ProductCard = ({ product, index, user = {}, u }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleClick = () => {
@@ -65,18 +65,23 @@ const ProductCard = ({ product, index, user = {} }) => {
             </Link>
           </div>
 
-          <div className="rounded-full p-1">
-            <FontAwesomeIcon
-              className={`cursor-pointer ${
-                isFavorite
-                  ? 'text-red-500 hover:text-white'
-                  : 'text-white hover:text-red-500'
-              }`}
-              icon={faHeart}
-              size="lg"
-              onClick={handleClick}
-            />
-          </div>
+          {!['seller', 'admin'].includes(u?.role) ? (
+            <div className="rounded-full p-1">
+              <FontAwesomeIcon
+                className={`cursor-pointer ${
+                  isFavorite
+                    ? 'text-red-500 hover:text-white'
+                    : 'text-white hover:text-red-500'
+                }`}
+                icon={faHeart}
+                size="lg"
+                onClick={() => {
+                  //useShowLoginModal if not logged in
+                  u?.role && handleClick();
+                }}
+              />
+            </div>
+          ) : null}
         </div>
         <p className="product__card--name hidden capitalize sm:block">
           {product?.title}

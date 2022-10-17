@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import deleteUserFavorite from '../../apis/deleteUserFavorite';
+import { useAuth } from '../../contexts/user-context';
 import useGetUserFavoriteProducts from '../../hooks/useGetUserFavoriteProducts';
 import useGetUserFavorites from '../../hooks/useGetUserFavorites';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
@@ -10,6 +11,7 @@ import ModalOverlay from '../../Utils/ModalOverlay';
 
 const Favorites = () => {
   const { pathname } = useLocation();
+  const { user } = useAuth();
   const { username } = useParams();
   const { favorites } = useGetUserFavorites(pathname, username);
   const { products, setProducts, isLoading } =
@@ -42,14 +44,16 @@ const Favorites = () => {
             className=" relative flex flex-col items-center p-6"
             key={product._id}
           >
-            <div className="absolute left-0 top-10 cursor-pointer ">
-              <FontAwesomeIcon
-                className={`text-red-600 hover:text-white`}
-                onClick={() => handleClick(product._id)}
-                icon={faHeart}
-                size="lg"
-              />
-            </div>
+            {user?.me?.role === 'user' ? (
+              <div className="absolute left-0 top-10 cursor-pointer ">
+                <FontAwesomeIcon
+                  className={`text-red-600 hover:text-white`}
+                  onClick={() => handleClick(product._id)}
+                  icon={faHeart}
+                  size="lg"
+                />
+              </div>
+            ) : null}
             <div className="p-2"></div>
             <Link to={`/products/${product._id}`} key={product._id}>
               <div className="p-2">
@@ -63,12 +67,14 @@ const Favorites = () => {
               </div>
             </Link>
             <div className="p-4"></div>
-            <div
-              className="text-md absolute bottom-0  flex w-[95%] justify-center rounded-md
+            {user?.me?.role === 'user' ? (
+              <div
+                className="text-md absolute bottom-0  flex w-[95%] justify-center rounded-md
                         bg-orange-400 py-1 font-cairo hover:opacity-80"
-            >
-              <button className="text-white">Request price options</button>
-            </div>
+              >
+                <button className="text-white">Request price options</button>
+              </div>
+            ) : null}
           </div>
         ))}
       </div>

@@ -2,8 +2,8 @@ import React from 'react';
 import UseGetUser from '../../hooks/useGetUser';
 import ProductCard from '../Products/ProductCard';
 
-const CategoryMain = ({ products, uid }) => {
-  const { user } = UseGetUser(uid);
+const CategoryMain = ({ products, u }) => {
+  const { user } = UseGetUser(u?.id);
 
   return (
     <div className="flex w-full flex-col lg:w-[75%]">
@@ -17,6 +17,7 @@ const CategoryMain = ({ products, uid }) => {
             {products?.map((product, index) => (
               <ProductCard
                 product={product}
+                u={u}
                 user={user}
                 key={product._id}
                 index={index}

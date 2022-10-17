@@ -41,7 +41,7 @@ const Category = () => {
             setSelectedSellers={setSelectedSellers}
             productTags={products.map((product) => product.tags)}
           />
-          <CategoryMain products={products} uid={user?.me?.id} />
+          <CategoryMain products={products} u={user?.me} />
         </div>
       </div>
       <Footer />

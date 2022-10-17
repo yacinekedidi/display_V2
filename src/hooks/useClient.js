@@ -34,6 +34,7 @@ const initChat = async () => {
       },
       authToken
     );
+
     return currentUser;
   } catch (err) {
     throw new Error(err);

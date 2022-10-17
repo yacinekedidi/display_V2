@@ -55,6 +55,7 @@ const ProductProfile = () => {
                 <ProductInfo
                   seller={seller}
                   user={user}
+                  u={u?.me}
                   setUser={setUser}
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}

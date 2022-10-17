@@ -55,6 +55,7 @@ const HomeProductSections = () => {
               }[key]
             }
             user={user}
+            u={u?.me}
             key={uuidv4()}
           />
         ))}

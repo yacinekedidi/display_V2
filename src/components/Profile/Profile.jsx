@@ -6,9 +6,9 @@ import ProfileHome from './ProfileHome';
 
 const Profile = () => {
   const { pathname } = useLocation();
-
   const under =
     pathname.split('/').length > 3 ? pathname.split('/').slice(-1)[0] : null;
+
   return (
     <>
       <Header className="max-w-7xl" sticky={true} />

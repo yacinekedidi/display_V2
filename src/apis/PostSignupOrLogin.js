@@ -2,15 +2,29 @@ import axios from 'axios';
 import { API_ENDPOINTS } from '../Utils/constants';
 
 const PostSignupOrLogin = async (form, mode) => {
-  const { username, password, phoneNumber, avatarURL, email, fullName } = form;
+  const {
+    username,
+    password,
+    phoneNumber,
+    avatarURL,
+    email,
+    fullName,
+    website,
+    country: seller_country,
+  } = form;
 
+  const role = mode === 'signupSeller' ? 'seller' : 'user';
+  console.log(role);
   const res = await axios.post(`${API_ENDPOINTS.auth}/${mode}`, {
     username,
     password,
-    email,
-    fullName,
     phoneNumber,
     avatarURL,
+    email,
+    fullName,
+    website,
+    seller_country,
+    role,
   });
   return res.data;
 };

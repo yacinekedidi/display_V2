@@ -28,6 +28,7 @@ import FormRequest from './FormRequest';
 const ProductInfo = ({
   seller,
   user = {},
+  u,
   setUser,
   isEditing,
   setIsEditing,
@@ -125,21 +126,29 @@ const ProductInfo = ({
               />
             ))}
         </div>
-        <div className="self-center">
-          {/* this will not appear for sellers */}
-          <div className="flex cursor-pointer items-center gap-2 hover:underline hover:opacity-60">
-            <FontAwesomeIcon className="text-red-600" icon={faHeart} />
-            <p
-              className="text-sm font-thin"
-              onClick={() => handleClickFavorite(isFavorite)}
-            >
-              {' '}
-              {!isFavorite
-                ? 'add to your favorites'
-                : 'remove from  your favorites'}{' '}
-            </p>
+        {!['seller', 'admin'].includes(u?.role) ? (
+          <div className="self-center">
+            {/* this will not appear for sellers */}
+            <div className="flex cursor-pointer items-center gap-2 hover:underline hover:opacity-60">
+              <FontAwesomeIcon className="text-red-600" icon={faHeart} />
+              <p
+                className="text-sm font-thin"
+                onClick={() =>
+                  //useShowLoginModal if not logged in
+
+                  u?.role === 'user' && handleClickFavorite(isFavorite)
+                }
+              >
+                {' '}
+                {!isFavorite
+                  ? 'add to your favorites'
+                  : 'remove from  your favorites'}{' '}
+              </p>
+            </div>
           </div>
-        </div>
+        ) : (
+          ''
+        )}
       </div>
       <div className="flex flex-1 flex-col gap-8">
         <div className="text-3xl md:w-full">
@@ -224,24 +233,34 @@ const ProductInfo = ({
             </p>
           </div>
         </div>{' '}
-        <div className="self-center">
-          <div className="flex flex-col gap-2 text-lg">
-            <button
-              className="space-x-1 border-2 bg-transparent p-2 font-sans font-bold tracking-wide text-gray-900 hover:bg-gray-900 hover:text-white"
-              onClick={handleFormModal}
-            >
-              <FontAwesomeIcon icon={faDollarSign} />{' '}
-              <span>Request price options</span>
-            </button>
-            <button
-              className="space-x-1 whitespace-nowrap border-2 p-2 font-sans font-bold tracking-wide  text-gray-900 hover:bg-gray-900 hover:text-white"
-              onClick={handleFormModal}
-            >
-              <FontAwesomeIcon icon={faCalculator} />{' '}
-              <span>Request a personalized quote</span>
-            </button>
+        {!['seller', 'admin'].includes(u?.role) ? (
+          <div className="self-center">
+            <div className="flex flex-col gap-2 text-lg">
+              <button
+                className="space-x-1 border-2 bg-transparent p-2 font-sans font-bold tracking-wide text-gray-900 hover:bg-gray-900 hover:text-white"
+                onClick={() => {
+                  //useShowLoginModal if not loggedin
+                  u?.role === 'user' && handleFormModal();
+                }}
+              >
+                <FontAwesomeIcon icon={faDollarSign} />{' '}
+                <span>Request price options</span>
+              </button>
+              <button
+                className="space-x-1 whitespace-nowrap border-2 p-2 font-sans font-bold tracking-wide  text-gray-900 hover:bg-gray-900 hover:text-white"
+                onClick={() => {
+                  //useShowLoginModal if not loggedin
+                  u?.role === 'user' && handleFormModal();
+                }}
+              >
+                <FontAwesomeIcon icon={faCalculator} />{' '}
+                <span>Request a personalized quote</span>
+              </button>
+            </div>
           </div>
-        </div>
+        ) : (
+          ''
+        )}
       </div>
 
       {modalIsOpen ? (
@@ -257,36 +276,40 @@ const ProductInfo = ({
       ) : (
         ''
       )}
-      <div>
-        <div
-          className="absolute top-0 right-0  rounded-md 
-          p-0.5 font-cairo font-extrabold "
-          style={{ color: 'rgb(26,21,21)' }}
-        >
-          <Tooltip title="Delete">
-            <button onClick={handleClick}>
-              <DeleteOutlineIcon
-                className="hover:text-orange-600"
-                fontSize="large"
-              />
-            </button>
-          </Tooltip>
+      {u?.role === 'seller' ? (
+        <div>
+          <div
+            className="absolute top-0 right-0  rounded-md 
+                        p-0.5 font-cairo font-extrabold "
+            style={{ color: 'rgb(26,21,21)' }}
+          >
+            <Tooltip title="Delete">
+              <button onClick={handleClick}>
+                <DeleteOutlineIcon
+                  className="hover:text-orange-600"
+                  fontSize="large"
+                />
+              </button>
+            </Tooltip>
 
-          <Tooltip title="Edit">
-            <button
-              onClick={() => {
-                setIsEditing((prev) => !prev);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-            >
-              <EditOutlinedIcon
-                className="hover:text-orange-600"
-                fontSize="large"
-              />
-            </button>
-          </Tooltip>
+            <Tooltip title="Edit">
+              <button
+                onClick={() => {
+                  setIsEditing((prev) => !prev);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                <EditOutlinedIcon
+                  className="hover:text-orange-600"
+                  fontSize="large"
+                />
+              </button>
+            </Tooltip>
+          </div>
         </div>
-      </div>
+      ) : (
+        ''
+      )}
       {isFormOpen ? (
         <ModalOverlay IsOpen={isFormOpen} setIsOpen={handleFormModal}>
           <FormRequest

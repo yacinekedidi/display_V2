@@ -6,7 +6,7 @@ import useUtils from '../../Utils/useUtils';
 import ProductCard from '../Products/ProductCard';
 import './HomeExplore.css';
 
-const HomeProductSection = ({ title, products, user, noLinks = false }) => {
+const HomeProductSection = ({ title, products, user, u, noLinks = false }) => {
   const elContainer = useRef();
   const { SORT, TITLES } = useUtils();
 
@@ -31,7 +31,7 @@ const HomeProductSection = ({ title, products, user, noLinks = false }) => {
                 {noLinks ? (
                   TITLES[title]
                 ) : title !== 'Recently Viewed Products' ? (
-                  <Link to={`products?sort=${SORT[title]}`} state={{ user }}>
+                  <Link to={`products?sort=${SORT[title]}`} state={{ user, u }}>
                     {TITLES[title]}
                   </Link>
                 ) : (
@@ -44,7 +44,7 @@ const HomeProductSection = ({ title, products, user, noLinks = false }) => {
             ''
           ) : title !== 'Recently Viewed Products' ? (
             <>
-              <Link to={`products?sort=${SORT[title]}`} state={{ user }}>
+              <Link to={`products?sort=${SORT[title]}`} state={{ user, u }}>
                 <button
                   className="rounded-sm bg-transparent px-4 py-1 font-cairo text-orange-200 shadow-sm 
                       shadow-orange-200 hover:opacity-80"
@@ -89,6 +89,7 @@ const HomeProductSection = ({ title, products, user, noLinks = false }) => {
                 <ProductCard
                   product={product}
                   user={user}
+                  u={u}
                   key={product?._id || uuidv4()}
                   index={index}
                 />

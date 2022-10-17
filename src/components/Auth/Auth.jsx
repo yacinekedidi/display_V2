@@ -6,14 +6,7 @@ import RegisterSeller from './FormContents/RegisterSellerFormContents';
 import RegisterUser from './FormContents/RegisterUserFormContents';
 
 const Auth = ({ showProfileDraw }) => {
-  const [form, setForm] = useState({
-    fullName: '',
-    username: '',
-    password: '',
-    confirmPassword: '',
-    phoneNumber: '',
-    avatarURL: '',
-  });
+  const [form, setForm] = useState({});
   const [mode, setMode] = useState('login');
 
   const handleChange = (e) => {
@@ -31,7 +24,7 @@ const Auth = ({ showProfileDraw }) => {
 
   const switchMode = (newMode = '') => {
     if (newMode.length) {
-      setMode('sellerSignup');
+      setMode('signupSeller');
     } else setMode(mode === 'signup' ? 'login' : 'signup');
   };
 
@@ -41,9 +34,9 @@ const Auth = ({ showProfileDraw }) => {
         <div className="auth__form-container_fields-content">
           {mode === 'signup' && <p>Sign Up</p>}
           {mode === 'login' && <p>Sign In</p>}
-          {mode === 'sellerSignup' && <p>Sign Up as Seller</p>}
+          {mode === 'signupSeller' && <p>Sign Up as Seller</p>}
           <form onSubmit={handleSubmit} className="grid grid-cols-2">
-            {mode === 'sellerSignup' && (
+            {mode === 'signupSeller' && (
               <RegisterSeller handleChange={handleChange} />
             )}
             {mode === 'signup' && <RegisterUser handleChange={handleChange} />}
@@ -62,8 +55,8 @@ const Auth = ({ showProfileDraw }) => {
                 {mode === 'signup' ? 'login' : 'signup'}
               </span>
             </p>
-            {mode !== 'sellerSignup' && (
-              <span onClick={() => switchMode('sellerSignup')}>
+            {mode !== 'signupSeller' && (
+              <span onClick={() => switchMode('signupSeller')}>
                 Sign Up as a seller
               </span>
             )}
