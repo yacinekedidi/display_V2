@@ -38,16 +38,19 @@ const SellerProducts = () => {
                 className="group relative flex flex-col items-center p-6"
                 key={product._id}
               >
-                <div className="absolute -right-4 top-4 cursor-pointer hover:opacity-80">
-                  <Tooltip title="Delete">
-                    <button onClick={() => handleClick(product._id)}>
-                      <DeleteOutlineIcon
-                        className="text-orange-200 hover:text-orange-600"
-                        fontSize="large"
-                      />
-                    </button>
-                  </Tooltip>
-                </div>
+                {['seller', 'admin'].includes(u?.me?.role) &&
+                seller.name === u?.me?.name ? (
+                  <div className="absolute -right-4 top-4 cursor-pointer hover:opacity-80">
+                    <Tooltip title="Delete">
+                      <button onClick={() => handleClick(product._id)}>
+                        <DeleteOutlineIcon
+                          className="text-orange-200 hover:text-orange-600"
+                          fontSize="large"
+                        />
+                      </button>
+                    </Tooltip>
+                  </div>
+                ) : null}
                 <div className="p-2"></div>
                 <Link to={`/products/${product._id}`} key={product._id}>
                   <div className=" p-2">
@@ -66,7 +69,8 @@ const SellerProducts = () => {
         </div>
       )}
 
-      {['seller', 'admin'].includes(u?.me?.role) ? (
+      {['seller', 'admin'].includes(u?.me?.role) &&
+      seller.name === u?.me?.name ? (
         <div>
           {!addingProduct ? (
             <Tooltip title="Add product">
