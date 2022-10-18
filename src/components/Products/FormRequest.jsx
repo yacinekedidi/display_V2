@@ -5,6 +5,7 @@ import {
   FormGroup,
   TextareaAutosize,
 } from '@mui/material';
+import moment from 'moment';
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useSendEmailToSeller } from '../../hooks/useSendEmailToSeller';
@@ -18,7 +19,7 @@ const FormRequest = ({ product, seller, user, handleFormModal }) => {
   const [data, setData] = useState({});
   const { isSent } = useSendEmailToUser(data);
   const template_params = {
-    to_email: 'hdanimeclips11@gmail.com', //seller email
+    to_email: seller.email, //seller email
     to_name: seller.name,
     product_name: product.title,
     user_name: user.fullName,
@@ -29,14 +30,13 @@ const FormRequest = ({ product, seller, user, handleFormModal }) => {
     recieve_call: telChecked
       ? `✅ receive a phone call - ${user.phone_number}`
       : '❌ receive telephone call',
+    date_time: moment().format('MMMM Do YYYY, h:mm:ss a'),
   };
   useSendEmailToSeller(isSent, template_params, product._id, user._id);
 
   const handleChange = (e) => {
     setTextArea(e.target.value);
   };
-
-  // we need to also send an email to the seller
 
   const handleSubmit = (e) => {
     e.preventDefault();

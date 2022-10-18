@@ -22,7 +22,7 @@ const Requests = () => {
     <>
       <div className="py-4"></div>
       <div className="h-full w-full max-w-7xl p-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:grid-cols-4">
           {requestedProducts.map((reqProd, idx) => (
             <RequestCard
               key={idx}

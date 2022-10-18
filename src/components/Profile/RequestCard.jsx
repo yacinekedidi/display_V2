@@ -8,16 +8,14 @@ import { Link } from 'react-router-dom';
 const RequestCard = ({ product, requests }) => {
   return requests.map((request, idx) => (
     <div className="flex flex-col" key={request.id}>
-      {/* <div className="py-2 text-center font-sans text-sm  text-orange-200 opacity-90">
-        Requested product at 05/05/2022
-      </div> */}
-      <div className="px-2 pb-4 text-center font-sans text-orange-200 shadow-sm shadow-orange-200">
+      <div className="px-2 pb-4 text-center font-sans text-orange-200 shadow-sm shadow-black">
         <div className="flex w-full items-center justify-end py-1 text-sm text-orange-200">
           <button className="transition hover:text-orange-600">
             <Link
               to={`/requests/${product.title.split(' ').join('-')}/${
                 request.id
               }`}
+              state={{ product, request }}
             >
               <Tooltip title="Request detail">
                 <InfoIcon className="rounded-full" fontSize="small" />
@@ -58,6 +56,9 @@ const RequestCard = ({ product, requests }) => {
             ))}
           </div>
         </div>
+      </div>
+      <div className="py-2 text-center font-sans text-xs  text-orange-200 opacity-90">
+        {request?.data?.date_time}
       </div>
     </div>
   ));
