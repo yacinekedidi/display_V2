@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Cookie from 'universal-cookie';
 import { useProduct } from '../../../contexts/product-context';
 import { useAuth } from '../../../contexts/user-context';
-import { API_ENDPOINTS } from '../../../Utils/constants';
+import { API_ENDPOINTS, headers } from '../../../Utils/constants';
 import useStyles from '../../../Utils/useStyles';
 import BasicInfo from './BasicInfo';
 import Characteristics from './Characteristics';
@@ -37,11 +37,7 @@ const EditProduct = ({ isEditing, setIsEditing, productId }) => {
           characteristics,
           seller_id: user?.me?.id,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${cookie.get('token')}`,
-          },
-        }
+        headers
       )
       .then((res) => setProduct(changedProduct))
       .catch((err) => console.error(err.message));

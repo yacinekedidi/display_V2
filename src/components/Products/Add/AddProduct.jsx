@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookie from 'universal-cookie';
 import { useAuth } from '../../../contexts/user-context';
-import { API_ENDPOINTS } from '../../../Utils/constants';
+import { API_ENDPOINTS, headers } from '../../../Utils/constants';
 import BasicInfo from './BasicInfo';
 import Characteristics from './Characteristics';
 import Description from './Description';
@@ -33,11 +33,7 @@ const AddProduct = ({ addingProduct, setIsAddingProduct }) => {
           ...product,
           seller_id: user?.me?.id,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${cookie.get('token')}`,
-          },
-        }
+        headers
       )
       .then(() => navigate('/'));
   };
