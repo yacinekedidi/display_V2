@@ -69,26 +69,30 @@ const ProductProfile = () => {
           </ProductProvider>
 
           <div className="py-4"></div>
-          <div
-            className="p-2 shadow-md shadow-gray-900"
-            style={{ backgroundColor: '#231f20' }}
-          >
-            {Object.keys({
-              ...productsRelatedCategory,
-              ...productsRelatedSeller,
-            }).map((key) => (
-              <HomeProductSection
-                title={key}
-                user={user}
-                u={u?.me}
-                products={
-                  { ...productsRelatedCategory, ...productsRelatedSeller }[key]
-                }
-                key={uuidv4()}
-                noLinks={true}
-              />
-            ))}
-          </div>
+          {!isEditing ? (
+            <div
+              className="p-2 shadow-md shadow-gray-900"
+              style={{ backgroundColor: '#231f20' }}
+            >
+              {Object.keys({
+                ...productsRelatedCategory,
+                ...productsRelatedSeller,
+              }).map((key) => (
+                <HomeProductSection
+                  title={key}
+                  user={user}
+                  u={u?.me}
+                  products={
+                    { ...productsRelatedCategory, ...productsRelatedSeller }[
+                      key
+                    ]
+                  }
+                  key={uuidv4()}
+                  noLinks={true}
+                />
+              ))}
+            </div>
+          ) : null}
           <ScrollToTop />
         </div>
       </div>
