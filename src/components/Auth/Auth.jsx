@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PostSignupOrLogin from '../../apis/PostSignupOrLogin';
+import SignUp from '../../assets/signUp.avif';
+import SignIn from '../../assets/singnIn.avif';
 import saveUserCookies from '../../Utils/saveUserCookies';
 import Login from './FormContents/LoginContents';
 import RegisterSeller from './FormContents/RegisterSellerFormContents';
@@ -64,14 +66,7 @@ const Auth = ({ showProfileDraw }) => {
         </div>
       </div>
       <div className="auth__form-container_image">
-        <img
-          src={
-            mode === 'signup'
-              ? 'https://images.unsplash.com/photo-1547887537-6158d64c35b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'
-              : 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1376&q=80'
-          }
-          alt=""
-        />
+        <img src={mode === 'signup' ? SignUp : SignIn} alt="" />
       </div>
     </div>
   );
