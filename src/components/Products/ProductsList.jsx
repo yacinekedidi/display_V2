@@ -12,14 +12,16 @@ import ScrollToTop from '../../Utils/ScrollToTop';
 import useUtils from '../../Utils/useUtils';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import WithToggle from '../HOC/WithToggle';
 import AddProduct from './Add/AddProduct';
 import ProductCard from './ProductCard';
 
-const ProductsList = () => {
+const ProductsList = ({ toggle, isVisible }) => {
   const { customStyles, options } = useUtils();
   const {
     state: { user, u },
   } = useLocation();
+  console.log(isVisible);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [addingProduct, setIsAddingProduct] = useState(false);

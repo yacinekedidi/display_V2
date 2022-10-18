@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import getUser from '../../apis/getUser';
+import WithToggle from '../HOC/WithToggle';
 import ProductCard from '../Products/ProductCard';
 
 const CategoryMain = ({ products, u }) => {
   const [user, setUser] = useState(null);
+  const ProductCardWithToggle = WithToggle(ProductCard);
+
   useEffect(() => {
     if (u?.role === 'user')
       getUser(u?.id)
@@ -21,7 +24,7 @@ const CategoryMain = ({ products, u }) => {
         {products.length ? (
           <div className="grid w-full grid-cols-1 justify-items-center gap-8 sm:grid-cols-3 lg:grid-cols-4">
             {products?.map((product, index) => (
-              <ProductCard
+              <ProductCardWithToggle
                 product={product}
                 u={u}
                 user={user}

@@ -9,6 +9,7 @@ import ModalOverlay from '../../Utils/ModalOverlay';
 import ScrollToTop from '../../Utils/ScrollToTop';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import WithToggle from '../HOC/WithToggle';
 import HomeProductSection from '../Home/HomeProductSection';
 import EditProduct from './Edit/EditProduct';
 import ProductInfo from './ProductInfo';
@@ -28,6 +29,7 @@ const ProductProfile = () => {
     setUser,
     isLoading,
   } = useGetMultiEndpoints(productId, u?.me);
+  const ProductInfoWithToggle = WithToggle(ProductInfo);
 
   if (isLoading)
     return (
@@ -52,7 +54,7 @@ const ProductProfile = () => {
                 className="p-2 shadow-md shadow-gray-900"
                 style={{ backgroundColor: '#231f20' }}
               >
-                <ProductInfo
+                <ProductInfoWithToggle
                   seller={seller}
                   user={user}
                   u={u?.me}

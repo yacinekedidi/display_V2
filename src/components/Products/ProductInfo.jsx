@@ -5,7 +5,7 @@ import {
   faDollarSign,
   faHeart,
   faLocationDot,
-  faTag
+  faTag,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -23,6 +23,7 @@ import { countries } from '../../mockdata/productImages';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import useUtils from '../../Utils/useUtils';
 import ZoomImage from '../../Utils/ZoomImage';
+import ProfileDraw from '../Header/ProfileDraw';
 import FormRequest from './FormRequest';
 
 const ProductInfo = ({
@@ -33,6 +34,8 @@ const ProductInfo = ({
   isEditing,
   setIsEditing,
   productId,
+  toggle,
+  isVisible,
 }) => {
   const { REVIEW_PARTICIPANTS, RESPONSE_TIME } = useUtils();
   const { product } = useProduct();
@@ -43,7 +46,6 @@ const ProductInfo = ({
   const [isFavorite, setIsFavorite] = useState(
     user?.favorites?.includes(product._id)
   );
-
 
   const handleImageSelect = (idx) => {
     setSelectedImage(idx);
@@ -134,11 +136,10 @@ const ProductInfo = ({
               <FontAwesomeIcon className="text-red-600" icon={faHeart} />
               <p
                 className="text-sm font-thin"
-                onClick={() =>
-                  //useShowLoginModal if not logged in
-
-                  u?.role === 'user' && handleClickFavorite(isFavorite)
-                }
+                onClick={() => {
+                  u === undefined && toggle();
+                  u?.role === 'user' && handleClickFavorite(isFavorite);
+                }}
               >
                 {' '}
                 {!isFavorite
@@ -240,7 +241,7 @@ const ProductInfo = ({
               <button
                 className="space-x-1 border-2 bg-transparent p-2 font-sans font-bold tracking-wide text-gray-900 hover:bg-gray-900 hover:text-white"
                 onClick={() => {
-                  //useShowLoginModal if not loggedin
+                  u === undefined && toggle();
                   u?.role === 'user' && handleFormModal();
                 }}
               >
@@ -250,7 +251,7 @@ const ProductInfo = ({
               <button
                 className="space-x-1 whitespace-nowrap border-2 p-2 font-sans font-bold tracking-wide  text-gray-900 hover:bg-gray-900 hover:text-white"
                 onClick={() => {
-                  //useShowLoginModal if not loggedin
+                  u === undefined && toggle();
                   u?.role === 'user' && handleFormModal();
                 }}
               >
@@ -320,9 +321,12 @@ const ProductInfo = ({
             seller={seller}
           />
         </ModalOverlay>
-      ) : (
-        ''
-      )}
+      ) : null}
+      {isVisible ? (
+        <ModalOverlay IsOpen={isVisible} setIsOpen={toggle}>
+          <ProfileDraw profileIsOpen={isVisible} showProfileDraw={toggle} />
+        </ModalOverlay>
+      ) : null}
     </div>
   );
 };

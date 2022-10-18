@@ -3,12 +3,14 @@ import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import useUtils from '../../Utils/useUtils';
+import WithToggle from '../HOC/WithToggle';
 import ProductCard from '../Products/ProductCard';
 import './HomeExplore.css';
 
 const HomeProductSection = ({ title, products, user, u, noLinks = false }) => {
   const elContainer = useRef();
   const { SORT, TITLES } = useUtils();
+  const ProductCardWithToggle = WithToggle(ProductCard);
 
   const HandleScrollLeft = () => {
     if (elContainer.current.scrollLeft) elContainer.current.scrollLeft -= 290;
@@ -86,7 +88,7 @@ const HomeProductSection = ({ title, products, user, u, noLinks = false }) => {
             {/*mx-auto*/}
             <div className=" flex flex-nowrap items-center gap-x-1 md:gap-x-4">
               {products?.map((product, index) => (
-                <ProductCard
+                <ProductCardWithToggle
                   product={product}
                   user={user}
                   u={u}

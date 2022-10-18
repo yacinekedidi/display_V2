@@ -29,7 +29,7 @@ const SideBar = ({ client }) => {
           bg-black px-2 text-center font-sans text-sm font-thin text-white opacity-60 transition-all 
          peer-hover:visible"
           >
-            {client.user?.fullName}
+            {client.user?.name}
           </div>
         </div>
       </div>

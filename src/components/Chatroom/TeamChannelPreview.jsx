@@ -1,5 +1,5 @@
-import React from "react";
-import { Avatar, useChatContext } from "stream-chat-react";
+import React from 'react';
+import { Avatar, useChatContext } from 'stream-chat-react';
 
 const TeamChannelPreview = ({
   setActiveChannel,
@@ -26,10 +26,10 @@ const TeamChannelPreview = ({
       <div className="channel-preview__item single">
         <Avatar
           image={members[0]?.user?.image}
-          name={members[0]?.user?.fullName || members[0]?.user?.id}
+          name={members[0]?.user?.name || members[0]?.user?.id}
           size={24}
         />
-        <p>{members[0]?.user?.fullName || members[0]?.user?.id}</p>
+        <p>{members[0]?.user?.name || members[0]?.user?.id}</p>
       </div>
     );
   };
@@ -38,8 +38,8 @@ const TeamChannelPreview = ({
     <div
       className={
         channel?.id === activeChannel?.id
-          ? "channel-preview__wrapper__selected"
-          : "channel-preview__wrapper"
+          ? 'channel-preview__wrapper__selected'
+          : 'channel-preview__wrapper'
       }
       onClick={() => {
         setIsCreating(false);
@@ -50,7 +50,7 @@ const TeamChannelPreview = ({
         }
       }}
     >
-      {type === "team" ? <ChannelPreview /> : <DirectPreview />}
+      {type === 'team' ? <ChannelPreview /> : <DirectPreview />}
     </div>
   );
 };
