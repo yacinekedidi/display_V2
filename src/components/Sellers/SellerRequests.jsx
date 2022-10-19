@@ -12,8 +12,9 @@ const SellerRequests = () => {
   if (loading) return <LoadingSpinner />;
   return (
     <div
-      className="static top-0 flex w-full max-w-7xl flex-col  justify-center gap-y-4 bg-transparent p-4 shadow-sm
-    shadow-black lg:absolute"
+      className="flex w-full max-w-7xl flex-col  justify-center gap-y-4 bg-transparent p-4 shadow-sm
+    shadow-black"
+      style={{ backgroundColor: '#231f20' }}
     >
       {requestedProds.map((reqProd, idx) => (
         <div key={idx} className="flex w-full gap-4 backdrop-blur-md">

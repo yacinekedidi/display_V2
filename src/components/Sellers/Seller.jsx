@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { useAuth } from '../../contexts/user-context';
 import { useGetSeller } from '../../hooks/useGetSeller';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
@@ -12,6 +13,7 @@ const Seller = () => {
   const { pathname } = useLocation();
   const { sellername } = useParams();
   const { seller, loading } = useGetSeller(sellername);
+  const { user } = useAuth();
 
   const under =
     pathname.split('/').length > 3 ? pathname.split('/').slice(-1)[0] : null;
@@ -25,14 +27,17 @@ const Seller = () => {
   return (
     <>
       <Header />
-      <div className="m-auto mb-40 flex w-full flex-col items-center justify-center  lg:max-w-7xl">
+      <div className="m-auto mb-40 flex w-full flex-col items-center justify-center  gap-8 lg:max-w-7xl">
         <div className=" w-full p-4">
           <SellerHome seller={seller} />
         </div>
-        <div className="text-md flex w-full justify-center py-2 font-cairo shadow-sm  shadow-gray-900 md:gap-16">
+        <div
+          className="text-md flex w-full justify-center  py-2 font-cairo shadow-sm  shadow-black md:gap-16"
+          style={{ backgroundColor: '#231f20' }}
+        >
           <Link
             className={`flex items-center gap-x-2 px-4 py-1 text-white  ${
-              !under ? 'text-orange-400 shadow-xl shadow-gray-900' : ''
+              !under ? 'text-orange-400 shadow-xl shadow-black' : ''
             }`}
             to=""
           >
@@ -40,9 +45,7 @@ const Seller = () => {
           </Link>
           <Link
             className={`flex items-center gap-x-2 px-4 py-1 text-white  ${
-              under === 'about'
-                ? 'text-orange-400 shadow-xl shadow-gray-900'
-                : ''
+              under === 'about' ? 'text-orange-400 shadow-xl shadow-black' : ''
             }`}
             to={{ pathname: 'about' }}
           >
@@ -51,39 +54,30 @@ const Seller = () => {
           <Link
             className={`flex items-center gap-x-2 px-4 py-1 text-white ${
               under === 'products'
-                ? 'text-orange-400 shadow-xl shadow-gray-900'
+                ? 'text-orange-400 shadow-xl shadow-black'
                 : ''
             }`}
             to={{ pathname: 'products' }}
           >
             <span className="">products</span>
           </Link>
-          <Link
-            className={`flex items-center gap-x-2 px-4 py-1 text-white ${
-              under === 'requests'
-                ? 'text-orange-400 shadow-xl shadow-gray-900'
-                : ''
-            }`}
-            to={{ pathname: 'requests' }}
-          >
-            <span className="">requests</span>
-          </Link>
+          {user?.me?.role === 'seller' && seller.name === user?.me?.name ? (
+            <Link
+              className={`flex items-center gap-x-2 px-4 py-1 text-white ${
+                under === 'requests'
+                  ? 'text-orange-400 shadow-xl shadow-black'
+                  : ''
+              }`}
+              to={{ pathname: 'requests' }}
+            >
+              <span className="">requests</span>
+            </Link>
+          ) : null}
         </div>
 
         <ScrollToTop />
         <>
           <div className="relative m-4 h-full w-full max-w-7xl">
-            <div className="-z-10  hidden w-full lg:block">
-              <img
-                className="object-cover"
-                // need a generic placeholder in case the seller doesn't have one
-                src={
-                  seller.banner_url ||
-                  'https://images.unsplash.com/photo-1631477076114-9123f721b9dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-                }
-                alt="logo"
-              />
-            </div>
             <Outlet context={[seller]} />
           </div>
         </>

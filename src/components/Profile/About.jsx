@@ -13,7 +13,6 @@ const About = () => {
   const { user, isLoading } = useGetUser(username);
   const [about, setAbout] = useState({
     Fullname: '',
-    Bio: '',
     Email: '',
     'Phone Number': '',
     'Last seen': '',
@@ -21,7 +20,6 @@ const About = () => {
   useEffect(() => {
     let abouts = {
       Fullname: getFormattedName(user?.fullName),
-      Bio: 'Yo',
       Email: user?.email,
       'Phone Number': user?.phone_number,
     };
@@ -41,10 +39,10 @@ const About = () => {
       </ModalOverlay>
     );
   return (
-    <div className="py-4">
+    <div className="w-full py-4">
       {Object.keys(about).map((info, index) => (
         <div
-          className="flex w-full justify-center  p-4 text-white shadow-md shadow-gray-900 md:max-w-2xl"
+          className="flex w-full justify-center  p-4 text-white shadow-md shadow-black md:max-w-7xl"
           style={{ backgroundColor: '#231f20' }}
           key={index}
         >

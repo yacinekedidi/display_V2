@@ -24,7 +24,10 @@ const SellerProducts = () => {
       .catch((err) => console.error(err));
   };
   return (
-    <div className="static top-0 flex h-full w-full max-w-7xl  justify-center bg-transparent p-4 shadow-sm shadow-gray-100 lg:absolute ">
+    <div
+      className="flex h-full w-full max-w-7xl  justify-center bg-transparent p-4 shadow-sm shadow-black"
+      style={{ backgroundColor: '#231f20' }}
+    >
       {addingProduct ? (
         <AddProduct
           addingProduct={addingProduct}
