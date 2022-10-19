@@ -19,7 +19,7 @@ const FormRequest = ({ product, seller, user, handleFormModal }) => {
   const [data, setData] = useState({});
   const { isSent } = useSendEmailToUser(data);
   const template_params = {
-    to_email: seller.email, //seller email
+    to_email: seller.email,
     to_name: seller.name,
     product_name: product.title,
     user_name: user.fullName,
