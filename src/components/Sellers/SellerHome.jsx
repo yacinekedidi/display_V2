@@ -1,12 +1,12 @@
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import { Tooltip } from '@mui/material';
 import moment from 'moment';
 import React from 'react';
 import { useAuth } from '../../contexts/user-context';
 import getFormattedName from '../../Utils/formatFullname';
+import FollowSeller from './FollowSeller';
 
 const SellerHome = ({ seller }) => {
   const { user } = useAuth();
+
   return (
     <div
       className="relative m-4 flex w-full max-w-7xl flex-col justify-center gap-4  p-4 text-white shadow-sm 
@@ -14,11 +14,7 @@ const SellerHome = ({ seller }) => {
       style={{ backgroundColor: '#231f20' }}
     >
       {user?.me?.role === 'user' ? (
-        <button className="absolute top-0 right-0 m-2 rounded-md px-2  py-0.5 font-cairo text-sm text-white shadow-sm shadow-black hover:opacity-80">
-          <Tooltip title="follow seller">
-            <PersonAddIcon className="text-orange-200" fontSize="small" />
-          </Tooltip>
-        </button>
+        <FollowSeller user={user} seller={seller} />
       ) : null}
       <img
         className="w-32 self-center rounded-sm  shadow-sm shadow-orange-400"
