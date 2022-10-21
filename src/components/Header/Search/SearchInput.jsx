@@ -48,8 +48,8 @@ const SearchInput = ({
     <div className="relative flex items-center">
       <input
         placeholder="Search..."
-        className="w-8 cursor-pointer rounded-lg border-[1px] border-orange-200  bg-transparent p-0.5 shadow-sm 
-        shadow-orange-200 placeholder:py-1 placeholder:px-8 placeholder:font-cairo
+        className="w-8 cursor-pointer rounded-lg bg-transparent  p-0.5 shadow-sm shadow-black 
+        outline-none placeholder:py-1 placeholder:px-8 placeholder:font-cairo
         hover:bg-black sm:w-full"
         onClick={showSearchDraw}
         style={{ backgroundColor: '#1a1515' }}
@@ -61,7 +61,10 @@ const SearchInput = ({
       />
     </div>
   ) : (
-    <>
+    <div
+      className="bg-zinc-900 flex h-screen w-full max-w-7xl flex-col  
+              self-start rounded-lg  shadow-sm shadow-black"
+    >
       <form className="w-full" onSubmit={handleSubmit}>
         <div className="relative flex flex-col-reverse sm:flex-row">
           {/* <label
@@ -72,7 +75,7 @@ const SearchInput = ({
           </label> */}
           <button
             onClick={handleDropdown}
-            className="z-10 inline-flex w-1/2 flex-shrink-0 items-center rounded-tl-lg border-b  border-b-orange-200 
+            className="z-10 inline-flex w-1/2 flex-shrink-0 items-center rounded-tl-lg 
            bg-gray-900 
           bg-transparent py-2.5 px-4 text-center font-cairo text-xl font-medium text-orange-200 hover:bg-orange-200
            hover:text-gray-900 sm:w-fit
@@ -97,15 +100,7 @@ const SearchInput = ({
           <div
             className={`z-10  m-0 flex outline-none ${
               dropdownIsOpen ? 'block' : 'hidden'
-            }  w-44 divide-y divide-orange-300 text-orange-300 shadow`}
-            style={
-              {
-                // position: 'absolute',
-                // inset: 'auto auto 0px 0px',
-                // margin: '0px',
-                // transform: 'translate3d(897px, 5637px, 0px)',
-              }
-            }
+            }  w-44`}
           >
             <ul
               className=" top-0 whitespace-nowrap bg-black py-1 text-sm text-orange-200"
@@ -125,10 +120,16 @@ const SearchInput = ({
             </ul>
           </div>
           <div className="relative w-full ">
+            <p
+              className="absolute top-1/2 right-0 -translate-x-1/2 -translate-y-1/2 cursor-pointer px-1.5 py-1 font-cairo text-sm font-bold text-orange-200 shadow-sm shadow-gray-800  hover:opacity-80"
+              onClick={showSearchDraw}
+            >
+              ESC
+            </p>
             <input
               type="search"
               id="search-dropdown"
-              className="z-20 block w-full rounded-tr-lg border border-r-0 border-l border-t-0 border-orange-300  bg-black bg-transparent
+              className="z-20 block w-full rounded-tr-lg  bg-black bg-transparent
              py-6 px-14 text-lg text-orange-200
             outline-none "
               placeholder="Search Products, Brands..."
@@ -171,7 +172,7 @@ const SearchInput = ({
         user={user}
         showSearchDraw={showSearchDraw}
       />
-    </>
+    </div>
   );
 };
 

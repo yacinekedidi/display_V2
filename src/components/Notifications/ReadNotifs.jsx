@@ -1,16 +1,20 @@
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
-import React from 'react';
 
-// ["title", "category"] Free changed product Yellow Bike title from Yellow Bike to Green Bike
-// ["tags"] Free changed product Yellow Bike tags from new, fresh to fast, old
-// ["characteristics"] Free changed product Yellow Bike characteristics - color from black to white - size from medium to small
-// ["descriptions"] Free changed product Yellow Bike descriptions
-// ["pics_url"] Free chnaged product Yellow Bike descriptions by adding/removing x pictures
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import useGetUser from '../../hooks/useGetUser';
+import LoadingSpinner from '../../Utils/LoadingSpinner';
+import NotifMain from './NotifMain';
 
 const ReadNotifs = () => {
-  const isEmpty = false;
+  const { userId } = useParams();
+  const { user, isLoading } = useGetUser(userId);
 
-  if (isEmpty)
+  useEffect(() => {}, []);
+
+  if (isLoading) return <LoadingSpinner />;
+
+  if (!user?.notifications?.some((notif) => notif.read))
     return (
       <div className="flex items-center gap-x-4 font-cairo">
         <SentimentVeryDissatisfiedIcon />{' '}
@@ -19,9 +23,13 @@ const ReadNotifs = () => {
     );
 
   return (
-    <div className="flex">
-      <p>Free just changed product Yellow Bike's descriptions</p>
-    </div>
+    <NotifMain
+      userId={userId}
+      read={true}
+      notifications={user?.notifications?.filter(
+        (notification) => notification.read
+      )}
+    />
   );
 };
 

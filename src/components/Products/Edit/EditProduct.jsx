@@ -1,7 +1,6 @@
 import { useTheme } from '@mui/material/styles';
 import axios from 'axios';
 import React, { useState } from 'react';
-import Cookie from 'universal-cookie';
 import { useProduct } from '../../../contexts/product-context';
 import { useAuth } from '../../../contexts/user-context';
 import { API_ENDPOINTS, headers } from '../../../Utils/constants';
@@ -9,7 +8,6 @@ import useStyles from '../../../Utils/useStyles';
 import BasicInfo from './BasicInfo';
 import Characteristics from './Characteristics';
 import Description from './Description';
-const cookie = new Cookie();
 
 const EditProduct = ({ isEditing, setIsEditing, productId }) => {
   const theme = useTheme();

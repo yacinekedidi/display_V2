@@ -1,6 +1,6 @@
 import DoneIcon from '@mui/icons-material/Done';
 import InboxIcon from '@mui/icons-material/Inbox';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import InboxNotifs from './InboxNotifs';
@@ -23,22 +23,22 @@ const Notifications = () => {
         style={{ backgroundColor: '#231f20' }}
       >
         <div className="flex w-full  flex-col  gap-y-4 p-4 text-center font-cairo  md:w-[25%]">
-          <p
+          <div
             className={`flex cursor-pointer items-center gap-x-4 rounded-md p-2 capitalize duration-75 ease-linear  ${
               selectedMenu === 1 ? 'bg-orange-900' : 'hover:bg-gray-600'
             }`}
             onClick={() => handleClick(1)}
           >
             <InboxIcon /> Inbox
-          </p>
-          <p
+          </div>
+          <div
             className={`flex cursor-pointer items-center gap-x-4 rounded-md p-2 capitalize  duration-75 ease-linear  ${
               selectedMenu === 2 ? 'bg-orange-900' : 'hover:bg-gray-600'
             }`}
             onClick={() => handleClick(2)}
           >
             <DoneIcon /> Done
-          </p>
+          </div>
         </div>
         <div className="flex w-full justify-center gap-x-4 p-4 md:w-[75%]">
           {selectedMenu === 1 ? <InboxNotifs /> : <ReadNotifs />}

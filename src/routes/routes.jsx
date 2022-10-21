@@ -66,7 +66,7 @@ const AppRoutes = () => {
           />
         </Route>
         <Route path="category/:categoryname" element={<Category />} />
-        <Route path="notifications" element={<Notifications />} />
+        <Route path="user/:userId/notifications" element={<Notifications />} />
         <Route path="messages" element={<Messages />} />
         <Route path="products" element={<ProductsList />} />
         <Route path="products/:productId" element={<ProductProfile />} />

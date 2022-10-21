@@ -68,7 +68,11 @@ const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
           </Link>
           <Link
             className="flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
-            to={`/notifications`}
+            to={
+              user?.me?.role === 'user'
+                ? `/user/${user?.me?.id}/notifications`
+                : '/seller/notifications'
+            }
           >
             <FontAwesomeIcon icon={faBell} size="sm" />
             <span className="">Notifications</span>
