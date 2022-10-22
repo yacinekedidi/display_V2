@@ -15,12 +15,12 @@ import Auth from '../Auth/Auth';
 const ProfileDraw = ({ showProfileDraw, unreadMessages }) => {
   const { user, logout } = useAuth();
 
-  useEffect(() => {
-    const app = document.querySelector('.app');
-    app.addEventListener('click', showProfileDraw);
+  // useEffect(() => {
+  //   const app = document.querySelector('.app');
+  //   app.addEventListener('click', showProfileDraw);
 
-    return () => app.removeEventListener('click', showProfileDraw);
-  }, [showProfileDraw]);
+  //   return () => app.removeEventListener('click', showProfileDraw);
+  // }, [showProfileDraw]);
 
   return !Object.keys(user).length ? (
     <>

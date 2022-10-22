@@ -22,10 +22,17 @@ const UpdatedFieldsInfo = ({ targets, notifId, userId, read = 'notRead' }) => {
 
     for (const field of targets) {
       if (field?.from === field?.to) continue;
-      if (typeof field.from === 'string') {
+      if (typeof field.from === 'string' && field.name !== 'descriptions') {
         tmp.push({
           name: field.name,
           content: `was modified from ${field.from} to ${field.to}`,
+        });
+      }
+
+      if (field.name === 'descriptions') {
+        tmp.push({
+          name: field.name,
+          content: `was modified`,
         });
       }
 
