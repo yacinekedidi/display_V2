@@ -4,9 +4,7 @@ import AppRoutes from './routes/routes';
 function App() {
   return (
     <AuthProvider>
-      <div className="app">
-        <AppRoutes />
-      </div>
+      <AppRoutes />
     </AuthProvider>
   );
 }
