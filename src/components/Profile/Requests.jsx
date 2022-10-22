@@ -1,14 +1,14 @@
-import { useParams } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { useGetRequestedProducts } from '../../hooks/useGetRequestedProducts';
-import { useGetUserRequests } from '../../hooks/useGetUserRequests';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import RequestCard from './RequestCard';
 
 const Requests = () => {
-  const { username: uid } = useParams();
-  const { requestsIds } = useGetUserRequests(uid);
-  const { requestedProducts, loading } = useGetRequestedProducts(requestsIds);
+  const { user } = useOutletContext();
+  const { requestedProducts, loading } = useGetRequestedProducts(
+    user?.requests
+  );
   console.log(requestedProducts);
 
   if (loading)

@@ -14,7 +14,7 @@ const ReadNotifs = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  if (!user?.notifications?.some((notif) => notif.read))
+  if (!user?.notifications?.some((notif) => notif.read === 'read'))
     return (
       <div className="flex items-center gap-x-4 font-cairo">
         <SentimentVeryDissatisfiedIcon />{' '}

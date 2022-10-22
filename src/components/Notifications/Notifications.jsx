@@ -1,6 +1,6 @@
 import DoneIcon from '@mui/icons-material/Done';
 import InboxIcon from '@mui/icons-material/Inbox';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import InboxNotifs from './InboxNotifs';

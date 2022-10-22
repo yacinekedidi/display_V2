@@ -1,18 +1,8 @@
 import moment from 'moment';
-import { useParams } from 'react-router-dom';
-import { useAuth } from '../../contexts/user-context';
-import useGetUser from '../../hooks/useGetUser';
 
 import getFormattedName from '../../Utils/formatFullname';
-import LoadingSpinner from '../../Utils/LoadingSpinner';
 
-const ProfileHome = () => {
-  const { user: u } = useAuth();
-  const { username } = useParams();
-  const { user, isLoading } = useGetUser(username);
-  console.log();
-  if (isLoading) return <LoadingSpinner />;
-
+const ProfileHome = ({ user, u }) => {
   return (
     <div
       className="m-4 flex w-full max-w-7xl flex-col justify-center gap-4 p-4 text-white shadow-sm 

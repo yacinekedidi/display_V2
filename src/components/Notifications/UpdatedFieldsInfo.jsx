@@ -9,11 +9,12 @@ const setNotificationToRead = async (uid, nid) => {
   return response.data;
 };
 
-const UpdatedFieldsInfo = ({ targets, notifId, userId, read = false }) => {
+const UpdatedFieldsInfo = ({ targets, notifId, userId, read = 'notRead' }) => {
   const [infos, setInfos] = useState([]);
 
   useEffect(() => {
-    if (!read) setNotificationToRead(userId, notifId).catch(console.error);
+    if (read === 'notRead')
+      setNotificationToRead(userId, notifId).catch(console.error);
   }, [read, userId, notifId]);
 
   useEffect(() => {

@@ -9,7 +9,7 @@ const Home = () => {
     <>
       <Header className="max-w-7xl" sticky={true} />
       <div
-        className="relative m-auto w-full lg:max-w-7xl"
+        className="relative m-auto w-full  lg:max-w-7xl"
         style={{ backgroundColor: '#231f20' }}
       >
         <div className="container m-auto">

@@ -1,24 +1,21 @@
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
 import { deleteAllRecentlyViewedProducts } from '../../apis/deleteAllRecentlyViewedProducts';
 import { deleteRecentlyViewedProduct } from '../../apis/deleteRecentlyViewedProduct';
-import { useAuth } from '../../contexts/user-context';
 import { useGetUserViewedProducts } from '../../hooks/useGetUserViewedProducts';
-import { useGetUserViewedProductsIds } from '../../hooks/useGetUserViewedProductsIds';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import ProductViewed from './historyItem';
 
 const ProductsViewed = () => {
-  const { pathname } = useLocation();
-  const { user } = useAuth();
   const { username } = useParams();
-  const { viewedProductsIds } = useGetUserViewedProductsIds(pathname, username);
+  const { user, u } = useOutletContext();
+
   const {
     products = [],
     setProducts,
     isLoading,
-  } = useGetUserViewedProducts(viewedProductsIds);
+  } = useGetUserViewedProducts(user?.recently_viewed);
 
   const handleClickClearAll = () => {
     deleteAllRecentlyViewedProducts(username)
@@ -47,7 +44,7 @@ const ProductsViewed = () => {
       className="container m-0 w-screen rounded-b-lg p-2 shadow-md shadow-gray-900 sm:mb-4 md:w-full"
       style={{ backgroundColor: '#231f20' }}
     >
-      {user?.me?.role === 'user' ? (
+      {u?.me?.role === 'user' ? (
         <div className="flex items-center justify-end gap-1">
           <p className="font-cairo text-xs font-thin text-orange-200">
             clear all
@@ -63,7 +60,7 @@ const ProductsViewed = () => {
           ? products?.map((product) => (
               <ProductViewed
                 product={product}
-                user={user}
+                user={u}
                 handleClick={handleClick}
               />
             ))

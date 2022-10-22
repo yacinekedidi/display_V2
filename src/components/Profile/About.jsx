@@ -1,16 +1,16 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useAuth } from '../../contexts/user-context';
-import useGetUser from '../../hooks/useGetUser';
+import { useOutletContext } from 'react-router-dom';
 import getFormattedName from '../../Utils/formatFullname';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 
 const About = () => {
-  const { username } = useParams();
-  const { user: u } = useAuth();
-  const { user, isLoading } = useGetUser(username);
+  const context = useOutletContext();
+  console.log(context);
+  const user = context?.user;
+  const u = context?.u;
+  const isLoading = context?.isLoading;
   const [about, setAbout] = useState({
     Fullname: '',
     Email: '',

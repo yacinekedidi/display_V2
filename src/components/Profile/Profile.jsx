@@ -9,8 +9,8 @@ import ProfileHome from './ProfileHome';
 const Profile = () => {
   const { pathname } = useLocation();
   const { username } = useParams();
-  const { user: u, isLoading } = useGetUser(username);
   const { user } = useAuth();
+  const { user: u, isLoading } = useGetUser(username);
   const under =
     pathname.split('/').length > 3 ? pathname.split('/').slice(-1)[0] : null;
   const isAvailable = user?.me?.role === 'user' && u?._id === user?.me?.id;
@@ -20,7 +20,7 @@ const Profile = () => {
       <>
         <Header className="max-w-7xl" sticky={true} />
         <div className="m-auto mb-40 flex w-full flex-col items-center justify-center gap-8 lg:max-w-7xl">
-          <ProfileHome />
+          <ProfileHome user={u} u={user} />
 
           <div
             className="text-md flex w-full justify-center py-4 px-4 font-cairo shadow-sm  shadow-black md:gap-16"
@@ -81,7 +81,7 @@ const Profile = () => {
           </div>
 
           <ScrollToTop />
-          <Outlet />
+          <Outlet context={{ user: u, u: user, isLoading }} />
         </div>
         <div>
           <div className="py-4"></div>

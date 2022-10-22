@@ -1,18 +1,15 @@
-import React from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useOutletContext, useParams } from 'react-router-dom';
 import deleteUserFavorite from '../../apis/deleteUserFavorite';
-import { useAuth } from '../../contexts/user-context';
 import useGetUserFavoriteProducts from '../../hooks/useGetUserFavoriteProducts';
-import useGetUserFavorites from '../../hooks/useGetUserFavorites';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import Favorite from './Favorite';
 
 const Favorites = () => {
-  const { pathname } = useLocation();
-  const { user } = useAuth();
+  const [favorites, setFavorites] = useState([]);
   const { username } = useParams();
-  const { favorites } = useGetUserFavorites(pathname, username);
+  const { user, u } = useOutletContext();
   const { products, setProducts, isLoading } =
     useGetUserFavoriteProducts(favorites);
 
@@ -25,6 +22,10 @@ const Favorites = () => {
       )
       .catch((err) => console.error(err));
   };
+
+  useEffect(() => {
+    setFavorites(user?.favorites);
+  }, [user]);
 
   if (isLoading)
     return (
@@ -39,7 +40,7 @@ const Favorites = () => {
     >
       <div className="grid w-full gap-6 md:grid-cols-2  lg:grid-cols-4">
         {products.map((product) => (
-          <Favorite product={product} handleClick={handleClick} user={user} />
+          <Favorite product={product} handleClick={handleClick} user={u} />
         ))}
       </div>
     </div>

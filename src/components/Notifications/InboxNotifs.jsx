@@ -11,7 +11,7 @@ const InboxNotifs = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  if (!user?.notifications?.some((notif) => !notif.read))
+  if (!user?.notifications?.some((notif) => notif.read === 'notRead'))
     return (
       <div className="flex items-center gap-x-4 font-cairo">
         <CheckCircleOutlineIcon />
@@ -23,7 +23,7 @@ const InboxNotifs = () => {
     <NotifMain
       userId={userId}
       notifications={user?.notifications?.filter(
-        (notification) => !notification.read
+        (notification) => notification.read === 'notRead'
       )}
     />
   );

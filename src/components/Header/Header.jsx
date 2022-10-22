@@ -80,14 +80,14 @@ const Header = () => {
                   <SearchInput showSearchDraw={showSearchDraw} />
                 )}
                 <div className="flex flex-col justify-center">
-                  <button className="" onClick={showProfileDraw}>
+                  <button onClick={showProfileDraw}>
                     {!isConnected ? (
                       <FontAwesomeIcon
                         className="text-4xl text-orange-300"
                         icon={faUserCircle}
                       />
                     ) : (
-                      <div className="relative m-2 inline-block">
+                      <div className=" relative m-2 inline-block">
                         <img
                           className="h-12 w-12 rounded-full shadow-md shadow-black sm:h-14 sm:w-14"
                           src={user?.me?.image}

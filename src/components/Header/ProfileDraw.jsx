@@ -6,15 +6,21 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CloseIcon from '@mui/icons-material/Close';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/user-context';
 import getFormattedName from '../../Utils/formatFullname';
 import Auth from '../Auth/Auth';
 
-const ProfileDraw = ({ showProfileDraw, role, unreadMessages }) => {
+const ProfileDraw = ({ showProfileDraw, unreadMessages }) => {
   const { user, logout } = useAuth();
-  // const { user: u, isLoading } = useGetUser(user?.me?.id);
+
+  useEffect(() => {
+    const app = document.querySelector('.app');
+    app.addEventListener('click', showProfileDraw);
+
+    return () => app.removeEventListener('click', showProfileDraw);
+  }, [showProfileDraw]);
 
   return !Object.keys(user).length ? (
     <>
