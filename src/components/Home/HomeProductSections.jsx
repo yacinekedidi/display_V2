@@ -20,6 +20,7 @@ const HomeProductSections = () => {
 
   const { recentlyViewedProducts } = useGetUserRecentlyViewedProducts(
     user?.recently_viewed,
+    u?.me?.role,
     true
   );
 

@@ -3,13 +3,15 @@ import { getUserRecentlyViewedProducts } from '../apis/getUserRecentlyViewedProd
 
 export const useGetUserRecentlyViewedProducts = (
   recentlyViewedProductsIds = [],
+  role,
   isHome = false
 ) => {
   const [recentlyViewedProducts, setRecentlyViewedProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (recentlyViewedProductsIds.length)
+    console.log(role);
+    if (recentlyViewedProductsIds.length && role === 'user')
       getUserRecentlyViewedProducts(recentlyViewedProductsIds, isHome)
         .then((products) => {
           setRecentlyViewedProducts({
@@ -18,7 +20,7 @@ export const useGetUserRecentlyViewedProducts = (
         })
         .catch(console.error)
         .finally(() => setIsLoading(false));
-  }, [recentlyViewedProductsIds]);
+  }, [recentlyViewedProductsIds, isHome, role]);
 
-  return { recentlyViewedProducts };
+  return { recentlyViewedProducts, isLoading };
 };
