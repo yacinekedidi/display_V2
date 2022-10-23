@@ -15,6 +15,7 @@ import Seller from '../components/Sellers/Seller';
 import SellerAbout from '../components/Sellers/SellerAbout';
 import SellerProducts from '../components/Sellers/SellerProducts';
 import SellerRequests from '../components/Sellers/SellerRequests';
+import NotFound from '../Utils/NotFound';
 import SellerPrivateRoute from './SellerPrivateRoute';
 import UserPrivateRoute from './UserPrivateRoute';
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    errorElement: <NotFound />,
   },
   {
     path: 'user/:username',

@@ -1,13 +1,5 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { API_ENDPOINTS } from '../../Utils/constants';
-
-const setNotificationToRead = async (uid, nid) => {
-  const response = await axios.patch(
-    `${API_ENDPOINTS.users}/${uid}/notifications/${nid}`
-  );
-  return response.data;
-};
+import { setNotificationToRead } from '../../../apis/setNotificationToRead';
 
 const UpdatedFieldsInfo = ({ targets, notifId, userId, read = 'notRead' }) => {
   const [infos, setInfos] = useState([]);

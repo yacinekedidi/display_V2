@@ -3,7 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import useGetUser from '../../hooks/useGetUser';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
-import NotifMain from './NotifMain';
+import NotifMain from './user/NotifMain';
 
 const InboxNotifs = () => {
   const { userId } = useParams();
@@ -11,7 +11,7 @@ const InboxNotifs = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  if (!user?.notifications?.some((notif) => notif.read === 'notRead'))
+  if (user?.notifications?.every((notif) => notif.read === 'read'))
     return (
       <div className="flex items-center gap-x-4 font-cairo">
         <CheckCircleOutlineIcon />

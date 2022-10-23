@@ -4,17 +4,15 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useGetUser from '../../hooks/useGetUser';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
-import NotifMain from './NotifMain';
+import NotifMain from './user/NotifMain';
 
 const ReadNotifs = () => {
   const { userId } = useParams();
   const { user, isLoading } = useGetUser(userId);
 
-  useEffect(() => {}, []);
-
   if (isLoading) return <LoadingSpinner />;
 
-  if (!user?.notifications?.some((notif) => notif.read === 'read'))
+  if (user?.notifications?.every((notif) => notif.read === 'notRead'))
     return (
       <div className="flex items-center gap-x-4 font-cairo">
         <SentimentVeryDissatisfiedIcon />{' '}
@@ -27,7 +25,7 @@ const ReadNotifs = () => {
       userId={userId}
       read={true}
       notifications={user?.notifications?.filter(
-        (notification) => notification.read
+        (notification) => notification.read === 'read'
       )}
     />
   );

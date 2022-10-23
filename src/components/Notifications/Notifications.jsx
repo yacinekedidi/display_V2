@@ -6,8 +6,6 @@ import Header from '../Header/Header';
 import InboxNotifs from './InboxNotifs';
 import ReadNotifs from './ReadNotifs';
 
-// when a user's favorite product is edited/removed gets notified
-
 const Notifications = () => {
   const [selectedMenu, setSelectedMenu] = useState(1);
 

@@ -1,6 +1,12 @@
 import moment from 'moment';
+import { useEffect } from 'react';
+import { setNotificationToRead } from '../../../apis/setNotificationToRead';
 
-const ProductAddedNotification = ({ notification, uid, read }) => {
+const ProductAddedNotification = ({ notification, userId }) => {
+  useEffect(() => {
+    if (notification.read === 'notRead')
+      setNotificationToRead(userId, notification.id).catch(console.error);
+  }, [userId, notification]);
   return (
     <div
       className="flex w-full cursor-pointer items-center justify-between rounded-md bg-gray-900 p-4 font-sans text-sm 
