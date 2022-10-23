@@ -9,7 +9,6 @@ const Requests = () => {
   const { requestedProducts, loading } = useGetRequestedProducts(
     user?.requests
   );
-  console.log(requestedProducts);
 
   if (loading)
     return (

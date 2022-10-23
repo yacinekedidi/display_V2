@@ -1,8 +1,9 @@
 import DoneIcon from '@mui/icons-material/Done';
 import InboxIcon from '@mui/icons-material/Inbox';
 import React, { useState } from 'react';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
+import ScrollToTop from '../../../Utils/ScrollToTop';
+import Footer from '../../Footer/Footer';
+import Header from '../../Header/Header';
 import InboxNotifs from './InboxNotifs';
 import ReadNotifs from './ReadNotifs';
 
@@ -42,6 +43,7 @@ const Notifications = () => {
           {selectedMenu === 1 ? <InboxNotifs /> : <ReadNotifs />}
         </div>
       </div>
+      <ScrollToTop />
       <Footer />
     </>
   );

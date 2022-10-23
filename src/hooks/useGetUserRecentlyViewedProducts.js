@@ -10,7 +10,6 @@ export const useGetUserRecentlyViewedProducts = (
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log(role);
     if (recentlyViewedProductsIds.length && role === 'user')
       getUserRecentlyViewedProducts(recentlyViewedProductsIds, isHome)
         .then((products) => {

@@ -106,20 +106,20 @@ const Header = () => {
                         )} */}
                       </div>
                     )}
-                    {isConnected &&
-                      profileIsOpen &&
-                      (user?.me?.role === 'user' ? (
+                    {
+                      isConnected && profileIsOpen && (
                         <ProfileDraw
                           // unreadMessages={unreadMessages}
                           profileIsOpen={profileIsOpen}
                           showProfileDraw={showProfileDraw}
                         />
-                      ) : (
-                        <ProfileDrawSeller
-                          profileIsOpen={profileIsOpen}
-                          showProfileDraw={showProfileDraw}
-                        />
-                      ))}
+                      )
+
+                      // <ProfileDrawSeller
+                      //   profileIsOpen={profileIsOpen}
+                      //   showProfileDraw={showProfileDraw}
+                      // />
+                    }
                   </button>
                 </div>
               </div>

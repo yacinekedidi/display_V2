@@ -1,8 +1,14 @@
-import ProductFavoritedNotification from '../ProductFavoritedNotification';
-import ProductFollowNotification from '../ProductFollowNotification';
-import ProductRequestedNotification from '../ProductRequestedNotification';
+import ProductFavoritedNotification from './ProductFavoritedNotification';
+import ProductFollowNotification from './ProductFollowNotification';
+import ProductRequestedNotification from './ProductRequestedNotification';
 
-const NotifMainSeller = ({ notifications, userId, sellerName, read }) => {
+const NotifMainSeller = ({
+  notifications,
+  seller,
+  userId,
+  sellerName,
+  read,
+}) => {
   return (
     <div className="flex w-full flex-col gap-4">
       {notifications?.map((notification) => {
@@ -12,6 +18,7 @@ const NotifMainSeller = ({ notifications, userId, sellerName, read }) => {
               userId={userId}
               notification={notification}
               read={read}
+              seller={seller}
             />
           );
         if (notification.Operation === 'favorite')
@@ -20,6 +27,7 @@ const NotifMainSeller = ({ notifications, userId, sellerName, read }) => {
               userId={userId}
               notification={notification}
               read={read}
+              seller={seller}
             />
           );
 
@@ -29,6 +37,7 @@ const NotifMainSeller = ({ notifications, userId, sellerName, read }) => {
               userId={userId}
               notification={notification}
               read={read}
+              seller={seller}
             />
           );
         return null;

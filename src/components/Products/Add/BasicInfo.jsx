@@ -34,7 +34,6 @@ const BasicInfo = ({ product, setProduct, setIsAddingProduct }) => {
   };
 
   const handleChangeNewUrl = (event) => {
-    console.log(event.target.value);
     setNewImageUrl(event.target.value);
   };
 

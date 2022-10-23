@@ -7,7 +7,6 @@ import ModalOverlay from '../../Utils/ModalOverlay';
 
 const About = () => {
   const context = useOutletContext();
-  console.log(context);
   const user = context?.user;
   const u = context?.u;
   const isLoading = context?.isLoading;

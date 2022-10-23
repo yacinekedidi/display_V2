@@ -49,8 +49,8 @@ const SearchInput = ({
       <input
         placeholder="Search..."
         className="w-8 cursor-pointer rounded-lg bg-transparent  p-0.5 shadow-sm shadow-black 
-        outline-none placeholder:py-1 placeholder:px-8 placeholder:font-cairo
-        hover:bg-black sm:w-full"
+        outline-none placeholder:py-1 placeholder:px-8 placeholder:font-cairo  hover:shadow-orange-200
+          sm:w-full"
         onClick={showSearchDraw}
         style={{ backgroundColor: '#1a1515' }}
       />

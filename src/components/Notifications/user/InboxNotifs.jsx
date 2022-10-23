@@ -1,12 +1,12 @@
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import useGetUser from '../../hooks/useGetUser';
-import LoadingSpinner from '../../Utils/LoadingSpinner';
-import NotifMain from './user/NotifMain';
+import useGetUser from '../../../hooks/useGetUser';
+import LoadingSpinner from '../../../Utils/LoadingSpinner';
+import NotifMain from './NotifMain';
 
 const InboxNotifs = () => {
-  const { userId } = useParams();
+  const { username: userId } = useParams();
   const { user, isLoading } = useGetUser(userId);
 
   if (isLoading) return <LoadingSpinner />;

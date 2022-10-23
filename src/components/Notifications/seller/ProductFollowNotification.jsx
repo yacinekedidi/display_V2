@@ -1,17 +1,18 @@
 import moment from 'moment';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { setNotificationToRead } from '../../apis/setNotificationToRead';
+import { setNotificationToRead } from '../../../apis/setNotificationToRead';
 
 const ProductFollowNotification = ({
   notification,
   userId,
   read = 'notRead',
 }) => {
-  console.log(read);
   useEffect(() => {
     if (read === 'notRead') {
-      setNotificationToRead(userId, notification.id).catch(console.error);
+      setNotificationToRead(userId, notification.id, 'seller').catch(
+        console.error
+      );
     }
   }, [read, userId, notification.id]);
 
@@ -28,7 +29,7 @@ tracking-wide shadow-sm shadow-black transition hover:bg-gray-800"
         >
           {notification?.user_name}
         </Link>
-        &nbsp;just followed you.&nbsp;
+        &nbsp;is now following you.&nbsp;
       </div>
       <p>{moment(new Date(notification.date)).fromNow()}</p>
     </div>

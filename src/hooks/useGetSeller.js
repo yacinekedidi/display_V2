@@ -6,7 +6,7 @@ export const useGetSeller = (sellername) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!sellername) return;
+    if (!sellername?.length) return;
     getSeller(sellername)
       .then((seller) => {
         setSeller(seller);

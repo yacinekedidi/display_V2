@@ -27,8 +27,6 @@ const FollowSeller = ({ user, seller }) => {
       .finally(() => setIsLoading(false));
   };
   const handleClickUserUnfollowSller = () => {
-    console.log(user?.me?.id, seller.name);
-
     setIsLoading(true);
     userUnfollowSeller(user?.me?.id, seller.name)
       .then((user) => setUser(user))

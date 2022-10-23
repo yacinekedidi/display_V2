@@ -2,7 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import Category from '../components/Categories/Category';
 import Messages from '../components/Chatroom/Messages/Messages';
 import Home from '../components/Home/Home';
-import Notifications from '../components/Notifications/Notifications';
+import NotificationsSeller from '../components/Notifications/seller/NotificationsSeller';
+import Notifications from '../components/Notifications/user/Notifications';
 import ProductProfile from '../components/Products/ProductProfile';
 import ProductsList from '../components/Products/ProductsList';
 import About from '../components/Profile/About';
@@ -86,8 +87,20 @@ const router = createBrowserRouter([
     element: <Category />,
   },
   {
-    path: 'user/:userId/notifications',
-    element: <Notifications />,
+    path: 'user/:username/notifications',
+    element: (
+      <UserPrivateRoute>
+        <Notifications />
+      </UserPrivateRoute>
+    ),
+  },
+  {
+    path: 'seller/:sellername/notifications',
+    element: (
+      <SellerPrivateRoute>
+        <NotificationsSeller />
+      </SellerPrivateRoute>
+    ),
   },
   {
     path: 'messages',

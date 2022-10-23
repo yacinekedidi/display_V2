@@ -8,7 +8,6 @@ import RequestOverviewInfo from './RequestOverviewInfo';
 const SellerRequests = () => {
   const [seller] = useOutletContext();
   const { requestedProds, loading } = UseGetSellerProductsByName(seller);
-  console.log(requestedProds);
   if (loading) return <LoadingSpinner />;
   return (
     <div

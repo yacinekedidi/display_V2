@@ -6,7 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CloseIcon from '@mui/icons-material/Close';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/user-context';
 import getFormattedName from '../../Utils/formatFullname';
@@ -46,7 +46,11 @@ const ProfileDraw = ({ showProfileDraw, unreadMessages }) => {
       >
         <Link
           className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-300 text-center shadow-sm shadow-black "
-          to={`/user/${user?.me?.id}`}
+          to={
+            user?.me?.role === 'user'
+              ? `/user/${user?.me?.id}`
+              : `/seller/${user?.me?.name}`
+          }
         >
           <img
             className="w-32 self-center rounded-full outline outline-orange-400"
@@ -67,7 +71,12 @@ const ProfileDraw = ({ showProfileDraw, unreadMessages }) => {
         >
           <Link
             className="flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
-            to={{ pathname: `/user/${user?.me?.id}` }}
+            to={{
+              pathname:
+                user?.me?.role === 'user'
+                  ? `/user/${user?.me?.id}`
+                  : `/seller/${user?.me?.name}`,
+            }}
           >
             <FontAwesomeIcon icon={faUser} size="sm" />
             <span className="">Profile</span>
@@ -77,7 +86,7 @@ const ProfileDraw = ({ showProfileDraw, unreadMessages }) => {
             to={
               user?.me?.role === 'user'
                 ? `/user/${user?.me?.id}/notifications`
-                : '/seller/notifications'
+                : `/seller/${user?.me?.name}/notifications`
             }
           >
             <FontAwesomeIcon icon={faBell} size="sm" />
