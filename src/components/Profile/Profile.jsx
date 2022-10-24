@@ -76,6 +76,16 @@ const Profile = () => {
                 >
                   <span className="">requests</span>
                 </Link>
+                <Link
+                  className={`flex items-center gap-x-2 px-4 py-1 text-white  ${
+                    under === 'following'
+                      ? 'text-orange-400 shadow-xl shadow-black'
+                      : ''
+                  }`}
+                  to="following"
+                >
+                  <span className="">following</span>
+                </Link>
               </>
             ) : null}
           </div>

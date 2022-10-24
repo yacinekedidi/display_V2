@@ -8,12 +8,14 @@ import ProductProfile from '../components/Products/ProductProfile';
 import ProductsList from '../components/Products/ProductsList';
 import About from '../components/Profile/About';
 import Favorites from '../components/Profile/Favorites';
+import Following from '../components/Profile/Following';
 import ProductsViewed from '../components/Profile/history';
 import Profile from '../components/Profile/Profile';
 import RequestDetails from '../components/Profile/RequestDetails';
 import Requests from '../components/Profile/Requests';
 import Seller from '../components/Sellers/Seller';
 import SellerAbout from '../components/Sellers/SellerAbout';
+import SellerFollowersList from '../components/Sellers/SellerFollowersList';
 import SellerProducts from '../components/Sellers/SellerProducts';
 import SellerRequests from '../components/Sellers/SellerRequests';
 import NotFound from '../Utils/NotFound';
@@ -58,6 +60,14 @@ const router = createBrowserRouter([
           </UserPrivateRoute>
         ),
       },
+      {
+        path: 'following',
+        element: (
+          <UserPrivateRoute>
+            <Following />
+          </UserPrivateRoute>
+        ),
+      },
     ],
   },
   {
@@ -77,6 +87,14 @@ const router = createBrowserRouter([
         element: (
           <SellerPrivateRoute>
             <SellerRequests />
+          </SellerPrivateRoute>
+        ),
+      },
+      {
+        path: 'followers',
+        element: (
+          <SellerPrivateRoute>
+            <SellerFollowersList />
           </SellerPrivateRoute>
         ),
       },

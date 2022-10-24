@@ -1,8 +1,10 @@
 import { faClose, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import { API_ENDPOINTS, headers } from '../../Utils/constants';
 import getFormattedName from '../../Utils/formatFullname';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
@@ -18,6 +20,15 @@ const initialStateFields = {
   Email: '',
   'Phone Number': '',
   'Last seen': '',
+};
+
+const editUser = async (changes, uid) => {
+  const response = await axios.patch(
+    `${API_ENDPOINTS.users}/${uid}`,
+    changes,
+    headers
+  );
+  return response.data;
 };
 
 const About = () => {
@@ -39,6 +50,15 @@ const About = () => {
 
       return { ...prev, [fieldToEdit]: true };
     });
+  };
+
+  const handleClickSave = () => {
+    const changes = {
+      fullName: about.edited.Fullname,
+      email: about.edited.Email,
+      phone_number: about.edited['Phone Number'],
+    };
+    editUser(changes, user._id).catch(console.error);
   };
 
   useEffect(() => {
@@ -88,7 +108,12 @@ const About = () => {
         {Object.keys(about.original).find(
           (key) => about.original[key] !== about.edited[key]
         ) ? (
-          <button className="rounded-md bg-gray-500 px-2">save </button>
+          <button
+            className="rounded-md bg-gray-500 px-2"
+            onClick={handleClickSave}
+          >
+            save{' '}
+          </button>
         ) : null}
       </div>
       {Object.keys(about.edited).map((info, index) => (

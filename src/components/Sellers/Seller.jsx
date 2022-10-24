@@ -73,6 +73,18 @@ const Seller = () => {
               <span className="">requests</span>
             </Link>
           ) : null}
+          {user?.me?.role === 'seller' && seller.name === user?.me?.name ? (
+            <Link
+              className={`flex items-center gap-x-2 px-4 py-1 text-white  ${
+                under === 'followers'
+                  ? 'text-orange-400 shadow-xl shadow-black'
+                  : ''
+              }`}
+              to={`/seller/${seller.name}/followers`}
+            >
+              <span className="">followers</span>
+            </Link>
+          ) : null}
         </div>
 
         <ScrollToTop />
