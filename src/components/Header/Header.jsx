@@ -1,22 +1,21 @@
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import { useAuth } from '../../contexts/user-context';
-
 import ModalOverlay from '../../Utils/ModalOverlay';
 import NavBar from '../Home/NavBar';
 import ProfileDraw from './ProfileDraw';
-import ProfileDrawSeller from './ProfileDrawSeller';
 import SearchInput from './Search/SearchInput';
 
 const Header = () => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
   const { user } = useAuth();
+
   const isConnected = Object.keys(user).length ? true : false;
+  const unreadMessages = user?.me?.total_unread_count;
 
   const showProfileDraw = (e) => {
     setProfileIsOpen(!profileIsOpen);
@@ -93,7 +92,7 @@ const Header = () => {
                           src={user?.me?.image}
                           alt="avatar"
                         />
-                        {/* {unreadMessages ? (
+                        {unreadMessages ? (
                           <div
                             className="absolute -top-2 -right-3 rounded-[8px] py-1 px-3 font-cairo 
                           text-sm  text-white"
@@ -103,23 +102,16 @@ const Header = () => {
                           </div>
                         ) : (
                           ''
-                        )} */}
+                        )}
                       </div>
                     )}
-                    {
-                      isConnected && profileIsOpen && (
-                        <ProfileDraw
-                          // unreadMessages={unreadMessages}
-                          profileIsOpen={profileIsOpen}
-                          showProfileDraw={showProfileDraw}
-                        />
-                      )
-
-                      // <ProfileDrawSeller
-                      //   profileIsOpen={profileIsOpen}
-                      //   showProfileDraw={showProfileDraw}
-                      // />
-                    }
+                    {isConnected && profileIsOpen && (
+                      <ProfileDraw
+                        unreadMessages={unreadMessages}
+                        profileIsOpen={profileIsOpen}
+                        showProfileDraw={showProfileDraw}
+                      />
+                    )}
                   </button>
                 </div>
               </div>

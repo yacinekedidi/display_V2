@@ -16,7 +16,7 @@ const Favorite = ({ product, handleClick, user }) => {
   if (loading) <LoadingSpinner />;
 
   return (
-    <div className=" relative flex flex-col items-center p-6" key={product._id}>
+    <div className=" relative flex flex-col items-center p-6">
       {user?.me?.role === 'user' ? (
         <div className="absolute left-0 top-10 cursor-pointer ">
           <FontAwesomeIcon

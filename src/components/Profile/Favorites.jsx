@@ -40,7 +40,12 @@ const Favorites = () => {
     >
       <div className="grid w-full gap-6 md:grid-cols-2  lg:grid-cols-4">
         {products.map((product) => (
-          <Favorite product={product} handleClick={handleClick} user={u} />
+          <Favorite
+            key={product._id}
+            product={product}
+            handleClick={handleClick}
+            user={u}
+          />
         ))}
       </div>
     </div>
