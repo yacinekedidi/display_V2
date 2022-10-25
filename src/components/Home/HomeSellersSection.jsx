@@ -2,7 +2,6 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MockBrands } from '../../mockdata/productImages';
 import { API_ENDPOINTS } from '../../Utils/constants';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import ModalOverlay from '../../Utils/ModalOverlay';
@@ -49,11 +48,11 @@ const HomeBrandSection = () => {
       transition={{ duration: 1 }}
     >
       <div className="flex justify-center gap-x-10 px-16">
-        {sellers.map((seller) => (
+        {sellers.slice(5, 11).map((seller) => (
           <Link to={`/seller/${seller.name}`} key={seller.name}>
-            <div className="flex flex-col items-center rounded-full pb-4 shadow-md shadow-orange-200">
+            <div className="flex  h-[160px] w-[160px] flex-col items-center rounded-full pb-4 shadow-md shadow-orange-200">
               <img
-                className="peer cursor-pointer rounded-full outline outline-orange-100 duration-150 
+                className="contain peer max-h-[160px] min-h-[105px] cursor-pointer rounded-full object-contain outline outline-orange-100 duration-150 
                  hover:scale-110 hover:outline-orange-300 "
                 src={seller.avatarURL}
                 alt=""

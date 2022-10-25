@@ -35,12 +35,13 @@ const ProductsList = ({ toggle, isVisible }) => {
     setSearchParams({ sort: e.value }, { state: { user, u } });
   };
 
-  if (isLoading)
+  if (isLoading || !items.length)
     return (
       <ModalOverlay>
         <LoadingSpinner />
       </ModalOverlay>
     );
+
   return (
     <>
       <Header className="max-w-7xl" sticky={true} />

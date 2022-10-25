@@ -87,7 +87,7 @@ const HomeProductSection = ({ title, products, user, u, noLinks = false }) => {
           >
             {/*mx-auto*/}
             <div className=" flex flex-nowrap items-center gap-x-1 md:gap-x-4">
-              {products?.map((product, index) => (
+              {products?.slice(0, 8).map((product, index) => (
                 <ProductCardWithToggle
                   product={product}
                   user={user}
