@@ -26,11 +26,7 @@ const initChat = async () => {
       {
         id: cookies.get('userId'),
         name: cookies.get('username'),
-        fullName: cookies.get('fullName'),
-        image: cookies.get('avatarURL'),
-        // phoneNumber: cookies.get('phoneNumber'),
-        // email: cookies.get('email'),
-        // hashedPassword: cookies.get('hashedPassword'),
+        // image: cookies.get('avatarURL'),
       },
       authToken
     );

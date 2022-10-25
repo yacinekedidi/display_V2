@@ -81,32 +81,38 @@ const ProductsList = ({ toggle, isVisible }) => {
               ) : null}
             </div>
 
-            <div
-              className="relative my-8 flex flex-col-reverse rounded-sm  shadow-md shadow-gray-900 drop-shadow-md lg:flex-row"
-              style={{ backgroundColor: 'rgb(26,21,21)' }}
-            >
-              <InfiniteScroll
-                dataLength={items.length}
-                next={getProductsByPage}
-                hasMore={hasMore}
-                loader={<h4>Loading...</h4>}
+            {items?.length ? (
+              <div
+                className="relative my-8 flex flex-col-reverse rounded-sm  shadow-md shadow-gray-900 drop-shadow-md lg:flex-row"
+                style={{ backgroundColor: 'rgb(26,21,21)' }}
               >
-                <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-20 p-4 font-sans ">
-                  {items.map((item, index) => {
-                    return (
-                      <ProductCard
-                        product={item}
-                        u={u}
-                        user={user}
-                        key={item._id}
-                        itemId={item._id}
-                        index={index}
-                      />
-                    );
-                  })}
-                </div>
-              </InfiniteScroll>
-            </div>
+                <InfiniteScroll
+                  dataLength={items.length}
+                  next={getProductsByPage}
+                  hasMore={hasMore}
+                  loader={<h4>Loading...</h4>}
+                >
+                  <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-20 p-4 font-sans ">
+                    {items.map((item, index) => {
+                      return (
+                        <ProductCard
+                          product={item}
+                          u={u}
+                          user={user}
+                          key={item._id}
+                          itemId={item._id}
+                          index={index}
+                        />
+                      );
+                    })}
+                  </div>
+                </InfiniteScroll>
+              </div>
+            ) : (
+              <div className="font-cairo text-orange-200">
+                there are currently no products available!
+              </div>
+            )}
           </>
         )}
 

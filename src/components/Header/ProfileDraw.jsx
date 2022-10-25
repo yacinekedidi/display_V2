@@ -54,7 +54,7 @@ const ProfileDraw = ({ showProfileDraw, unreadMessages }) => {
         >
           <img
             className="w-32 self-center rounded-full outline outline-orange-400"
-            src={user?.me.image}
+            src={user?.me?.avatarURL}
             alt="avatar"
           />
         </Link>

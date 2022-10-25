@@ -2,7 +2,7 @@ import ScrollToTop from '../../Utils/ScrollToTop';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import HomeProductSections from './HomeProductSections';
-import HomBrandSection from './HomSellersSection';
+import HomeBrandSection from './HomeSellersSection';
 
 const Home = () => {
   return (
@@ -15,7 +15,7 @@ const Home = () => {
         <div className="container m-auto">
           <div className=" flex flex-col items-center justify-center ">
             <div className=" shadow-md shadow-gray-900">
-              <HomBrandSection />
+              <HomeBrandSection />
               <HomeProductSections />
             </div>
           </div>

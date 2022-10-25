@@ -7,18 +7,22 @@ export const useAddRecentlySearchedProduct = (
   recentlySearched,
   user
 ) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    if (user?.me?.id.length && recentlySearched?.length)
+    if (user?.me?.role !== 'user') return;
+    if (user?.me?.id.length && recentlySearched?.length) {
+      setIsLoading(true);
       addRecentlySearchedProduct(recentlySearched, user.me.id)
         .then((user) => setnewUser(user))
         .catch(() => setIsError(true))
         .finally(() => setIsLoading(false));
-    else {
-      getUser(user?.me?.id).then((resUser) => setnewUser(resUser));
-      setIsLoading(false);
+    } else {
+      setIsLoading(true);
+      getUser(user?.me?.id)
+        .then((resUser) => setnewUser(resUser))
+        .finally(() => setIsLoading(false));
     }
   }, [recentlySearched, user]);
 

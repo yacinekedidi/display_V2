@@ -19,7 +19,7 @@ const Auth = ({ showProfileDraw }) => {
     e.preventDefault();
 
     const user = await PostSignupOrLogin(form, mode);
-    user && saveUserCookies({ mode, ...user });
+    user && saveUserCookies(user);
 
     window.location.reload();
   };

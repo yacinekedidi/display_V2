@@ -29,10 +29,11 @@ const useGetProductsByPage = (searchParams) => {
       .then((productsPage) => {
         setHasMore(!!productsPage.nextPage);
         page.current = productsPage.nextPage;
-        setItems((prev) => [...prev, ...productsPage.data]);
-        setIsLoading(false);
+        if (productsPage?.data)
+          setItems((prev) => [...prev, ...productsPage.data]);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
 
     return () => {
       page.current = 0;

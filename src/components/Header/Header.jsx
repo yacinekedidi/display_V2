@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import { useAuth } from '../../contexts/user-context';
+import useGetUser from '../../hooks/useGetUser';
 import ModalOverlay from '../../Utils/ModalOverlay';
 import NavBar from '../Home/NavBar';
 import ProfileDraw from './ProfileDraw';
@@ -13,6 +14,7 @@ const Header = () => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [profileIsOpen, setProfileIsOpen] = useState(false);
   const { user } = useAuth();
+  // const { user: u, isLoading } = useGetUser(user?.me?.id);
 
   const isConnected = Object.keys(user).length ? true : false;
   const unreadMessages = user?.me?.total_unread_count;
@@ -25,6 +27,7 @@ const Header = () => {
     setShowSearchModal(!showSearchModal);
   };
 
+  // if (!isLoading)
   return (
     <>
       <div
@@ -89,7 +92,7 @@ const Header = () => {
                       <div className=" relative m-2 inline-block">
                         <img
                           className="h-12 w-12 rounded-full shadow-md shadow-black sm:h-14 sm:w-14"
-                          src={user?.me?.image}
+                          src={user?.me?.avatarURL}
                           alt="avatar"
                         />
                         {unreadMessages ? (
