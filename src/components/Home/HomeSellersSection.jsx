@@ -54,7 +54,7 @@ const HomeBrandSection = () => {
             to={`/seller/${seller.name}`}
             key={seller.name}
           >
-            <div className="max-w-80 peer max-h-80 rounded-full">
+            <div className="max-w-80 peer max-h-80">
               <img
                 className="h-40 w-40 cursor-pointer rounded-full object-cover outline outline-orange-100 duration-150 
                  hover:scale-110 hover:outline-orange-300 "
