@@ -48,7 +48,7 @@ const HomeBrandSection = () => {
       transition={{ duration: 1 }}
     >
       <div className="flex justify-center gap-x-10 px-16">
-        {sellers.slice(5, 10).map((seller) => (
+        {sellers.slice(15, 20).map((seller) => (
           <Link
             className="flex  flex-col items-center rounded-full pb-4 shadow-md shadow-orange-200"
             to={`/seller/${seller.name}`}
