@@ -24,8 +24,14 @@ const ProductsList = ({ toggle, isVisible }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [addingProduct, setIsAddingProduct] = useState(false);
 
-  const { items, isLoading, hasMore, setSearchOption, searchOption } =
-    useGetProductsByPage(searchParams);
+  const {
+    items,
+    isLoading,
+    hasMore,
+    setSearchOption,
+    searchOption,
+    getProductsNext,
+  } = useGetProductsByPage(searchParams);
 
   const handleQuery = (e) => {
     setSearchOption({
@@ -89,7 +95,7 @@ const ProductsList = ({ toggle, isVisible }) => {
               >
                 <InfiniteScroll
                   dataLength={items.length}
-                  next={getProductsByPage}
+                  next={getProductsNext}
                   hasMore={hasMore}
                   loader={<h4>Loading...</h4>}
                 >

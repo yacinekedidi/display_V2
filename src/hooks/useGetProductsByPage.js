@@ -22,9 +22,7 @@ const useGetProductsByPage = (searchParams) => {
     [searchOption.value]
   );
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
+  const getProductsNext = () =>
     getProductsByPage(page, params)
       .then((productsPage) => {
         setHasMore(!!productsPage.nextPage);
@@ -35,13 +33,25 @@ const useGetProductsByPage = (searchParams) => {
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    getProductsNext();
+
     return () => {
       page.current = 0;
       setItems([]);
     };
   }, [params]);
 
-  return { items, isLoading, hasMore, setSearchOption, searchOption };
+  return {
+    items,
+    isLoading,
+    hasMore,
+    setSearchOption,
+    searchOption,
+    getProductsNext,
+  };
 };
 
 export default useGetProductsByPage;
