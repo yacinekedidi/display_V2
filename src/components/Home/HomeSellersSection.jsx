@@ -43,9 +43,9 @@ const HomeBrandSection = () => {
   return (
     <motion.div
       className="hidden w-full max-w-7xl flex-wrap rounded-lg  bg-transparent md:flex-row lg:block "
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      initial={{ opacity: 0, x: -800 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1, delay: 0.5 }}
     >
       <div className="flex justify-center gap-x-10 px-16">
         {sellers.slice(15, 20).map((seller) => (
