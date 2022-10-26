@@ -19,7 +19,8 @@ import { addProductToUserFavorites } from '../../apis/addProductToUserFavorites'
 import { deleteProduct } from '../../apis/deleteProduct';
 import { removeProductFromUserFavorites } from '../../apis/removeProductFromUserFavorites';
 import { useProduct } from '../../contexts/product-context';
-import { countries } from '../../mockdata/productImages';
+import { countries } from '../../mockdata/countries';
+
 import ModalOverlay from '../../Utils/ModalOverlay';
 import useUtils from '../../Utils/useUtils';
 import ZoomImage from '../../Utils/ZoomImage';

@@ -48,22 +48,26 @@ const HomeBrandSection = () => {
       transition={{ duration: 1 }}
     >
       <div className="flex justify-center gap-x-10 px-16">
-        {sellers.slice(5, 11).map((seller) => (
-          <Link to={`/seller/${seller.name}`} key={seller.name}>
-            <div className="flex  h-[160px] w-[160px] flex-col items-center rounded-full pb-4 shadow-md shadow-orange-200">
+        {sellers.slice(5, 10).map((seller) => (
+          <Link
+            className="flex  flex-col items-center rounded-full pb-4 shadow-md shadow-orange-200"
+            to={`/seller/${seller.name}`}
+            key={seller.name}
+          >
+            <div className="max-w-80 peer max-h-80 rounded-full">
               <img
-                className="contain peer max-h-[160px] min-h-[105px] cursor-pointer rounded-full object-contain outline outline-orange-100 duration-150 
+                className="h-40 w-40 cursor-pointer rounded-full object-cover outline outline-orange-100 duration-150 
                  hover:scale-110 hover:outline-orange-300 "
                 src={seller.avatarURL}
                 alt=""
               />
-              <span
-                href="/"
-                className="p-2 font-sans text-xl text-orange-100 transition hover:text-orange-300 peer-hover:text-orange-300"
-              >
-                {seller.name}
-              </span>
             </div>
+            <span
+              href="/"
+              className="p-2 font-sans text-xl text-orange-100 transition hover:text-orange-300 peer-hover:text-orange-300"
+            >
+              {seller.name}
+            </span>
           </Link>
         ))}
       </div>
