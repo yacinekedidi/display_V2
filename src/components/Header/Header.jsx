@@ -91,7 +91,7 @@ const Header = () => {
                     ) : (
                       <div className=" relative m-2 inline-block">
                         <img
-                          className="rounded-full object-contain shadow-md shadow-black sm:h-14 sm:w-14"
+                          className="h-10 w-10 rounded-full object-cover shadow-md shadow-black sm:h-14 sm:w-14"
                           src={user?.me?.image}
                           alt="avatar"
                         />

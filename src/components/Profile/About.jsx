@@ -1,4 +1,9 @@
-import { faClose, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCaretDown,
+  faCaretUp,
+  faClose,
+  faPenToSquare,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import moment from 'moment';
@@ -31,11 +36,18 @@ const editUser = async (changes, uid) => {
   return response.data;
 };
 
+const deleteUser = async (uid) => {
+  const response = await axios.delete(`${API_ENDPOINTS.auth}/eraseUser/${uid}`);
+  return response.data;
+};
+
 const About = () => {
   const [isEditable, setIsEditable] = useState(initialStateEditable);
+  const [isOpenDanger, setIsOpenDanger] = useState(false);
   const context = useOutletContext();
   const user = context?.user;
   const u = context?.u;
+  const logout = context?.logout;
   const isLoading = context?.isLoading;
   const [about, setAbout] = useState({
     original: initialStateFields,
@@ -59,6 +71,12 @@ const About = () => {
       phone_number: about.edited['Phone Number'],
     };
     editUser(changes, user._id).catch(console.error);
+  };
+
+  const handleClickDeleteUser = () => {
+    deleteUser(user._id)
+      .then(() => logout())
+      .catch(console.error);
   };
 
   useEffect(() => {
@@ -158,6 +176,39 @@ const About = () => {
           </div>
         </div>
       ))}
+      {u?.me?.role === 'user' && u?.me?.id === user._id ? (
+        <div className="flex w-full flex-col items-center">
+          <div className="mt-4 flex w-full flex-col items-center gap-4  shadow-sm shadow-red-400 sm:w-1/2 lg:w-1/4">
+            <div className="flex items-center justify-between">
+              <p className="w-full px-4 py-1 text-center  font-sans text-xl uppercase text-red-400 ">
+                danger zone
+              </p>
+              <FontAwesomeIcon
+                className="cursor-pointer text-white hover:text-red-600"
+                onClick={() => setIsOpenDanger((prev) => !prev)}
+                icon={isOpenDanger ? faCaretUp : faCaretDown}
+              />
+            </div>
+            {isOpenDanger ? (
+              <div className="w-full">
+                <p className="text-cairo w-full p-4 text-sm text-white">
+                  Once you delete your account, there is no going back. Please
+                  be certain.
+                </p>
+                <div className="w-full text-center">
+                  <button
+                    onClick={handleClickDeleteUser}
+                    className="w-full whitespace-nowrap py-2 font-sans text-sm text-white shadow-sm shadow-red-600 
+                          hover:bg-transparent hover:text-red-600"
+                  >
+                    delete your account
+                  </button>
+                </div>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };

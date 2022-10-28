@@ -9,7 +9,7 @@ import ProfileHome from './ProfileHome';
 const Profile = () => {
   const { pathname } = useLocation();
   const { username } = useParams();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { user: u, isLoading } = useGetUser(username);
   const under =
     pathname.split('/').length > 3 ? pathname.split('/').slice(-1)[0] : null;
@@ -91,7 +91,7 @@ const Profile = () => {
           </div>
 
           <ScrollToTop />
-          <Outlet context={{ user: u, u: user, isLoading }} />
+          <Outlet context={{ user: u, logout, u: user, isLoading }} />
         </div>
         <div>
           <div className="py-4"></div>
