@@ -1,6 +1,7 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip } from '@mui/material';
+import { useSnackbar } from 'notistack';
 import React, { useState } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
 import { deleteProduct } from '../../apis/deleteProduct';
@@ -13,15 +14,44 @@ const SellerProducts = () => {
   const [seller] = useOutletContext();
   const { products, setProducts } = useGetSellerProducts(seller);
   const { user: u } = useAuth();
+  let timeoutId;
+
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  const action = (snackbarId) => (
+    <div className="flex gap-x-2">
+      <button
+        onClick={() => {
+          clearTimeout(timeoutId);
+          closeSnackbar(snackbarId);
+          enqueueSnackbar('canceled');
+        }}
+      >
+        Undo
+      </button>
+      <button
+        onClick={() => {
+          closeSnackbar(snackbarId);
+        }}
+      >
+        Dismiss
+      </button>
+    </div>
+  );
 
   const handleClick = (productId) => {
-    deleteProduct(productId)
-      .then(() =>
-        setProducts((prev) =>
-          prev.filter((product) => product._id !== productId)
+    enqueueSnackbar(`Your product will be deleted in 5 seconds...`, {
+      action,
+    });
+    timeoutId = setTimeout(() => {
+      deleteProduct(productId)
+        .then(() =>
+          setProducts((prev) =>
+            prev.filter((product) => product._id !== productId)
+          )
         )
-      )
-      .catch((err) => console.error(err));
+        .catch((err) => console.error(err));
+    }, 5000);
   };
   return (
     <div
@@ -56,11 +86,14 @@ const SellerProducts = () => {
                 ) : null}
                 <div className="p-2"></div>
                 <Link to={`/products/${product._id}`} key={product._id}>
-                  <div className=" p-2">
+                  <div className="p-2">
                     <div className="">
                       <img
                         className="transition hover:scale-110 "
-                        src={product.pics_url[0]}
+                        src={
+                          product.pics_url[0] ||
+                          'https://leaveitwithme.com.au/wp-content/uploads/2013/11/dummy-image-square.jpg'
+                        }
                         alt=""
                       />
                     </div>

@@ -103,13 +103,8 @@ const ProductInfo = ({
     }
   };
 
-  const [count, setCount] = useState(5);
   const handleClick = () => {
-    setInterval(() => {
-      if (count < 0) return;
-      setCount((prev) => prev - 1);
-    }, 1000);
-    enqueueSnackbar(`Your product will be deleted in ${count} seconds...`, {
+    enqueueSnackbar(`Your product will be deleted in 5 seconds...`, {
       action,
     });
     timeoutId = setTimeout(() => {
