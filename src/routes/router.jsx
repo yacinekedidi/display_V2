@@ -13,6 +13,7 @@ import ProductsViewed from '../components/Profile/history';
 import Profile from '../components/Profile/Profile';
 import RequestDetails from '../components/Profile/RequestDetails';
 import Requests from '../components/Profile/Requests';
+import Plan from '../components/Sellers/Plan';
 import Seller from '../components/Sellers/Seller';
 import SellerAbout from '../components/Sellers/SellerAbout';
 import SellerFollowersList from '../components/Sellers/SellerFollowersList';
@@ -74,6 +75,14 @@ const router = createBrowserRouter([
     path: 'seller/:sellername',
     element: <Seller />,
     children: [
+      {
+        path: 'plan',
+        element: (
+          <SellerPrivateRoute>
+            <Plan />
+          </SellerPrivateRoute>
+        ),
+      },
       {
         path: 'about',
         element: <SellerAbout />,

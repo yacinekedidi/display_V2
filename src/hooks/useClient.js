@@ -1,20 +1,13 @@
 import { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
+import { deleteUserCookies } from '../Utils/deleteUserCookies';
 import { client } from '../Utils/stream';
 
 const cookies = new Cookies();
 const authToken = cookies.get('token');
 
 const logout = async () => {
-  cookies.remove('userId');
-  cookies.remove('username');
-  cookies.remove('fullName');
-  cookies.remove('avatarURL');
-  cookies.remove('hashedPassword');
-  cookies.remove('phoneNumber');
-  cookies.remove('token');
-  cookies.remove('email');
-  cookies.remove('role');
+  deleteUserCookies();
   await client.disconnectUser();
 
   window.location.href = 'https://display-v2.vercel.app/';
@@ -26,7 +19,7 @@ const initChat = async () => {
       {
         id: cookies.get('userId'),
         name: cookies.get('username'),
-        // image: cookies.get('avatarURL'),
+        image: cookies.get('avatarURL'),
       },
       authToken
     );
@@ -53,10 +46,6 @@ const useClient = () => {
         setError(error);
       })
       .finally(() => setIsLoading(false));
-
-    // return () => {
-    //   client.disconnectUser();
-    // };
   }, []);
   return { user, isLoading, isError, error, logout };
 };

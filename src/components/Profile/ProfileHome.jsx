@@ -10,7 +10,7 @@ const ProfileHome = ({ user, u }) => {
       style={{ backgroundColor: '#231f20' }}
     >
       <img
-        className="w-32 self-center rounded-full shadow-sm shadow-orange-400"
+        className="w-32 self-center  rounded-full shadow-sm shadow-orange-400"
         src={user?.avatarURL}
         alt="avatar"
       />

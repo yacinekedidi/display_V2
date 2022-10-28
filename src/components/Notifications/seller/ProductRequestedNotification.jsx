@@ -20,23 +20,27 @@ const ProductRequestedNotification = ({
 tracking-wide shadow-sm shadow-black transition hover:bg-gray-800"
       key={notification.id}
     >
-      <div>
+      <div className="flex gap-x-4">
+        <div className="">
+          <Link
+            className="text-orange-600 hover:text-orange-900"
+            to={`/user/${notification.user_id}`}
+          >
+            {notification?.user_id}
+          </Link>
+          &nbsp;just requested your product&nbsp;
+          <Link
+            className="text-orange-600 hover:text-orange-900"
+            to={`/products/${notification.product_id}`}
+          >
+            {notification.product_name}
+          </Link>
+        </div>
         <Link
           className="text-orange-600 hover:text-orange-900"
-          to={`/user/${notification.user_id}`}
-        >
-          {notification?.user_name}
-        </Link>
-        &nbsp;just requested your product&nbsp;
-        <Link
-          className="text-orange-600 hover:text-orange-900"
-          to={`/products/${notification.product_id}`}
-        >
-          {notification.product_name}
-        </Link>
-        <Link
-          className="text-orange-600 hover:text-orange-900"
-          to={`/requests/${notification.product_name}/${notification.request_id}`}
+          to={`/requests/${notification.product_name.split(' ').join('-')}/${
+            notification.request_id
+          }`}
         >
           see details
         </Link>

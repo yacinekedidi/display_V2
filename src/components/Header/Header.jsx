@@ -91,8 +91,8 @@ const Header = () => {
                     ) : (
                       <div className=" relative m-2 inline-block">
                         <img
-                          className="h-12 w-12 rounded-full shadow-md shadow-black sm:h-14 sm:w-14"
-                          src={user?.me?.avatarURL}
+                          className="rounded-full object-contain shadow-md shadow-black sm:h-14 sm:w-14"
+                          src={user?.me?.image}
                           alt="avatar"
                         />
                         {unreadMessages ? (

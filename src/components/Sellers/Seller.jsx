@@ -45,6 +45,14 @@ const Seller = () => {
           </Link>
           <Link
             className={`flex items-center gap-x-2 px-4 py-1 text-white  ${
+              under === 'plan' ? 'text-orange-400 shadow-xl shadow-black' : ''
+            }`}
+            to={{ pathname: 'plan' }}
+          >
+            <span className="">plan</span>
+          </Link>
+          <Link
+            className={`flex items-center gap-x-2 px-4 py-1 text-white  ${
               under === 'about' ? 'text-orange-400 shadow-xl shadow-black' : ''
             }`}
             to={{ pathname: 'about' }}

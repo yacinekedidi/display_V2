@@ -12,6 +12,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { Rating, Tooltip } from '@mui/material';
+import { useSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -47,6 +48,30 @@ const ProductInfo = ({
   const [isFavorite, setIsFavorite] = useState(
     user?.favorites?.includes(product._id)
   );
+  let timeoutId;
+
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  const action = (snackbarId) => (
+    <div className="flex gap-x-2">
+      <button
+        onClick={() => {
+          clearTimeout(timeoutId);
+          closeSnackbar(snackbarId);
+          enqueueSnackbar('canceled');
+        }}
+      >
+        Undo
+      </button>
+      <button
+        onClick={() => {
+          closeSnackbar(snackbarId);
+        }}
+      >
+        Dismiss
+      </button>
+    </div>
+  );
 
   const handleImageSelect = (idx) => {
     setSelectedImage(idx);
@@ -78,8 +103,18 @@ const ProductInfo = ({
     }
   };
 
+  const [count, setCount] = useState(5);
   const handleClick = () => {
-    deleteProduct(productId).then(() => setIsDeleted(true));
+    setInterval(() => {
+      if (count < 0) return;
+      setCount((prev) => prev - 1);
+    }, 1000);
+    enqueueSnackbar(`Your product will be deleted in ${count} seconds...`, {
+      action,
+    });
+    timeoutId = setTimeout(() => {
+      deleteProduct(productId).then(() => setIsDeleted(true));
+    }, 5000);
   };
 
   useEffect(() => {

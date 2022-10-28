@@ -24,16 +24,16 @@ const RequestDetails = () => {
             {u?.me?.role === 'user' ? (
               <p className="px-4 font-cairo text-xl text-orange-200">
                 Your contact with seller&nbsp;
-                <span className="text-orange-900">{product.seller_name}</span>
+                <span className="text-orange-900">{product?.seller_name}</span>
                 &nbsp; concerning their product&nbsp;
-                <span className="text-orange-900">{product.title}</span>
+                <span className="text-orange-900">{product?.title}</span>
               </p>
             ) : (
               <p className="px-4 font-cairo text-xl text-orange-200">
                 Your contact with client&nbsp;
                 <span className="text-orange-900">{user?.fullName}</span>&nbsp;
                 concerning your product&nbsp;
-                <span className="text-orange-900">{product.title}</span>
+                <span className="text-orange-900">{product?.title}</span>
               </p>
             )}
           </>
@@ -47,10 +47,10 @@ const RequestDetails = () => {
             <div className="rounded-lg bg-black p-4 text-sm text-white shadow-sm shadow-black">
               <div className="flex items-center gap-2">
                 <Link className="hover:opacity-80" to={`/user/${user._id}`}>
-                  <Tooltip title={user.fullName}>
+                  <Tooltip title={user?.fullName}>
                     <img
                       className="h-10 w-10 rounded-full"
-                      src={user.avatarURL}
+                      src={user?.avatarURL}
                       alt="avatar"
                     />
                   </Tooltip>

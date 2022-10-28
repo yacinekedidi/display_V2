@@ -19,11 +19,11 @@ const SideBar = ({ client }) => {
       </div>
       <div className="channel-list__sidebar__icon2 relative box-border  cursor-default transition-all hover:border-2 hover:border-orange-600">
         <div className="icon1__inner ">
-          {/* <img
+          <img
             className="peer rounded-full object-cover"
             src={client.user?.image}
             alt="profile"
-          /> */}
+          />
           <div
             className="invisible absolute left-full bottom-full whitespace-nowrap rounded-lg rounded-bl-none
           bg-black px-2 text-center font-sans text-sm font-thin text-white opacity-60 transition-all 
