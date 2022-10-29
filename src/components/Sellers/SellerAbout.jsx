@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useAuth } from '../../contexts/user-context';
+import DeleteAccount from '../Profile/DeleteAccount';
 
 const initialState = {
   name: '',
@@ -17,28 +18,15 @@ const initialStateEditable = {
   website: false,
 };
 
-// const useEditInputFields = (initialState, ctx, ...fields) => {
-//   const [about, setAbout] = useState({
-//     original: initialState,
-//     edited: initialState,
-//   });
-//   const [isEditable, setIsEditable] = useState(initialStateEditable);
-
-//   useEffect(() => {
-//     setAbout({ original: ctx, edited: ctx });
-//   }, [ctx]);
-
-//   return { about, setAbout, isEditable, setIsEditable };
-// };
-
 const SellerAbout = () => {
   const [{ phone_number, name, email, website }] = useOutletContext();
+
   const [about, setAbout] = useState({
     original: initialState,
     edited: initialState,
   });
   const [isEditable, setIsEditable] = useState(initialStateEditable);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const handleClick = (fieldToEdit) => {
     setIsEditable((prev) => {
@@ -56,7 +44,7 @@ const SellerAbout = () => {
   }, [phone_number, name, email, website]);
 
   return (
-    <>
+    <div>
       <div className="mb-1 flex justify-end  gap-x-6 rounded-md p-4 font-cairo text-sm uppercase text-black shadow-sm shadow-black">
         {Object.keys(about.original).find(
           (key) => about.original[key] !== about.edited[key]
@@ -160,7 +148,8 @@ const SellerAbout = () => {
           </div>
         </div>
       </div>
-    </>
+      <DeleteAccount role="seller" name={name} />
+    </div>
   );
 };
 
