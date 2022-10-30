@@ -3,8 +3,9 @@ import {
   faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useLocation } from 'react-router-dom';
 import { useFetchItems } from '../../hooks/useFetchItems';
 import { API_ENDPOINTS } from '../../Utils/constants';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
@@ -33,15 +34,26 @@ const AccountsList = ({ type = 'user' }) => {
     );
   };
 
-  const handleClickEvt = (e) => {
+  const handleClickEvt = useCallback((e) => {
     if (!e.target.closest('.btn__menu')) setOpenMenu(null);
-  };
+  }, []);
+
+  const handleKeyDownEvt = useCallback(
+    (e) => {
+      if (e.key === 'Escape' && openMenu !== null) setOpenMenu(null);
+    },
+    [openMenu]
+  );
 
   useEffect(() => {
     document.addEventListener('click', handleClickEvt);
+    document.addEventListener('keydown', handleKeyDownEvt);
 
-    return () => document.removeEventListener('click', handleClickEvt);
-  }, []);
+    return () => {
+      document.removeEventListener('click', handleClickEvt);
+      document.removeEventListener('keydown', handleKeyDownEvt);
+    };
+  }, [handleClickEvt, handleKeyDownEvt]);
 
   if (isLoading) return <LoadingWithModal />;
 
@@ -78,7 +90,7 @@ const AccountsList = ({ type = 'user' }) => {
             <div>No {isUser ? 'users' : 'sellers'} available!</div>
           ) : (
             searchedItems.map((item) => (
-              <div className="flex gap-2" key={item._id}>
+              <div className="group flex gap-2 p-4" key={item._id}>
                 <div className=" h-[150px] w-[150px] rounded-lg p-2 text-center shadow-sm shadow-black transition hover:cursor-pointer hover:bg-orange-600">
                   <img
                     className="h-full w-full object-contain"
@@ -88,13 +100,13 @@ const AccountsList = ({ type = 'user' }) => {
                   <p>{isUser ? item.username : item.name}</p>
                 </div>
                 <button
-                  className="btn__menu relative self-start"
+                  className="btn__menu relative hidden self-start group-hover:block"
                   onClick={() =>
                     setOpenMenu((prev) => (item._id !== prev ? item._id : null))
                   }
                 >
                   <FontAwesomeIcon
-                    className="text-white"
+                    className="text-white hover:opacity-80"
                     icon={faEllipsisVertical}
                   />
                   <ul
@@ -103,13 +115,13 @@ const AccountsList = ({ type = 'user' }) => {
                     }  w-28 flex-col bg-gray-900 text-xs shadow-sm shadow-black`}
                   >
                     <li
-                      className="px-2 hover:bg-gray-600"
+                      className="p-2 hover:bg-gray-600"
                       onClick={() => console.log('ban')}
                     >
                       Ban user
                     </li>
                     <li
-                      className="px-2 hover:bg-gray-600"
+                      className="p-2 hover:bg-gray-600"
                       onClick={() => console.log('message')}
                     >
                       Message user
