@@ -1,6 +1,5 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Tooltip } from '@mui/material';
-import { useSnackbar } from 'notistack';
 import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useLocation, useSearchParams } from 'react-router-dom';

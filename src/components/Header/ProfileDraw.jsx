@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/user-context';
 import getFormattedName from '../../Utils/formatFullname';
 import Auth from '../Auth/Auth';
+import AdminProfileDraw from './AdminProfileDraw';
 
 const ProfileDraw = ({ showProfileDraw, unreadMessages }) => {
   const { user, logout } = useAuth();
@@ -40,58 +41,64 @@ const ProfileDraw = ({ showProfileDraw, unreadMessages }) => {
       className="absolute top-16 right-6 flex w-52 flex-col gap-4 rounded-sm bg-gray-900 text-left font-sans text-base font-medium text-white shadow-md 
  shadow-black"
     >
-      <div
-        className="flex flex-col items-center gap-2 p-2 
-   after:my-0 after:mx-auto after:block after:w-11/12 after:border-b-2 after:border-b-orange-300 after:pt-1"
-      >
-        <Link
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-300 text-center shadow-sm shadow-black "
-          to={
-            user?.me?.role === 'user'
-              ? `/user/${user?.me?.id}`
-              : `/seller/${user?.me?.name}`
-          }
-        >
-          <img
-            className="w-32 self-center rounded-full outline outline-orange-400"
-            src={user?.me?.image}
-            alt="avatar"
-          />
-        </Link>
-        <span className="font-semibold">
-          {getFormattedName(user?.me?.name)}
-        </span>
-      </div>
-
       <>
-        {' '}
         <div
-          className="flex flex-col gap-y-3 py-0 after:my-0 after:mx-auto after:block after:w-11/12 after:border-b-2 
-                      after:border-b-orange-300 after:pt-1"
+          className="flex flex-col items-center gap-2 p-2 
+after:my-0 after:mx-auto after:block after:w-11/12 after:border-b-2 after:border-b-orange-300 after:pt-1"
         >
           <Link
-            className="flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
-            to={{
-              pathname:
-                user?.me?.role === 'user'
-                  ? `/user/${user?.me?.id}`
-                  : `/seller/${user?.me?.name}`,
-            }}
-          >
-            <FontAwesomeIcon icon={faUser} size="sm" />
-            <span className="">Profile</span>
-          </Link>
-          <Link
-            className="flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-300 text-center shadow-sm shadow-black "
             to={
               user?.me?.role === 'user'
-                ? `/user/${user?.me?.id}/notifications`
-                : `/seller/${user?.me?.name}/notifications`
+                ? `/user/${user?.me?.id}`
+                : `/seller/${user?.me?.name}`
             }
           >
-            <FontAwesomeIcon icon={faBell} size="sm" />
-            <span className="">Notifications</span>
+            <img
+              className="w-32 self-center rounded-full outline outline-orange-400"
+              src={user?.me?.image}
+              alt="avatar"
+            />
           </Link>
+          <span className="font-semibold">
+            {getFormattedName(user?.me?.name)}
+          </span>
+        </div>
+
+        <div
+          className="flex flex-col gap-y-3 py-0 after:my-0 after:mx-auto after:block after:w-11/12 after:border-b-2 
+                  after:border-b-orange-300 after:pt-1"
+        >
+          {user?.me?.role === 'admin' ? (
+            <AdminProfileDraw />
+          ) : (
+            <>
+              <Link
+                className="flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
+                to={{
+                  pathname:
+                    user?.me?.role === 'user'
+                      ? `/user/${user?.me?.id}`
+                      : `/seller/${user?.me?.name}`,
+                }}
+              >
+                <FontAwesomeIcon icon={faUser} size="sm" />
+                <span className="">Profile</span>
+              </Link>
+              <Link
+                className="flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
+                to={
+                  user?.me?.role === 'user'
+                    ? `/user/${user?.me?.id}/notifications`
+                    : `/seller/${user?.me?.name}/notifications`
+                }
+              >
+                <FontAwesomeIcon icon={faBell} size="sm" />
+                <span className="">Notifications</span>
+              </Link>
+            </>
+          )}
+
           <Link
             className="flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
             to={`/messages`}
@@ -102,7 +109,7 @@ const ProfileDraw = ({ showProfileDraw, unreadMessages }) => {
               {unreadMessages ? (
                 <div
                   className="rounded-[8px]  px-2 font-cairo 
-                          text-sm  text-white"
+                      text-sm  text-white"
                   style={{ backgroundColor: '#f5424e' }}
                 >
                   {unreadMessages}
@@ -113,14 +120,15 @@ const ProfileDraw = ({ showProfileDraw, unreadMessages }) => {
             </div>
           </Link>
         </div>
-        <div
-          onClick={logout}
-          className="mb-4 flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
-        >
-          <FontAwesomeIcon icon={faArrowRightFromBracket} />
-          <span className="">Logout</span>
-        </div>
       </>
+
+      <div
+        onClick={logout}
+        className="mb-4 flex items-center gap-2 rounded-md border-r-4 border-l-4 border-r-orange-300 border-l-orange-300 px-2 hover:bg-gray-500"
+      >
+        <FontAwesomeIcon icon={faArrowRightFromBracket} />
+        <span className="">Logout</span>
+      </div>
     </div>
   );
 };

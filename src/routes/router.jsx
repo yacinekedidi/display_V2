@@ -1,4 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
+import Dashboard from '../components/admin/Dashboard';
+import DashboardHome from '../components/admin/DashboardHome';
+import Flags from '../components/admin/Flags';
+import Logs from '../components/admin/Logs';
+import Sellers from '../components/admin/Sellers';
+import Users from '../components/admin/Users';
 import Category from '../components/Categories/Category';
 import Messages from '../components/Chatroom/Messages/Messages';
 import Home from '../components/Home/Home';
@@ -28,6 +34,33 @@ const router = createBrowserRouter([
     path: '/',
     element: <Home />,
     errorElement: <NotFound />,
+  },
+  {
+    path: 'dashboard',
+    element: <Dashboard />,
+    // errorElement: <NotFound />,
+    children: [
+      {
+        path: 'home',
+        element: <DashboardHome />,
+      },
+      {
+        path: 'logs',
+        element: <Logs />,
+      },
+      {
+        path: 'users',
+        element: <Users />,
+      },
+      {
+        path: 'sellers',
+        element: <Sellers />,
+      },
+      {
+        path: 'flags',
+        element: <Flags />,
+      },
+    ],
   },
   {
     path: 'user/:username',
