@@ -79,7 +79,7 @@ const AccountsList = ({ type = 'user' }) => {
           ) : (
             searchedItems.map((item) => (
               <div className="flex gap-2" key={item._id}>
-                <div className=" h-[150px] w-[150px] p-2 text-center shadow-sm shadow-black transition hover:cursor-pointer hover:bg-orange-600">
+                <div className=" h-[150px] w-[150px] rounded-lg p-2 text-center shadow-sm shadow-black transition hover:cursor-pointer hover:bg-orange-600">
                   <img
                     className="h-full w-full object-contain"
                     src={item.avatarURL}

@@ -13,7 +13,6 @@ export const useFetchItems = (url) => {
       page.current = data?.nextPage;
       if (data?.data) {
         setItems((prev) => [...prev, ...data?.data]);
-
         setSearchedItems((prev) => [...prev, ...data?.data]);
       }
     } catch (err) {
