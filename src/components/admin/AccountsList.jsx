@@ -5,15 +5,19 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCallback, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useLocation } from 'react-router-dom';
 import { useFetchItems } from '../../hooks/useFetchItems';
 import { API_ENDPOINTS } from '../../Utils/constants';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import LoadingWithModal from '../../Utils/LoadingWithModal';
+import ModalOverlay from '../../Utils/ModalOverlay';
+import BanModal from './BanModal';
+import UserCard from './UserCard';
 
 const AccountsList = ({ type = 'user' }) => {
   const isUser = type === 'user';
   const [openMenu, setOpenMenu] = useState(null);
+  const [banningUser, setBanningUser] = useState(null);
+  const [isBanningUser, setIsBanningUser] = useState(false);
   const {
     items,
     page,
@@ -91,14 +95,7 @@ const AccountsList = ({ type = 'user' }) => {
           ) : (
             searchedItems.map((item) => (
               <div className="group flex gap-2 p-4" key={item._id}>
-                <div className=" h-[150px] w-[150px] rounded-lg p-2 text-center shadow-sm shadow-black transition hover:cursor-pointer hover:bg-orange-600">
-                  <img
-                    className="h-full w-full object-contain"
-                    src={item.avatarURL}
-                    alt="avatar"
-                  />
-                  <p>{isUser ? item.username : item.name}</p>
-                </div>
+                <UserCard item={item} isUser={isUser} />
                 <button
                   className="btn__menu relative hidden self-start group-hover:block"
                   onClick={() =>
@@ -116,13 +113,23 @@ const AccountsList = ({ type = 'user' }) => {
                   >
                     <li
                       className="p-2 hover:bg-gray-600"
-                      onClick={() => console.log('ban')}
+                      onClick={() => {
+                        setIsBanningUser(true);
+                        setBanningUser(item);
+                        console.log(
+                          `ban ${isUser ? item.username : item.name}`
+                        );
+                      }}
                     >
                       Ban user
                     </li>
                     <li
                       className="p-2 hover:bg-gray-600"
-                      onClick={() => console.log('message')}
+                      onClick={() =>
+                        console.log(
+                          `message $${isUser ? item.username : item.name}`
+                        )
+                      }
                     >
                       Message user
                     </li>
@@ -133,6 +140,15 @@ const AccountsList = ({ type = 'user' }) => {
           )}
         </div>
       </InfiniteScroll>
+      {isBanningUser ? (
+        <ModalOverlay IsOpen={isBanningUser} setIsOpen={setIsBanningUser}>
+          <BanModal
+            setIsBanningUser={setIsBanningUser}
+            banningUser={banningUser}
+            isUser={isUser}
+          />
+        </ModalOverlay>
+      ) : null}
     </div>
   );
 };

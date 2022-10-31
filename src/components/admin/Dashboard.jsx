@@ -51,7 +51,7 @@ const Dashboard = () => {
         </div>
         <div className="flex h-full w-full">
           <div
-            className=" h-full p-2 shadow-sm shadow-black"
+            className="h-full resize-x overflow-hidden p-2 shadow-sm shadow-black"
             style={{ width: `${drawerWidth}%` }}
           >
             {drawerWidth === 15 ? (
