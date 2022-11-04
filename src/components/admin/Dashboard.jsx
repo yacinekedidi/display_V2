@@ -1,5 +1,6 @@
 import {
   faArrowLeft,
+  faBan,
   faBars,
   faBuilding,
   faFlag,
@@ -62,10 +63,11 @@ const Dashboard = () => {
                 <FontAwesomeIcon icon={faArrowLeft} size="sm" />
               </button>
             ) : null}
-            <ul className=" text-md flex h-full w-full flex-col items-center gap-y-14 py-8  font-cairo capitalize">
+            <div className=" text-md flex h-full w-full flex-col items-center gap-y-4 py-4  font-cairo capitalize">
               {drawerWidth === 15 ? (
                 <>
-                  <li
+                  <Link
+                    to="home"
                     className={`flex w-full items-center rounded-md py-2  ${
                       currentRoute === 'home'
                         ? 'bg-gray-800'
@@ -77,11 +79,10 @@ const Dashboard = () => {
                       size="xs"
                       icon={faHome}
                     />
-                    <Link to="home" className="flex-1">
-                      home
-                    </Link>
-                  </li>
-                  <li
+                    <p className="flex-1">home</p>
+                  </Link>
+                  <Link
+                    to="logs"
                     className={`flex w-full items-center rounded-md py-2 ${
                       currentRoute === 'logs'
                         ? 'bg-gray-800'
@@ -93,11 +94,12 @@ const Dashboard = () => {
                       size="xs"
                       icon={faWaveSquare}
                     />
-                    <Link to="logs" className="flex-1">
+                    <p to="logs" className="flex-1">
                       logs
-                    </Link>
-                  </li>
-                  <li
+                    </p>
+                  </Link>
+                  <Link
+                    to="users"
                     className={`flex w-full items-center rounded-md py-2 ${
                       currentRoute === 'users'
                         ? 'bg-gray-800'
@@ -109,11 +111,12 @@ const Dashboard = () => {
                       size="xs"
                       icon={faUser}
                     />
-                    <Link to="users" className="flex-1">
+                    <p to="users" className="flex-1">
                       users
-                    </Link>
-                  </li>
-                  <li
+                    </p>
+                  </Link>
+                  <Link
+                    to="sellers"
                     className={`flex w-full items-center rounded-md py-2 ${
                       currentRoute === 'sellers'
                         ? 'bg-gray-800'
@@ -125,11 +128,10 @@ const Dashboard = () => {
                       size="xs"
                       icon={faBuilding}
                     />
-                    <Link to="sellers" className="flex-1">
-                      sellers
-                    </Link>
-                  </li>
-                  <li
+                    <p className="flex-1">sellers</p>
+                  </Link>
+                  <Link
+                    to="flags"
                     className={`flex w-full items-center rounded-md py-2 ${
                       currentRoute === 'flags'
                         ? 'bg-gray-800'
@@ -141,10 +143,24 @@ const Dashboard = () => {
                       size="xs"
                       icon={faFlag}
                     />
-                    <Link to="flags" className="flex-1">
-                      flags
-                    </Link>
-                  </li>
+                    <p className="flex-1">flags</p>
+                  </Link>
+
+                  <Link
+                    to="banned"
+                    className={`flex w-full items-center rounded-md py-2 ${
+                      currentRoute === 'banned'
+                        ? 'bg-gray-800'
+                        : 'hover:bg-gray-800'
+                    }`}
+                  >
+                    <FontAwesomeIcon
+                      className="flex-1"
+                      size="xs"
+                      icon={faBan}
+                    />
+                    <p className="flex-1">Banned</p>
+                  </Link>
                 </>
               ) : (
                 <>
@@ -215,9 +231,23 @@ const Dashboard = () => {
                       <p className="text-xs">Flags</p>
                     </Link>
                   </Tooltip>
+
+                  <Tooltip title="flags" placement="right-end" arrow>
+                    <Link
+                      to="banned"
+                      className={`hover:pointer-cursor w-full rounded-md py-2 text-center ${
+                        currentRoute === 'banned'
+                          ? 'bg-gray-800'
+                          : 'hover:bg-gray-800'
+                      }`}
+                    >
+                      <FontAwesomeIcon size="xs" icon={faBan} />
+                      <p className="text-xs">Banned</p>
+                    </Link>
+                  </Tooltip>
                 </>
               )}
-            </ul>
+            </div>
           </div>
           <Outlet />
         </div>

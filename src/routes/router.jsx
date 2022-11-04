@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import BannedList from '../components/admin/BannedList';
 import Dashboard from '../components/admin/Dashboard';
 import DashboardHome from '../components/admin/DashboardHome';
 import Flags from '../components/admin/Flags';
@@ -26,6 +27,7 @@ import SellerFollowersList from '../components/Sellers/SellerFollowersList';
 import SellerProducts from '../components/Sellers/SellerProducts';
 import SellerRequests from '../components/Sellers/SellerRequests';
 import NotFound from '../Utils/NotFound';
+import AdminPrivateRoute from './AdminPrivateRoute';
 import SellerPrivateRoute from './SellerPrivateRoute';
 import UserPrivateRoute from './UserPrivateRoute';
 
@@ -36,8 +38,12 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
   },
   {
-    path: 'dashboard',
-    element: <Dashboard />,
+    path: 'admin/:adminId/dashboard',
+    element: (
+      <AdminPrivateRoute>
+        <Dashboard />
+      </AdminPrivateRoute>
+    ),
     // errorElement: <NotFound />,
     children: [
       {
@@ -59,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: 'flags',
         element: <Flags />,
+      },
+      {
+        path: 'banned',
+        element: <BannedList />,
       },
     ],
   },

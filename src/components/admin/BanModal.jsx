@@ -1,5 +1,6 @@
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { useAuth } from '../../contexts/user-context';
 import { client } from '../../Utils/stream';
@@ -9,34 +10,52 @@ const BanModal = ({ banningUser, setIsBanningUser, isUser }) => {
   const [timeout, setTimeout] = useState(60);
   const [reason, setReason] = useState('');
   const { user } = useAuth();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  const action = (snackbarId) => (
+    <div className="flex gap-x-2">
+      <button
+        onClick={() => {
+          closeSnackbar(snackbarId);
+        }}
+      >
+        Dismiss
+      </button>
+    </div>
+  );
 
   const handleClickBan = async () => {
-    const username = isUser ? banningUser.username : banningUser.name;
     try {
-      const data = await client.banUser(username, {
+      await client.banUser(banningUser._id, {
         banned_by_id: user?.me?.id,
         timeout,
         ip_ban: true,
         reason,
       });
-
-      console.log(data);
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsBanningUser(false);
+      enqueueSnackbar(
+        `${isUser ? banningUser.username : banningUser.name} is banned`,
+        { action }
+      );
     }
   };
-
   return (
-    <div className="relative flex h-full max-h-screen w-full max-w-7xl rounded-md bg-gray-900 font-cairo sm:h-3/4 sm:w-3/4 md:w-1/2">
+    <div
+      className="relative flex h-full max-h-screen w-full max-w-7xl flex-col rounded-md bg-gray-900 font-cairo 
+    sm:w-3/4 md:w-1/2  lg:flex-row"
+    >
       <FontAwesomeIcon
         className="absolute right-0 top-0 mr-1 cursor-pointer transition hover:text-orange-600"
         onClick={() => setIsBanningUser(false)}
         icon={faClose}
         size="2x"
       />
-      <div className="m-2 flex flex-col gap-4">
+      <div className="m-2 flex flex-row gap-4 lg:flex-col">
         <UserCard item={banningUser} isUser={isUser} />
-        <div className="m-2 rounded-md p-4 font-cairo text-xs shadow-sm shadow-black">
+        <div className="m-2 w-full rounded-md p-4 font-cairo text-xs shadow-sm shadow-black">
           <p>
             prior bans <span className="text-orange-200">[1]</span>
           </p>
@@ -49,7 +68,7 @@ const BanModal = ({ banningUser, setIsBanningUser, isUser }) => {
         <div className="flex flex-col gap-6 p-6 shadow-sm shadow-black">
           <h1>ban reason:</h1>
           <textarea
-            rows="8"
+            rows="5"
             value={reason}
             onChange={(e) => setReason(e.target.value)}
             placeholder="the reason of your ban is..."
@@ -57,7 +76,7 @@ const BanModal = ({ banningUser, setIsBanningUser, isUser }) => {
           />
         </div>
 
-        <div className="flex  gap-1 p-2 shadow-sm shadow-black">
+        <div className="flex  flex-wrap gap-1 p-2 shadow-sm shadow-black">
           <p
             className={`cursor-pointer rounded-md p-2 shadow-sm shadow-black hover:bg-green-300 ${
               timeout === 60 ? 'bg-green-500 shadow-green-500' : null

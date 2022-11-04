@@ -67,7 +67,7 @@ const ProductsList = ({ toggle, isVisible }) => {
                   onChange={handleQuery}
                 />
               </div>
-              {['seller', 'admin'].includes(u?.role) ? (
+              {u?.role === 'seller' ? (
                 <div>
                   <Tooltip title="Add product">
                     <button

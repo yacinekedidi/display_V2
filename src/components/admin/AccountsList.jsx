@@ -3,6 +3,7 @@ import {
   faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSnackbar } from 'notistack';
 import { useCallback, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useFetchItems } from '../../hooks/useFetchItems';
@@ -10,14 +11,24 @@ import { API_ENDPOINTS } from '../../Utils/constants';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
 import LoadingWithModal from '../../Utils/LoadingWithModal';
 import ModalOverlay from '../../Utils/ModalOverlay';
+import { client } from '../../Utils/stream';
 import BanModal from './BanModal';
+import MessageModal from './MessageModal';
 import UserCard from './UserCard';
 
 const AccountsList = ({ type = 'user' }) => {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const isUser = type === 'user';
   const [openMenu, setOpenMenu] = useState(null);
   const [banningUser, setBanningUser] = useState(null);
   const [isBanningUser, setIsBanningUser] = useState(false);
+  const [unreadMessages, setUnreadMessages] = useState([]);
+
+  const [BannedUser, setBannedUser] = useState(null);
+
+  const [messageRecipient, setMessageRecipient] = useState(null);
+  const [isSendingMessage, setIsSendingMessage] = useState(false);
+
   const {
     items,
     page,
@@ -27,6 +38,18 @@ const AccountsList = ({ type = 'user' }) => {
     searchedItems,
   } = useFetchItems(
     isUser ? `${API_ENDPOINTS.users}` : `${API_ENDPOINTS.sellers}`
+  );
+
+  const action = (snackbarId) => (
+    <div className="flex gap-x-2">
+      <button
+        onClick={() => {
+          closeSnackbar(snackbarId);
+        }}
+      >
+        Dismiss
+      </button>
+    </div>
   );
 
   const handleChange = (e) => {
@@ -58,6 +81,18 @@ const AccountsList = ({ type = 'user' }) => {
       document.removeEventListener('keydown', handleKeyDownEvt);
     };
   }, [handleClickEvt, handleKeyDownEvt]);
+
+  useEffect(() => {
+    client.on((event) => {
+      if (event?.type === 'notification.message_new') {
+        console.log('event', event);
+        setUnreadMessages((prev) => [
+          ...prev,
+          { unread: event.unread_count, id: event?.message?.user?.id },
+        ]);
+      }
+    });
+  }, []);
 
   if (isLoading) return <LoadingWithModal />;
 
@@ -95,12 +130,27 @@ const AccountsList = ({ type = 'user' }) => {
           ) : (
             searchedItems.map((item) => (
               <div className="group flex gap-2 p-4" key={item._id}>
-                <UserCard item={item} isUser={isUser} />
+                <UserCard
+                  item={item}
+                  isUser={isUser}
+                  unreadMessages={unreadMessages}
+                />
                 <button
                   className="btn__menu relative hidden self-start group-hover:block"
-                  onClick={() =>
-                    setOpenMenu((prev) => (item._id !== prev ? item._id : null))
-                  }
+                  onClick={async () => {
+                    // check if user is banned
+                    const response = await client.queryUsers({
+                      id: item._id,
+                      banned: true,
+                    });
+                    // console.log(response.users.length);
+                    if (response?.users?.length) setBannedUser(item._id);
+                    else setBannedUser(null);
+
+                    setOpenMenu((prev) =>
+                      item._id !== prev ? item._id : null
+                    );
+                  }}
                 >
                   <FontAwesomeIcon
                     className="text-white hover:opacity-80"
@@ -111,25 +161,45 @@ const AccountsList = ({ type = 'user' }) => {
                       openMenu === item._id ? 'flex' : 'hidden'
                     }  w-28 flex-col bg-gray-900 text-xs shadow-sm shadow-black`}
                   >
+                    {BannedUser === null ? (
+                      <li
+                        className="p-2 hover:bg-gray-600"
+                        onClick={() => {
+                          setIsBanningUser(true);
+                          setBanningUser(item);
+                        }}
+                      >
+                        Ban user
+                      </li>
+                    ) : (
+                      <li
+                        className="p-2 hover:bg-gray-600"
+                        onClick={async () => {
+                          //unban user
+                          try {
+                            await client.unbanUser(item._id);
+                          } catch (err) {
+                            console.error(err);
+                          } finally {
+                            enqueueSnackbar(
+                              `${
+                                isUser ? item?.username : item?.name
+                              } is unbanned`,
+                              { action }
+                            );
+                          }
+                        }}
+                      >
+                        Unban User
+                      </li>
+                    )}
+
                     <li
                       className="p-2 hover:bg-gray-600"
                       onClick={() => {
-                        setIsBanningUser(true);
-                        setBanningUser(item);
-                        console.log(
-                          `ban ${isUser ? item.username : item.name}`
-                        );
+                        setIsSendingMessage(true);
+                        setMessageRecipient(item);
                       }}
-                    >
-                      Ban user
-                    </li>
-                    <li
-                      className="p-2 hover:bg-gray-600"
-                      onClick={() =>
-                        console.log(
-                          `message $${isUser ? item.username : item.name}`
-                        )
-                      }
                     >
                       Message user
                     </li>
@@ -141,10 +211,22 @@ const AccountsList = ({ type = 'user' }) => {
         </div>
       </InfiniteScroll>
       {isBanningUser ? (
-        <ModalOverlay IsOpen={isBanningUser} setIsOpen={setIsBanningUser}>
-          <BanModal
-            setIsBanningUser={setIsBanningUser}
-            banningUser={banningUser}
+        BannedUser === null ? (
+          <ModalOverlay IsOpen={isBanningUser} setIsOpen={setIsBanningUser}>
+            <BanModal
+              setIsBanningUser={setIsBanningUser}
+              banningUser={banningUser}
+              isUser={isUser}
+            />
+          </ModalOverlay>
+        ) : null
+      ) : null}
+
+      {isSendingMessage ? (
+        <ModalOverlay IsOpen={isSendingMessage} setIsOpen={setIsSendingMessage}>
+          <MessageModal
+            setIsSendingMessage={setIsSendingMessage}
+            messageRecipient={messageRecipient}
             isUser={isUser}
           />
         </ModalOverlay>

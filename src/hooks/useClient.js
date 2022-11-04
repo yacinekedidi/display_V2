@@ -26,7 +26,8 @@ const initChat = async () => {
 
     return currentUser;
   } catch (err) {
-    throw new Error(err);
+    console.log(err);
+    throw err;
   }
 };
 
