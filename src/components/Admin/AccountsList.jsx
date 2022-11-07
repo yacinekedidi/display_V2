@@ -4,8 +4,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSnackbar } from 'notistack';
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useEvents } from '../../hooks/useEvents';
 import { useFetchItems } from '../../hooks/useFetchItems';
 import { API_ENDPOINTS } from '../../Utils/constants';
 import LoadingSpinner from '../../Utils/LoadingSpinner';
@@ -19,13 +20,11 @@ import UserCard from './UserCard';
 const AccountsList = ({ type = 'user' }) => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const isUser = type === 'user';
-  const [openMenu, setOpenMenu] = useState(null);
+  const { openMenu, setOpenMenu } = useEvents();
   const [banningUser, setBanningUser] = useState(null);
   const [isBanningUser, setIsBanningUser] = useState(false);
   const [unreadMessages, setUnreadMessages] = useState([]);
-
   const [BannedUser, setBannedUser] = useState(null);
-
   const [messageRecipient, setMessageRecipient] = useState(null);
   const [isSendingMessage, setIsSendingMessage] = useState(false);
 
@@ -61,39 +60,6 @@ const AccountsList = ({ type = 'user' }) => {
     );
   };
 
-  const handleClickEvt = useCallback((e) => {
-    if (!e.target.closest('.btn__menu')) setOpenMenu(null);
-  }, []);
-
-  const handleKeyDownEvt = useCallback(
-    (e) => {
-      if (e.key === 'Escape' && openMenu !== null) setOpenMenu(null);
-    },
-    [openMenu]
-  );
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickEvt);
-    document.addEventListener('keydown', handleKeyDownEvt);
-
-    return () => {
-      document.removeEventListener('click', handleClickEvt);
-      document.removeEventListener('keydown', handleKeyDownEvt);
-    };
-  }, [handleClickEvt, handleKeyDownEvt]);
-
-  useEffect(() => {
-    client.on((event) => {
-      if (event?.type === 'notification.message_new') {
-        console.log('event', event);
-        setUnreadMessages((prev) => [
-          ...prev,
-          { unread: event.unread_count, id: event?.message?.user?.id },
-        ]);
-      }
-    });
-  }, []);
-
   if (isLoading) return <LoadingWithModal />;
 
   return (
@@ -128,88 +94,87 @@ const AccountsList = ({ type = 'user' }) => {
           {!searchedItems.length && !page.current ? (
             <div>No {isUser ? 'users' : 'sellers'} available!</div>
           ) : (
-            searchedItems.map((item) => (
-              <div className="group flex gap-2 p-4" key={item._id}>
-                <UserCard
-                  item={item}
-                  isUser={isUser}
-                  unreadMessages={unreadMessages}
-                />
-                <button
-                  className="btn__menu relative hidden self-start group-hover:block"
-                  onClick={async () => {
-                    // check if user is banned
-                    const response = await client.queryUsers({
-                      id: item._id,
-                      banned: true,
-                    });
-                    // console.log(response.users.length);
-                    if (response?.users?.length) setBannedUser(item._id);
-                    else setBannedUser(null);
+            searchedItems.map((item) => {
+              console.log(item);
+              const user = {
+                id: item?._id || item.id,
+                image: item?.avatarURL || item.image,
+                name: isUser ? item.username : item.name,
+              };
+              return (
+                <div className="group flex gap-2 p-4" key={user.id}>
+                  <UserCard item={user} unreadMessages={unreadMessages} />
+                  <button
+                    className="btn__menu relative hidden self-start group-hover:block"
+                    onClick={async () => {
+                      const response = await client.queryUsers({
+                        id: user.id,
+                        banned: true,
+                      });
+                      if (response?.users?.length) setBannedUser(user.id);
+                      else setBannedUser(null);
 
-                    setOpenMenu((prev) =>
-                      item._id !== prev ? item._id : null
-                    );
-                  }}
-                >
-                  <FontAwesomeIcon
-                    className="text-white hover:opacity-80"
-                    icon={faEllipsisVertical}
-                  />
-                  <ul
-                    className={`absolute right-0 gap-2 py-2 text-left  ${
-                      openMenu === item._id ? 'flex' : 'hidden'
-                    }  w-28 flex-col bg-gray-900 text-xs shadow-sm shadow-black`}
+                      setOpenMenu((prev) =>
+                        user.id !== prev ? user.id : null
+                      );
+                    }}
                   >
-                    {BannedUser === null ? (
+                    <FontAwesomeIcon
+                      className="text-white hover:opacity-80"
+                      icon={faEllipsisVertical}
+                    />
+                    <ul
+                      className={`absolute right-0 gap-2 py-2 text-left  ${
+                        openMenu === user.id ? 'flex' : 'hidden'
+                      }  w-28 flex-col bg-gray-900 text-xs shadow-sm shadow-black`}
+                    >
+                      {BannedUser === null ? (
+                        <li
+                          className="p-2 hover:bg-gray-600"
+                          onClick={() => {
+                            setIsBanningUser(true);
+                            setBanningUser(user);
+                          }}
+                        >
+                          Ban user
+                        </li>
+                      ) : (
+                        <li
+                          className="p-2 hover:bg-gray-600"
+                          onClick={async () => {
+                            try {
+                              await client.unbanUser(user.id);
+                            } catch (err) {
+                              console.error(err);
+                            } finally {
+                              enqueueSnackbar(`${user.name} is unbanned`, {
+                                action,
+                              });
+                            }
+                          }}
+                        >
+                          Unban User
+                        </li>
+                      )}
+
                       <li
                         className="p-2 hover:bg-gray-600"
                         onClick={() => {
-                          setIsBanningUser(true);
-                          setBanningUser(item);
+                          setIsSendingMessage(true);
+                          setMessageRecipient(user);
                         }}
                       >
-                        Ban user
+                        Message user
                       </li>
-                    ) : (
-                      <li
-                        className="p-2 hover:bg-gray-600"
-                        onClick={async () => {
-                          //unban user
-                          try {
-                            await client.unbanUser(item._id);
-                          } catch (err) {
-                            console.error(err);
-                          } finally {
-                            enqueueSnackbar(
-                              `${
-                                isUser ? item?.username : item?.name
-                              } is unbanned`,
-                              { action }
-                            );
-                          }
-                        }}
-                      >
-                        Unban User
-                      </li>
-                    )}
-
-                    <li
-                      className="p-2 hover:bg-gray-600"
-                      onClick={() => {
-                        setIsSendingMessage(true);
-                        setMessageRecipient(item);
-                      }}
-                    >
-                      Message user
-                    </li>
-                  </ul>
-                </button>
-              </div>
-            ))
+                    </ul>
+                  </button>
+                </div>
+              );
+            })
           )}
         </div>
       </InfiniteScroll>
+
       {isBanningUser ? (
         BannedUser === null ? (
           <ModalOverlay IsOpen={isBanningUser} setIsOpen={setIsBanningUser}>

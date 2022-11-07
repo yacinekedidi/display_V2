@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
-import BannedList from '../components/admin/BannedList';
-import Dashboard from '../components/admin/Dashboard';
-import DashboardHome from '../components/admin/DashboardHome';
-import Flags from '../components/admin/Flags';
-import Logs from '../components/admin/Logs';
-import Sellers from '../components/admin/Sellers';
-import Users from '../components/admin/Users';
+import BannedList from '../components/Admin/BannedList';
+import Dashboard from '../components/Admin/Dashboard';
+import DashboardHome from '../components/Admin/DashboardHome';
+import Flags from '../components/Admin/Flags';
+import Logs from '../components/Admin/Logs';
+import Sellers from '../components/Admin/Sellers';
+import Users from '../components/Admin/Users';
 import Category from '../components/Categories/Category';
 import Messages from '../components/Chatroom/Messages/Messages';
 import Home from '../components/Home/Home';
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
     // errorElement: <NotFound />,
     children: [
       {
-        path: 'home',
+        path: '',
         element: <DashboardHome />,
       },
       {

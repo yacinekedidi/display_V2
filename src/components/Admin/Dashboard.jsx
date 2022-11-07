@@ -17,16 +17,16 @@ import ScrollToTop from '../../Utils/ScrollToTop';
 const Dashboard = () => {
   const { pathname } = useLocation();
   const currentRoute = pathname?.split('/').slice(-1)?.[0];
-  const [drawerWidth, setDrawWidth] = useState(15);
+  const [drawerWidth, setDrawWidth] = useState('lg');
 
   return (
     <div className="text-md  block h-full w-full font-cairo text-white">
       <div className=" flex h-full w-full flex-col">
         <div className="flex min-h-[10%] w-full items-center bg-gray-900">
-          {drawerWidth < 15 ? (
+          {drawerWidth === 'sm' ? (
             <FontAwesomeIcon
-              className="flex w-[5%] justify-center  hover:cursor-pointer hover:text-orange-600"
-              onClick={() => setDrawWidth(15)}
+              className="flex w-14 justify-center  hover:cursor-pointer hover:text-orange-600"
+              onClick={() => setDrawWidth('lg')}
               icon={faBars}
               fontSize="large"
             />
@@ -34,7 +34,7 @@ const Dashboard = () => {
           <div className={`flex items-center gap-1 px-3`}>
             <div
               className={`m-auto  ${
-                drawerWidth === 15 ? 'flex-col justify-center gap-1' : 'gap-2'
+                drawerWidth === 'lg' ? 'flex-col justify-center gap-1' : 'gap-2'
               } flex items-center`}
             >
               <Link className="hover:rotate-180 hover:animate-spin" to="/">
@@ -53,23 +53,23 @@ const Dashboard = () => {
         <div className="flex h-full w-full">
           <div
             className="h-full resize-x overflow-hidden p-2 shadow-sm shadow-black"
-            style={{ width: `${drawerWidth}%` }}
+            style={{ width: `${drawerWidth === 'lg' ? 160 : 60}px` }}
           >
-            {drawerWidth === 15 ? (
+            {drawerWidth === 'lg' ? (
               <button
                 className="hover:pointer-cursor flex w-full justify-end hover:text-orange-600"
-                onClick={() => setDrawWidth(5)}
+                onClick={() => setDrawWidth('sm')}
               >
                 <FontAwesomeIcon icon={faArrowLeft} size="sm" />
               </button>
             ) : null}
             <div className=" text-md flex h-full w-full flex-col items-center gap-y-4 py-4  font-cairo capitalize">
-              {drawerWidth === 15 ? (
+              {drawerWidth === 'lg' ? (
                 <>
                   <Link
-                    to="home"
+                    to=""
                     className={`flex w-full items-center rounded-md py-2  ${
-                      currentRoute === 'home'
+                      currentRoute === 'dashboard'
                         ? 'bg-gray-800'
                         : 'hover:bg-gray-800'
                     }`}
@@ -166,9 +166,9 @@ const Dashboard = () => {
                 <>
                   <Tooltip title="home" placement="right-end" arrow>
                     <Link
-                      to="home"
+                      to=""
                       className={`hover:pointer-cursor w-full rounded-md py-2 text-center ${
-                        currentRoute === 'home'
+                        currentRoute === 'dashboard'
                           ? 'bg-gray-800'
                           : 'hover:bg-gray-800'
                       }`}

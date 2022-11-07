@@ -14,6 +14,8 @@ const logout = async () => {
 };
 
 const initChat = async () => {
+  if (!authToken) return;
+
   try {
     const currentUser = await client.connectUser(
       {

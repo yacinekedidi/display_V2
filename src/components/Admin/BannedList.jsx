@@ -33,20 +33,18 @@ const BannedList = () => {
   }, []);
 
   return (
-    <div className="grid p-4">
+    <div className="grid w-full grid-cols-1  justify-items-center p-4 font-sans sm:grid-cols-2 md:grid-cols-4">
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        users.map(({ role, id: _id, image: avatarURL, name }) => (
+        users.map(({ id, image, name }) => (
           <UserCard
-            key={_id}
+            key={id}
             item={{
-              role,
-              id: _id,
-              image: avatarURL,
-              [role === 'user' ? 'username' : 'name']: name,
+              id,
+              image,
+              name,
             }}
-            isUser={role === 'user'}
           />
         ))
       )}

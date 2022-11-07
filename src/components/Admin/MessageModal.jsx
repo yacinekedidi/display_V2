@@ -18,18 +18,15 @@ const MessageModal = ({ setIsSendingMessage, messageRecipient, isUser }) => {
 
   const handleClickMessage = async () => {
     try {
-      const username = isUser
-        ? messageRecipient.username
-        : messageRecipient.name;
       const channel = await client.channel('messaging', {
-        members: [messageRecipient._id, user?.me?.id],
+        members: [messageRecipient.id, user?.me?.id],
       });
       //await channel.create();
       const state = await channel.watch();
       // console.log(state);
       const channelMessage = await channel.sendMessage({
         text: `${message}`,
-        mentioned_users: [messageRecipient._id],
+        mentioned_users: [messageRecipient.id],
       });
 
       setConversation((prev) => {
@@ -49,19 +46,18 @@ const MessageModal = ({ setIsSendingMessage, messageRecipient, isUser }) => {
     const queryChannels = async () => {
       const filter = {
         type: 'messaging',
-        members: { $in: [messageRecipient._id] },
+        members: { $in: [messageRecipient.id] },
       };
       const sort = [{ last_message_at: -1 }];
       const channel = await client.queryChannels(filter, sort, {
         watch: true,
         state: true,
+        presence: true,
       });
       console.log(channel?.[0]?.state);
-      console.log(
-        channel?.[0]?.state?.watchers?.[messageRecipient._id]?.online
-      );
+      console.log(channel?.[0]?.state?.watchers?.[messageRecipient.id]?.online);
       setIsUserOnline(
-        channel?.[0]?.state?.watchers?.[messageRecipient._id]?.online
+        channel?.[0]?.state?.watchers?.[messageRecipient.id]?.online
       );
 
       if (isSubscribed) {
@@ -74,7 +70,7 @@ const MessageModal = ({ setIsSendingMessage, messageRecipient, isUser }) => {
     return () => {
       isSubscribed = false;
     };
-  }, [message, messageRecipient._id]);
+  }, [message, messageRecipient.id]);
 
   return (
     <div className="relative flex h-full max-h-screen w-full max-w-7xl overflow-auto rounded-md bg-gray-900 font-cairo sm:h-3/4 sm:w-3/4 md:w-1/2">

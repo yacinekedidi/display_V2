@@ -26,7 +26,7 @@ const BanModal = ({ banningUser, setIsBanningUser, isUser }) => {
 
   const handleClickBan = async () => {
     try {
-      await client.banUser(banningUser._id, {
+      await client.banUser(banningUser.id, {
         banned_by_id: user?.me?.id,
         timeout,
         ip_ban: true,
@@ -36,10 +36,7 @@ const BanModal = ({ banningUser, setIsBanningUser, isUser }) => {
       console.error(err);
     } finally {
       setIsBanningUser(false);
-      enqueueSnackbar(
-        `${isUser ? banningUser.username : banningUser.name} is banned`,
-        { action }
-      );
+      enqueueSnackbar(`${banningUser.name} is banned`, { action });
     }
   };
   return (
@@ -54,7 +51,7 @@ const BanModal = ({ banningUser, setIsBanningUser, isUser }) => {
         size="2x"
       />
       <div className="m-2 flex flex-row gap-4 lg:flex-col">
-        <UserCard item={banningUser} isUser={isUser} />
+        <UserCard item={banningUser} />
         <div className="m-2 w-full rounded-md p-4 font-cairo text-xs shadow-sm shadow-black">
           <p>
             prior bans <span className="text-orange-200">[1]</span>
