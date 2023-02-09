@@ -131,7 +131,9 @@ const About = () => {
                 }
               />
             )}
-            {u?.me?.role === 'user' && info !== 'Last seen' ? (
+            {u?.me?.role === 'user' &&
+            u?.me?.id === user._id &&
+            info !== 'Last seen' ? (
               <button
                 className="bg-transparent px-1 shadow-sm shadow-black"
                 onClick={() => handleClick(info)}
