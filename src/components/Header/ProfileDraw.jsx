@@ -46,20 +46,22 @@ const ProfileDraw = ({ showProfileDraw, unreadMessages }) => {
           className="flex flex-col items-center gap-2 p-2 
 after:my-0 after:mx-auto after:block after:w-11/12 after:border-b-2 after:border-b-orange-300 after:pt-1"
         >
-          <Link
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-300 text-center shadow-sm shadow-black "
-            to={
-              user?.me?.role === 'user'
-                ? `/user/${user?.me?.id}`
-                : `/seller/${user?.me?.name}`
-            }
-          >
-            <img
-              className="w-32 self-center rounded-full outline outline-orange-400"
-              src={user?.me?.image}
-              alt="avatar"
-            />
-          </Link>
+          {user?.me?.role !== 'admin' ? (
+            <Link
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-300 text-center shadow-sm shadow-black "
+              to={
+                user?.me?.role === 'user'
+                  ? `/user/${user?.me?.id}`
+                  : `/seller/${user?.me?.name}`
+              }
+            >
+              <img
+                className="w-32 self-center rounded-full outline outline-orange-400"
+                src={user?.me?.image}
+                alt="avatar"
+              />
+            </Link>
+          ) : null}
           <span className="font-semibold">
             {getFormattedName(user?.me?.name)}
           </span>

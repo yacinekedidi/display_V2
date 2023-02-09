@@ -15,14 +15,18 @@ const logout = async () => {
 
 const initChat = async () => {
   if (!authToken) return;
-  console.log(authToken);
+
+  const image =
+    cookies.get('avatarURL') !== 'undefined'
+      ? cookies.get('avatarURL')
+      : 'https://findicons.com/files/icons/2526/bloggers/256/admin.png';
 
   try {
     const currentUser = await client.connectUser(
       {
         id: cookies.get('userId'),
         name: cookies.get('username'),
-        image: cookies.get('avatarURL'),
+        image,
       },
       authToken
     );

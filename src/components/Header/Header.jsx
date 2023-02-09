@@ -101,9 +101,7 @@ const Header = () => {
                           >
                             {unreadMessages}
                           </div>
-                        ) : (
-                          ''
-                        )}
+                        ) : null}
                       </div>
                     )}
                     {isConnected && profileIsOpen && (
