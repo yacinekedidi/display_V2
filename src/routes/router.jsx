@@ -1,35 +1,51 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import BannedList from '../components/Admin/BannedList';
-import Dashboard from '../components/Admin/Dashboard';
-import DashboardHome from '../components/Admin/DashboardHome';
-import Flags from '../components/Admin/Flags';
-import Logs from '../components/Admin/Logs';
-import Sellers from '../components/Admin/Sellers';
-import Users from '../components/Admin/Users';
-import Category from '../components/Categories/Category';
-import Messages from '../components/Chatroom/Messages/Messages';
 import Home from '../components/Home/Home';
-import NotificationsSeller from '../components/Notifications/seller/NotificationsSeller';
-import Notifications from '../components/Notifications/user/Notifications';
-import ProductProfile from '../components/Products/ProductProfile';
-import ProductsList from '../components/Products/ProductsList';
-import About from '../components/Profile/About';
-import Favorites from '../components/Profile/Favorites';
-import Following from '../components/Profile/Following';
-import ProductsViewed from '../components/Profile/history';
-import Profile from '../components/Profile/Profile';
-import RequestDetails from '../components/Profile/RequestDetails';
-import Requests from '../components/Profile/Requests';
-import Plan from '../components/Sellers/Plan';
-import Seller from '../components/Sellers/Seller';
-import SellerAbout from '../components/Sellers/SellerAbout';
-import SellerFollowersList from '../components/Sellers/SellerFollowersList';
-import SellerProducts from '../components/Sellers/SellerProducts';
-import SellerRequests from '../components/Sellers/SellerRequests';
-import NotFound from '../Utils/NotFound';
-import AdminPrivateRoute from './AdminPrivateRoute';
-import SellerPrivateRoute from './SellerPrivateRoute';
-import UserPrivateRoute from './UserPrivateRoute';
+
+const BannedList = lazy(() => import('../components/Admin/BannedList'));
+const Dashboard = lazy(() => import('../components/Admin/Dashboard'));
+const DashboardHome = lazy(() => import('../components/Admin/DashboardHome'));
+const Flags = lazy(() => import('../components/Admin/Flags'));
+const Logs = lazy(() => import('../components/Admin/Logs'));
+const Sellers = lazy(() => import('../components/Admin/Sellers'));
+const Users = lazy(() => import('../components/Admin/Users'));
+const Category = lazy(() => import('../components/Categories/Category'));
+const Messages = lazy(() => import('../components/Chatroom/Messages/Messages'));
+const NotificationsSeller = lazy(() =>
+  import('../components/Notifications/seller/NotificationsSeller')
+);
+const Notifications = lazy(() =>
+  import('../components/Notifications/user/Notifications')
+);
+const ProductProfile = lazy(() =>
+  import('../components/Products/ProductProfile')
+);
+const ProductsList = lazy(() => import('../components/Products/ProductsList'));
+const About = lazy(() => import('../components/Profile/About'));
+const Favorites = lazy(() => import('../components/Profile/Favorites'));
+const Following = lazy(() => import('../components/Profile/Following'));
+const ProductsViewed = lazy(() => import('../components/Profile/history'));
+const Profile = lazy(() => import('../components/Profile/Profile'));
+const RequestDetails = lazy(() =>
+  import('../components/Profile/RequestDetails')
+);
+const Requests = lazy(() => import('../components/Profile/Requests'));
+const Plan = lazy(() => import('../components/Sellers/Plan'));
+const Seller = lazy(() => import('../components/Sellers/Seller'));
+const SellerAbout = lazy(() => import('../components/Sellers/SellerAbout'));
+const SellerFollowersList = lazy(() =>
+  import('../components/Sellers/SellerFollowersList')
+);
+const SellerProducts = lazy(() =>
+  import('../components/Sellers/SellerProducts')
+);
+const SellerRequests = lazy(() =>
+  import('../components/Sellers/SellerRequests')
+);
+const NotFound = lazy(() => import('../Utils/NotFound'));
+const AdminPrivateRoute = lazy(() => import('./AdminPrivateRoute'));
+const SellerPrivateRoute = lazy(() => import('./SellerPrivateRoute'));
+const UserPrivateRoute = lazy(() => import('./UserPrivateRoute'));
 
 const router = createBrowserRouter([
   {
@@ -44,7 +60,7 @@ const router = createBrowserRouter([
         <Dashboard />
       </AdminPrivateRoute>
     ),
-    // errorElement: <NotFound />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '',
