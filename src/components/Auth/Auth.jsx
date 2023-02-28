@@ -46,9 +46,9 @@ const Auth = ({ showProfileDraw }) => {
   };
 
   return (
-    <div className="auth__form-container">
+    <div className="auth__form-container w-screen">
       <div className="auth__form-container_fields">
-        <div className="auth__form-container_fields-content">
+        <div className="auth__form-container_fields-content ">
           {mode === 'signup' && <p>Sign Up</p>}
           {mode === 'login' && <p>Sign In</p>}
           {mode === 'signupSeller' && <p>Sign Up as Seller</p>}

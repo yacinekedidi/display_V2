@@ -8,19 +8,19 @@ import ModalOverlay from './Utils/ModalOverlay';
 
 function App() {
   return (
-    <Suspense
-      fallback={
-        <ModalOverlay>
-          <LoadingSpinner />
-        </ModalOverlay>
-      }
-    >
-      <AuthProvider>
-        <SnackbarProvider maxSnack={3}>
+    <AuthProvider>
+      <SnackbarProvider maxSnack={3}>
+        <Suspense
+          fallback={
+            <ModalOverlay>
+              <LoadingSpinner />
+            </ModalOverlay>
+          }
+        >
           <RouterProvider router={router} />
-        </SnackbarProvider>
-      </AuthProvider>
-    </Suspense>
+        </Suspense>
+      </SnackbarProvider>
+    </AuthProvider>
   );
 }
 export default App;

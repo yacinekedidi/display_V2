@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Chat } from 'stream-chat-react';
 import 'stream-chat-react/dist/css/index.css';
 import { ChannelContainer, ChannelListContainer } from '..';
-import './Messages.css';
 
 // import '@stream-io/stream-chat-css/dist/css/index.css';
 import 'stream-chat-react/dist/css/index.css';

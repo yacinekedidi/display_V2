@@ -4,6 +4,7 @@
 @tailwind utilities;
 @import '~@csstools/normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap');
+@import './components/Chatroom/Messages/Messages.css';
 
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
